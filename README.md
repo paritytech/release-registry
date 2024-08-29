@@ -21,6 +21,8 @@
 
 <!-- TEMPLATE END -->
 
+Dates with a `~` prefix are estimates.
+
 ## Roadmap
 
   - [ ] Double check dates and make the repo public
