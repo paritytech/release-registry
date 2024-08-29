@@ -38,13 +38,10 @@
 					"description": "The recommended version to use"
 				},
 				"releases": {
-					"type": "object",
-					"patternProperties": {
-						"^stable2[45][01][0-9]$": {
-							"$ref": "#/definitions/releaseInfo"
-						}
-					},
-					"additionalProperties": false
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/releaseInfo"
+					}
 				},
 				"changelog": {
 					"type": "string",
@@ -62,6 +59,11 @@
 		"releaseInfo": {
 			"type": "object",
 			"properties": {
+				"name": {
+					"type": "string",
+					"pattern": "^stable2[45][01][0-9]$",
+					"description": "The name of the release"
+				},
 				"kind": {
 					"type": "string",
 					"enum": [
@@ -82,16 +84,14 @@
 					"$ref": "#/definitions/maintainedState"
 				},
 				"patches": {
-					"type": "object",
-					"patternProperties": {
-						"^stable2[45][01][0-9]-[1-9]+$": {
-							"$ref": "#/definitions/patchInfo"
-						}
-					},
-					"additionalProperties": false
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/patchInfo"
+					}
 				}
 			},
 			"required": [
+				"name",
 				"cutoff",
 				"publish",
 				"endOfLife",
@@ -102,6 +102,10 @@
 		"patchInfo": {
 			"type": "object",
 			"properties": {
+				"name": {
+					"type": "string",
+					"pattern": "^stable2[45][01][0-9]-[1-9]+$"
+				},
 				"cutoff": {
 					"$ref": "#/definitions/dateOrEstimated"
 				},
@@ -113,6 +117,7 @@
 				}
 			},
 			"required": [
+				"name",
 				"cutoff",
 				"publish",
 				"state"

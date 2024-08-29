@@ -1,5 +1,6 @@
 {
 	"Polkadot SDK": {
+<<<<<<< Updated upstream
 		"recommended": {
 			"release": "stable2407",
 			"patch": "1"
@@ -37,20 +38,65 @@
 						"state": "planned"
 					}
 				}
+=======
+	  "recommended": {
+		"release": "stable2407",
+		"patch": "1"
+	  },
+	  "releases": [
+		{
+		  "name": "stable2407",
+		  "state": "maintained",
+		  "cutoff": "2024-04-29",
+		  "publish": {
+			"when": "2024-04-29",
+			"tag": "polkadot-stable2407"
+		  },
+		  "endOfLife": "2025-04-29",
+		  "patches": [
+			{
+			  "name": "stable2407-1",
+			  "cutoff": "2024-08-14",
+			  "publish": {
+				"when": "2024-08-15",
+				"tag": "polkadot-stable2407-1"
+			  },
+			  "state": "maintained"
+>>>>>>> Stashed changes
 			},
-			"stable2410": {
-				"state": "planned",
-				"cutoff": {
-					"estimated": "2024-09-02"
-				},
-				"publish": {
-					"estimated": "2024-09-25"
-				},
-				"endOfLife": {
-					"estimated": "2025-09-25"
-				}
+			{
+			  "name": "stable2407-2",
+			  "cutoff": "2024-08-28",
+			  "publish": {
+				"estimated": "2024-08-30"
+			  },
+			  "state": "planned"
+			},
+			{
+			  "name": "stable2407-3",
+			  "cutoff": "2024-09-11",
+			  "publish": {
+				"estimated": "2024-09-13"
+			  },
+			  "state": "planned"
 			}
+		  ]
 		},
-		"changelog": "https://github.com/paritytech/polkadot-sdk/releases/tag/$TAG"
+		{
+		  "name": "stable2410",
+		  "state": "planned",
+		  "cutoff": {
+			"estimated": "2024-09-02"
+		  },
+		  "publish": {
+			"estimated": "2024-09-25"
+		  },
+		  "endOfLife": {
+			"estimated": "2025-09-25"
+		  },
+		  "patches": []
+		}
+	  ],
+	  "changelog": "https://github.com/paritytech/polkadot-sdk/releases/tag/$TAG"
 	}
-}
+  }
