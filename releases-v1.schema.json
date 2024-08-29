@@ -1,0 +1,219 @@
+{
+	"title": "Release Registry Schema",
+	"type": "object",
+	"propertyNames": {
+		"enum": [
+			"Polkadot SDK",
+			"Fellowship Runtimes"
+		]
+	},
+	"patternProperties": {
+		"^(Polkadot SDK|Fellowship Runtimes)$": {
+			"$ref": "#/definitions/projectInfo"
+		}
+	},
+	"additionalProperties": false,
+	"definitions": {
+		"projectInfo": {
+			"type": "object",
+			"properties": {
+				"recommended": {
+					"type": "object",
+					"properties": {
+						"release": {
+							"type": "string",
+							"pattern": "^stable2[45][01][0-9]$",
+							"description": "The recommended release to use"
+						},
+						"patch": {
+							"type": "string",
+							"pattern": "^[1-9][0-9]*$",
+							"description": "The recommended patch number to use"
+						}
+					},
+					"required": [
+						"release"
+					],
+					"additionalProperties": false,
+					"description": "The recommended version to use"
+				},
+				"releases": {
+					"type": "object",
+					"patternProperties": {
+						"^stable2[45][01][0-9]$": {
+							"$ref": "#/definitions/releaseInfo"
+						}
+					},
+					"additionalProperties": false
+				},
+				"changelog": {
+					"type": "string",
+					"format": "uri",
+					"description": "The URL blueprint to the changelog. $TAG is a placeholder for the tag."
+				}
+			},
+			"required": [
+				"releases",
+				"recommended",
+				"changelog"
+			],
+			"additionalProperties": false
+		},
+		"releaseInfo": {
+			"type": "object",
+			"properties": {
+				"kind": {
+					"type": "string",
+					"enum": [
+						"stable"
+					],
+					"description": "The kind of release"
+				},
+				"cutoff": {
+					"$ref": "#/definitions/dateOrEstimated"
+				},
+				"publish": {
+					"$ref": "#/definitions/publishInfo"
+				},
+				"endOfLife": {
+					"$ref": "#/definitions/dateOrEstimated"
+				},
+				"state": {
+					"$ref": "#/definitions/maintainedState"
+				},
+				"patches": {
+					"type": "object",
+					"patternProperties": {
+						"^stable2[45][01][0-9]-[1-9]+$": {
+							"$ref": "#/definitions/patchInfo"
+						}
+					},
+					"additionalProperties": false
+				}
+			},
+			"required": [
+				"cutoff",
+				"publish",
+				"endOfLife",
+				"state"
+			],
+			"additionalProperties": false
+		},
+		"patchInfo": {
+			"type": "object",
+			"properties": {
+				"cutoff": {
+					"$ref": "#/definitions/dateOrEstimated"
+				},
+				"publish": {
+					"$ref": "#/definitions/publishInfo"
+				},
+				"state": {
+					"$ref": "#/definitions/maintainedState"
+				}
+			},
+			"required": [
+				"cutoff",
+				"publish",
+				"state"
+			],
+			"additionalProperties": false
+		},
+		"dateOrEstimated": {
+			"oneOf": [
+				{
+					"type": "string",
+					"format": "date",
+					"description": "An exact date"
+				},
+				{
+					"type": "object",
+					"properties": {
+						"estimated": {
+							"type": "string",
+							"format": "date"
+						}
+					},
+					"required": [
+						"estimated"
+					],
+					"description": "An estimated date"
+				}
+			]
+		},
+		"publishInfo": {
+			"oneOf": [
+				{
+					"type": "object",
+					"description": "When the release was published, together with its tag.",
+					"properties": {
+						"when": {
+							"type": "string",
+							"format": "date"
+						},
+						"tag": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"when",
+						"tag"
+					]
+				},
+				{
+					"type": "object",
+					"properties": {
+						"estimated": {
+							"type": "string",
+							"format": "date"
+						}
+					},
+					"required": [
+						"estimated"
+					],
+					"description": "The estimated date for publishing the release"
+				}
+			]
+		},
+		"maintainedState": {
+			"oneOf": [
+				{
+					"type": "string",
+					"enum": [
+						"planned",
+						"maintained"
+					],
+					"description": "The release is either planned for a future date or currently maintained."
+				},
+				{
+					"$ref": "#/definitions/deprecatedState"
+				}
+			],
+			"description": "State of a release"
+		},
+		"deprecatedState": {
+			"type": "object",
+			"properties": {
+				"deprecated": {
+					"type": "object",
+					"properties": {
+						"since": {
+							"type": "string",
+							"format": "date"
+						},
+						"useInstead": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"since",
+						"useInstead"
+					]
+				}
+			},
+			"required": [
+				"deprecated"
+			]
+		}
+	}
+}
