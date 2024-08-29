@@ -34,7 +34,9 @@
 			},
 			{
 			  "name": "stable2407-3",
-			  "cutoff": "2024-09-11",
+			  "cutoff": {
+				"estimated": "2024-09-11"
+			  },
 			  "publish": {
 				"estimated": "2024-09-13"
 			  },

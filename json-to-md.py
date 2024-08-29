@@ -6,7 +6,7 @@ def format_date(date_info: Any) -> str:
     if isinstance(date_info, str):
         return date_info
     elif 'estimated' in date_info:
-        return date_info.get('estimated', 'N/A')
+        return '~' + date_info.get('estimated', 'N/A')
     elif 'when' in date_info:
         return date_info['when']
     return 'N/A'
@@ -38,7 +38,7 @@ def generate_row(item: Dict[str, Any], is_patch: bool = False, is_recommended: b
 
     return f"| {'**' if not is_patch else ''}{name}{'**' if not is_patch else ''} | " \
            f"{cutoff} | {publish} | " \
-           f"{end_of_life if not is_patch else ''} | {state if not is_patch else ''} |"
+           f"{end_of_life if not is_patch else ''} | {state} |"
 
 def generate_markdown_table(data: Dict[str, Any]) -> str:
     project_info = data["Polkadot SDK"]
