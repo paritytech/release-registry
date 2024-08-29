@@ -29,13 +29,13 @@ Subscribe to the calendar by adding this iCal link to your Google or Apple calen
 
 `https://raw.githubusercontent.com/paritytech/release-registry/main/releases-v1.ics`
 
-Google has the "From URL" option for this:
+ Google has the "From URL" option and Apple "New Calendar Subscription" option for this:
 
-![Google Calendar](.assets/screenshot-google-cal.png)
+<!-- two pics next to each other -->
 
-Apple has the "New Calendar Subscription" option for this:
-
-![Apple Calendar](.assets/screenshot-apple-cal.png)
+ Google            |  Apple
+:-------------------------:|:-------------------------:
+![](.assets/screenshot-google-cal.png)  |  ![](.assets/screenshot-apple-cal.png)
 
 ## Automation
 
