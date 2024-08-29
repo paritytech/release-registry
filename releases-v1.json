@@ -1,44 +1,5 @@
 {
 	"Polkadot SDK": {
-<<<<<<< Updated upstream
-		"recommended": {
-			"release": "stable2407",
-			"patch": "1"
-		},
-		"releases": {
-			"stable2407": {
-				"state": "maintained",
-				"cutoff": "2024-04-29",
-				"publish": {
-					"when": "2024-04-29",
-					"tag": "polkadot-stable2407"
-				},
-				"endOfLife": "2025-04-29",
-				"patches": {
-					"stable2407-1": {
-						"cutoff": "2024-08-14",
-						"publish": {
-							"when": "2024-08-15",
-							"tag": "polkadot-stable2407-1"
-						},
-						"state": "maintained"
-					},
-					"stable2407-2": {
-						"cutoff": "2024-08-28",
-						"publish": {
-							"estimated": "2024-08-30"
-						},
-						"state": "planned"
-					},
-					"stable2407-3": {
-						"cutoff": "2024-09-11",
-						"publish": {
-							"estimated": "2024-09-13"
-						},
-						"state": "planned"
-					}
-				}
-=======
 	  "recommended": {
 		"release": "stable2407",
 		"patch": "1"
@@ -62,7 +23,6 @@
 				"tag": "polkadot-stable2407-1"
 			  },
 			  "state": "maintained"
->>>>>>> Stashed changes
 			},
 			{
 			  "name": "stable2407-2",

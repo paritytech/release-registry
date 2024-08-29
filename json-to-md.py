@@ -2,13 +2,6 @@ import json
 import re
 from typing import Dict, Any, List
 
-COLOR_MAP = {
-    'active': 'green',
-    'deprecated': 'orange',
-    'unmaintained': 'red',
-    'planned': 'gray'
-}
-
 def format_date(date_info: Any) -> str:
     if isinstance(date_info, str):
         return date_info
@@ -20,32 +13,32 @@ def format_date(date_info: Any) -> str:
 
 def format_state(state: Any) -> str:
     if isinstance(state, str):
-        color = COLOR_MAP.get(state.lower(), '')
-        return f"<span style='color:{color}'>{state.capitalize()}</span>" if color else state.capitalize()
+        return state.capitalize()
     elif isinstance(state, dict) and 'deprecated' in state:
         deprecated_info = state['deprecated']
-        return f"<span style='color:orange'>Deprecated</span> since {deprecated_info['since']}, use {deprecated_info['useInstead']}"
+        return f"Deprecated since {deprecated_info['since']}, use {deprecated_info['useInstead']}"
     return 'N/A'
 
-def generate_name_link(color: str, name: str, publish: Any) -> str:
+def generate_name_link(name: str, publish: Any, is_deprecated: bool) -> str:
     if isinstance(publish, dict) and 'tag' in publish:
-        return f"<a href='https://github.com/paritytech/polkadot-sdk/releases/tag/{publish['tag']}' style='color: {color}; text-decoration: underline;text-decoration-style: dotted;'>{name}</a>"
-    return name
+        name_with_link = f"[{name}](https://github.com/paritytech/polkadot-sdk/releases/tag/{publish['tag']})"
+    else:
+        name_with_link = name
+    
+    return f"~~{name_with_link}~~" if is_deprecated else name_with_link
 
 def generate_row(item: Dict[str, Any], is_patch: bool = False, is_recommended: bool = False, is_planned: bool = False) -> str:
     state = format_state(item['state'])
-    color = 'gray' if is_planned else ('green' if is_recommended else 'white')
-    name = generate_name_link(color, item['name'], item['publish'])
+    is_deprecated = isinstance(item['state'], str) and item['state'].lower() == 'deprecated'
+    name = generate_name_link(item['name'], item['publish'], is_deprecated)
     name = f"{'&nbsp;&nbsp;' if is_patch else ''}{name}"
     cutoff = format_date(item['cutoff'])
     publish = format_date(item['publish'])
     end_of_life = format_date(item.get('endOfLife', '-'))
-    
-    style = f"style='color:{color}'" if color else ''
 
-    return f"| <span {style}>{'**' if not is_patch else ''}{name}{'**' if not is_patch else ''}</span> | " \
-           f"<span {style}>{cutoff}</span> | <span {style}>{publish}</span> | " \
-           f"<span {style}>{end_of_life if not is_patch else ''}</span> | {state if not is_patch else ''} |"
+    return f"| {'**' if not is_patch else ''}{name}{'**' if not is_patch else ''} | " \
+           f"{cutoff} | {publish} | " \
+           f"{end_of_life if not is_patch else ''} | {state if not is_patch else ''} |"
 
 def generate_markdown_table(data: Dict[str, Any]) -> str:
     project_info = data["Polkadot SDK"]
