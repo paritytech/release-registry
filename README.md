@@ -46,7 +46,7 @@ Two scripts are currently in place to:
 
 ## Roadmap
 
-  - [ ] Double check dates and make the repo public
+  - [x] Double check dates and make the repo public
   - [ ] Sync with other teams on how to incooperate this
     - [ ] Release Engineering
     - [ ] Security
