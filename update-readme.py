@@ -1,3 +1,11 @@
+"""
+
+Update the README.md with:
+
+python3 update-readme.py
+
+"""
+
 import json
 import re
 from typing import Dict, Any, List

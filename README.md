@@ -6,7 +6,7 @@
 
   ## Calendar
 
-<!-- Do not manually edit this. Run `python3 json-to-md.py` -->
+<!-- DO NOT EDIT. Run `python3 update-readme.py` instead. -->
 
 <!-- TEMPLATE BEGIN -->
 
@@ -22,6 +22,27 @@
 <!-- TEMPLATE END -->
 
 Dates with a `~` prefix are estimates.
+
+### Subscribe
+
+Subscribe to the calendar by adding this iCal link to your Google or Apple calendar:
+
+`https://raw.githubusercontent.com/paritytech/release-registry/main/releases-v1.ics`
+
+Google has the "From URL" option for this:
+
+![Google Calendar](.assets/screenshot-google-cal.png)
+
+Apple has the "New Calendar Subscription" option for this:
+
+![Apple Calendar](.assets/screenshot-apple-cal.png)
+
+## Automation
+
+Two scripts are currently in place to:
+
+- [update-readme.py](./update-readme.py) - updates the README.md file with the data from the releases.json file
+- [ical.py](./ical.py) - generates an iCal file from the releases.json file
 
 ## Roadmap
 
