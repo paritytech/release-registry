@@ -6,7 +6,9 @@
 
   ## Calendar
 
-  <!-- TEMPLATE BEGIN -->
+<!-- Do not manually edit this. Run `python3 json-to-md.py` -->
+
+<!-- TEMPLATE BEGIN -->
 
 | Version | Cutoff | Published | End of Life | State |
 |---------|--------|-----------|-------------|-------|
@@ -19,7 +21,7 @@
 
 <!-- TEMPLATE END -->
 
-  ## Roadmap
+## Roadmap
 
   - [ ] Double check dates and make the repo public
   - [ ] Sync with other teams on how to incooperate this
