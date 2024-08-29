@@ -28,7 +28,7 @@
 			  "name": "stable2407-2",
 			  "cutoff": "2024-08-28",
 			  "publish": {
-				"estimated": "2024-08-30"
+				"estimated": "2024-09-02"
 			  },
 			  "state": "planned"
 			},
@@ -38,7 +38,7 @@
 				"estimated": "2024-09-11"
 			  },
 			  "publish": {
-				"estimated": "2024-09-13"
+				"estimated": "2024-09-16"
 			  },
 			  "state": "planned"
 			}
