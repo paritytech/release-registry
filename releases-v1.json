@@ -2,7 +2,7 @@
 	"Polkadot SDK": {
 		"recommended": {
 			"release": "stable2407",
-			"patch": "2"
+			"patch": "1"
 		},
 		"releases": {
 			"stable2407": {
