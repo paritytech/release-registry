@@ -42,7 +42,7 @@ Subscribe to the calendar by adding this iCal link to your Google or Apple calen
 Two scripts are currently in place to:
 
 - [update-readme.py](./update-readme.py) - updates the README.md file with the data from the releases.json file
-- [ical.py](./ical.py) - generates an iCal file from the releases.json file
+- [update-calendar.py](./update-calendar.py) - generates an iCal file from the releases.json file
 
 ## Roadmap
 

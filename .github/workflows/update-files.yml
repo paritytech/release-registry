@@ -4,7 +4,7 @@
 # The CI then then either updates the readme with a python script,
 # or checks that it does not need update.
 
-name: Update Readme
+name: Update Files
 
 on:
   pull_request:
@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  update-readme:
+  update-files:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -30,25 +30,28 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run update script
+      - name: README
         run: python update-readme.py
+      
+      - name: Calendar
+        run: python update-calendar.py
         
       - name: Check for changes
         id: git-check
         run: |
-          git diff --exit-code README.md || echo "changes=true" >> $GITHUB_OUTPUT
+          git diff --exit-code . || echo "changes=true" >> $GITHUB_OUTPUT
 
       - name: Commit and push changes if manually triggered
         if: github.event_name == 'workflow_dispatch' && steps.git-check.outputs.changes == 'true'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add README.md
-          git commit -m "Update README.md"
+          git add .
+          git commit -m "Update files"
           git push origin ${{ github.head_ref }}
 
       - name: Error if changes needed on PR
         if: github.event_name == 'pull_request' && steps.git-check.outputs.changes == 'true'
         run: |
-          echo "Error: README.md needs to be updated. Please run this workflow manually to update it."
+          echo "Error: files need to be updated. Please run this workflow manually to update it."
           exit 1
