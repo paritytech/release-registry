@@ -16,6 +16,23 @@
 | &nbsp;&nbsp;[stable2407-1](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2407-1) | 2024-08-14 | 2024-08-15 |  | Released |
 | &nbsp;&nbsp;stable2407-2 | 2024-08-28 | ~2024-09-02 |  | Planned |
 | &nbsp;&nbsp;stable2407-3 | ~2024-09-11 | ~2024-09-16 |  | Planned |
+| &nbsp;&nbsp;stable2407-4 | ~2024-09-25 | ~2024-09-28 |  | Planned |
+| &nbsp;&nbsp;stable2407-5 | ~2024-10-09 | ~2024-10-12 |  | Planned |
+| &nbsp;&nbsp;stable2407-6 | ~2024-10-23 | ~2024-10-26 |  | Planned |
+| &nbsp;&nbsp;stable2407-7 | ~2024-11-06 | ~2024-11-09 |  | Planned |
+| &nbsp;&nbsp;stable2407-8 | ~2024-11-20 | ~2024-11-23 |  | Planned |
+| &nbsp;&nbsp;stable2407-9 | ~2024-12-04 | ~2024-12-07 |  | Planned |
+| &nbsp;&nbsp;stable2407-10 | ~2024-12-18 | ~2024-12-21 |  | Planned |
+| &nbsp;&nbsp;stable2407-11 | ~2025-01-01 | ~2025-01-04 |  | Planned |
+| &nbsp;&nbsp;stable2407-12 | ~2025-01-15 | ~2025-01-18 |  | Planned |
+| &nbsp;&nbsp;stable2407-13 | ~2025-01-29 | ~2025-02-01 |  | Planned |
+| &nbsp;&nbsp;stable2407-14 | ~2025-02-12 | ~2025-02-15 |  | Planned |
+| &nbsp;&nbsp;stable2407-15 | ~2025-02-26 | ~2025-03-01 |  | Planned |
+| &nbsp;&nbsp;stable2407-16 | ~2025-03-12 | ~2025-03-15 |  | Planned |
+| &nbsp;&nbsp;stable2407-17 | ~2025-03-26 | ~2025-03-29 |  | Planned |
+| &nbsp;&nbsp;stable2407-18 | ~2025-04-09 | ~2025-04-12 |  | Planned |
+| &nbsp;&nbsp;stable2407-19 | ~2025-04-23 | ~2025-04-26 |  | Planned |
+| &nbsp;&nbsp;stable2407-20 | ~2025-05-07 | ~2025-05-10 |  | Planned |
 | **stable2409** | ~2024-09-02 | ~2024-09-25 | ~2025-09-25 | Planned |
 | &nbsp;&nbsp;stable2409-1 | ~2024-10-09 | ~2024-10-12 |  | Planned |
 | &nbsp;&nbsp;stable2409-2 | ~2024-10-23 | ~2024-10-26 |  | Planned |

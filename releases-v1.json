@@ -41,6 +41,176 @@
               "estimated": "2024-09-16"
             },
             "state": "planned"
+          },
+          {
+            "name": "stable2407-4",
+            "cutoff": {
+              "estimated": "2024-09-25"
+            },
+            "publish": {
+              "estimated": "2024-09-28"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2407-5",
+            "cutoff": {
+              "estimated": "2024-10-09"
+            },
+            "publish": {
+              "estimated": "2024-10-12"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2407-6",
+            "cutoff": {
+              "estimated": "2024-10-23"
+            },
+            "publish": {
+              "estimated": "2024-10-26"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2407-7",
+            "cutoff": {
+              "estimated": "2024-11-06"
+            },
+            "publish": {
+              "estimated": "2024-11-09"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2407-8",
+            "cutoff": {
+              "estimated": "2024-11-20"
+            },
+            "publish": {
+              "estimated": "2024-11-23"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2407-9",
+            "cutoff": {
+              "estimated": "2024-12-04"
+            },
+            "publish": {
+              "estimated": "2024-12-07"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2407-10",
+            "cutoff": {
+              "estimated": "2024-12-18"
+            },
+            "publish": {
+              "estimated": "2024-12-21"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2407-11",
+            "cutoff": {
+              "estimated": "2025-01-01"
+            },
+            "publish": {
+              "estimated": "2025-01-04"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2407-12",
+            "cutoff": {
+              "estimated": "2025-01-15"
+            },
+            "publish": {
+              "estimated": "2025-01-18"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2407-13",
+            "cutoff": {
+              "estimated": "2025-01-29"
+            },
+            "publish": {
+              "estimated": "2025-02-01"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2407-14",
+            "cutoff": {
+              "estimated": "2025-02-12"
+            },
+            "publish": {
+              "estimated": "2025-02-15"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2407-15",
+            "cutoff": {
+              "estimated": "2025-02-26"
+            },
+            "publish": {
+              "estimated": "2025-03-01"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2407-16",
+            "cutoff": {
+              "estimated": "2025-03-12"
+            },
+            "publish": {
+              "estimated": "2025-03-15"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2407-17",
+            "cutoff": {
+              "estimated": "2025-03-26"
+            },
+            "publish": {
+              "estimated": "2025-03-29"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2407-18",
+            "cutoff": {
+              "estimated": "2025-04-09"
+            },
+            "publish": {
+              "estimated": "2025-04-12"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2407-19",
+            "cutoff": {
+              "estimated": "2025-04-23"
+            },
+            "publish": {
+              "estimated": "2025-04-26"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2407-20",
+            "cutoff": {
+              "estimated": "2025-05-07"
+            },
+            "publish": {
+              "estimated": "2025-05-10"
+            },
+            "state": "planned"
           }
         ]
       },
