@@ -7,7 +7,7 @@
 	  "releases": [
 		{
 		  "name": "stable2407",
-		  "state": "maintained",
+		  "state": "released",
 		  "cutoff": "2024-04-29",
 		  "publish": {
 			"when": "2024-04-29",
@@ -22,7 +22,7 @@
 				"when": "2024-08-15",
 				"tag": "polkadot-stable2407-1"
 			  },
-			  "state": "maintained"
+			  "state": "released"
 			},
 			{
 			  "name": "stable2407-2",
