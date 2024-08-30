@@ -186,9 +186,8 @@
 					"type": "string",
 					"enum": [
 						"planned",
-						"maintained"
-					],
-					"description": "The release is either planned for a future date or currently maintained."
+						"released"
+					]
 				},
 				{
 					"$ref": "#/definitions/deprecatedState"
