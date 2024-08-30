@@ -1,64 +1,600 @@
 {
-	"Polkadot SDK": {
-	  "recommended": {
-		"release": "stable2407",
-		"patch": "1"
-	  },
-	  "releases": [
-		{
-		  "name": "stable2407",
-		  "state": "released",
-		  "cutoff": "2024-04-29",
-		  "publish": {
-			"when": "2024-04-29",
-			"tag": "polkadot-stable2407"
-		  },
-		  "endOfLife": "2025-04-29",
-		  "patches": [
-			{
-			  "name": "stable2407-1",
-			  "cutoff": "2024-08-14",
-			  "publish": {
-				"when": "2024-08-15",
-				"tag": "polkadot-stable2407-1"
-			  },
-			  "state": "released"
-			},
-			{
-			  "name": "stable2407-2",
-			  "cutoff": "2024-08-28",
-			  "publish": {
-				"estimated": "2024-09-02"
-			  },
-			  "state": "planned"
-			},
-			{
-			  "name": "stable2407-3",
-			  "cutoff": {
-				"estimated": "2024-09-11"
-			  },
-			  "publish": {
-				"estimated": "2024-09-16"
-			  },
-			  "state": "planned"
-			}
-		  ]
-		},
-		{
-		  "name": "stable2410",
-		  "state": "planned",
-		  "cutoff": {
-			"estimated": "2024-09-02"
-		  },
-		  "publish": {
-			"estimated": "2024-09-25"
-		  },
-		  "endOfLife": {
-			"estimated": "2025-09-25"
-		  },
-		  "patches": []
-		}
-	  ],
-	  "changelog": "https://github.com/paritytech/polkadot-sdk/releases/tag/$TAG"
-	}
+  "Polkadot SDK": {
+    "recommended": {
+      "release": "stable2407",
+      "patch": "1"
+    },
+    "releases": [
+      {
+        "name": "stable2407",
+        "state": "released",
+        "cutoff": "2024-04-29",
+        "publish": {
+          "when": "2024-04-29",
+          "tag": "polkadot-stable2407"
+        },
+        "endOfLife": "2025-04-29",
+        "patches": [
+          {
+            "name": "stable2407-1",
+            "cutoff": "2024-08-14",
+            "publish": {
+              "when": "2024-08-15",
+              "tag": "polkadot-stable2407-1"
+            },
+            "state": "released"
+          },
+          {
+            "name": "stable2407-2",
+            "cutoff": "2024-08-28",
+            "publish": {
+              "estimated": "2024-09-02"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2407-3",
+            "cutoff": {
+              "estimated": "2024-09-11"
+            },
+            "publish": {
+              "estimated": "2024-09-16"
+            },
+            "state": "planned"
+          }
+        ]
+      },
+      {
+        "name": "stable2409",
+        "state": "planned",
+        "cutoff": {
+          "estimated": "2024-09-02"
+        },
+        "publish": {
+          "estimated": "2024-09-25"
+        },
+        "endOfLife": {
+          "estimated": "2025-09-25"
+        },
+        "patches": [
+          {
+            "name": "stable2409-1",
+            "cutoff": {
+              "estimated": "2024-10-09"
+            },
+            "publish": {
+              "estimated": "2024-10-12"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2409-2",
+            "cutoff": {
+              "estimated": "2024-10-23"
+            },
+            "publish": {
+              "estimated": "2024-10-26"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2409-3",
+            "cutoff": {
+              "estimated": "2024-11-06"
+            },
+            "publish": {
+              "estimated": "2024-11-09"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2409-4",
+            "cutoff": {
+              "estimated": "2024-11-20"
+            },
+            "publish": {
+              "estimated": "2024-11-23"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2409-5",
+            "cutoff": {
+              "estimated": "2024-12-04"
+            },
+            "publish": {
+              "estimated": "2024-12-07"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2409-6",
+            "cutoff": {
+              "estimated": "2024-12-18"
+            },
+            "publish": {
+              "estimated": "2024-12-21"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2409-7",
+            "cutoff": {
+              "estimated": "2025-01-01"
+            },
+            "publish": {
+              "estimated": "2025-01-04"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2409-8",
+            "cutoff": {
+              "estimated": "2025-01-15"
+            },
+            "publish": {
+              "estimated": "2025-01-18"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2409-9",
+            "cutoff": {
+              "estimated": "2025-01-29"
+            },
+            "publish": {
+              "estimated": "2025-02-01"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2409-10",
+            "cutoff": {
+              "estimated": "2025-02-12"
+            },
+            "publish": {
+              "estimated": "2025-02-15"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2409-11",
+            "cutoff": {
+              "estimated": "2025-02-26"
+            },
+            "publish": {
+              "estimated": "2025-03-01"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2409-12",
+            "cutoff": {
+              "estimated": "2025-03-12"
+            },
+            "publish": {
+              "estimated": "2025-03-15"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2409-13",
+            "cutoff": {
+              "estimated": "2025-03-26"
+            },
+            "publish": {
+              "estimated": "2025-03-29"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2409-14",
+            "cutoff": {
+              "estimated": "2025-04-09"
+            },
+            "publish": {
+              "estimated": "2025-04-12"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2409-15",
+            "cutoff": {
+              "estimated": "2025-04-23"
+            },
+            "publish": {
+              "estimated": "2025-04-26"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2409-16",
+            "cutoff": {
+              "estimated": "2025-05-07"
+            },
+            "publish": {
+              "estimated": "2025-05-10"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2409-17",
+            "cutoff": {
+              "estimated": "2025-05-21"
+            },
+            "publish": {
+              "estimated": "2025-05-24"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2409-18",
+            "cutoff": {
+              "estimated": "2025-06-04"
+            },
+            "publish": {
+              "estimated": "2025-06-07"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2409-19",
+            "cutoff": {
+              "estimated": "2025-06-18"
+            },
+            "publish": {
+              "estimated": "2025-06-21"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2409-20",
+            "cutoff": {
+              "estimated": "2025-07-02"
+            },
+            "publish": {
+              "estimated": "2025-07-05"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2409-21",
+            "cutoff": {
+              "estimated": "2025-07-16"
+            },
+            "publish": {
+              "estimated": "2025-07-19"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2409-22",
+            "cutoff": {
+              "estimated": "2025-07-30"
+            },
+            "publish": {
+              "estimated": "2025-08-02"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2409-23",
+            "cutoff": {
+              "estimated": "2025-08-13"
+            },
+            "publish": {
+              "estimated": "2025-08-16"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2409-24",
+            "cutoff": {
+              "estimated": "2025-08-27"
+            },
+            "publish": {
+              "estimated": "2025-08-30"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2409-25",
+            "cutoff": {
+              "estimated": "2025-09-10"
+            },
+            "publish": {
+              "estimated": "2025-09-13"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2409-26",
+            "cutoff": {
+              "estimated": "2025-09-24"
+            },
+            "publish": {
+              "estimated": "2025-09-27"
+            },
+            "state": "planned"
+          }
+        ]
+      },
+      {
+        "name": "stable2501",
+        "cutoff": {
+          "estimated": "2025-01-01"
+        },
+        "publish": {
+          "estimated": "2025-02-15"
+        },
+        "state": "planned",
+        "endOfLife": {
+          "estimated": "2026-02-15"
+        },
+        "patches": [
+          {
+            "name": "stable2501-1",
+            "cutoff": {
+              "estimated": "2025-03-01"
+            },
+            "publish": {
+              "estimated": "2025-03-04"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2501-2",
+            "cutoff": {
+              "estimated": "2025-03-15"
+            },
+            "publish": {
+              "estimated": "2025-03-18"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2501-3",
+            "cutoff": {
+              "estimated": "2025-03-29"
+            },
+            "publish": {
+              "estimated": "2025-04-01"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2501-4",
+            "cutoff": {
+              "estimated": "2025-04-12"
+            },
+            "publish": {
+              "estimated": "2025-04-15"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2501-5",
+            "cutoff": {
+              "estimated": "2025-04-26"
+            },
+            "publish": {
+              "estimated": "2025-04-29"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2501-6",
+            "cutoff": {
+              "estimated": "2025-05-10"
+            },
+            "publish": {
+              "estimated": "2025-05-13"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2501-7",
+            "cutoff": {
+              "estimated": "2025-05-24"
+            },
+            "publish": {
+              "estimated": "2025-05-27"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2501-8",
+            "cutoff": {
+              "estimated": "2025-06-07"
+            },
+            "publish": {
+              "estimated": "2025-06-10"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2501-9",
+            "cutoff": {
+              "estimated": "2025-06-21"
+            },
+            "publish": {
+              "estimated": "2025-06-24"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2501-10",
+            "cutoff": {
+              "estimated": "2025-07-05"
+            },
+            "publish": {
+              "estimated": "2025-07-08"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2501-11",
+            "cutoff": {
+              "estimated": "2025-07-19"
+            },
+            "publish": {
+              "estimated": "2025-07-22"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2501-12",
+            "cutoff": {
+              "estimated": "2025-08-02"
+            },
+            "publish": {
+              "estimated": "2025-08-05"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2501-13",
+            "cutoff": {
+              "estimated": "2025-08-16"
+            },
+            "publish": {
+              "estimated": "2025-08-19"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2501-14",
+            "cutoff": {
+              "estimated": "2025-08-30"
+            },
+            "publish": {
+              "estimated": "2025-09-02"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2501-15",
+            "cutoff": {
+              "estimated": "2025-09-13"
+            },
+            "publish": {
+              "estimated": "2025-09-16"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2501-16",
+            "cutoff": {
+              "estimated": "2025-09-27"
+            },
+            "publish": {
+              "estimated": "2025-09-30"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2501-17",
+            "cutoff": {
+              "estimated": "2025-10-11"
+            },
+            "publish": {
+              "estimated": "2025-10-14"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2501-18",
+            "cutoff": {
+              "estimated": "2025-10-25"
+            },
+            "publish": {
+              "estimated": "2025-10-28"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2501-19",
+            "cutoff": {
+              "estimated": "2025-11-08"
+            },
+            "publish": {
+              "estimated": "2025-11-11"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2501-20",
+            "cutoff": {
+              "estimated": "2025-11-22"
+            },
+            "publish": {
+              "estimated": "2025-11-25"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2501-21",
+            "cutoff": {
+              "estimated": "2025-12-06"
+            },
+            "publish": {
+              "estimated": "2025-12-09"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2501-22",
+            "cutoff": {
+              "estimated": "2025-12-20"
+            },
+            "publish": {
+              "estimated": "2025-12-23"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2501-23",
+            "cutoff": {
+              "estimated": "2026-01-03"
+            },
+            "publish": {
+              "estimated": "2026-01-06"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2501-24",
+            "cutoff": {
+              "estimated": "2026-01-17"
+            },
+            "publish": {
+              "estimated": "2026-01-20"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2501-25",
+            "cutoff": {
+              "estimated": "2026-01-31"
+            },
+            "publish": {
+              "estimated": "2026-02-03"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2501-26",
+            "cutoff": {
+              "estimated": "2026-02-14"
+            },
+            "publish": {
+              "estimated": "2026-02-17"
+            },
+            "state": "planned"
+          }
+        ]
+      }
+    ],
+    "changelog": "https://github.com/paritytech/polkadot-sdk/releases/tag/$TAG"
   }
+}
