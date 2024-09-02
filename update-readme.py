@@ -69,7 +69,7 @@ def generate_markdown_table(data: Dict[str, Any]) -> str:
             is_patch_planned = isinstance(patch['state'], str) and patch['state'].lower() == 'planned'
             if is_patch_planned:
                 future_patches += 1
-            if future_patches < 40:
+            if future_patches < 5:
                 table += generate_row(patch, is_patch=True, is_recommended=is_recommended_patch, is_planned=is_patch_planned) + '\n'
             else:
                 table += f"| &nbsp;&nbsp;({len(patches) - i} more) |  |  | | |\n"
