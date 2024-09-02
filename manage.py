@@ -61,7 +61,7 @@ def update_patch(release, patch_number, date, field):
     release['patches'].append(new_patch)
     return True
 
-def create_planned_patches(release, start_date, num_patches=26):
+def create_planned_patches(release, start_date, num_patches=13):
     if 'patches' not in release:
         release['patches'] = []
 
@@ -70,7 +70,7 @@ def create_planned_patches(release, start_date, num_patches=26):
     last_patch_date = datetime.strptime(start_date, '%Y-%m-%d')
     for i in range(1, num_patches + 1):
         if i not in existing_patch_numbers:
-            cutoff_date = last_patch_date + timedelta(days=14)
+            cutoff_date = last_patch_date + timedelta(days=28)
             publish_date = cutoff_date + timedelta(days=3)
             # Always move publish dates to monday
             if publish_date.weekday() >= 5:

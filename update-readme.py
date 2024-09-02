@@ -62,7 +62,6 @@ def generate_markdown_table(data: Dict[str, Any]) -> str:
         is_planned = isinstance(release['state'], str) and release['state'].lower() == 'planned'
         table += generate_row(release, is_recommended=is_recommended and recommended.get('patch') is None, is_planned=is_planned) + '\n'
 
-        # We dont want to add all 26 future planned patches, just 3 is enough
         future_patches = 0
         patches = release.get('patches', [])
         for i, patch in enumerate(patches):
@@ -70,7 +69,7 @@ def generate_markdown_table(data: Dict[str, Any]) -> str:
             is_patch_planned = isinstance(patch['state'], str) and patch['state'].lower() == 'planned'
             if is_patch_planned:
                 future_patches += 1
-            if future_patches < 4:
+            if future_patches < 40:
                 table += generate_row(patch, is_patch=True, is_recommended=is_recommended_patch, is_planned=is_patch_planned) + '\n'
             else:
                 table += f"| &nbsp;&nbsp;({len(patches) - i} more) |  |  | | |\n"

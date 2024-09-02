@@ -15,19 +15,43 @@
 | **stable2407** | &nbsp;&nbsp;2024-04-29 | &nbsp;&nbsp;2024-04-29 | &nbsp;&nbsp;2025-04-29 | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2407) |
 | &nbsp;&nbsp;stable2407-1 | &nbsp;&nbsp;2024-08-14 | &nbsp;&nbsp;2024-08-15 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2407-1) |
 | &nbsp;&nbsp;stable2407-2 | &nbsp;&nbsp;2024-08-28 | ~2024-09-02 |  | Planned |
-| &nbsp;&nbsp;stable2407-3 | ~2024-09-11 | ~2024-09-16 |  | Planned |
-| &nbsp;&nbsp;stable2407-4 | ~2024-09-25 | ~2024-09-30 |  | Planned |
-| &nbsp;&nbsp;(16 more) |  |  | | |
+| &nbsp;&nbsp;stable2407-3 | ~2024-09-25 | ~2024-09-30 |  | Planned |
+| &nbsp;&nbsp;stable2407-4 | ~2024-10-23 | ~2024-10-28 |  | Planned |
+| &nbsp;&nbsp;stable2407-5 | ~2024-11-20 | ~2024-11-25 |  | Planned |
+| &nbsp;&nbsp;stable2407-6 | ~2024-12-18 | ~2024-12-23 |  | Planned |
+| &nbsp;&nbsp;stable2407-7 | ~2025-01-15 | ~2025-01-20 |  | Planned |
+| &nbsp;&nbsp;stable2407-8 | ~2025-02-12 | ~2025-02-17 |  | Planned |
+| &nbsp;&nbsp;stable2407-9 | ~2025-03-12 | ~2025-03-17 |  | Planned |
+| &nbsp;&nbsp;stable2407-10 | ~2025-04-09 | ~2025-04-14 |  | Planned |
+| &nbsp;&nbsp;stable2407-11 | ~2025-05-07 | ~2025-05-12 |  | Planned |
 | **stable2409** | ~2024-09-02 | ~2024-09-25 | ~2025-09-25 | Planned |
-| &nbsp;&nbsp;stable2409-1 | ~2024-10-09 | ~2024-10-14 |  | Planned |
-| &nbsp;&nbsp;stable2409-2 | ~2024-10-23 | ~2024-10-28 |  | Planned |
-| &nbsp;&nbsp;stable2409-3 | ~2024-11-06 | ~2024-11-11 |  | Planned |
-| &nbsp;&nbsp;(23 more) |  |  | | |
-| **stable2412** | ~2024-11-06 | ~2024-12-16 | ~2025-12-16 | Planned |
-| &nbsp;&nbsp;stable2412-1 | ~2024-12-30 | ~2025-01-02 |  | Planned |
-| &nbsp;&nbsp;stable2412-2 | ~2025-01-13 | ~2025-01-16 |  | Planned |
-| &nbsp;&nbsp;stable2412-3 | ~2025-01-27 | ~2025-01-30 |  | Planned |
-| &nbsp;&nbsp;(23 more) |  |  | | |
+| &nbsp;&nbsp;stable2409-1 | ~2024-10-23 | ~2024-10-28 |  | Planned |
+| &nbsp;&nbsp;stable2409-2 | ~2024-11-20 | ~2024-11-25 |  | Planned |
+| &nbsp;&nbsp;stable2409-3 | ~2024-12-18 | ~2024-12-23 |  | Planned |
+| &nbsp;&nbsp;stable2409-4 | ~2025-01-15 | ~2025-01-20 |  | Planned |
+| &nbsp;&nbsp;stable2409-5 | ~2025-02-12 | ~2025-02-17 |  | Planned |
+| &nbsp;&nbsp;stable2409-6 | ~2025-03-12 | ~2025-03-17 |  | Planned |
+| &nbsp;&nbsp;stable2409-7 | ~2025-04-09 | ~2025-04-14 |  | Planned |
+| &nbsp;&nbsp;stable2409-8 | ~2025-05-07 | ~2025-05-12 |  | Planned |
+| &nbsp;&nbsp;stable2409-9 | ~2025-06-04 | ~2025-06-09 |  | Planned |
+| &nbsp;&nbsp;stable2409-10 | ~2025-07-02 | ~2025-07-07 |  | Planned |
+| &nbsp;&nbsp;stable2409-11 | ~2025-07-30 | ~2025-08-04 |  | Planned |
+| &nbsp;&nbsp;stable2409-12 | ~2025-08-27 | ~2025-09-01 |  | Planned |
+| &nbsp;&nbsp;stable2409-13 | ~2025-09-24 | ~2025-09-29 |  | Planned |
+| **stable2412** | ~2024-11-06 | ~2024-12-23 | ~2025-12-23 | Planned |
+| &nbsp;&nbsp;stable2412-1 | ~2025-01-20 | ~2025-01-23 |  | Planned |
+| &nbsp;&nbsp;stable2412-2 | ~2025-02-17 | ~2025-02-20 |  | Planned |
+| &nbsp;&nbsp;stable2412-3 | ~2025-03-17 | ~2025-03-20 |  | Planned |
+| &nbsp;&nbsp;stable2412-4 | ~2025-04-14 | ~2025-04-17 |  | Planned |
+| &nbsp;&nbsp;stable2412-5 | ~2025-05-12 | ~2025-05-15 |  | Planned |
+| &nbsp;&nbsp;stable2412-6 | ~2025-06-09 | ~2025-06-12 |  | Planned |
+| &nbsp;&nbsp;stable2412-7 | ~2025-07-07 | ~2025-07-10 |  | Planned |
+| &nbsp;&nbsp;stable2412-8 | ~2025-08-04 | ~2025-08-07 |  | Planned |
+| &nbsp;&nbsp;stable2412-9 | ~2025-09-01 | ~2025-09-04 |  | Planned |
+| &nbsp;&nbsp;stable2412-10 | ~2025-09-29 | ~2025-10-02 |  | Planned |
+| &nbsp;&nbsp;stable2412-11 | ~2025-10-27 | ~2025-10-30 |  | Planned |
+| &nbsp;&nbsp;stable2412-12 | ~2025-11-24 | ~2025-11-27 |  | Planned |
+| &nbsp;&nbsp;stable2412-13 | ~2025-12-22 | ~2025-12-25 |  | Planned |
 
 
 <!-- TEMPLATE END -->
