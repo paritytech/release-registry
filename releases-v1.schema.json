@@ -104,7 +104,7 @@
 			"properties": {
 				"name": {
 					"type": "string",
-					"pattern": "^stable2[45][01][0-9]-[1-9]+$"
+					"pattern": "^stable2[45][01][0-9]-([1-9][0-9]*)$"
 				},
 				"cutoff": {
 					"$ref": "#/definitions/dateOrEstimated"
@@ -186,6 +186,7 @@
 					"type": "string",
 					"enum": [
 						"planned",
+						"testing",
 						"released"
 					]
 				},
