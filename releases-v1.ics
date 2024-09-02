@@ -374,15 +374,15 @@ DESCRIPTION:Cutoff for stable2412 (planned)\n\nFull Calendar: https://gith
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2412 Release
-DTSTART;VALUE=DATE:20241223
-DTEND;VALUE=DATE:20241224
+DTSTART;VALUE=DATE:20241216
+DTEND;VALUE=DATE:20241217
 DESCRIPTION:Release of stable2412 (planned)\n\nFull Calendar: https://gith
  ub.com/paritytech/release-registry?tab=readme-ov-file#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2412 End of Life
-DTSTART;VALUE=DATE:20251223
-DTEND;VALUE=DATE:20251224
+DTSTART;VALUE=DATE:20251216
+DTEND;VALUE=DATE:20251217
 DESCRIPTION:End of Life for stable2412\n\nFull Calendar: https://github.co
  m/paritytech/release-registry?tab=readme-ov-file#calendar
 END:VEVENT

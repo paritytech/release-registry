@@ -37,7 +37,7 @@
 | &nbsp;&nbsp;stable2409-11 | ~2025-08-11 | ~2025-08-14 |  | Planned |
 | &nbsp;&nbsp;stable2409-12 | ~2025-09-08 | ~2025-09-11 |  | Planned |
 | &nbsp;&nbsp;stable2409-13 | ~2025-10-13 | ~2025-10-16 |  | Planned |
-| **stable2412** | ~2024-11-06 | ~2024-12-23 | ~2025-12-23 | Planned |
+| **stable2412** | ~2024-11-06 | ~2024-12-16 | ~2025-12-16 | Planned |
 | &nbsp;&nbsp;stable2412-1 | ~2025-01-20 | ~2025-01-23 |  | Planned |
 | &nbsp;&nbsp;stable2412-2 | ~2025-02-17 | ~2025-02-20 |  | Planned |
 | &nbsp;&nbsp;stable2412-3 | ~2025-03-17 | ~2025-03-20 |  | Planned |
