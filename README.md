@@ -16,7 +16,7 @@
 | &nbsp;&nbsp;stable2407-1 | &nbsp;&nbsp;2024-08-14 | &nbsp;&nbsp;2024-08-15 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2407-1) |
 | &nbsp;&nbsp;stable2407-2 | &nbsp;&nbsp;2024-08-28 | ~2024-09-02 |  | Planned |
 | &nbsp;&nbsp;stable2407-3 | ~2024-09-11 | ~2024-09-16 |  | Planned |
-| &nbsp;&nbsp;stable2407-4 | ~2024-09-25 | ~2024-09-28 |  | Planned |
+| &nbsp;&nbsp;stable2407-4 | ~2024-09-25 | ~2024-09-30 |  | Planned |
 | &nbsp;&nbsp;(16 more) |  |  | | |
 | **stable2409** | ~2024-09-02 | ~2024-09-25 | ~2025-09-25 | Planned |
 | &nbsp;&nbsp;stable2409-1 | ~2024-10-09 | ~2024-10-14 |  | Planned |

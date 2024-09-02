@@ -73,8 +73,8 @@ DESCRIPTION:Cutoff for stable2407-4 (planned)\n\nFull Calendar: https://gi
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2407-4 Release
-DTSTART;VALUE=DATE:20240928
-DTEND;VALUE=DATE:20240929
+DTSTART;VALUE=DATE:20240930
+DTEND;VALUE=DATE:20241001
 DESCRIPTION:Release of stable2407-4 (planned)\n\nFull Calendar: https://gi
  thub.com/paritytech/release-registry?tab=readme-ov-file#calendar
 END:VEVENT
@@ -87,8 +87,8 @@ DESCRIPTION:Cutoff for stable2407-5 (planned)\n\nFull Calendar: https://gi
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2407-5 Release
-DTSTART;VALUE=DATE:20241012
-DTEND;VALUE=DATE:20241013
+DTSTART;VALUE=DATE:20241014
+DTEND;VALUE=DATE:20241015
 DESCRIPTION:Release of stable2407-5 (planned)\n\nFull Calendar: https://gi
  thub.com/paritytech/release-registry?tab=readme-ov-file#calendar
 END:VEVENT
@@ -101,8 +101,8 @@ DESCRIPTION:Cutoff for stable2407-6 (planned)\n\nFull Calendar: https://gi
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2407-6 Release
-DTSTART;VALUE=DATE:20241026
-DTEND;VALUE=DATE:20241027
+DTSTART;VALUE=DATE:20241028
+DTEND;VALUE=DATE:20241029
 DESCRIPTION:Release of stable2407-6 (planned)\n\nFull Calendar: https://gi
  thub.com/paritytech/release-registry?tab=readme-ov-file#calendar
 END:VEVENT
@@ -115,8 +115,8 @@ DESCRIPTION:Cutoff for stable2407-7 (planned)\n\nFull Calendar: https://gi
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2407-7 Release
-DTSTART;VALUE=DATE:20241109
-DTEND;VALUE=DATE:20241110
+DTSTART;VALUE=DATE:20241111
+DTEND;VALUE=DATE:20241112
 DESCRIPTION:Release of stable2407-7 (planned)\n\nFull Calendar: https://gi
  thub.com/paritytech/release-registry?tab=readme-ov-file#calendar
 END:VEVENT
@@ -129,8 +129,8 @@ DESCRIPTION:Cutoff for stable2407-8 (planned)\n\nFull Calendar: https://gi
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2407-8 Release
-DTSTART;VALUE=DATE:20241123
-DTEND;VALUE=DATE:20241124
+DTSTART;VALUE=DATE:20241125
+DTEND;VALUE=DATE:20241126
 DESCRIPTION:Release of stable2407-8 (planned)\n\nFull Calendar: https://gi
  thub.com/paritytech/release-registry?tab=readme-ov-file#calendar
 END:VEVENT
@@ -143,8 +143,8 @@ DESCRIPTION:Cutoff for stable2407-9 (planned)\n\nFull Calendar: https://gi
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2407-9 Release
-DTSTART;VALUE=DATE:20241207
-DTEND;VALUE=DATE:20241208
+DTSTART;VALUE=DATE:20241209
+DTEND;VALUE=DATE:20241210
 DESCRIPTION:Release of stable2407-9 (planned)\n\nFull Calendar: https://gi
  thub.com/paritytech/release-registry?tab=readme-ov-file#calendar
 END:VEVENT
@@ -157,8 +157,8 @@ DESCRIPTION:Cutoff for stable2407-10 (planned)\n\nFull Calendar: https://g
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2407-10 Release
-DTSTART;VALUE=DATE:20241221
-DTEND;VALUE=DATE:20241222
+DTSTART;VALUE=DATE:20241223
+DTEND;VALUE=DATE:20241224
 DESCRIPTION:Release of stable2407-10 (planned)\n\nFull Calendar: https://g
  ithub.com/paritytech/release-registry?tab=readme-ov-file#calendar
 END:VEVENT
@@ -171,8 +171,8 @@ DESCRIPTION:Cutoff for stable2407-11 (planned)\n\nFull Calendar: https://g
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2407-11 Release
-DTSTART;VALUE=DATE:20250104
-DTEND;VALUE=DATE:20250105
+DTSTART;VALUE=DATE:20250106
+DTEND;VALUE=DATE:20250107
 DESCRIPTION:Release of stable2407-11 (planned)\n\nFull Calendar: https://g
  ithub.com/paritytech/release-registry?tab=readme-ov-file#calendar
 END:VEVENT
@@ -185,8 +185,8 @@ DESCRIPTION:Cutoff for stable2407-12 (planned)\n\nFull Calendar: https://g
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2407-12 Release
-DTSTART;VALUE=DATE:20250118
-DTEND;VALUE=DATE:20250119
+DTSTART;VALUE=DATE:20250120
+DTEND;VALUE=DATE:20250121
 DESCRIPTION:Release of stable2407-12 (planned)\n\nFull Calendar: https://g
  ithub.com/paritytech/release-registry?tab=readme-ov-file#calendar
 END:VEVENT
@@ -199,8 +199,8 @@ DESCRIPTION:Cutoff for stable2407-13 (planned)\n\nFull Calendar: https://g
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2407-13 Release
-DTSTART;VALUE=DATE:20250201
-DTEND;VALUE=DATE:20250202
+DTSTART;VALUE=DATE:20250203
+DTEND;VALUE=DATE:20250204
 DESCRIPTION:Release of stable2407-13 (planned)\n\nFull Calendar: https://g
  ithub.com/paritytech/release-registry?tab=readme-ov-file#calendar
 END:VEVENT
@@ -213,8 +213,8 @@ DESCRIPTION:Cutoff for stable2407-14 (planned)\n\nFull Calendar: https://g
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2407-14 Release
-DTSTART;VALUE=DATE:20250215
-DTEND;VALUE=DATE:20250216
+DTSTART;VALUE=DATE:20250217
+DTEND;VALUE=DATE:20250218
 DESCRIPTION:Release of stable2407-14 (planned)\n\nFull Calendar: https://g
  ithub.com/paritytech/release-registry?tab=readme-ov-file#calendar
 END:VEVENT
@@ -227,8 +227,8 @@ DESCRIPTION:Cutoff for stable2407-15 (planned)\n\nFull Calendar: https://g
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2407-15 Release
-DTSTART;VALUE=DATE:20250301
-DTEND;VALUE=DATE:20250302
+DTSTART;VALUE=DATE:20250303
+DTEND;VALUE=DATE:20250304
 DESCRIPTION:Release of stable2407-15 (planned)\n\nFull Calendar: https://g
  ithub.com/paritytech/release-registry?tab=readme-ov-file#calendar
 END:VEVENT
@@ -241,8 +241,8 @@ DESCRIPTION:Cutoff for stable2407-16 (planned)\n\nFull Calendar: https://g
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2407-16 Release
-DTSTART;VALUE=DATE:20250315
-DTEND;VALUE=DATE:20250316
+DTSTART;VALUE=DATE:20250317
+DTEND;VALUE=DATE:20250318
 DESCRIPTION:Release of stable2407-16 (planned)\n\nFull Calendar: https://g
  ithub.com/paritytech/release-registry?tab=readme-ov-file#calendar
 END:VEVENT
@@ -255,8 +255,8 @@ DESCRIPTION:Cutoff for stable2407-17 (planned)\n\nFull Calendar: https://g
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2407-17 Release
-DTSTART;VALUE=DATE:20250329
-DTEND;VALUE=DATE:20250330
+DTSTART;VALUE=DATE:20250331
+DTEND;VALUE=DATE:20250401
 DESCRIPTION:Release of stable2407-17 (planned)\n\nFull Calendar: https://g
  ithub.com/paritytech/release-registry?tab=readme-ov-file#calendar
 END:VEVENT
@@ -269,8 +269,8 @@ DESCRIPTION:Cutoff for stable2407-18 (planned)\n\nFull Calendar: https://g
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2407-18 Release
-DTSTART;VALUE=DATE:20250412
-DTEND;VALUE=DATE:20250413
+DTSTART;VALUE=DATE:20250414
+DTEND;VALUE=DATE:20250415
 DESCRIPTION:Release of stable2407-18 (planned)\n\nFull Calendar: https://g
  ithub.com/paritytech/release-registry?tab=readme-ov-file#calendar
 END:VEVENT
@@ -283,8 +283,8 @@ DESCRIPTION:Cutoff for stable2407-19 (planned)\n\nFull Calendar: https://g
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2407-19 Release
-DTSTART;VALUE=DATE:20250426
-DTEND;VALUE=DATE:20250427
+DTSTART;VALUE=DATE:20250428
+DTEND;VALUE=DATE:20250429
 DESCRIPTION:Release of stable2407-19 (planned)\n\nFull Calendar: https://g
  ithub.com/paritytech/release-registry?tab=readme-ov-file#calendar
 END:VEVENT
@@ -297,8 +297,8 @@ DESCRIPTION:Cutoff for stable2407-20 (planned)\n\nFull Calendar: https://g
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2407-20 Release
-DTSTART;VALUE=DATE:20250510
-DTEND;VALUE=DATE:20250511
+DTSTART;VALUE=DATE:20250512
+DTEND;VALUE=DATE:20250513
 DESCRIPTION:Release of stable2407-20 (planned)\n\nFull Calendar: https://g
  ithub.com/paritytech/release-registry?tab=readme-ov-file#calendar
 END:VEVENT
