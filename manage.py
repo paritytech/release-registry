@@ -61,46 +61,46 @@ def update_patch(release, patch_number, date, field):
     release['patches'].append(new_patch)
     return True
 
+def get_nth_monday(date):
+    return (date.day - 1) // 7 + 1
+
+def next_nth_monday(date, n):
+    next_month = date.replace(day=1) + timedelta(days=32)
+    next_month = next_month.replace(day=1)
+    
+    while next_month.weekday() != 0:
+        next_month += timedelta(days=1)
+    
+    next_month += timedelta(weeks=n-1)
+    return next_month
+
 def create_planned_patches(release, start_date, num_patches=13):
     if 'patches' not in release:
         release['patches'] = []
 
     existing_patch_numbers = set(int(patch['name'].split('-')[-1]) for patch in release['patches'] if '-' in patch['name'])
     
-    last_patch_date = datetime.strptime(start_date, '%Y-%m-%d')
+    cutoff_date = datetime.strptime(start_date, '%Y-%m-%d')
+    if cutoff_date.weekday() != 0:
+        raise ValueError("Start date must be a Monday")
+
+    nth_monday = get_nth_monday(cutoff_date)
+
     for i in range(1, num_patches + 1):
         if i not in existing_patch_numbers:
-            cutoff_date = last_patch_date + timedelta(days=28)
-            publish_date = cutoff_date + timedelta(days=3)
-            # Always move publish dates to monday
-            if publish_date.weekday() >= 5:
-                publish_date += timedelta(days=(7 - publish_date.weekday()))
-            last_patch_date = cutoff_date
+            publish_date = cutoff_date + timedelta(days=3)  # Thursday of the same week
 
-            cutoff_date = cutoff_date.strftime('%Y-%m-%d')
-            publish_date = publish_date.strftime('%Y-%m-%d')
+            cutoff_str = cutoff_date.strftime('%Y-%m-%d')
+            publish_str = publish_date.strftime('%Y-%m-%d')
             new_patch = {
                 'name': f'{release["name"]}-{i}',
-                'cutoff': {'estimated': cutoff_date},
-                'publish': {'estimated': publish_date},
+                'cutoff': {'estimated': cutoff_str},
+                'publish': {'estimated': publish_str},
                 'state': 'planned'
             }
             release['patches'].append(new_patch)
-        else:
-            # If the patch already exists, find its date to continue the sequence
-            existing_patch = next(patch for patch in release['patches'] if patch['name'].endswith(f'-{i}'))
-            if 'cutoff' in existing_patch:
-                # If no publish date, use cutoff date
-                if isinstance(existing_patch['cutoff'], dict):
-                    if 'when' in existing_patch['cutoff']:
-                        last_patch_date = datetime.strptime(existing_patch['cutoff']['when'], '%Y-%m-%d')
-                    elif 'estimated' in existing_patch['cutoff']:
-                        last_patch_date = datetime.strptime(existing_patch['cutoff']['estimated'], '%Y-%m-%d')
-                elif isinstance(existing_patch['cutoff'], str):
-                    last_patch_date = datetime.strptime(existing_patch['cutoff'], '%Y-%m-%d')
-            else:
-                # If no publish or cutoff date, use the previous patch date + 14 days
-                last_patch_date += timedelta(days=14)
+
+        cutoff_date = next_nth_monday(cutoff_date, nth_monday)
 
     # Sort patches by their number to maintain order
     release['patches'].sort(key=lambda x: int(x['name'].split('-')[-1]))
@@ -124,7 +124,6 @@ def update_release(data, version, date, field):
             'endOfLife': {'estimated': (publish_date + timedelta(days=365)).strftime('%Y-%m-%d')}
         }
         project['releases'].append(new_release)
-        create_planned_patches(new_release, publish_date.strftime('%Y-%m-%d'))
         return True
 
     if not release:
@@ -145,7 +144,6 @@ def update_release(data, version, date, field):
             release['cutoff'] = {'estimated': date}
             release['publish'] = {'estimated': publish_date.strftime('%Y-%m-%d')}
             release['state'] = 'planned'
-            create_planned_patches(release, publish_date.strftime('%Y-%m-%d'))
         return True
 
 def deprecate_release(data, version, date, use_instead):
@@ -161,27 +159,49 @@ def deprecate_release(data, version, date, use_instead):
     }
     return True
 
-def backfill_patches(data, version=None):
+def backfill_patches(data, version=None, start_date=None):
     releases_updated = False
     for project in data.values():
         for release in project['releases']:
             if release['name'].startswith('stable') and (version is None or release['name'] == version):
-                if 'publish' in release and isinstance(release['publish'], dict):
+                if start_date:
+                    create_planned_patches(release, start_date)
+                    releases_updated = True
+                elif 'publish' in release and isinstance(release['publish'], dict):
                     if 'when' in release['publish']:
-                        start_date = release['publish']['when']
+                        release_date = release['publish']['when']
                     elif 'estimated' in release['publish']:
-                        start_date = release['publish']['estimated']
+                        release_date = release['publish']['estimated']
                     else:
                         continue  # Skip if no valid publish date
+                    
+                    # Find the next Monday after the release date
+                    release_date = datetime.strptime(release_date, '%Y-%m-%d')
+                    while release_date.weekday() != 0:
+                        release_date += timedelta(days=1)
+                    
+                    create_planned_patches(release, release_date.strftime('%Y-%m-%d'))
+                    releases_updated = True
                 else:
                     continue  # Skip if no valid publish field
-
-                create_planned_patches(release, start_date)
-                releases_updated = True
                 
                 if version:  # If a specific version was requested, we're done after processing it
                     return True
     return releases_updated
+
+def remove_planned_patches(data, version):
+    project, release = find_release(data, version)
+    if not release:
+        return False
+
+    if 'patches' not in release:
+        return False
+
+    release['patches'] = [patch for patch in release['patches'] 
+                          if not (patch['state'] == 'planned' and 
+                                  isinstance(patch['cutoff'], dict) and 
+                                  'estimated' in patch['cutoff'])]
+    return True
 
 def handle_release_command(args, data):
     validate_version(args.version)
@@ -205,13 +225,23 @@ def handle_deprecate_command(args, data):
 def handle_backfill_patches_command(args, data):
     if args.version:
         validate_version(args.version)
-        if backfill_patches(data, args.version):
+    
+    start_date = None
+    if args.start_date:
+        start_date = validate_date(args.start_date)
+        start_date_obj = datetime.strptime(start_date, '%Y-%m-%d')
+        if start_date_obj.weekday() != 0:
+            print("Error: Start date must be a Monday")
+            return
+
+    if args.version:
+        if backfill_patches(data, args.version, start_date):
             save_json(data, args.file)
             print(f"Successfully backfilled patches for {args.version}")
         else:
             print(f"Failed to backfill patches for {args.version}. Release may not exist or have a valid publish date.")
     else:
-        if backfill_patches(data):
+        if backfill_patches(data, start_date=start_date):
             save_json(data, args.file)
             print("Successfully backfilled patches for all applicable stable releases")
         else:
@@ -227,6 +257,14 @@ def handle_remove_command(args, data):
     project['releases'].remove(release)
     save_json(data, args.file)
     print(f"Successfully removed release {args.version}")
+
+def handle_remove_patches_command(args, data):
+    validate_version(args.version)
+    if remove_planned_patches(data, args.version):
+        save_json(data, args.file)
+        print(f"Successfully removed planned patches for {args.version}")
+    else:
+        print(f"No planned patches found or release {args.version} not found")
 
 def main():
     parser = argparse.ArgumentParser(description="Manage releases-v1.json file")
@@ -251,6 +289,11 @@ def main():
     # Backfill patches parser
     backfill_parser = subparsers.add_parser('backfill-patches')
     backfill_parser.add_argument('version', nargs='?', help="Specific stable version to backfill (e.g., stable2401)")
+    backfill_parser.add_argument('--start-date', help="Start date for the first patch cutoff (must be a Monday, format: YYYY-MM-DD)")
+
+    # Remove patches parser
+    remove_patches_parser = subparsers.add_parser('remove-patches')
+    remove_patches_parser.add_argument('version', help="Release version to remove planned patches from")
 
     parser.add_argument('--file', default='releases-v1.json', help="Path to the JSON file")
 
@@ -267,6 +310,8 @@ def main():
             handle_backfill_patches_command(args, data)
         elif args.action == 'remove':
             handle_remove_command(args, data)
+        elif args.action == 'remove-patches':
+            handle_remove_patches_command(args, data)
 
     except ValueError as e:
         print(f"Error: {str(e)}")
