@@ -23,8 +23,6 @@
 | &nbsp;&nbsp;stable2407-8 | ~2025-03-03 | ~2025-03-06 |  | Planned |
 | &nbsp;&nbsp;stable2407-9 | ~2025-04-07 | ~2025-04-10 |  | Planned |
 | &nbsp;&nbsp;stable2407-10 | ~2025-05-05 | ~2025-05-08 |  | Planned |
-| &nbsp;&nbsp;stable2407-11 | ~2025-06-02 | ~2025-06-05 |  | Planned |
-| &nbsp;&nbsp;stable2407-12 | ~2025-07-07 | ~2025-07-10 |  | Planned |
 | **stable2409** | ~2024-09-02 | ~2024-09-25 | ~2025-09-25 | Planned |
 | &nbsp;&nbsp;stable2409-1 | ~2024-10-14 | ~2024-10-17 |  | Planned |
 | &nbsp;&nbsp;stable2409-2 | ~2024-11-11 | ~2024-11-14 |  | Planned |
@@ -52,7 +50,6 @@
 | &nbsp;&nbsp;stable2412-10 | ~2025-10-20 | ~2025-10-23 |  | Planned |
 | &nbsp;&nbsp;stable2412-11 | ~2025-11-17 | ~2025-11-20 |  | Planned |
 | &nbsp;&nbsp;stable2412-12 | ~2025-12-15 | ~2025-12-18 |  | Planned |
-| &nbsp;&nbsp;stable2412-13 | ~2026-01-19 | ~2026-01-22 |  | Planned |
 
 
 <!-- TEMPLATE END -->

@@ -163,34 +163,6 @@ DESCRIPTION:Release of stable2407-10 (planned)\n\nFull Calendar: https://g
  ithub.com/paritytech/release-registry?tab=readme-ov-file#calendar
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:stable2407-11 Cutoff
-DTSTART;VALUE=DATE:20250602
-DTEND;VALUE=DATE:20250603
-DESCRIPTION:Cutoff for stable2407-11 (planned)\n\nFull Calendar: https://g
- ithub.com/paritytech/release-registry?tab=readme-ov-file#calendar
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:stable2407-11 Release
-DTSTART;VALUE=DATE:20250605
-DTEND;VALUE=DATE:20250606
-DESCRIPTION:Release of stable2407-11 (planned)\n\nFull Calendar: https://g
- ithub.com/paritytech/release-registry?tab=readme-ov-file#calendar
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:stable2407-12 Cutoff
-DTSTART;VALUE=DATE:20250707
-DTEND;VALUE=DATE:20250708
-DESCRIPTION:Cutoff for stable2407-12 (planned)\n\nFull Calendar: https://g
- ithub.com/paritytech/release-registry?tab=readme-ov-file#calendar
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:stable2407-12 Release
-DTSTART;VALUE=DATE:20250710
-DTEND;VALUE=DATE:20250711
-DESCRIPTION:Release of stable2407-12 (planned)\n\nFull Calendar: https://g
- ithub.com/paritytech/release-registry?tab=readme-ov-file#calendar
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:stable2409 Cutoff
 DTSTART;VALUE=DATE:20240902
 DTEND;VALUE=DATE:20240903
@@ -580,20 +552,6 @@ SUMMARY:stable2412-12 Release
 DTSTART;VALUE=DATE:20251218
 DTEND;VALUE=DATE:20251219
 DESCRIPTION:Release of stable2412-12 (planned)\n\nFull Calendar: https://g
- ithub.com/paritytech/release-registry?tab=readme-ov-file#calendar
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:stable2412-13 Cutoff
-DTSTART;VALUE=DATE:20260119
-DTEND;VALUE=DATE:20260120
-DESCRIPTION:Cutoff for stable2412-13 (planned)\n\nFull Calendar: https://g
- ithub.com/paritytech/release-registry?tab=readme-ov-file#calendar
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:stable2412-13 Release
-DTSTART;VALUE=DATE:20260122
-DTEND;VALUE=DATE:20260123
-DESCRIPTION:Release of stable2412-13 (planned)\n\nFull Calendar: https://g
  ithub.com/paritytech/release-registry?tab=readme-ov-file#calendar
 END:VEVENT
 END:VCALENDAR
