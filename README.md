@@ -2,16 +2,7 @@
 
 Single source of truth regarding past and future releases of the Polkadot SDK.
 
-This repo contains a [JSON schema](./releases-v1.schema.json) as schema for the [releases.json](./releases-v1.json) file that tracks all SDK releases. The schema and releases file are suffixed with `v1` in case we ever do a breaking change to the format, then the old format can still be supported.
-
-## Cadency
-
-The Polkadot SDK has a `stableYYMMDD` release every 3 months. Each stable release is supported for one year through a monthly patching schedule.  
-As there can be four stable releases in parallel, the patching schedule is aligned with the weeks of a month. Each stable release is assigned a week in which on Monday its patch will be cut off and on Thursday it will be published.
-
-![Monthly Patching](./.assets/monthly-patching.png)
-
-Stable releases undergo a 1.5 month QA period before being published. This explains the difference between the `cutoff` and `published` dates below.
+This repo contains a [JSON schema](./releases-v1.schema.json) as schema for the [releases.json](./releases-v1.json) file that tracks all SDK releases.
 
 ## Calendar
 
@@ -59,6 +50,15 @@ Subscribe to the calendar by adding this iCal link to your Google or Apple calen
  Google            |  Apple
 :-------------------------:|:-------------------------:
 ![](.assets/screenshot-google-cal.png)  |  ![](.assets/screenshot-apple-cal.png)
+
+## Cadency
+
+The Polkadot SDK has a `stableYYMMDD` release every 3 months. Each stable release is supported for one year through a monthly patching schedule.  
+As there can be four stable releases in parallel, the patching schedule is aligned with the weeks of a month. Each stable release is assigned a week in which on Monday its patch will be cut off and on Thursday it will be published.
+
+![Monthly Patching](./.assets/monthly-patching.png)
+
+Stable releases undergo a 1.5 month QA period before being published. This explains the difference between the `cutoff` and `published` dates below.
 
 ## Release Planning
 (how to add a new release to the json)
