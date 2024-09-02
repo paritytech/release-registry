@@ -208,6 +208,17 @@ def handle_backfill_patches_command(args, data):
         else:
             print("No releases were updated. All releases may already have patches or lack valid publish dates.")
 
+def handle_remove_command(args, data):
+    validate_version(args.version)
+    project, release = find_release(data, args.version)
+    if not release:
+        print(f"Release {args.version} not found")
+        return
+
+    project['releases'].remove(release)
+    save_json(data, args.file)
+    print(f"Successfully removed release {args.version}")
+
 def main():
     parser = argparse.ArgumentParser(description="Manage releases-v1.json file")
     subparsers = parser.add_subparsers(dest='action', required=True)
@@ -217,6 +228,10 @@ def main():
     release_parser.add_argument('field', choices=['cutoff', 'publish', 'plan'])
     release_parser.add_argument('version', help="Release version (e.g., stable2401 or stable2401-1 for patches)")
     release_parser.add_argument('date', help="Date in YYYY-MM-DD format")
+
+    # Release remove parser
+    remove_parser = subparsers.add_parser('remove')
+    remove_parser.add_argument('version', help="Release version to remove")
 
     # Deprecate parser
     deprecate_parser = subparsers.add_parser('deprecate')
@@ -241,6 +256,8 @@ def main():
             handle_deprecate_command(args, data)
         elif args.action == 'backfill-patches':
             handle_backfill_patches_command(args, data)
+        elif args.action == 'remove':
+            handle_remove_command(args, data)
 
     except ValueError as e:
         print(f"Error: {str(e)}")

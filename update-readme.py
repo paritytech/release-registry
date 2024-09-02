@@ -12,11 +12,11 @@ from typing import Dict, Any, List
 
 def format_date(date_info: Any) -> str:
     if isinstance(date_info, str):
-        return date_info
+        return '&nbsp;&nbsp;' + date_info
     elif 'estimated' in date_info:
         return '~' + date_info.get('estimated', 'N/A')
     elif 'when' in date_info:
-        return date_info['when']
+        return '&nbsp;&nbsp;' + date_info['when']
     return 'N/A'
 
 def format_state(state: Any) -> str:
@@ -24,10 +24,10 @@ def format_state(state: Any) -> str:
         return state.capitalize()
     elif isinstance(state, dict) and 'deprecated' in state:
         deprecated_info = state['deprecated']
-        return f"Deprecated since {deprecated_info['since']}, use {deprecated_info['useInstead']}"
+        return f"Deprecated"
     return 'N/A'
 
-def generate_name_link(name: str, publish: Any, is_deprecated: bool) -> str:
+def link_to_changelog(name: str, publish: Any, is_deprecated: bool) -> str:
     if isinstance(publish, dict) and 'tag' in publish:
         name_with_link = f"[{name}](https://github.com/paritytech/polkadot-sdk/releases/tag/{publish['tag']})"
     else:
@@ -37,15 +37,16 @@ def generate_name_link(name: str, publish: Any, is_deprecated: bool) -> str:
 
 def generate_row(item: Dict[str, Any], is_patch: bool = False, is_recommended: bool = False, is_planned: bool = False) -> str:
     state = format_state(item['state'])
+    state = link_to_changelog(state, item['publish'], state.lower() == 'deprecated')
     is_deprecated = isinstance(item['state'], str) and item['state'].lower() == 'deprecated'
-    name = generate_name_link(item['name'], item['publish'], is_deprecated)
-    name = f"{'&nbsp;&nbsp;' if is_patch else ''}{name}"
+    name = f"{'&nbsp;&nbsp;' if is_patch else ''}{item['name']}"
     cutoff = format_date(item['cutoff'])
     publish = format_date(item['publish'])
     end_of_life = format_date(item.get('endOfLife', '-'))
+    bold = '' if is_patch else '**'
 
-    return f"| {'**' if not is_patch else ''}{name}{'**' if not is_patch else ''} | " \
-           f"{cutoff} | {publish} | " \
+    return f"| {bold + name + bold} | " \
+           f"{cutoff} | { publish } | " \
            f"{end_of_life if not is_patch else ''} | {state} |"
 
 def generate_markdown_table(data: Dict[str, Any]) -> str:
@@ -61,10 +62,19 @@ def generate_markdown_table(data: Dict[str, Any]) -> str:
         is_planned = isinstance(release['state'], str) and release['state'].lower() == 'planned'
         table += generate_row(release, is_recommended=is_recommended and recommended.get('patch') is None, is_planned=is_planned) + '\n'
 
-        for patch in release.get('patches', []):
+        # We dont want to add all 26 future planned patches, just 3 is enough
+        future_patches = 0
+        patches = release.get('patches', [])
+        for i, patch in enumerate(patches):
             is_recommended_patch = is_recommended and patch['name'].split('-')[-1] == recommended.get('patch')
             is_patch_planned = isinstance(patch['state'], str) and patch['state'].lower() == 'planned'
-            table += generate_row(patch, is_patch=True, is_recommended=is_recommended_patch, is_planned=is_patch_planned) + '\n'
+            if is_patch_planned:
+                future_patches += 1
+            if future_patches < 4:
+                table += generate_row(patch, is_patch=True, is_recommended=is_recommended_patch, is_planned=is_patch_planned) + '\n'
+            else:
+                table += f"| &nbsp;&nbsp;({len(patches) - i} more) |  |  | | |\n"
+                break
 
     return table
 
