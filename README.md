@@ -23,10 +23,10 @@
 | &nbsp;&nbsp;stable2409-2 | ~2024-10-23 | ~2024-10-26 |  | Planned |
 | &nbsp;&nbsp;stable2409-3 | ~2024-11-06 | ~2024-11-09 |  | Planned |
 | &nbsp;&nbsp;(23 more) |  |  | | |
-| **stable2401** | ~2024-12-02 | ~2025-01-16 | ~2026-01-16 | Planned |
-| &nbsp;&nbsp;stable2401-1 | ~2025-01-30 | ~2025-02-02 |  | Planned |
-| &nbsp;&nbsp;stable2401-2 | ~2025-02-13 | ~2025-02-16 |  | Planned |
-| &nbsp;&nbsp;stable2401-3 | ~2025-02-27 | ~2025-03-02 |  | Planned |
+| **stable2501** | ~2024-12-02 | ~2025-01-16 | ~2026-01-16 | Planned |
+| &nbsp;&nbsp;stable2501-1 | ~2025-01-30 | ~2025-02-03 |  | Planned |
+| &nbsp;&nbsp;stable2501-2 | ~2025-02-13 | ~2025-02-17 |  | Planned |
+| &nbsp;&nbsp;stable2501-3 | ~2025-02-27 | ~2025-03-03 |  | Planned |
 | &nbsp;&nbsp;(23 more) |  |  | | |
 
 

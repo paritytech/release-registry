@@ -70,8 +70,15 @@ def create_planned_patches(release, start_date, num_patches=26):
     last_patch_date = datetime.strptime(start_date, '%Y-%m-%d')
     for i in range(1, num_patches + 1):
         if i not in existing_patch_numbers:
-            cutoff_date = (last_patch_date + timedelta(days=14)).strftime('%Y-%m-%d')
-            publish_date = (last_patch_date + timedelta(days=17)).strftime('%Y-%m-%d')
+            cutoff_date = last_patch_date + timedelta(days=14)
+            publish_date = cutoff_date + timedelta(days=3)
+            # Always move publish dates to monday
+            if publish_date.weekday() >= 5:
+                publish_date += timedelta(days=(7 - publish_date.weekday()))
+            last_patch_date = cutoff_date
+
+            cutoff_date = cutoff_date.strftime('%Y-%m-%d')
+            publish_date = publish_date.strftime('%Y-%m-%d')
             new_patch = {
                 'name': f'{release["name"]}-{i}',
                 'cutoff': {'estimated': cutoff_date},
@@ -79,7 +86,6 @@ def create_planned_patches(release, start_date, num_patches=26):
                 'state': 'planned'
             }
             release['patches'].append(new_patch)
-            last_patch_date = datetime.strptime(cutoff_date, '%Y-%m-%d')
         else:
             # If the patch already exists, find its date to continue the sequence
             existing_patch = next(patch for patch in release['patches'] if patch['name'].endswith(f'-{i}'))
@@ -107,6 +113,9 @@ def update_release(data, version, date, field):
         project = next(iter(data.values()))  # Get the first (and only) project
         cutoff_date = datetime.strptime(date, '%Y-%m-%d')
         publish_date = cutoff_date + timedelta(days=45)  # 1.5 months after cutoff
+        # If the publish date is on a weekend, move it to the next monday
+        if publish_date.weekday() >= 5:
+            publish_date += timedelta(days=(7 - publish_date.weekday()))
         new_release = {
             'name': version,
             'cutoff': {'estimated': date},
