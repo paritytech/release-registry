@@ -28,9 +28,10 @@
             "name": "stable2407-2",
             "cutoff": "2024-08-28",
             "publish": {
-              "estimated": "2024-09-02"
+              "when": "2024-09-02",
+              "tag": "polkadot-stable2407-2"
             },
-            "state": "planned"
+            "state": "released"
           },
           {
             "name": "stable2407-3",

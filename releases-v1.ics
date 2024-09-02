@@ -40,15 +40,15 @@ BEGIN:VEVENT
 SUMMARY:stable2407-2 Cutoff
 DTSTART;VALUE=DATE:20240828
 DTEND;VALUE=DATE:20240829
-DESCRIPTION:Cutoff for stable2407-2 (planned)\n\nFull Calendar: https://gi
- thub.com/paritytech/release-registry?tab=readme-ov-file#calendar
+DESCRIPTION:Cutoff for stable2407-2 (released)\n\nFull Calendar: https://g
+ ithub.com/paritytech/release-registry?tab=readme-ov-file#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2407-2 Release
 DTSTART;VALUE=DATE:20240902
 DTEND;VALUE=DATE:20240903
-DESCRIPTION:Release of stable2407-2 (planned)\n\nFull Calendar: https://gi
- thub.com/paritytech/release-registry?tab=readme-ov-file#calendar
+DESCRIPTION:Release of stable2407-2 (released)\n\nFull Calendar: https://g
+ ithub.com/paritytech/release-registry?tab=readme-ov-file#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2407-3 Cutoff
