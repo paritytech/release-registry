@@ -7,12 +7,11 @@
     "releases": [
       {
         "name": "stable2407",
-        "state": "planned",
-        "cutoff": {
-          "estimated": "2024-09-30"
-        },
+        "state": "released",
+        "cutoff": "2024-04-29",
         "publish": {
-          "estimated": "2024-11-14"
+          "when": "2024-04-29",
+          "tag": "polkadot-stable2407"
         },
         "endOfLife": "2025-04-29",
         "patches": [
@@ -36,16 +35,6 @@
           {
             "name": "stable2407-3",
             "cutoff": {
-              "estimated": "2024-09-02"
-            },
-            "publish": {
-              "estimated": "2024-09-05"
-            },
-            "state": "planned"
-          },
-          {
-            "name": "stable2407-4",
-            "cutoff": {
               "estimated": "2024-10-07"
             },
             "publish": {
@@ -54,7 +43,7 @@
             "state": "planned"
           },
           {
-            "name": "stable2407-5",
+            "name": "stable2407-4",
             "cutoff": {
               "estimated": "2024-11-04"
             },
@@ -64,7 +53,7 @@
             "state": "planned"
           },
           {
-            "name": "stable2407-6",
+            "name": "stable2407-5",
             "cutoff": {
               "estimated": "2024-12-02"
             },
@@ -74,7 +63,7 @@
             "state": "planned"
           },
           {
-            "name": "stable2407-7",
+            "name": "stable2407-6",
             "cutoff": {
               "estimated": "2025-01-06"
             },
@@ -84,7 +73,7 @@
             "state": "planned"
           },
           {
-            "name": "stable2407-8",
+            "name": "stable2407-7",
             "cutoff": {
               "estimated": "2025-02-03"
             },
@@ -94,7 +83,7 @@
             "state": "planned"
           },
           {
-            "name": "stable2407-9",
+            "name": "stable2407-8",
             "cutoff": {
               "estimated": "2025-03-03"
             },
@@ -104,7 +93,7 @@
             "state": "planned"
           },
           {
-            "name": "stable2407-10",
+            "name": "stable2407-9",
             "cutoff": {
               "estimated": "2025-04-07"
             },
@@ -114,7 +103,7 @@
             "state": "planned"
           },
           {
-            "name": "stable2407-11",
+            "name": "stable2407-10",
             "cutoff": {
               "estimated": "2025-05-05"
             },
@@ -124,7 +113,7 @@
             "state": "planned"
           },
           {
-            "name": "stable2407-12",
+            "name": "stable2407-11",
             "cutoff": {
               "estimated": "2025-06-02"
             },
@@ -134,7 +123,7 @@
             "state": "planned"
           },
           {
-            "name": "stable2407-13",
+            "name": "stable2407-12",
             "cutoff": {
               "estimated": "2025-07-07"
             },
