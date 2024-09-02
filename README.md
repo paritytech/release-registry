@@ -25,19 +25,19 @@
 | &nbsp;&nbsp;stable2407-10 | ~2025-04-09 | ~2025-04-14 |  | Planned |
 | &nbsp;&nbsp;stable2407-11 | ~2025-05-07 | ~2025-05-12 |  | Planned |
 | **stable2409** | ~2024-09-02 | ~2024-09-25 | ~2025-09-25 | Planned |
-| &nbsp;&nbsp;stable2409-1 | ~2024-10-23 | ~2024-10-28 |  | Planned |
-| &nbsp;&nbsp;stable2409-2 | ~2024-11-20 | ~2024-11-25 |  | Planned |
-| &nbsp;&nbsp;stable2409-3 | ~2024-12-18 | ~2024-12-23 |  | Planned |
-| &nbsp;&nbsp;stable2409-4 | ~2025-01-15 | ~2025-01-20 |  | Planned |
-| &nbsp;&nbsp;stable2409-5 | ~2025-02-12 | ~2025-02-17 |  | Planned |
-| &nbsp;&nbsp;stable2409-6 | ~2025-03-12 | ~2025-03-17 |  | Planned |
-| &nbsp;&nbsp;stable2409-7 | ~2025-04-09 | ~2025-04-14 |  | Planned |
-| &nbsp;&nbsp;stable2409-8 | ~2025-05-07 | ~2025-05-12 |  | Planned |
-| &nbsp;&nbsp;stable2409-9 | ~2025-06-04 | ~2025-06-09 |  | Planned |
-| &nbsp;&nbsp;stable2409-10 | ~2025-07-02 | ~2025-07-07 |  | Planned |
-| &nbsp;&nbsp;stable2409-11 | ~2025-07-30 | ~2025-08-04 |  | Planned |
-| &nbsp;&nbsp;stable2409-12 | ~2025-08-27 | ~2025-09-01 |  | Planned |
-| &nbsp;&nbsp;stable2409-13 | ~2025-09-24 | ~2025-09-29 |  | Planned |
+| &nbsp;&nbsp;stable2409-1 | ~2024-10-22 | ~2024-10-25 |  | Planned |
+| &nbsp;&nbsp;stable2409-2 | ~2024-11-19 | ~2024-11-22 |  | Planned |
+| &nbsp;&nbsp;stable2409-3 | ~2024-12-17 | ~2024-12-20 |  | Planned |
+| &nbsp;&nbsp;stable2409-4 | ~2025-01-14 | ~2025-01-17 |  | Planned |
+| &nbsp;&nbsp;stable2409-5 | ~2025-02-11 | ~2025-02-14 |  | Planned |
+| &nbsp;&nbsp;stable2409-6 | ~2025-03-11 | ~2025-03-14 |  | Planned |
+| &nbsp;&nbsp;stable2409-7 | ~2025-04-08 | ~2025-04-11 |  | Planned |
+| &nbsp;&nbsp;stable2409-8 | ~2025-05-06 | ~2025-05-09 |  | Planned |
+| &nbsp;&nbsp;stable2409-9 | ~2025-06-03 | ~2025-06-06 |  | Planned |
+| &nbsp;&nbsp;stable2409-10 | ~2025-07-01 | ~2025-07-04 |  | Planned |
+| &nbsp;&nbsp;stable2409-11 | ~2025-07-29 | ~2025-08-01 |  | Planned |
+| &nbsp;&nbsp;stable2409-12 | ~2025-08-26 | ~2025-08-29 |  | Planned |
+| &nbsp;&nbsp;stable2409-13 | ~2025-09-23 | ~2025-09-26 |  | Planned |
 | **stable2412** | ~2024-11-06 | ~2024-12-23 | ~2025-12-23 | Planned |
 | &nbsp;&nbsp;stable2412-1 | ~2025-01-20 | ~2025-01-23 |  | Planned |
 | &nbsp;&nbsp;stable2412-2 | ~2025-02-17 | ~2025-02-20 |  | Planned |
