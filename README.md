@@ -2,16 +2,7 @@
 
 Single source of truth regarding past and future releases of the Polkadot SDK.
 
-This repo contains a [JSON schema](./releases-v1.schema.json) as schema for the [releases.json](./releases-v1.json) file that tracks all SDK releases. The schema and releases file are suffixed with `v1` in case we ever do a breaking change to the format, then the old format can still be supported.
-
-## Cadency
-
-The Polkadot SDK has a `stableYYMMDD` release every 3 months. Each stable release is supported for one year through a monthly patching schedule.  
-As there can be four stable releases in parallel, the patching schedule is aligned with the weeks of a month. Each stable release is assigned a week in which on Monday its patch will be cut off and on Thursday it will be published.
-
-![Monthly Patching](./.assets/monthly-patching.png)
-
-Stable releases undergo a 1.5 month QA period before being published. This explains the difference between the `cutoff` and `published` dates below.
+This repo contains a [JSON schema](./releases-v1.schema.json) as schema for the [releases.json](./releases-v1.json) file that tracks all SDK releases.
 
 ## Calendar
 
@@ -59,6 +50,35 @@ Subscribe to the calendar by adding this iCal link to your Google or Apple calen
  Google            |  Apple
 :-------------------------:|:-------------------------:
 ![](.assets/screenshot-google-cal.png)  |  ![](.assets/screenshot-apple-cal.png)
+
+## Cadency
+
+The Polkadot SDK has a `stableYYMMDD` release every 3 months. Each stable release is supported for one year through a monthly patching schedule.  
+As there can be four stable releases in parallel, the patching schedule is aligned with the weeks of a month. Each stable release is assigned a week in which on Monday its patch will be cut off and on Thursday it will be published.
+
+![Monthly Patching](./.assets/monthly-patching.png)
+
+Stable releases undergo a 1.5 month QA period before being published. This explains the difference between the `cutoff` and `published` dates below.
+
+## Release Planning
+(how to add a new release to the json)
+
+First, check the calendar when about 3 months passed from the publish date of the last release. Then subtract about 1.5 months from that and call the plan command with that date:
+
+```bash
+python3 manage.py release plan stable2412 2024-11-06
+```
+
+Then figure out when the first patch date should be; you have to select a Monday for the patching schedule to be calculated (errors if not a Monday). You should select either a week that is empty and has no schedule, or the one where the oldest release is currently being patched.  
+The script will then count the how many-th monday of the month it is and begin lining it up with the months like in the image above.
+
+Example where we want the first patch to be cut off on 24024-07-29:
+
+```bash
+python3 manage.py backfill-patches stable2407 --start-date 2024-07-29
+```
+
+Then update the README to see the changes by running `just`.
 
 ## Automation
 
