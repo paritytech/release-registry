@@ -1,8 +1,7 @@
 """
+Update the README.md from the root directory:
 
-Update the README.md with:
-
-python3 update-readme.py
+    python3 scripts/update-readme.py
 
 """
 

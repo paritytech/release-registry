@@ -2,7 +2,7 @@
 
 Single source of truth regarding past and future releases of the Polkadot SDK.
 
-This repo contains a [JSON schema](./releases-v1.schema.json) as schema for the [releases.json](./releases-v1.json) file that tracks all SDK releases.
+This repo contains a [releases-v1.json](./releases-v1.json) file that tracks all SDK releases and a [JSON schema](./releases-v1.schema.json) to ensure that it is in canonical format.
 
 ## Calendar
 
@@ -74,7 +74,7 @@ The two main goals of this repo are to improve:
 First, check the calendar when about 3 months passed from the publish date of the last release. Then subtract about 1.5 months from that and call the plan command with that date:
 
 ```bash
-python3 manage.py release plan stable2412 2024-11-06
+python3 scripts/manage.py release plan stable2412 2024-11-06
 ```
 
 Then figure out when the first patch date should be; you have to select a Monday for the patching schedule to be calculated (errors if not a Monday). You should select either a week that is empty and has no schedule, or the one where the oldest release is currently being patched.  
@@ -83,7 +83,7 @@ The script will then count the how many-th monday of the month it is and begin l
 Example where we want the first patch to be cut off on 24024-07-29:
 
 ```bash
-python3 manage.py backfill-patches stable2407 --start-date 2024-07-29
+python3 scripts/manage.py backfill-patches stable2407 --start-date 2024-07-29
 ```
 
 Then update the README to see the changes by running `just`.
@@ -93,7 +93,7 @@ Then update the README to see the changes by running `just`.
 Run this command to cut off a release:
 
 ```bash
-python3 manage.py release cutoff stable2407-2 2024-09-02
+python3 scripts/manage.py release cutoff stable2407-2 2024-09-02
 ```
 
 With `publish` likewise.
@@ -102,10 +102,10 @@ With `publish` likewise.
 
 Two scripts are currently in place to:
 
-- [manage.py](./manage.py) - manage the releases json file (plan, cutoff, publish, etc)
-- [update-readme.py](./update-readme.py) - updates the README.md file with the data from the releases.json file
-- [update-calendar.py](./update-calendar.py) - generates an iCal file from the releases.json file
-- [update-badges.py](./update-badges.py) - re-generate the badges in the `badges` folder for downstream use.
+- [manage.py](./scripts/manage.py) - manage the releases json file (plan, cutoff, publish, etc)
+- [update-readme.py](./scripts/update-readme.py) - updates the README.md file with the data from the releases.json file
+- [update-calendar.py](./scripts/update-calendar.py) - generates an iCal file from the releases.json file
+- [update-badges.py](./scripts/update-badges.py) - re-generate the badges in the `badges` folder for downstream use.
 
 ## Roadmap
 
