@@ -25,21 +25,17 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+      - uses: extractions/setup-just@v1
+        with:
+          just-version: 1.35.0
 
-      - name: README
-        run: python update-readme.py
-      
-      - name: Calendar
-        run: python update-calendar.py
+      - name: All files
+        run: just
         
       - name: Check for changes
         id: git-check
         run: |
-          git diff --exit-code . || echo "changes=true" >> $GITHUB_OUTPUT
+          git diff --exit-code --name-only . || echo "changes=true" >> $GITHUB_OUTPUT
 
       - name: Commit and push changes if manually triggered
         if: github.event_name == 'workflow_dispatch' && steps.git-check.outputs.changes == 'true'

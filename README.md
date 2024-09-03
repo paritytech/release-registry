@@ -1,7 +1,5 @@
 # Release Registry
 
-![Current Stable Release](./badges/polkadot-sdk-latest.svg)&nbsp;&nbsp;![Next Stable Release (polkadot-2409)](./badges/polkadot-sdk-next.svg)
-
 Single source of truth regarding past and future releases of the Polkadot SDK.
 
 This repo contains a [JSON schema](./releases-v1.schema.json) as schema for the [releases.json](./releases-v1.json) file that tracks all SDK releases.
@@ -107,6 +105,7 @@ Two scripts are currently in place to:
 - [manage.py](./manage.py) - manage the releases json file (plan, cutoff, publish, etc)
 - [update-readme.py](./update-readme.py) - updates the README.md file with the data from the releases.json file
 - [update-calendar.py](./update-calendar.py) - generates an iCal file from the releases.json file
+- [update-badges.py](./update-badges.py) - re-generate the badges in the `badges` folder for downstream use.
 
 ## Roadmap
 
