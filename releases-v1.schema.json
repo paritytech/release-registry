@@ -186,7 +186,7 @@
 					"type": "string",
 					"enum": [
 						"planned",
-						"testing",
+						"staging",
 						"released"
 					]
 				},

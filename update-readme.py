@@ -69,7 +69,7 @@ def generate_markdown_table(data: Dict[str, Any]) -> str:
             is_patch_planned = isinstance(patch['state'], str) and patch['state'].lower() == 'planned'
             if is_patch_planned:
                 future_patches += 1
-            if future_patches < 5:
+            if future_patches < 4:
                 table += generate_row(patch, is_patch=True, is_recommended=is_recommended_patch, is_planned=is_patch_planned) + '\n'
             else:
                 table += f"| &nbsp;&nbsp;({len(patches) - i} more) |  |  | | |\n"
@@ -83,7 +83,7 @@ def update_readme(markdown_table: str) -> None:
             content = file.read()
             updated_content = re.sub(
                 r'(<!-- TEMPLATE BEGIN -->).*?(<!-- TEMPLATE END -->)',
-                r'\1\n\n' + markdown_table + r'\n\n\2',
+                r'\1\n\n' + markdown_table + r'\n\2',
                 content,
                 flags=re.DOTALL
             )

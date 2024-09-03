@@ -117,7 +117,7 @@
       },
       {
         "name": "stable2409",
-        "state": "testing",
+        "state": "staging",
         "cutoff": "2024-09-02",
         "publish": {
           "estimated": "2024-09-25"
