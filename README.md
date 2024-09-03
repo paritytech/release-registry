@@ -18,21 +18,17 @@ This repo contains a [JSON schema](./releases-v1.schema.json) as schema for the 
 | &nbsp;&nbsp;stable2407-3 | ~2024-10-07 | ~2024-10-10 |  | Planned |
 | &nbsp;&nbsp;stable2407-4 | ~2024-11-04 | ~2024-11-07 |  | Planned |
 | &nbsp;&nbsp;stable2407-5 | ~2024-12-02 | ~2024-12-05 |  | Planned |
-| &nbsp;&nbsp;stable2407-6 | ~2025-01-06 | ~2025-01-09 |  | Planned |
-| &nbsp;&nbsp;(4 more) |  |  | | |
-| **stable2409** | &nbsp;&nbsp;2024-09-02 | ~2024-09-25 | ~2025-09-25 | Testing |
+| &nbsp;&nbsp;(5 more) |  |  | | |
+| **stable2409** | &nbsp;&nbsp;2024-09-02 | ~2024-09-25 | ~2025-09-25 | Staging |
 | &nbsp;&nbsp;stable2409-1 | ~2024-10-14 | ~2024-10-17 |  | Planned |
 | &nbsp;&nbsp;stable2409-2 | ~2024-11-11 | ~2024-11-14 |  | Planned |
 | &nbsp;&nbsp;stable2409-3 | ~2024-12-09 | ~2024-12-12 |  | Planned |
-| &nbsp;&nbsp;stable2409-4 | ~2025-01-13 | ~2025-01-16 |  | Planned |
-| &nbsp;&nbsp;(9 more) |  |  | | |
+| &nbsp;&nbsp;(10 more) |  |  | | |
 | **stable2412** | ~2024-11-06 | ~2024-12-16 | ~2025-12-16 | Planned |
 | &nbsp;&nbsp;stable2412-1 | ~2025-01-20 | ~2025-01-23 |  | Planned |
 | &nbsp;&nbsp;stable2412-2 | ~2025-02-17 | ~2025-02-20 |  | Planned |
 | &nbsp;&nbsp;stable2412-3 | ~2025-03-17 | ~2025-03-20 |  | Planned |
-| &nbsp;&nbsp;stable2412-4 | ~2025-04-21 | ~2025-04-24 |  | Planned |
-| &nbsp;&nbsp;(8 more) |  |  | | |
-
+| &nbsp;&nbsp;(9 more) |  |  | | |
 
 <!-- TEMPLATE END -->
 
@@ -52,22 +48,27 @@ Subscribe to the calendar by adding this iCal link to your Google or Apple calen
 :-------------------------:|:-------------------------:
 ![](.assets/screenshot-google-cal.png)  |  ![](.assets/screenshot-apple-cal.png)
 
-## Goals
-
-The two main goals of this repo are to improve:
-- **Communication**: clear information about past and upcoming releases. Hoarding information inside Parity is not helpful. This repo aims to make it easier for the Polkadot Ecosystem to know what's going on.
-- **Expectations**: set clear expectations by having a public schedule. Know when what is coming.
-
 ## Schedule
 
-The Polkadot SDK has a `stableYYMMDD` release every 3 months. Each stable release is supported for one year through a monthly patching schedule.  
-As there can be four stable releases in parallel, the patching schedule is aligned with the weeks of a month. Each stable release is assigned a week in which on Monday its patch will be cut off and on Thursday it will be published.
+### Releases
+
+The Polkadot SDK has a `stableYYMMDD` release every 3 months. Each stable release is supported for one year through a monthly patching schedule. The releases are not *exactly* 3 months apart, but we try to keep it close. The exact dates are in the calendar.  
+Stable releases undergo a 1.5 month QA period before being published. This explains the difference between the `cutoff` and `published` dates.
+
+### Patches
+
+The patching schedule of each stable release is assigned a week of the month. This works well, since there can be at most four stable releases maintained at once.  For example: release `stable2407` is always patched in the first week of a month. This means that on the first Monday of each month, a new patch is cut off, and on the first Thursday after that Monday, it is published.
 
 ![Monthly Patching](./.assets/monthly-patching.png)
 
-Stable releases undergo a 1.5 month QA period before being published. This explains the difference between the `cutoff` and `published` dates below.
+## Goals
+
+The two main goals of this repo are to improve:
+- **Communication**: clear information about past and upcoming releases. Hoarding information inside Parity is not helpful. This repo aims to make it easier for the Polkadot Ecosystem to know what's going on. This can be helpful to all departments; developers, marketing, devops, security etc.
+- **Expectations**: set clear expectations by having a public schedule. Know when what is coming.
 
 ## Maintenance
+
 
 ### Release Planning
 (how to add a new release to the json)
