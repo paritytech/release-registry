@@ -1,3 +1,12 @@
+"""
+This script updates the SVG files in the badges folder.
+
+Just run it in its stock configuration from the root folder:
+
+    python scripts/update-badges.py
+
+"""
+
 import json
 import os
 import requests
@@ -7,11 +16,11 @@ releases = json.load(open("releases-v1.json"))
 
 def download(url, filename):
     response = requests.get(url)
-    print(f"Downloading SVG from {url}")
-    
+
     if response.status_code == 200:
         with open(filename, 'wb') as file:
             file.write(response.content)
+            print(f"Downloaded {filename}")
     else:
         raise Exception(f"Failed to download SVG. Status code: {response.status_code}")
 

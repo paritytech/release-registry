@@ -1,3 +1,11 @@
+"""
+Updates the iCal calendar file in the root directory. Just run it in the top level dir in its stock
+configuration:
+
+    python scripts/update-calendar.py
+
+"""
+
 import json
 from datetime import datetime, timedelta
 from icalendar import Calendar, Event
