@@ -20,7 +20,7 @@ This repo contains a [JSON schema](./releases-v1.schema.json) as schema for the 
 | &nbsp;&nbsp;stable2407-5 | ~2024-12-02 | ~2024-12-05 |  | Planned |
 | &nbsp;&nbsp;stable2407-6 | ~2025-01-06 | ~2025-01-09 |  | Planned |
 | &nbsp;&nbsp;(4 more) |  |  | | |
-| **stable2409** | ~2024-09-02 | ~2024-09-25 | ~2025-09-25 | Planned |
+| **stable2409** | &nbsp;&nbsp;2024-09-02 | ~2024-09-25 | ~2025-09-25 | Testing |
 | &nbsp;&nbsp;stable2409-1 | ~2024-10-14 | ~2024-10-17 |  | Planned |
 | &nbsp;&nbsp;stable2409-2 | ~2024-11-11 | ~2024-11-14 |  | Planned |
 | &nbsp;&nbsp;stable2409-3 | ~2024-12-09 | ~2024-12-12 |  | Planned |
