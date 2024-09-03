@@ -1,4 +1,9 @@
+certifi==2024.8.30
+charset-normalizer==3.3.2
 icalendar==5.0.13
+idna==3.8
 python-dateutil==2.9.0.post0
 pytz==2024.1
+requests==2.32.3
 six==1.16.0
+urllib3==2.2.2

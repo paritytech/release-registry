@@ -42,8 +42,6 @@ Subscribe to the calendar by adding this iCal link to your Google or Apple calen
 
  Google has an "From URL" and Apple "New Calendar Subscription" option for this:
 
-<!-- two pics next to each other -->
-
  Google            |  Apple
 :-------------------------:|:-------------------------:
 ![](.assets/screenshot-google-cal.png)  |  ![](.assets/screenshot-apple-cal.png)
@@ -107,6 +105,7 @@ Two scripts are currently in place to:
 - [manage.py](./manage.py) - manage the releases json file (plan, cutoff, publish, etc)
 - [update-readme.py](./update-readme.py) - updates the README.md file with the data from the releases.json file
 - [update-calendar.py](./update-calendar.py) - generates an iCal file from the releases.json file
+- [update-badges.py](./update-badges.py) - re-generate the badges in the `badges` folder for downstream use.
 
 ## Roadmap
 
