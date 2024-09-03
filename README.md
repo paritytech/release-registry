@@ -52,7 +52,13 @@ Subscribe to the calendar by adding this iCal link to your Google or Apple calen
 :-------------------------:|:-------------------------:
 ![](.assets/screenshot-google-cal.png)  |  ![](.assets/screenshot-apple-cal.png)
 
-## Cadency
+## Goals
+
+The two main goals of this repo are to improve:
+- **Communication**: clear information about past and upcoming releases. Hoarding information inside Parity is not helpful. This repo aims to make it easier for the Polkadot Ecosystem to know what's going on.
+- **Expectations**: set clear expectations by having a public schedule. Know when what is coming.
+
+## Schedule
 
 The Polkadot SDK has a `stableYYMMDD` release every 3 months. Each stable release is supported for one year through a monthly patching schedule.  
 As there can be four stable releases in parallel, the patching schedule is aligned with the weeks of a month. Each stable release is assigned a week in which on Monday its patch will be cut off and on Thursday it will be published.
