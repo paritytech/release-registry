@@ -1,6 +1,7 @@
 default: venv
 	venv/bin/python3 update-readme.py
 	venv/bin/python3 update-calendar.py
+	venv/bin/python3 update-badges.py
 
 venv:
 	#!/bin/bash

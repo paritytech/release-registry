@@ -1,5 +1,7 @@
 # Release Registry
 
+![Current Stable Release](./badges/polkadot-sdk-latest.svg)&nbsp;&nbsp;![Next Stable Release (polkadot-2409)](./badges/polkadot-sdk-next.svg)
+
 Single source of truth regarding past and future releases of the Polkadot SDK.
 
 This repo contains a [JSON schema](./releases-v1.schema.json) as schema for the [releases.json](./releases-v1.json) file that tracks all SDK releases.
@@ -41,8 +43,6 @@ Subscribe to the calendar by adding this iCal link to your Google or Apple calen
 `https://raw.githubusercontent.com/paritytech/release-registry/main/releases-v1.ics`
 
  Google has an "From URL" and Apple "New Calendar Subscription" option for this:
-
-<!-- two pics next to each other -->
 
  Google            |  Apple
 :-------------------------:|:-------------------------:
