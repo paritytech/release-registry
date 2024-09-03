@@ -5,16 +5,13 @@ from datetime import datetime
 
 releases = json.load(open("releases-v1.json"))
 
-def download_svg(url, filename):
+def download(url, filename):
     response = requests.get(url)
     print(f"Downloading SVG from {url}")
     
     if response.status_code == 200:
-        svg_content = response.content
-        
         with open(filename, 'wb') as file:
-            file.write(svg_content)
-        print(f"SVG successfully downloaded and saved as {filename}")
+            file.write(response.content)
     else:
         raise Exception(f"Failed to download SVG. Status code: {response.status_code}")
 
@@ -27,7 +24,7 @@ def update_latest():
 
     latest_url = f"https://img.shields.io/badge/Current%20Stable%20Release-polkadot_{latest}-green"
     latest_name = "badges/polkadot-sdk-latest.svg"
-    download_svg(latest_url, latest_name)
+    download(latest_url, latest_name)
 
 def find_next_unreleased_release(releases):
     for release in releases:
@@ -58,7 +55,7 @@ def update_next():
         
         next_url = f"https://img.shields.io/badge/Next%20Stable%20Release%20%28polkadot_{next_version}%29-{formatted_date}-orange"
         next_name = "badges/polkadot-sdk-next.svg"
-        download_svg(next_url, next_name)
+        download(next_url, next_name)
     else:
         print("No upcoming unreleased version found.")
 
