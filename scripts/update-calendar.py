@@ -16,6 +16,8 @@ def parse_date(date_str):
 		return datetime.strptime(date_str, "%Y-%m-%d").date()
 	elif isinstance(date_str, dict) and 'estimated' in date_str:
 		return datetime.strptime(date_str['estimated'], "%Y-%m-%d").date()
+	elif isinstance(date_str, dict) and 'when' in date_str:
+		return datetime.strptime(date_str['when'], "%Y-%m-%d").date()
 	return None
 
 def create_event(name, start_date, end_date=None, description=""):

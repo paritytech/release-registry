@@ -10,11 +10,13 @@ Just run it in its stock configuration from the root folder:
 import json
 import os
 import requests
+import re
 from datetime import datetime
 
 releases = json.load(open("releases-v1.json"))
 
 def download(url, filename):
+    print(f"Downloading {url}")
     response = requests.get(url)
 
     if response.status_code == 200:
@@ -27,11 +29,11 @@ def download(url, filename):
 def update_latest():
     recommended = releases["Polkadot SDK"]["recommended"]
 
-    latest = recommended['release'].replace('stable', '')
+    latest = recommended['release']
     if 'patch' in recommended:
         latest += f"_{recommended['patch']}"
 
-    latest_url = f"https://img.shields.io/badge/Current%20Stable%20Release-polkadot_{latest}-green"
+    latest_url = f"https://img.shields.io/badge/Latest%20Release-{latest}-green"
     latest_name = "badges/polkadot-sdk-latest.svg"
     download(latest_url, latest_name)
 
@@ -41,7 +43,17 @@ def find_next_unreleased_release(releases):
             return release
     return None
 
-def format_date(date_str):
+def format_date(date_info):
+    if isinstance(date_info, dict):
+        if 'estimated' in date_info:
+            date_str = date_info['estimated']
+        elif 'when' in date_info:
+            date_str = date_info['when']
+        else:
+            return "Unknown"
+    else:
+        date_str = date_info
+    
     date_obj = datetime.strptime(date_str, "%Y-%m-%d")
     return date_obj.strftime("%Y/%m/%d")
 
@@ -52,17 +64,13 @@ def update_next():
     next_release = find_next_unreleased_release(sdk_releases)
     
     if next_release:
-        next_version = next_release['name'].replace('stable', '')
-        publish_date = next_release['publish']
+        publish_info = next_release['publish']
+        date = format_date(publish_info)
         
-        if isinstance(publish_date, dict) and 'estimated' in publish_date:
-            formatted_date = format_date(publish_date['estimated'])
-        elif isinstance(publish_date, dict) and 'when' in publish_date:
-            formatted_date = format_date(publish_date['when'])
-        else:
-            formatted_date = "Unknown"
+        # extract the 'stableYYMMDD' part
+        stable = re.search(r'(stable\d+)', next_release['name']).group(1)
         
-        next_url = f"https://img.shields.io/badge/Next%20Stable%20Release%20%28polkadot_{next_version}%29-{formatted_date}-orange"
+        next_url = f"https://img.shields.io/badge/Next%20Release%20%28{stable}%29-{date}-orange"
         next_name = "badges/polkadot-sdk-next.svg"
         download(next_url, next_name)
     else:
