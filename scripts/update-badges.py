@@ -64,8 +64,8 @@ def update_next():
     next_release = find_next_unreleased_release(sdk_releases)
     
     if next_release:
-        cutoff_info = next_release['cutoff']
-        date = format_date(cutoff_info)
+        publish_info = next_release['publish']
+        date = format_date(publish_info)
         
         # extract the 'stableYYMMDD' part
         stable = re.search(r'(stable\d+)', next_release['name']).group(1)
