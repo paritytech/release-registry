@@ -70,7 +70,7 @@ def update_next():
         # extract the 'stableYYMMDD' part
         stable = re.search(r'(stable\d+)', next_release['name']).group(1)
         
-        next_url = f"https://img.shields.io/badge/Next%20Release-{stable}%20on%20{date}-orange"
+        next_url = f"https://img.shields.io/badge/Next%20Release%20%28{stable}%29-{date}-orange"
         next_name = "badges/polkadot-sdk-next.svg"
         download(next_url, next_name)
     else:
