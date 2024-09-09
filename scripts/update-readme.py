@@ -26,9 +26,15 @@ def format_state(state: Any) -> str:
         return f"Deprecated"
     return 'N/A'
 
-def link_to_changelog(name: str, publish: Any, is_deprecated: bool) -> str:
+def link_to_changelog(name: str, publish: Any, cutoff: Any, is_deprecated: bool) -> str:
+    tag = None
     if isinstance(publish, dict) and 'tag' in publish:
-        name_with_link = f"[{name}](https://github.com/paritytech/polkadot-sdk/releases/tag/{publish['tag']})"
+        tag = publish['tag']
+    elif isinstance(cutoff, dict) and 'tag' in cutoff:
+        tag = cutoff['tag']
+    
+    if tag:
+        name_with_link = f"[{name}](https://github.com/paritytech/polkadot-sdk/releases/tag/{tag})"
     else:
         name_with_link = name
     
@@ -36,7 +42,7 @@ def link_to_changelog(name: str, publish: Any, is_deprecated: bool) -> str:
 
 def generate_row(item: Dict[str, Any], is_patch: bool = False, is_recommended: bool = False, is_planned: bool = False) -> str:
     state = format_state(item['state'])
-    state = link_to_changelog(state, item['publish'], state.lower() == 'deprecated')
+    state = link_to_changelog(state, item['publish'], item['cutoff'], state.lower() == 'deprecated')
     is_deprecated = isinstance(item['state'], str) and item['state'].lower() == 'deprecated'
     name = f"{'&nbsp;&nbsp;' if is_patch else ''}{item['name']}"
     cutoff = format_date(item['cutoff'])

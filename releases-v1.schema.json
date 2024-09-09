@@ -72,10 +72,10 @@
 					"description": "The kind of release"
 				},
 				"cutoff": {
-					"$ref": "#/definitions/dateOrEstimated"
+					"$ref": "#/definitions/dateAndTag"
 				},
 				"publish": {
-					"$ref": "#/definitions/publishInfo"
+					"$ref": "#/definitions/dateAndTag"
 				},
 				"endOfLife": {
 					"$ref": "#/definitions/dateOrEstimated"
@@ -110,7 +110,7 @@
 					"$ref": "#/definitions/dateOrEstimated"
 				},
 				"publish": {
-					"$ref": "#/definitions/publishInfo"
+					"$ref": "#/definitions/dateAndTag"
 				},
 				"state": {
 					"$ref": "#/definitions/maintainedState"
@@ -146,7 +146,7 @@
 				}
 			]
 		},
-		"publishInfo": {
+		"dateAndTag": {
 			"oneOf": [
 				{
 					"type": "object",
@@ -163,7 +163,8 @@
 					"required": [
 						"when",
 						"tag"
-					]
+					],
+					"additionalProperties": false
 				},
 				{
 					"type": "object",
@@ -176,7 +177,8 @@
 					"required": [
 						"estimated"
 					],
-					"description": "The estimated date for publishing the release"
+					"description": "The estimated date for publishing the release",
+					"additionalProperties": false
 				}
 			]
 		},

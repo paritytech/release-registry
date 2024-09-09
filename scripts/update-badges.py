@@ -41,7 +41,17 @@ def find_next_unreleased_release(releases):
             return release
     return None
 
-def format_date(date_str):
+def format_date(date_info):
+    if isinstance(date_info, dict):
+        if 'estimated' in date_info:
+            date_str = date_info['estimated']
+        elif 'when' in date_info:
+            date_str = date_info['when']
+        else:
+            return "Unknown"
+    else:
+        date_str = date_info
+    
     date_obj = datetime.strptime(date_str, "%Y-%m-%d")
     return date_obj.strftime("%Y/%m/%d")
 
@@ -53,16 +63,16 @@ def update_next():
     
     if next_release:
         next_version = next_release['name'].replace('stable', '')
-        publish_date = next_release['publish']
+        cutoff_info = next_release['cutoff']
         
-        if isinstance(publish_date, dict) and 'estimated' in publish_date:
-            formatted_date = format_date(publish_date['estimated'])
-        elif isinstance(publish_date, dict) and 'when' in publish_date:
-            formatted_date = format_date(publish_date['when'])
+        formatted_date = format_date(cutoff_info)
+        
+        if isinstance(cutoff_info, dict) and 'tag' in cutoff_info:
+            cutoff_tag = cutoff_info['tag']
         else:
-            formatted_date = "Unknown"
+            cutoff_tag = f"polkadot-{next_release['name']}-cutoff"
         
-        next_url = f"https://img.shields.io/badge/Next%20Stable%20Release%20%28polkadot_{next_version}%29-{formatted_date}-orange"
+        next_url = f"https://img.shields.io/badge/Next%20Stable%20Release%20%28{cutoff_tag}%29-{formatted_date}-orange"
         next_name = "badges/polkadot-sdk-next.svg"
         download(next_url, next_name)
     else:
