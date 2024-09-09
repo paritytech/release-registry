@@ -133,7 +133,7 @@ def update_release(data, version, date, field):
         return update_patch(release, version.split('-')[1], date, field)
     else:  # It's a release
         if field == 'cutoff':
-            release['cutoff'] = { 'when': date, 'tag': f'polkadot-{version}' }
+            release['cutoff'] = { 'when': date, 'tag': f'polkadot-{version}-rc1' }
             release['state'] = 'drafted'
         elif field == 'publish':
             release['publish'] = {'when': date, 'tag': f'polkadot-{version}'}

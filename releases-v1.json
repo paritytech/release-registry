@@ -120,10 +120,10 @@
       },
       {
         "name": "stable2409",
-        "state": "drafted",
+        "state": "staging",
         "cutoff": {
           "when": "2024-09-02",
-          "tag": "polkadot-stable2409"
+          "tag": "polkadot-stable2409-rc1"
         },
         "publish": {
           "estimated": "2024-09-25"

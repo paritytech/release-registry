@@ -10,11 +10,13 @@ Just run it in its stock configuration from the root folder:
 import json
 import os
 import requests
+import re
 from datetime import datetime
 
 releases = json.load(open("releases-v1.json"))
 
 def download(url, filename):
+    print(f"Downloading {url}")
     response = requests.get(url)
 
     if response.status_code == 200:
@@ -27,11 +29,11 @@ def download(url, filename):
 def update_latest():
     recommended = releases["Polkadot SDK"]["recommended"]
 
-    latest = recommended['release'].replace('stable', '')
+    latest = recommended['release']
     if 'patch' in recommended:
         latest += f"_{recommended['patch']}"
 
-    latest_url = f"https://img.shields.io/badge/Current%20Stable%20Release-polkadot_{latest}-green"
+    latest_url = f"https://img.shields.io/badge/Latest%20Release-{latest}-green"
     latest_name = "badges/polkadot-sdk-latest.svg"
     download(latest_url, latest_name)
 
@@ -62,17 +64,13 @@ def update_next():
     next_release = find_next_unreleased_release(sdk_releases)
     
     if next_release:
-        next_version = next_release['name'].replace('stable', '')
         cutoff_info = next_release['cutoff']
+        date = format_date(cutoff_info)
         
-        formatted_date = format_date(cutoff_info)
+        # extract the 'stableYYMMDD' part
+        stable = re.search(r'(stable\d+)', next_release['name']).group(1)
         
-        if isinstance(cutoff_info, dict) and 'tag' in cutoff_info:
-            cutoff_tag = cutoff_info['tag']
-        else:
-            cutoff_tag = f"polkadot-{next_release['name']}-cutoff"
-        
-        next_url = f"https://img.shields.io/badge/Next%20Stable%20Release%20%28{cutoff_tag}%29-{formatted_date}-orange"
+        next_url = f"https://img.shields.io/badge/Next%20Release-{stable}%20on%20{date}-orange"
         next_name = "badges/polkadot-sdk-next.svg"
         download(next_url, next_name)
     else:
