@@ -1,9 +1,11 @@
 set quiet
 
-default: venv
-	venv/bin/python3 scripts/update-readme.py
+default: venv readme
 	venv/bin/python3 scripts/update-calendar.py
 	venv/bin/python3 scripts/update-badges.py
+
+readme:
+	venv/bin/python3 scripts/update-readme.py
 
 venv:
 	#!/bin/bash
