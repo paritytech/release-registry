@@ -29,6 +29,11 @@ This repo contains a [releases-v1.json](./releases-v1.json) file that tracks all
 | &nbsp;&nbsp;stable2412-2 | ~2025-02-17 | ~2025-02-20 |  | Planned |
 | &nbsp;&nbsp;stable2412-3 | ~2025-03-17 | ~2025-03-20 |  | Planned |
 | &nbsp;&nbsp;(9 more) |  |  | | |
+| **stable2503** | ~2025-02-17 | ~2025-03-31 | ~2026-03-31 | Planned |
+| &nbsp;&nbsp;stable2503-1 | ~2025-04-28 | ~2025-05-01 |  | Planned |
+| &nbsp;&nbsp;stable2503-2 | ~2025-05-26 | ~2025-05-29 |  | Planned |
+| &nbsp;&nbsp;stable2503-3 | ~2025-06-23 | ~2025-06-26 |  | Planned |
+| &nbsp;&nbsp;(10 more) |  |  | | |
 
 <!-- TEMPLATE END -->
 
