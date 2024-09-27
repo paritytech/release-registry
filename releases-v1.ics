@@ -166,15 +166,15 @@ BEGIN:VEVENT
 SUMMARY:stable2409 Cutoff
 DTSTART;VALUE=DATE:20240902
 DTEND;VALUE=DATE:20240903
-DESCRIPTION:Cutoff for stable2409 (staging)\n\nFull Calendar: https://gith
- ub.com/paritytech/release-registry?tab=readme-ov-file#calendar
+DESCRIPTION:Cutoff for stable2409 (released)\n\nFull Calendar: https://git
+ hub.com/paritytech/release-registry?tab=readme-ov-file#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409 Release
-DTSTART;VALUE=DATE:20240925
-DTEND;VALUE=DATE:20240926
-DESCRIPTION:Release of stable2409 (staging)\n\nFull Calendar: https://gith
- ub.com/paritytech/release-registry?tab=readme-ov-file#calendar
+DTSTART;VALUE=DATE:20240926
+DTEND;VALUE=DATE:20240927
+DESCRIPTION:Release of stable2409 (released)\n\nFull Calendar: https://git
+ hub.com/paritytech/release-registry?tab=readme-ov-file#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409 End of Life
