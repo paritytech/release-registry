@@ -185,17 +185,17 @@ DESCRIPTION:End of Life for stable2409\n\nFull Calendar: https://github.co
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409-1 Cutoff
-DTSTART;VALUE=DATE:20241014
-DTEND;VALUE=DATE:20241015
-DESCRIPTION:Cutoff for stable2409-1 (planned)\n\nFull Calendar: https://gi
- thub.com/paritytech/release-registry?tab=readme-ov-file#calendar
+DTSTART;VALUE=DATE:20241021
+DTEND;VALUE=DATE:20241022
+DESCRIPTION:Cutoff for stable2409-1 (released)\n\nFull Calendar: https://g
+ ithub.com/paritytech/release-registry?tab=readme-ov-file#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409-1 Release
-DTSTART;VALUE=DATE:20241017
-DTEND;VALUE=DATE:20241018
-DESCRIPTION:Release of stable2409-1 (planned)\n\nFull Calendar: https://gi
- thub.com/paritytech/release-registry?tab=readme-ov-file#calendar
+DTSTART;VALUE=DATE:20241021
+DTEND;VALUE=DATE:20241022
+DESCRIPTION:Release of stable2409-1 (released)\n\nFull Calendar: https://g
+ ithub.com/paritytech/release-registry?tab=readme-ov-file#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409-2 Cutoff

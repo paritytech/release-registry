@@ -133,13 +133,12 @@
         "patches": [
           {
             "name": "stable2409-1",
-            "cutoff": {
-              "estimated": "2024-10-14"
-            },
+            "cutoff": "2024-10-21",
             "publish": {
-              "estimated": "2024-10-17"
+              "when": "2024-10-21",
+              "tag": "polkadot-stable2409-1"
             },
-            "state": "planned"
+            "state": "released"
           },
           {
             "name": "stable2409-2",
