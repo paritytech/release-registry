@@ -28,7 +28,7 @@ This repo contains a [releases-v1.json](./releases-v1.json) file that tracks all
 | &nbsp;&nbsp;stable2409-4 | ~2025-01-13 | ~2025-01-16 |  | Planned |
 | &nbsp;&nbsp;stable2409-5 | ~2025-02-10 | ~2025-02-13 |  | Planned |
 | &nbsp;&nbsp;(8 more) |  |  | | |
-| **stable2412** | ~2024-11-06 | ~2024-12-16 | ~2025-12-16 | Planned |
+| **stable2412** | ~2024-11-06 | &nbsp;&nbsp;2024-12-17 | ~2025-12-16 | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2412) |
 | &nbsp;&nbsp;stable2412-1 | ~2025-01-20 | ~2025-01-23 |  | Planned |
 | &nbsp;&nbsp;stable2412-2 | ~2025-02-17 | ~2025-02-20 |  | Planned |
 | &nbsp;&nbsp;stable2412-3 | ~2025-03-17 | ~2025-03-20 |  | Planned |

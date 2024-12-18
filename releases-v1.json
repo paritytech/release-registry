@@ -266,9 +266,10 @@
           "estimated": "2024-11-06"
         },
         "publish": {
-          "estimated": "2024-12-16"
+          "when": "2024-12-17",
+          "tag": "polkadot-stable2412"
         },
-        "state": "planned",
+        "state": "released",
         "endOfLife": {
           "estimated": "2025-12-16"
         },
