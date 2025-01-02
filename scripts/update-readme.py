@@ -1,28 +1,22 @@
-"""
-Update the README.md from the root directory:
-
-    python3 scripts/update-readme.py
-
-"""
-
 import json
 import re
 from typing import Dict, Any, List
 
+import argparse
+
 def format_date(date_info: Any) -> str:
     if isinstance(date_info, str):
-        return '&nbsp;&nbsp;' + date_info
+        return date_info
     elif 'estimated' in date_info:
-        return '~' + date_info.get('estimated', 'N/A')
+        return date_info.get('estimated', 'N/A')
     elif 'when' in date_info:
-        return '&nbsp;&nbsp;' + date_info['when']
+        return date_info['when']
     return 'N/A'
 
 def format_state(state: Any) -> str:
     if isinstance(state, str):
         return state.capitalize()
     elif isinstance(state, dict) and 'deprecated' in state:
-        deprecated_info = state['deprecated']
         return f"Deprecated"
     return 'N/A'
 
@@ -54,12 +48,12 @@ def generate_row(item: Dict[str, Any], is_patch: bool = False, is_recommended: b
            f"{cutoff} | { publish } | " \
            f"{end_of_life if not is_patch else ''} | {state} |"
 
-def generate_markdown_table(data: Dict[str, Any]) -> str:
+def generate_markdown_table(data: Dict[str, Any], max_patches=3) -> str:
     project_info = data["Polkadot SDK"]
     recommended = project_info['recommended']
     releases = project_info['releases']
 
-    table = "| Version | Cutoff | Published | End of Life | State |\n" \
+    table = "| Version | Cutoff | Publish | End of Life | State |\n" \
             "|---------|--------|-----------|-------------|-------|\n"
 
     for release in releases:
@@ -67,24 +61,38 @@ def generate_markdown_table(data: Dict[str, Any]) -> str:
         is_planned = isinstance(release['state'], str) and release['state'].lower() == 'planned'
         table += generate_row(release, is_recommended=is_recommended and recommended.get('patch') is None, is_planned=is_planned) + '\n'
 
-        future_patches = 0
         patches = release.get('patches', [])
-        for i, patch in enumerate(patches):
+        past_patches = [p for p in patches if not (isinstance(p['state'], str) and p['state'].lower() == 'planned')]
+        future_patches = [p for p in patches if isinstance(p['state'], str) and p['state'].lower() == 'planned']
+
+        # Handle past patches (newest to oldest)
+        sorted_past_patches = sorted(past_patches, key=lambda x: x['name'])
+        
+        for patch in sorted_past_patches[-max_patches:]:
             is_recommended_patch = is_recommended and patch['name'].split('-')[-1] == recommended.get('patch')
-            is_patch_planned = isinstance(patch['state'], str) and patch['state'].lower() == 'planned'
-            if is_patch_planned:
-                future_patches += 1
-            if future_patches < 4:
-                table += generate_row(patch, is_patch=True, is_recommended=is_recommended_patch, is_planned=is_patch_planned) + '\n'
+            table += generate_row(patch, is_patch=True, is_recommended=is_recommended_patch, is_planned=False) + '\n'
+
+        # Handle future patches
+        for i, patch in enumerate(future_patches[:max_patches]):
+            is_recommended_patch = is_recommended and patch['name'].split('-')[-1] == recommended.get('patch')
+            table += generate_row(patch, is_patch=True, is_recommended=is_recommended_patch, is_planned=True) + '\n'
+        
+        if len(past_patches) > max_patches or len(future_patches) > max_patches:
+            if len(past_patches) > max_patches:
+                table += f"| &nbsp;&nbsp;([{len(past_patches) - max_patches} more past"
+            if len(past_patches) > max_patches and len(future_patches) > max_patches:
+                table += ", "
             else:
-                table += f"| &nbsp;&nbsp;({len(patches) - i} more) |  |  | | |\n"
-                break
+                table += "| &nbsp;&nbsp;(["
+            if len(future_patches) > max_patches:
+                table += f"{len(future_patches) - max_patches} more planned"
+            table += "](CALENDAR.md)) |  |  | | |\n"        
 
     return table
 
-def update_readme(markdown_table: str) -> None:
+def update_readme(markdown_table: str, output) -> None:
     try:
-        with open('README.md', 'r+') as file:
+        with open(output, 'r+') as file:
             content = file.read()
             updated_content = re.sub(
                 r'(<!-- TEMPLATE BEGIN -->).*?(<!-- TEMPLATE END -->)',
@@ -95,20 +103,24 @@ def update_readme(markdown_table: str) -> None:
             file.seek(0)
             file.write(updated_content)
             file.truncate()
-        print("README.md has been updated successfully.")
+        print(f"{output} has been updated successfully.")
     except FileNotFoundError:
-        print("Error: 'README.md' file not found.")
+        print(f"Error: '{output}' file not found.")
 
-def main() -> None:
+def main(max_patches, output) -> None:
     try:
         with open('releases-v1.json', 'r') as file:
             json_data = json.load(file)
-        markdown_table = generate_markdown_table(json_data)
-        update_readme(markdown_table)
+        markdown_table = generate_markdown_table(json_data, max_patches)
+        update_readme(markdown_table, output)
     except FileNotFoundError:
         print("Error: 'releases-v1.json' file not found.")
     except json.JSONDecodeError:
         print("Error: Invalid JSON format in 'releases-v1.json'.")
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--max-patches", type=int, default=2, help="Maximum number of patches to display for each release.")
+    parser.add_argument("--output", type=str, default="README.md", help="Output file to write the updated README to.")
+    args = parser.parse_args()
+    main(max_patches=args.max_patches, output=args.output)
