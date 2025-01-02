@@ -10,7 +10,7 @@ This repo contains a [releases-v1.json](./releases-v1.json) file that tracks all
 
 <!-- TEMPLATE BEGIN -->
 
-| Version | Cutoff | Published | End of Life | State |
+| Version | Cutoff | Publish | End of Life | State |
 |---------|--------|-----------|-------------|-------|
 | **stable2407** | &nbsp;&nbsp;2024-04-29 | &nbsp;&nbsp;2024-04-29 | &nbsp;&nbsp;2025-04-29 | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2407) |
 | &nbsp;&nbsp;stable2407-1 | &nbsp;&nbsp;2024-08-14 | &nbsp;&nbsp;2024-08-15 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2407-1) |
@@ -18,31 +18,29 @@ This repo contains a [releases-v1.json](./releases-v1.json) file that tracks all
 | &nbsp;&nbsp;stable2407-3 | &nbsp;&nbsp;2024-10-10 | &nbsp;&nbsp;2024-10-10 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2407-3) |
 | &nbsp;&nbsp;stable2407-4 | &nbsp;&nbsp;2024-11-11 | &nbsp;&nbsp;2024-11-11 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2407-4) |
 | &nbsp;&nbsp;stable2407-5 | &nbsp;&nbsp;2024-12-02 | &nbsp;&nbsp;2024-12-09 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2407-5) |
-| &nbsp;&nbsp;stable2407-6 | ~2025-01-06 | ~2025-01-09 |  | Planned |
-| &nbsp;&nbsp;stable2407-7 | ~2025-02-03 | ~2025-02-06 |  | Planned |
-| &nbsp;&nbsp;stable2407-8 | ~2025-03-03 | ~2025-03-06 |  | Planned |
+| &nbsp;&nbsp;stable2407-6 | 2025-01-06 | 2025-01-09 |  | Planned |
+| &nbsp;&nbsp;stable2407-7 | 2025-02-03 | 2025-02-06 |  | Planned |
+| &nbsp;&nbsp;stable2407-8 | 2025-03-03 | 2025-03-06 |  | Planned |
 | &nbsp;&nbsp;(2 more) |  |  | | |
-| **stable2409** | &nbsp;&nbsp;2024-09-02 | &nbsp;&nbsp;2024-09-26 | ~2025-09-25 | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2409) |
+| **stable2409** | &nbsp;&nbsp;2024-09-02 | &nbsp;&nbsp;2024-09-26 | 2025-09-25 | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2409) |
 | &nbsp;&nbsp;stable2409-1 | &nbsp;&nbsp;2024-10-21 | &nbsp;&nbsp;2024-10-21 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2409-1) |
 | &nbsp;&nbsp;stable2409-2 | &nbsp;&nbsp;2024-11-14 | &nbsp;&nbsp;2024-11-14 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2409-2) |
-| &nbsp;&nbsp;stable2409-3 | ~2024-12-09 | ~2024-12-12 |  | Planned |
-| &nbsp;&nbsp;stable2409-4 | ~2025-01-13 | ~2025-01-16 |  | Planned |
-| &nbsp;&nbsp;stable2409-5 | ~2025-02-10 | ~2025-02-13 |  | Planned |
+| &nbsp;&nbsp;stable2409-3 | 2024-12-09 | 2024-12-12 |  | Planned |
+| &nbsp;&nbsp;stable2409-4 | 2025-01-13 | 2025-01-16 |  | Planned |
+| &nbsp;&nbsp;stable2409-5 | 2025-02-10 | 2025-02-13 |  | Planned |
 | &nbsp;&nbsp;(8 more) |  |  | | |
-| **stable2412** | ~2024-11-06 | &nbsp;&nbsp;2024-12-17 | ~2025-12-16 | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2412) |
-| &nbsp;&nbsp;stable2412-1 | ~2025-01-20 | ~2025-01-23 |  | Planned |
-| &nbsp;&nbsp;stable2412-2 | ~2025-02-17 | ~2025-02-20 |  | Planned |
-| &nbsp;&nbsp;stable2412-3 | ~2025-03-17 | ~2025-03-20 |  | Planned |
+| **stable2412** | 2024-11-06 | &nbsp;&nbsp;2024-12-17 | 2025-12-16 | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2412) |
+| &nbsp;&nbsp;stable2412-1 | 2025-01-20 | 2025-01-23 |  | Planned |
+| &nbsp;&nbsp;stable2412-2 | 2025-02-17 | 2025-02-20 |  | Planned |
+| &nbsp;&nbsp;stable2412-3 | 2025-03-17 | 2025-03-20 |  | Planned |
 | &nbsp;&nbsp;(9 more) |  |  | | |
-| **stable2503** | ~2025-02-17 | ~2025-03-31 | ~2026-03-31 | Planned |
-| &nbsp;&nbsp;stable2503-1 | ~2025-04-28 | ~2025-05-01 |  | Planned |
-| &nbsp;&nbsp;stable2503-2 | ~2025-05-26 | ~2025-05-29 |  | Planned |
-| &nbsp;&nbsp;stable2503-3 | ~2025-06-23 | ~2025-06-26 |  | Planned |
+| **stable2503** | 2025-02-17 | 2025-03-31 | 2026-03-31 | Planned |
+| &nbsp;&nbsp;stable2503-1 | 2025-04-28 | 2025-05-01 |  | Planned |
+| &nbsp;&nbsp;stable2503-2 | 2025-05-26 | 2025-05-29 |  | Planned |
+| &nbsp;&nbsp;stable2503-3 | 2025-06-23 | 2025-06-26 |  | Planned |
 | &nbsp;&nbsp;(10 more) |  |  | | |
 
 <!-- TEMPLATE END -->
-
-Dates with `~` are estimates.
 
 ### Subscribe
 

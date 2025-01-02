@@ -13,7 +13,7 @@ def format_date(date_info: Any) -> str:
     if isinstance(date_info, str):
         return '&nbsp;&nbsp;' + date_info
     elif 'estimated' in date_info:
-        return '~' + date_info.get('estimated', 'N/A')
+        return date_info.get('estimated', 'N/A')
     elif 'when' in date_info:
         return '&nbsp;&nbsp;' + date_info['when']
     return 'N/A'
@@ -54,12 +54,12 @@ def generate_row(item: Dict[str, Any], is_patch: bool = False, is_recommended: b
            f"{cutoff} | { publish } | " \
            f"{end_of_life if not is_patch else ''} | {state} |"
 
-def generate_markdown_table(data: Dict[str, Any]) -> str:
+def generate_markdown_table(data: Dict[str, Any], max_future_patches=3) -> str:
     project_info = data["Polkadot SDK"]
     recommended = project_info['recommended']
     releases = project_info['releases']
 
-    table = "| Version | Cutoff | Published | End of Life | State |\n" \
+    table = "| Version | Cutoff | Publish | End of Life | State |\n" \
             "|---------|--------|-----------|-------------|-------|\n"
 
     for release in releases:
@@ -74,7 +74,7 @@ def generate_markdown_table(data: Dict[str, Any]) -> str:
             is_patch_planned = isinstance(patch['state'], str) and patch['state'].lower() == 'planned'
             if is_patch_planned:
                 future_patches += 1
-            if future_patches < 4:
+            if future_patches <= max_future_patches:
                 table += generate_row(patch, is_patch=True, is_recommended=is_recommended_patch, is_planned=is_patch_planned) + '\n'
             else:
                 table += f"| &nbsp;&nbsp;({len(patches) - i} more) |  |  | | |\n"
@@ -103,7 +103,7 @@ def main() -> None:
     try:
         with open('releases-v1.json', 'r') as file:
             json_data = json.load(file)
-        markdown_table = generate_markdown_table(json_data)
+        markdown_table = generate_markdown_table(json_data, max_future_patches=3)
         update_readme(markdown_table)
     except FileNotFoundError:
         print("Error: 'releases-v1.json' file not found.")
