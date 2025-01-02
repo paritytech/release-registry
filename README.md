@@ -60,12 +60,14 @@ Subscribe to the calendar by adding this iCal link to your Google or Apple calen
 
 ### Releases
 
-The Polkadot SDK has a `stableYYMMDD` release every 3 months. Each stable release is supported for one year through a monthly patching schedule. The releases are not *exactly* 3 months apart, but we try to keep it close. The exact dates are in the calendar.  
+The Polkadot SDK has a `stableYYMM` release every 3 months. Each stable release is supported for one year through a monthly patching schedule. The releases are not *exactly* 3 months apart, but we try to keep it close. The exact dates are in the calendar.  
 Stable releases undergo a 1.5 month QA period before being published. This explains the difference between the `cutoff` and `published` dates.
 
 ### Patches
 
 The patching schedule of each stable release is assigned a week of the month. This works well, since there can be at most four stable releases maintained at once.  For example: release `stable2407` is always patched in the first week of a month. This means that on the first Monday of each month, a new patch is cut off, and on the first Thursday after that Monday, it is published.
+
+Patches have the tag format `stableYYMM-PATCH` where `PATCH` ranges from 1 to 99. There is no zero padding present, example: `stable2407-1` or `stable2409-10`.
 
 ![Monthly Patching](./.assets/monthly-patching.png)
 
@@ -76,7 +78,6 @@ The two main goals of this repo are to improve:
 - **Expectations**: set clear expectations by having a public schedule. Know when what is coming.
 
 ## Maintenance
-
 
 ### Release Planning
 (how to add a new release to the json)
