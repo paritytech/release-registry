@@ -65,9 +65,9 @@ Stable releases undergo a 1.5 month QA period before being published. This expla
 
 ### Patches
 
-The patching schedule of each stable release is assigned a week of the month. This works well, since there can be at most four stable releases maintained at once.  For example: release `stable2407-1` is always patched in the first week of a month. This means that on the first Monday of each month, a new patch is cut off, and on the first Thursday after that Monday, it is published.
+The patching schedule of each stable release is assigned a week of the month. This works well, since there can be at most four stable releases maintained at once.  For example: release `stable2407` is always patched in the first week of a month. This means that on the first Monday of each month, a new patch is cut off, and on the first Thursday after that Monday, it is published.
 
-Patches have the tag format `stableYYMM-NN` where `NN` ranges from 1 to 99.
+Patches have the tag format `stableYYMM-PATCH` where `PATCH` ranges from 1 to 99. There is no zero padding present, example: `stable2407-1` or `stable2409-10`.
 
 ![Monthly Patching](./.assets/monthly-patching.png)
 
