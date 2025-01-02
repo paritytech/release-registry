@@ -17,21 +17,21 @@ This repo contains a [releases-v1.json](./releases-v1.json) file that tracks all
 | &nbsp;&nbsp;stable2407-5 | 2024-12-02 | 2024-12-09 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2407-5) |
 | &nbsp;&nbsp;stable2407-6 | 2025-01-06 | 2025-01-09 |  | Planned |
 | &nbsp;&nbsp;stable2407-7 | 2025-02-03 | 2025-02-06 |  | Planned |
-| &nbsp;&nbsp;(3 more past, 3 more planned) | asdf |  | | |
+| &nbsp;&nbsp;([3 more past, 3 more planned](CALENDAR.md)) |  |  | | |
 | **stable2409** | 2024-09-02 | 2024-09-26 | 2025-09-25 | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2409) |
 | &nbsp;&nbsp;stable2409-1 | 2024-10-21 | 2024-10-21 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2409-1) |
 | &nbsp;&nbsp;stable2409-2 | 2024-11-14 | 2024-11-14 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2409-2) |
 | &nbsp;&nbsp;stable2409-3 | 2024-12-09 | 2024-12-12 |  | Planned |
 | &nbsp;&nbsp;stable2409-4 | 2025-01-13 | 2025-01-16 |  | Planned |
-| &nbsp;&nbsp;(9 more planned) | asdf |  | | |
+| &nbsp;&nbsp;([9 more planned](CALENDAR.md)) |  |  | | |
 | **stable2412** | 2024-11-06 | 2024-12-17 | 2025-12-16 | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2412) |
 | &nbsp;&nbsp;stable2412-1 | 2025-01-20 | 2025-01-23 |  | Planned |
 | &nbsp;&nbsp;stable2412-2 | 2025-02-17 | 2025-02-20 |  | Planned |
-| &nbsp;&nbsp;(10 more planned) | asdf |  | | |
+| &nbsp;&nbsp;([10 more planned](CALENDAR.md)) |  |  | | |
 | **stable2503** | 2025-02-17 | 2025-03-31 | 2026-03-31 | Planned |
 | &nbsp;&nbsp;stable2503-1 | 2025-04-28 | 2025-05-01 |  | Planned |
 | &nbsp;&nbsp;stable2503-2 | 2025-05-26 | 2025-05-29 |  | Planned |
-| &nbsp;&nbsp;(11 more planned) | asdf |  | | |
+| &nbsp;&nbsp;([11 more planned](CALENDAR.md)) |  |  | | |
 
 <!-- TEMPLATE END -->
 
