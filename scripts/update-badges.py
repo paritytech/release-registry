@@ -67,7 +67,7 @@ def update_next():
         publish_info = next_release['publish']
         date = format_date(publish_info)
         
-        # extract the 'stableYYMMDD' part
+        # extract the 'stableYYMM' part
         stable = re.search(r'(stable\d+)', next_release['name']).group(1)
         
         next_url = f"https://img.shields.io/badge/Next%20Release%20%28{stable}%29-{date}-orange"
