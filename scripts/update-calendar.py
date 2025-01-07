@@ -28,7 +28,7 @@ def create_event(name, start_date, end_date=None, description=""):
 		event.add('dtend', end_date)
 	else:
 		event.add('dtend', start_date + timedelta(days=1))  # Make it an all-day event
-	description += "\n\nFull Calendar: https://github.com/paritytech/release-registry?tab=readme-ov-file#calendar"
+	description += "\n\nFull Calendar: https://github.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar"
 	event.add('description', description)
 	return event
 

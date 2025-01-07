@@ -19,11 +19,11 @@ This repo contains a [releases-v1.json](./releases-v1.json) file that tracks all
 | &nbsp;&nbsp;stable2407-7 | 2025-02-03 | 2025-02-06 |  | Planned |
 | &nbsp;&nbsp;([3 more past, 3 more planned](CALENDAR.md)) |  |  | | |
 | **stable2409** | 2024-09-02 | 2024-09-26 | 2025-09-25 | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2409) |
-| &nbsp;&nbsp;stable2409-1 | 2024-10-21 | 2024-10-21 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2409-1) |
 | &nbsp;&nbsp;stable2409-2 | 2024-11-14 | 2024-11-14 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2409-2) |
-| &nbsp;&nbsp;stable2409-3 | 2024-12-09 | 2024-12-12 |  | Planned |
+| &nbsp;&nbsp;stable2409-3 | 2024-12-23 | 2024-12-23 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2409-3) |
 | &nbsp;&nbsp;stable2409-4 | 2025-01-13 | 2025-01-16 |  | Planned |
-| &nbsp;&nbsp;([9 more planned](CALENDAR.md)) |  |  | | |
+| &nbsp;&nbsp;stable2409-5 | 2025-02-10 | 2025-02-13 |  | Planned |
+| &nbsp;&nbsp;([1 more past, 8 more planned](CALENDAR.md)) |  |  | | |
 | **stable2412** | 2024-11-06 | 2024-12-17 | 2025-12-16 | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2412) |
 | &nbsp;&nbsp;stable2412-1 | 2025-01-20 | 2025-01-23 |  | Planned |
 | &nbsp;&nbsp;stable2412-2 | 2025-02-17 | 2025-02-20 |  | Planned |
@@ -82,7 +82,7 @@ python3 scripts/manage.py release plan stable2412 2024-11-06
 Then figure out when the first patch date should be; you have to select a Monday for the patching schedule to be calculated (errors if not a Monday). You should select either a week that is empty and has no schedule, or the one where the oldest release is currently being patched.  
 The script will then count the how many-th monday of the month it is and begin lining it up with the months like in the image above.
 
-Example where we want the first patch to be cut off on 24024-07-29:
+Example where we want the first patch to be cut off on 2024-07-29:
 
 ```bash
 python3 scripts/manage.py backfill-patches stable2407 --start-date 2024-07-29
@@ -108,17 +108,3 @@ Two scripts are currently in place to:
 - [update-readme.py](./scripts/update-readme.py) - updates the README.md file with the data from the releases.json file
 - [update-calendar.py](./scripts/update-calendar.py) - generates an iCal file from the releases.json file
 - [update-badges.py](./scripts/update-badges.py) - re-generate the badges in the `badges` folder for downstream use.
-
-## Roadmap
-
-  - [x] Double check dates and make the repo public
-  - [ ] Sync with other teams on how to incooperate this
-    - [ ] Release Engineering
-    - [ ] Security
-    - [ ] DevOps
-    - [ ] Marketing
-    - [ ] CEX Comms
-    - [ ] Fellowship Secretary
-  - [ ] Setup Gh pages with calendar
-  - [ ] Setup automation to keep data in sync
-  - [ ] Setup feed to subscribe on changes
