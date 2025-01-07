@@ -82,7 +82,7 @@ python3 scripts/manage.py release plan stable2412 2024-11-06
 Then figure out when the first patch date should be; you have to select a Monday for the patching schedule to be calculated (errors if not a Monday). You should select either a week that is empty and has no schedule, or the one where the oldest release is currently being patched.  
 The script will then count the how many-th monday of the month it is and begin lining it up with the months like in the image above.
 
-Example where we want the first patch to be cut off on 24024-07-29:
+Example where we want the first patch to be cut off on 2024-07-29:
 
 ```bash
 python3 scripts/manage.py backfill-patches stable2407 --start-date 2024-07-29
