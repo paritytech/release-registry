@@ -1,5 +1,5 @@
 """
-This script updates the SVG files in the badges folder. 
+This script updates the SVG files in the badges folder.
 
 Just run it in its stock configuration from the root folder:
 
