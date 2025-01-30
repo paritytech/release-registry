@@ -272,13 +272,12 @@
         "patches": [
           {
             "name": "stable2412-1",
-            "cutoff": {
-              "estimated": "2025-01-20"
-            },
+            "cutoff": "2025-01-30",
             "publish": {
-              "estimated": "2025-01-23"
+              "when": "2025-01-30",
+              "tag": "polkadot-stable2412-1"
             },
-            "state": "planned"
+            "state": "released"
           },
           {
             "name": "stable2412-2",
