@@ -6,7 +6,13 @@ Single source of truth regarding past and future releases of the Polkadot SDK.
 
 This repo contains a [releases-v1.json](./releases-v1.json) file that tracks all SDK releases and a [JSON schema](./releases-v1.schema.json) to ensure that it is in canonical format.
 
+This Gantt chart shows the released (pink) and planned (grey) releases. The longer bars are the stable releases and the small ones are the patches on top of it.
+
+![](.assets/timeline-gantt.png)
+
 ## Calendar
+
+Planned and historic release dates:
 
 <!-- DO NOT EDIT. Run `python3 update-readme.py` instead. -->
 

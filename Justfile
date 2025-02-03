@@ -1,11 +1,18 @@
 set quiet
 
-default: venv readme
-	venv/bin/python3 scripts/update-calendar.py
+default: venv readme calendar badges gantt
+
+badges: venv
 	venv/bin/python3 scripts/update-badges.py
+
+calendar: venv
+	venv/bin/python3 scripts/update-calendar.py
 
 readme:
 	venv/bin/python3 scripts/update-readme.py && venv/bin/python3 scripts/update-readme.py --max-patches 99 --output CALENDAR.md
+
+gantt: venv
+	venv/bin/python3 scripts/update-gantt.py releases-v1.json -o .assets/timeline-gantt.png
 
 venv:
 	#!/bin/bash
