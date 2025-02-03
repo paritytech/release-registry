@@ -16,3 +16,9 @@ venv:
 		python3 -m venv venv
 		venv/bin/pip install -r scripts/requirements.txt
 	fi
+
+publish release date:
+	python3 scripts/manage.py release publish {{release}} {{date}}
+
+cutoff release date:
+	python3 scripts/manage.py release cutoff {{release}} {{date}}
