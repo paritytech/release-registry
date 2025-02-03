@@ -60,5 +60,19 @@ Full untruncated version index.
 | &nbsp;&nbsp;stable2503-11 | 2026-02-23 | 2026-02-26 |  | Planned |
 | &nbsp;&nbsp;stable2503-12 | 2026-03-23 | 2026-03-26 |  | Planned |
 | &nbsp;&nbsp;stable2503-13 | 2026-04-27 | 2026-04-30 |  | Planned |
+| **stable2506** | 2025-05-15 | 2025-06-30 | 2026-06-30 | Planned |
+| &nbsp;&nbsp;stable2506-1 | 2025-08-04 | 2025-08-07 |  | Planned |
+| &nbsp;&nbsp;stable2506-2 | 2025-09-01 | 2025-09-04 |  | Planned |
+| &nbsp;&nbsp;stable2506-3 | 2025-10-06 | 2025-10-09 |  | Planned |
+| &nbsp;&nbsp;stable2506-4 | 2025-11-03 | 2025-11-06 |  | Planned |
+| &nbsp;&nbsp;stable2506-5 | 2025-12-01 | 2025-12-04 |  | Planned |
+| &nbsp;&nbsp;stable2506-6 | 2026-01-05 | 2026-01-08 |  | Planned |
+| &nbsp;&nbsp;stable2506-7 | 2026-02-02 | 2026-02-05 |  | Planned |
+| &nbsp;&nbsp;stable2506-8 | 2026-03-02 | 2026-03-05 |  | Planned |
+| &nbsp;&nbsp;stable2506-9 | 2026-04-06 | 2026-04-09 |  | Planned |
+| &nbsp;&nbsp;stable2506-10 | 2026-05-04 | 2026-05-07 |  | Planned |
+| &nbsp;&nbsp;stable2506-11 | 2026-06-01 | 2026-06-04 |  | Planned |
+| &nbsp;&nbsp;stable2506-12 | 2026-07-06 | 2026-07-09 |  | Planned |
+| &nbsp;&nbsp;stable2506-13 | 2026-08-03 | 2026-08-06 |  | Planned |
 
 <!-- TEMPLATE END -->
