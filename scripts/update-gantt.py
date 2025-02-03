@@ -78,7 +78,7 @@ def create_gantt_chart(tasks: List[Dict], min_date: datetime, max_date: datetime
     # Customize axis
     ax.set_ylim(-0.5, len(tasks) - 0.5)
     ax.set_yticks(range(len(tasks)))
-    ax.set_yticklabels([t['name'] for t in tasks])
+    ax.set_yticklabels(['stable\n'+t['name'].replace('stable', '') if 'stable' in t['name'] else '' for t in tasks], fontsize=15)
     
     # Format dates
     ax.xaxis.set_major_locator(mdates.MonthLocator())
@@ -87,7 +87,7 @@ def create_gantt_chart(tasks: List[Dict], min_date: datetime, max_date: datetime
     
     # Add grid and title
     ax.grid(True, axis='x', alpha=0.3)
-    ax.set_title('Polkadot SDK Release Timeline', pad=20)
+    ax.set_title('Polkadot SDK Release Timeline', pad=12)
     
     # Adjust layout and save
     plt.tight_layout()

@@ -41,6 +41,10 @@ Planned and historic release dates:
 | &nbsp;&nbsp;stable2503-1 | 2025-04-28 | 2025-05-01 |  | Planned |
 | &nbsp;&nbsp;stable2503-2 | 2025-05-26 | 2025-05-29 |  | Planned |
 | &nbsp;&nbsp;([11 more planned](CALENDAR.md)) |  |  | | |
+| **stable2506** | 2025-05-15 | 2025-06-30 | 2026-06-30 | Planned |
+| &nbsp;&nbsp;stable2506-1 | 2025-08-04 | 2025-08-07 |  | Planned |
+| &nbsp;&nbsp;stable2506-2 | 2025-09-01 | 2025-09-04 |  | Planned |
+| &nbsp;&nbsp;([11 more planned](CALENDAR.md)) |  |  | | |
 
 <!-- TEMPLATE END -->
 
@@ -65,9 +69,9 @@ Stable releases undergo a 1.5 month QA period before being published. This expla
 
 ### Patches
 
-The patching schedule of each stable release is assigned a week of the month. This works well, since there can be at most four stable releases maintained at once.  For example: release `stable2407` is always patched in the first week of a month. This means that on the first Monday of each month, a new patch is cut off, and on the first Thursday after that Monday, it is published.
-
 Patches have the tag format `stableYYMM-PATCH` where `PATCH` ranges from 1 to 99. There is no zero padding present, example: `stable2407-1` or `stable2409-10`.
+
+The patching schedule of each stable release is assigned a week of the month. This works well, since there can be at most four stable releases maintained at once.  For example: release `stable2407` is always patched in the first week of a month. This means that on the first Monday of each month, a new patch is cut off, and on the first Thursday after that Monday, it is published.
 
 ![Monthly Patching](./.assets/monthly-patching.png)
 
