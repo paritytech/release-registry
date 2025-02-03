@@ -1,5 +1,7 @@
 # Release Registry
 
+[![Current Stable Release](https://raw.githubusercontent.com/paritytech/release-registry/main/badges/polkadot-sdk-latest.svg)](#)&nbsp;&nbsp;[![Next Stable Release](https://raw.githubusercontent.com/paritytech/release-registry/main/badges/polkadot-sdk-next.svg)](#)
+
 Single source of truth regarding past and future releases of the Polkadot SDK.
 
 This repo contains a [releases-v1.json](./releases-v1.json) file that tracks all SDK releases and a [JSON schema](./releases-v1.schema.json) to ensure that it is in canonical format.
@@ -25,7 +27,7 @@ This repo contains a [releases-v1.json](./releases-v1.json) file that tracks all
 | &nbsp;&nbsp;stable2409-6 | 2025-03-10 | 2025-03-13 |  | Planned |
 | &nbsp;&nbsp;([2 more past, 7 more planned](CALENDAR.md)) |  |  | | |
 | **stable2412** | 2024-11-06 | 2024-12-17 | 2025-12-16 | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2412) |
-| &nbsp;&nbsp;stable2412-1 | 2025-01-30 | 2025-01-30 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2412-1) |
+| &nbsp;&nbsp;stable2412-1 | 2025-01-29 | 2025-01-31 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2412-1) |
 | &nbsp;&nbsp;stable2412-2 | 2025-02-17 | 2025-02-20 |  | Planned |
 | &nbsp;&nbsp;stable2412-3 | 2025-03-17 | 2025-03-20 |  | Planned |
 | &nbsp;&nbsp;([9 more planned](CALENDAR.md)) |  |  | | |
