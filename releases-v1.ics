@@ -388,15 +388,15 @@ DESCRIPTION:End of Life for stable2412\n\nFull Calendar: https://github.co
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2412-1 Cutoff
-DTSTART;VALUE=DATE:20250130
-DTEND;VALUE=DATE:20250131
+DTSTART;VALUE=DATE:20250129
+DTEND;VALUE=DATE:20250130
 DESCRIPTION:Cutoff for stable2412-1 (released)\n\nFull Calendar: https://g
  ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2412-1 Release
-DTSTART;VALUE=DATE:20250130
-DTEND;VALUE=DATE:20250131
+DTSTART;VALUE=DATE:20250131
+DTEND;VALUE=DATE:20250201
 DESCRIPTION:Release of stable2412-1 (released)\n\nFull Calendar: https://g
  ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
