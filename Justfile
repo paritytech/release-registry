@@ -1,4 +1,4 @@
-set quiet
+set quiet 
 
 default: venv readme calendar badges gantt
 
