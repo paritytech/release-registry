@@ -25,26 +25,26 @@ Planned and historic release dates:
 | &nbsp;&nbsp;stable2407-7 | 2025-02-06 | 2025-02-06 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2407-7) |
 | &nbsp;&nbsp;stable2407-8 | 2025-03-03 | 2025-03-06 |  | Planned |
 | &nbsp;&nbsp;stable2407-9 | 2025-04-07 | 2025-04-10 |  | Planned |
-| &nbsp;&nbsp;([5 more past, 1 more planned](CALENDAR.md)) |  |  | | |
+| &nbsp;&nbsp;[5 more past, 1 more planned](CALENDAR.md) |  |  | | |
 | **stable2409** | 2024-09-02 | 2024-09-26 | 2025-09-25 | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2409) |
 | &nbsp;&nbsp;stable2409-3 | 2024-12-23 | 2024-12-23 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2409-3) |
 | &nbsp;&nbsp;stable2409-4 | 2025-01-23 | 2025-01-23 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2409-4) |
 | &nbsp;&nbsp;stable2409-5 | 2025-02-10 | 2025-02-13 |  | Planned |
 | &nbsp;&nbsp;stable2409-6 | 2025-03-10 | 2025-03-13 |  | Planned |
-| &nbsp;&nbsp;([2 more past, 7 more planned](CALENDAR.md)) |  |  | | |
+| &nbsp;&nbsp;[2 more past, 7 more planned](CALENDAR.md) |  |  | | |
 | **stable2412** | 2024-11-06 | 2024-12-17 | 2025-12-16 | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2412) |
 | &nbsp;&nbsp;stable2412-1 | 2025-01-29 | 2025-01-31 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2412-1) |
 | &nbsp;&nbsp;stable2412-2 | 2025-02-17 | 2025-02-20 |  | Planned |
 | &nbsp;&nbsp;stable2412-3 | 2025-03-17 | 2025-03-20 |  | Planned |
-| &nbsp;&nbsp;([9 more planned](CALENDAR.md)) |  |  | | |
+| &nbsp;&nbsp;[9 more planned](CALENDAR.md) |  |  | | |
 | **stable2503** | 2025-02-17 | 2025-03-31 | 2026-03-31 | Planned |
 | &nbsp;&nbsp;stable2503-1 | 2025-04-28 | 2025-05-01 |  | Planned |
 | &nbsp;&nbsp;stable2503-2 | 2025-05-26 | 2025-05-29 |  | Planned |
-| &nbsp;&nbsp;([11 more planned](CALENDAR.md)) |  |  | | |
+| &nbsp;&nbsp;[11 more planned](CALENDAR.md) |  |  | | |
 | **stable2506** | 2025-05-15 | 2025-06-30 | 2026-06-30 | Planned |
 | &nbsp;&nbsp;stable2506-1 | 2025-08-04 | 2025-08-07 |  | Planned |
 | &nbsp;&nbsp;stable2506-2 | 2025-09-01 | 2025-09-04 |  | Planned |
-| &nbsp;&nbsp;([11 more planned](CALENDAR.md)) |  |  | | |
+| &nbsp;&nbsp;[11 more planned](CALENDAR.md) |  |  | | |
 
 <!-- TEMPLATE END -->
 
