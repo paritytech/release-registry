@@ -122,17 +122,17 @@ DESCRIPTION:Release of stable2407-7 (released)\n\nFull Calendar: https://g
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2407-8 Cutoff
-DTSTART;VALUE=DATE:20250303
-DTEND;VALUE=DATE:20250304
-DESCRIPTION:Cutoff for stable2407-8 (planned)\n\nFull Calendar: https://gi
- thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DTSTART;VALUE=DATE:20250306
+DTEND;VALUE=DATE:20250307
+DESCRIPTION:Cutoff for stable2407-8 (released)\n\nFull Calendar: https://g
+ ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2407-8 Release
 DTSTART;VALUE=DATE:20250306
 DTEND;VALUE=DATE:20250307
-DESCRIPTION:Release of stable2407-8 (planned)\n\nFull Calendar: https://gi
- thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Release of stable2407-8 (released)\n\nFull Calendar: https://g
+ ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2407-9 Cutoff
