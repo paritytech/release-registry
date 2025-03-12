@@ -82,7 +82,7 @@ def generate_markdown_table(data: Dict[str, Any], max_patches=3) -> str:
                 table += f"| &nbsp;&nbsp;[{len(past_patches) - max_patches} more past"
             if len(past_patches) > max_patches and len(future_patches) > max_patches:
                 table += ", "
-            else:
+            elif len(past_patches) <= max_patches:
                 table += "| &nbsp;&nbsp;["
             if len(future_patches) > max_patches:
                 table += f"{len(future_patches) - max_patches} more planned"
