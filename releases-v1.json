@@ -295,6 +295,15 @@
           },
           {
             "name": "stable2412-4",
+            "cutoff": "2025-03-11",
+            "publish": {
+              "when": "2025-03-31",
+              "tag": "polkadot-stable2412-4"
+            },
+            "state": "released"
+          },
+          {
+            "name": "stable2412-5",
             "cutoff": {
               "estimated": "2025-04-21"
             },
@@ -304,7 +313,7 @@
             "state": "planned"
           },
           {
-            "name": "stable2412-5",
+            "name": "stable2412-6",
             "cutoff": {
               "estimated": "2025-05-19"
             },
@@ -314,7 +323,7 @@
             "state": "planned"
           },
           {
-            "name": "stable2412-6",
+            "name": "stable2412-7",
             "cutoff": {
               "estimated": "2025-06-16"
             },
@@ -324,7 +333,7 @@
             "state": "planned"
           },
           {
-            "name": "stable2412-7",
+            "name": "stable2412-8",
             "cutoff": {
               "estimated": "2025-07-21"
             },
@@ -334,7 +343,7 @@
             "state": "planned"
           },
           {
-            "name": "stable2412-8",
+            "name": "stable2412-9",
             "cutoff": {
               "estimated": "2025-08-18"
             },
@@ -344,7 +353,7 @@
             "state": "planned"
           },
           {
-            "name": "stable2412-9",
+            "name": "stable2412-10",
             "cutoff": {
               "estimated": "2025-09-15"
             },
@@ -354,7 +363,7 @@
             "state": "planned"
           },
           {
-            "name": "stable2412-10",
+            "name": "stable2412-11",
             "cutoff": {
               "estimated": "2025-10-20"
             },
@@ -364,7 +373,7 @@
             "state": "planned"
           },
           {
-            "name": "stable2412-11",
+            "name": "stable2412-12",
             "cutoff": {
               "estimated": "2025-11-17"
             },
@@ -374,7 +383,7 @@
             "state": "planned"
           },
           {
-            "name": "stable2412-12",
+            "name": "stable2412-13",
             "cutoff": {
               "estimated": "2025-12-15"
             },
@@ -382,6 +391,14 @@
               "estimated": "2025-12-18"
             },
             "state": "planned"
+          },
+          {
+            "name": "stable2412-4",
+            "cutoff": "2025-03-27",
+            "publish": {
+              "estimated": "2025-03-27"
+            },
+            "state": "testing"
           }
         ]
       },
