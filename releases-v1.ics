@@ -569,20 +569,6 @@ DESCRIPTION:Release of stable2412-13 (planned)\n\nFull Calendar: https://g
  ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:stable2412-4 Cutoff
-DTSTART;VALUE=DATE:20250327
-DTEND;VALUE=DATE:20250328
-DESCRIPTION:Cutoff for stable2412-4 (testing)\n\nFull Calendar: https://gi
- thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:stable2412-4 Release
-DTSTART;VALUE=DATE:20250327
-DTEND;VALUE=DATE:20250328
-DESCRIPTION:Release of stable2412-4 (testing)\n\nFull Calendar: https://gi
- thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:stable2503 Cutoff
 DTSTART;VALUE=DATE:20250217
 DTEND;VALUE=DATE:20250218
