@@ -391,14 +391,6 @@
               "estimated": "2025-12-18"
             },
             "state": "planned"
-          },
-          {
-            "name": "stable2412-4",
-            "cutoff": "2025-03-27",
-            "publish": {
-              "estimated": "2025-03-27"
-            },
-            "state": "testing"
           }
         ]
       },
