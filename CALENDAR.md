@@ -37,15 +37,17 @@ Full untruncated version index.
 | &nbsp;&nbsp;stable2412-1 | 2025-01-29 | 2025-01-31 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2412-1) |
 | &nbsp;&nbsp;stable2412-2 | 2025-02-21 | 2025-02-24 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2412-2) |
 | &nbsp;&nbsp;stable2412-3 | 2025-03-11 | 2025-03-11 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2412-3) |
-| &nbsp;&nbsp;stable2412-4 | 2025-04-21 | 2025-04-24 |  | Planned |
-| &nbsp;&nbsp;stable2412-5 | 2025-05-19 | 2025-05-22 |  | Planned |
-| &nbsp;&nbsp;stable2412-6 | 2025-06-16 | 2025-06-19 |  | Planned |
-| &nbsp;&nbsp;stable2412-7 | 2025-07-21 | 2025-07-24 |  | Planned |
-| &nbsp;&nbsp;stable2412-8 | 2025-08-18 | 2025-08-21 |  | Planned |
-| &nbsp;&nbsp;stable2412-9 | 2025-09-15 | 2025-09-18 |  | Planned |
-| &nbsp;&nbsp;stable2412-10 | 2025-10-20 | 2025-10-23 |  | Planned |
-| &nbsp;&nbsp;stable2412-11 | 2025-11-17 | 2025-11-20 |  | Planned |
-| &nbsp;&nbsp;stable2412-12 | 2025-12-15 | 2025-12-18 |  | Planned |
+| &nbsp;&nbsp;stable2412-4 | 2025-03-11 | 2025-03-31 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2412-4) |
+| &nbsp;&nbsp;stable2412-4 | 2025-03-27 | 2025-03-27 |  | Testing |
+| &nbsp;&nbsp;stable2412-5 | 2025-04-21 | 2025-04-24 |  | Planned |
+| &nbsp;&nbsp;stable2412-6 | 2025-05-19 | 2025-05-22 |  | Planned |
+| &nbsp;&nbsp;stable2412-7 | 2025-06-16 | 2025-06-19 |  | Planned |
+| &nbsp;&nbsp;stable2412-8 | 2025-07-21 | 2025-07-24 |  | Planned |
+| &nbsp;&nbsp;stable2412-9 | 2025-08-18 | 2025-08-21 |  | Planned |
+| &nbsp;&nbsp;stable2412-10 | 2025-09-15 | 2025-09-18 |  | Planned |
+| &nbsp;&nbsp;stable2412-11 | 2025-10-20 | 2025-10-23 |  | Planned |
+| &nbsp;&nbsp;stable2412-12 | 2025-11-17 | 2025-11-20 |  | Planned |
+| &nbsp;&nbsp;stable2412-13 | 2025-12-15 | 2025-12-18 |  | Planned |
 | **stable2503** | 2025-02-17 | 2025-03-31 | 2026-03-31 | Planned |
 | &nbsp;&nbsp;stable2503-1 | 2025-04-28 | 2025-05-01 |  | Planned |
 | &nbsp;&nbsp;stable2503-2 | 2025-05-26 | 2025-05-29 |  | Planned |
