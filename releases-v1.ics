@@ -572,15 +572,15 @@ BEGIN:VEVENT
 SUMMARY:stable2503 Cutoff
 DTSTART;VALUE=DATE:20250217
 DTEND;VALUE=DATE:20250218
-DESCRIPTION:Cutoff for stable2503 (planned)\n\nFull Calendar: https://gith
- ub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Cutoff for stable2503 (released)\n\nFull Calendar: https://git
+ hub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2503 Release
-DTSTART;VALUE=DATE:20250331
-DTEND;VALUE=DATE:20250401
-DESCRIPTION:Release of stable2503 (planned)\n\nFull Calendar: https://gith
- ub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DTSTART;VALUE=DATE:20250408
+DTEND;VALUE=DATE:20250409
+DESCRIPTION:Release of stable2503 (released)\n\nFull Calendar: https://git
+ hub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2503 End of Life
