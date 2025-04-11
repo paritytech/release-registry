@@ -91,13 +91,12 @@
           },
           {
             "name": "stable2407-9",
-            "cutoff": {
-              "estimated": "2025-04-07"
-            },
+            "cutoff": "2025-04-10",
             "publish": {
-              "estimated": "2025-04-10"
+              "when": "2025-04-10",
+              "tag": "polkadot-stable2407-9"
             },
-            "state": "planned"
+            "state": "released"
           },
           {
             "name": "stable2407-10",
