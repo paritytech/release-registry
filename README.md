@@ -39,9 +39,10 @@ Planned and historic release dates:
 | &nbsp;&nbsp;[3 more past, 6 more planned](CALENDAR.md) |  |  | | |
 | **stable2503** | 2025-02-17 | 2025-04-08 | 2026-03-31 | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2503) |
 | &nbsp;&nbsp;stable2503-1 | 2025-05-05 | 2025-05-05 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2503-1) |
-| &nbsp;&nbsp;stable2503-2 | 2025-05-26 | 2025-05-29 |  | Planned |
+| &nbsp;&nbsp;stable2503-2 | 2025-05-07 | 2025-05-07 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2503-2) |
 | &nbsp;&nbsp;stable2503-3 | 2025-06-23 | 2025-06-26 |  | Planned |
-| &nbsp;&nbsp;[10 more planned](CALENDAR.md) |  |  | | |
+| &nbsp;&nbsp;stable2503-4 | 2025-07-28 | 2025-07-31 |  | Planned |
+| &nbsp;&nbsp;[9 more planned](CALENDAR.md) |  |  | | |
 | **stable2506** | 2025-05-15 | 2025-06-30 | 2026-06-30 | Planned |
 | &nbsp;&nbsp;stable2506-1 | 2025-08-04 | 2025-08-07 |  | Planned |
 | &nbsp;&nbsp;stable2506-2 | 2025-09-01 | 2025-09-04 |  | Planned |
