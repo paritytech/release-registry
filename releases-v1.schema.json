@@ -189,7 +189,8 @@
 					"enum": [
 						"planned",
 						"staging",
-						"released"
+						"released",
+						"skipped"
 					]
 				},
 				{
