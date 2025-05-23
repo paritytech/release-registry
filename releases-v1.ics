@@ -285,14 +285,14 @@ BEGIN:VEVENT
 SUMMARY:stable2409-8 Cutoff
 DTSTART;VALUE=DATE:20250512
 DTEND;VALUE=DATE:20250513
-DESCRIPTION:Cutoff for stable2409-8 (planned)\n\nFull Calendar: https://gi
+DESCRIPTION:Cutoff for stable2409-8 (skipped)\n\nFull Calendar: https://gi
  thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409-8 Release
 DTSTART;VALUE=DATE:20250515
 DTEND;VALUE=DATE:20250516
-DESCRIPTION:Release of stable2409-8 (planned)\n\nFull Calendar: https://gi
+DESCRIPTION:Release of stable2409-8 (skipped)\n\nFull Calendar: https://gi
  thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT

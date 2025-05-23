@@ -196,7 +196,7 @@
             "publish": {
               "estimated": "2025-05-15"
             },
-            "state": "planned"
+            "state": "skipped"
           },
           {
             "name": "stable2409-9",
