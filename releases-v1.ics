@@ -5,15 +5,17 @@ BEGIN:VEVENT
 SUMMARY:stable2407 Cutoff
 DTSTART;VALUE=DATE:20240429
 DTEND;VALUE=DATE:20240430
-DESCRIPTION:Cutoff for stable2407 (released)\n\nFull Calendar: https://git
- hub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Cutoff for stable2407 ({'deprecated': {'since': '2025-05-08'\,
+  'useInstead': 'stable2503'}})\n\nFull Calendar: https://github.com/parity
+ tech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2407 Release
 DTSTART;VALUE=DATE:20240429
 DTEND;VALUE=DATE:20240430
-DESCRIPTION:Release of stable2407 (released)\n\nFull Calendar: https://git
- hub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Release of stable2407 ({'deprecated': {'since': '2025-05-08'\,
+  'useInstead': 'stable2503'}})\n\nFull Calendar: https://github.com/parity
+ tech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2407 End of Life

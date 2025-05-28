@@ -6,7 +6,12 @@
     "releases": [
       {
         "name": "stable2407",
-        "state": "released",
+        "state": {
+          "deprecated": {
+            "since": "2025-05-08",
+            "useInstead": "stable2503"
+          }
+        },
         "cutoff": {
           "when": "2024-04-29",
           "tag": "polkadot-stable2407"
