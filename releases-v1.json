@@ -458,7 +458,7 @@
             "name": "stable2503-6",
             "cutoff": "2025-06-23",
             "publish": {
-              "estimated": "2025-09-26"
+              "estimated": "2025-06-26"
             },
             "state": "planned"
           },
@@ -478,7 +478,7 @@
               "estimated": "2025-08-25"
             },
             "publish": {
-              "estimated": "2025-08-22"
+              "estimated": "2025-08-28"
             },
             "state": "planned"
           },
@@ -529,36 +529,6 @@
             },
             "publish": {
               "estimated": "2026-01-29"
-            },
-            "state": "planned"
-          },
-          {
-            "name": "stable2503-14",
-            "cutoff": {
-              "estimated": "2026-02-23"
-            },
-            "publish": {
-              "estimated": "2026-01-29"
-            },
-            "state": "planned"
-          },
-          {
-            "name": "stable2503-15",
-            "cutoff": {
-              "estimated": "2026-03-23"
-            },
-            "publish": {
-              "estimated": "2026-03-26"
-            },
-            "state": "planned"
-          },
-          {
-            "name": "stable2503-16",
-            "cutoff": {
-              "estimated": "2026-04-27"
-            },
-            "publish": {
-              "estimated": "2026-04-30"
             },
             "state": "planned"
           }
