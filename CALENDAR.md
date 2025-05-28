@@ -8,7 +8,7 @@ Full untruncated version index.
 
 | Version | Cutoff | Publish | End of Life | State |
 |---------|--------|-----------|-------------|-------|
-| **stable2407** | 2024-04-29 | 2024-04-29 | 2025-04-29 | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2407) |
+| **stable2407** | 2024-04-29 | 2024-04-29 | 2025-04-29 | ~~[Deprecated](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2407)~~ |
 | &nbsp;&nbsp;stable2407-1 | 2024-08-14 | 2024-08-15 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2407-1) |
 | &nbsp;&nbsp;stable2407-2 | 2024-08-28 | 2024-09-02 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2407-2) |
 | &nbsp;&nbsp;stable2407-3 | 2024-10-10 | 2024-10-10 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2407-3) |

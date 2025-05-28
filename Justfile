@@ -29,3 +29,6 @@ publish release date:
 
 cutoff release date:
 	python3 scripts/manage.py release cutoff {{release}} {{date}}
+
+deprecate release date use_instead:
+	python3 scripts/manage.py deprecate {{release}} {{date}} {{use_instead}}
