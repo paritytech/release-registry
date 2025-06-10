@@ -48,6 +48,10 @@ def generate_row(item: Dict[str, Any], is_patch: bool = False, is_recommended: b
            f"{cutoff} | { publish } | " \
            f"{end_of_life if not is_patch else ''} | {state} |"
 
+def stable_name_to_version(name: str) -> tuple[int, int]:
+    yymm = name.replace('stable', '').split('-')[0]
+    return int(yymm[:2]), int(yymm[2:])
+
 def generate_markdown_table(data: Dict[str, Any], max_patches=3) -> str:
     project_info = data["Polkadot SDK"]
     recommended = project_info['recommended']
@@ -55,6 +59,9 @@ def generate_markdown_table(data: Dict[str, Any], max_patches=3) -> str:
 
     table = "| Version | Cutoff | Publish | End of Life | State |\n" \
             "|---------|--------|-----------|-------------|-------|\n"
+    
+    # Sort releases by version number
+    releases.sort(key=lambda x: stable_name_to_version(x['name']), reverse=True)
 
     for release in releases:
         is_recommended = release['name'] == recommended['release']
@@ -66,7 +73,7 @@ def generate_markdown_table(data: Dict[str, Any], max_patches=3) -> str:
         future_patches = [p for p in patches if isinstance(p['state'], str) and p['state'].lower() == 'planned']
 
         # Handle past patches (newest to oldest)
-        sorted_past_patches = sorted(past_patches, key=lambda x: x['name'])
+        sorted_past_patches = sorted(past_patches, key=lambda x: int(x['name'].split('-')[-1]))
         
         for patch in sorted_past_patches[-max_patches:]:
             is_recommended_patch = is_recommended and patch['name'].split('-')[-1] == recommended.get('patch')

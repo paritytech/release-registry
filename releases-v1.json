@@ -29,7 +29,12 @@
               "when": "2024-08-15",
               "tag": "polkadot-stable2407-1"
             },
-            "state": "released"
+            "state": {
+              "deprecated": {
+                "since": "2025-05-08",
+                "useInstead": "stable2503"
+              }
+            }
           },
           {
             "name": "stable2407-2",
@@ -38,7 +43,12 @@
               "when": "2024-09-02",
               "tag": "polkadot-stable2407-2"
             },
-            "state": "released"
+            "state": {
+              "deprecated": {
+                "since": "2025-05-08",
+                "useInstead": "stable2503"
+              }
+            }
           },
           {
             "name": "stable2407-3",
@@ -47,7 +57,12 @@
               "when": "2024-10-10",
               "tag": "polkadot-stable2407-3"
             },
-            "state": "released"
+            "state": {
+              "deprecated": {
+                "since": "2025-05-08",
+                "useInstead": "stable2503"
+              }
+            }
           },
           {
             "name": "stable2407-4",
@@ -56,7 +71,12 @@
               "when": "2024-11-11",
               "tag": "polkadot-stable2407-4"
             },
-            "state": "released"
+            "state": {
+              "deprecated": {
+                "since": "2025-05-08",
+                "useInstead": "stable2503"
+              }
+            }
           },
           {
             "name": "stable2407-5",
@@ -65,7 +85,12 @@
               "when": "2024-12-09",
               "tag": "polkadot-stable2407-5"
             },
-            "state": "released"
+            "state": {
+              "deprecated": {
+                "since": "2025-05-08",
+                "useInstead": "stable2503"
+              }
+            }
           },
           {
             "name": "stable2407-6",
@@ -74,7 +99,12 @@
               "when": "2025-01-21",
               "tag": "polkadot-stable2407-6"
             },
-            "state": "released"
+            "state": {
+              "deprecated": {
+                "since": "2025-05-08",
+                "useInstead": "stable2503"
+              }
+            }
           },
           {
             "name": "stable2407-7",
@@ -83,7 +113,12 @@
               "when": "2025-02-06",
               "tag": "polkadot-stable2407-7"
             },
-            "state": "released"
+            "state": {
+              "deprecated": {
+                "since": "2025-05-08",
+                "useInstead": "stable2503"
+              }
+            }
           },
           {
             "name": "stable2407-8",
@@ -92,7 +127,12 @@
               "when": "2025-03-06",
               "tag": "polkadot-stable2407-8"
             },
-            "state": "released"
+            "state": {
+              "deprecated": {
+                "since": "2025-05-08",
+                "useInstead": "stable2503"
+              }
+            }
           },
           {
             "name": "stable2407-9",
@@ -101,7 +141,12 @@
               "when": "2025-04-10",
               "tag": "polkadot-stable2407-9"
             },
-            "state": "released"
+            "state": {
+              "deprecated": {
+                "since": "2025-05-08",
+                "useInstead": "stable2503"
+              }
+            }
           },
           {
             "name": "stable2407-10",
@@ -111,7 +156,7 @@
             "publish": {
               "estimated": "2025-05-08"
             },
-            "state": "planned"
+            "state": "skipped"
           }
         ]
       },

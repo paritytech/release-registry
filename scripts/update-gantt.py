@@ -18,6 +18,7 @@ COLOR_RELEASED_BAR = '#E6007A'  # released version
 COLOR_RELEASED_PATCH = '#E6007A' # released patch
 COLOR_PLANNED_BAR = '#a3a3a3'   # planned version
 COLOR_PLANNED_PATCH = '#a3a3a3'  # planned patch
+COLOR_SKIPPED_PATCH = '#c7c7c7'  # skipped patch
 COLOR_CURRENT_DATE = '#FF0000'  # current date line
 
 def process_releases(data: Dict) -> tuple[List[Dict], datetime, datetime]:
@@ -29,6 +30,9 @@ def process_releases(data: Dict) -> tuple[List[Dict], datetime, datetime]:
 	releases = sdk_data.get("releases", [])
 	
 	for release in releases:
+		if 'deprecated' in release['state']:
+			continue
+
 		name = release['name']
 		start_date = parse_date(release['publish'])
 		end_date = parse_date(release['endOfLife'])
@@ -54,13 +58,15 @@ def process_releases(data: Dict) -> tuple[List[Dict], datetime, datetime]:
 			patch_end = patch_date + timedelta(days=7)
 			max_date = max(max_date, patch_end)
 			
-			is_planned = isinstance(patch['publish'], dict) and 'estimated' in patch['publish']
+			is_planned = (isinstance(patch['publish'], dict) and 'estimated' in patch['publish']) or (isinstance(patch['state'], dict) and 'deprecated' in patch['state'])
+			is_skipped = patch['state'] == 'skipped'
+			color = COLOR_SKIPPED_PATCH if is_skipped else (COLOR_PLANNED_PATCH if is_planned else COLOR_RELEASED_PATCH)
 			
 			tasks.append({
 				'name': patch['name'].split('-')[1],
 				'start': patch_date,
 				'end': patch_end,
-				'color': COLOR_PLANNED_PATCH if is_planned else COLOR_RELEASED_PATCH
+				'color': color
 			})
 	
 	return tasks, min_date, max_date

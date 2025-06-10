@@ -157,6 +157,20 @@ def deprecate_release(data, version, date, use_instead):
             'useInstead': use_instead
         }
     }
+
+    # Also deprecate all patches that were already published.
+    # All unpublished patches should be marked as 'skipped'.
+    for patch in release['patches']:
+        if patch['state'] == 'released':
+            patch['state'] = {
+                'deprecated': {
+                    'since': date,
+                    'useInstead': use_instead
+                }
+            }
+        elif patch['state'] == 'planned':
+            patch['state'] = 'skipped'
+
     return True
 
 def backfill_patches(data, version=None, start_date=None):
