@@ -20,24 +20,27 @@ def format_state(state: Any) -> str:
         return f"Deprecated"
     return 'N/A'
 
-def link_to_changelog(name: str, publish: Any, cutoff: Any, is_deprecated: bool) -> str:
+def link_to_changelog(name: str, publish: Any, cutoff: Any, is_deprecated: bool, is_skipped: bool) -> str:
     tag = None
     if isinstance(publish, dict) and 'tag' in publish:
         tag = publish['tag']
     elif isinstance(cutoff, dict) and 'tag' in cutoff:
         tag = cutoff['tag']
+
+    if is_skipped:
+        name = 'Cancelled'
     
     if tag:
         name_with_link = f"[{name}](https://github.com/paritytech/polkadot-sdk/releases/tag/{tag})"
     else:
         name_with_link = name
     
-    return f"~~{name_with_link}~~" if is_deprecated else name_with_link
+    strikethrough = is_deprecated or is_skipped
+    return f"~~{name_with_link}~~" if strikethrough else name_with_link
 
 def generate_row(item: Dict[str, Any], is_patch: bool = False, is_recommended: bool = False, is_planned: bool = False) -> str:
     state = format_state(item['state'])
-    state = link_to_changelog(state, item['publish'], item['cutoff'], state.lower() == 'deprecated')
-    is_deprecated = isinstance(item['state'], str) and item['state'].lower() == 'deprecated'
+    state = link_to_changelog(state, item['publish'], item['cutoff'], state.lower() == 'deprecated', state.lower() == 'skipped')
     name = f"{'&nbsp;&nbsp;' if is_patch else ''}{item['name']}"
     cutoff = format_date(item['cutoff'])
     publish = format_date(item['publish'])
@@ -48,6 +51,10 @@ def generate_row(item: Dict[str, Any], is_patch: bool = False, is_recommended: b
            f"{cutoff} | { publish } | " \
            f"{end_of_life if not is_patch else ''} | {state} |"
 
+def stable_name_to_version(name: str) -> tuple[int, int]:
+    yymm = name.replace('stable', '').split('-')[0]
+    return int(yymm[:2]), int(yymm[2:])
+
 def generate_markdown_table(data: Dict[str, Any], max_patches=3) -> str:
     project_info = data["Polkadot SDK"]
     recommended = project_info['recommended']
@@ -55,6 +62,9 @@ def generate_markdown_table(data: Dict[str, Any], max_patches=3) -> str:
 
     table = "| Version | Cutoff | Publish | End of Life | State |\n" \
             "|---------|--------|-----------|-------------|-------|\n"
+    
+    # Sort releases by version number
+    releases.sort(key=lambda x: stable_name_to_version(x['name']), reverse=True)
 
     for release in releases:
         is_recommended = release['name'] == recommended['release']
@@ -66,7 +76,7 @@ def generate_markdown_table(data: Dict[str, Any], max_patches=3) -> str:
         future_patches = [p for p in patches if isinstance(p['state'], str) and p['state'].lower() == 'planned']
 
         # Handle past patches (newest to oldest)
-        sorted_past_patches = sorted(past_patches, key=lambda x: x['name'])
+        sorted_past_patches = sorted(past_patches, key=lambda x: int(x['name'].split('-')[-1]))
         
         for patch in sorted_past_patches[-max_patches:]:
             is_recommended_patch = is_recommended and patch['name'].split('-')[-1] == recommended.get('patch')
