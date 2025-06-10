@@ -31,11 +31,11 @@ jobs:
 
       - name: All files
         run: just
-        
+
       - name: Check for changes
         id: git-check
         run: |
-          git diff --exit-code --name-only . || echo "changes=true" >> $GITHUB_OUTPUT
+          git diff --exit-code --name-only ':!.assets/timeline-gantt.png' . || echo "changes=true" >> $GITHUB_OUTPUT
 
       - name: Commit and push changes if manually triggered
         if: github.event_name == 'workflow_dispatch' && steps.git-check.outputs.changes == 'true'
