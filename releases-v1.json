@@ -168,7 +168,7 @@
           "tag": "polkadot-stable2409-rc1"
         },
         "publish": {
-          "when": "2025-06-12",
+          "when": "2024-09-26",
           "tag": "polkadot-stable2409"
         },
         "endOfLife": {
@@ -250,13 +250,12 @@
           },
           {
             "name": "stable2409-9",
-            "cutoff": {
-              "estimated": "2025-06-09"
-            },
+            "cutoff": "2025-06-12",
             "publish": {
-              "estimated": "2025-06-12"
+              "when": "2025-06-12",
+              "tag": "polkadot-stable2409-9"
             },
-            "state": "planned"
+            "state": "released"
           },
           {
             "name": "stable2409-10",
