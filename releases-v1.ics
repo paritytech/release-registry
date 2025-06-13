@@ -191,8 +191,8 @@ DESCRIPTION:Cutoff for stable2409 (released)\n\nFull Calendar: https://git
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409 Release
-DTSTART;VALUE=DATE:20240926
-DTEND;VALUE=DATE:20240927
+DTSTART;VALUE=DATE:20250612
+DTEND;VALUE=DATE:20250613
 DESCRIPTION:Release of stable2409 (released)\n\nFull Calendar: https://git
  hub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT

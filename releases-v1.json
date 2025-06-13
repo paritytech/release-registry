@@ -168,7 +168,7 @@
           "tag": "polkadot-stable2409-rc1"
         },
         "publish": {
-          "when": "2024-09-26",
+          "when": "2025-06-12",
           "tag": "polkadot-stable2409"
         },
         "endOfLife": {
