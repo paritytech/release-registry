@@ -683,15 +683,15 @@ BEGIN:VEVENT
 SUMMARY:stable2503-6 Cutoff
 DTSTART;VALUE=DATE:20250623
 DTEND;VALUE=DATE:20250624
-DESCRIPTION:Cutoff for stable2503-6 (planned)\n\nFull Calendar: https://gi
- thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Cutoff for stable2503-6 (released)\n\nFull Calendar: https://g
+ ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2503-6 Release
-DTSTART;VALUE=DATE:20250626
-DTEND;VALUE=DATE:20250627
-DESCRIPTION:Release of stable2503-6 (planned)\n\nFull Calendar: https://gi
- thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DTSTART;VALUE=DATE:20250606
+DTEND;VALUE=DATE:20250607
+DESCRIPTION:Release of stable2503-6 (released)\n\nFull Calendar: https://g
+ ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2503-7 Cutoff
