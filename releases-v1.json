@@ -518,6 +518,16 @@
           {
             "name": "stable2503-8",
             "cutoff": {
+              "estimated": "2025-07-28"
+            },
+            "publish": {
+              "estimated": "2025-07-31"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2503-9",
+            "cutoff": {
               "estimated": "2025-08-25"
             },
             "publish": {
@@ -526,7 +536,7 @@
             "state": "planned"
           },
           {
-            "name": "stable2503-9",
+            "name": "stable2503-10",
             "cutoff": {
               "estimated": "2025-09-22"
             },
@@ -536,7 +546,7 @@
             "state": "planned"
           },
           {
-            "name": "stable2503-10",
+            "name": "stable2503-11",
             "cutoff": {
               "estimated": "2025-10-27"
             },
@@ -546,7 +556,7 @@
             "state": "planned"
           },
           {
-            "name": "stable2503-11",
+            "name": "stable2503-12",
             "cutoff": {
               "estimated": "2025-11-24"
             },
@@ -556,7 +566,7 @@
             "state": "planned"
           },
           {
-            "name": "stable2503-12",
+            "name": "stable2503-13",
             "cutoff": {
               "estimated": "2025-12-22"
             },
@@ -566,7 +576,7 @@
             "state": "planned"
           },
           {
-            "name": "stable2503-13",
+            "name": "stable2503-14",
             "cutoff": {
               "estimated": "2026-01-26"
             },
