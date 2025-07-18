@@ -331,17 +331,17 @@ DESCRIPTION:Release of stable2409-9 (released)\n\nFull Calendar: https://g
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409-10 Cutoff
-DTSTART;VALUE=DATE:20250714
-DTEND;VALUE=DATE:20250715
-DESCRIPTION:Cutoff for stable2409-10 (planned)\n\nFull Calendar: https://g
- ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DTSTART;VALUE=DATE:20250717
+DTEND;VALUE=DATE:20250718
+DESCRIPTION:Cutoff for stable2409-10 (released)\n\nFull Calendar: https://
+ github.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409-10 Release
 DTSTART;VALUE=DATE:20250717
 DTEND;VALUE=DATE:20250718
-DESCRIPTION:Release of stable2409-10 (planned)\n\nFull Calendar: https://g
- ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Release of stable2409-10 (released)\n\nFull Calendar: https://
+ github.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409-11 Cutoff
