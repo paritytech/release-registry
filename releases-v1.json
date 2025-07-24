@@ -592,9 +592,10 @@
           "estimated": "2025-05-15"
         },
         "publish": {
-          "estimated": "2025-06-30"
+          "when": "2025-07-24",
+          "tag": "polkadot-stable2506"
         },
-        "state": "planned",
+        "state": "released",
         "endOfLife": {
           "estimated": "2026-06-30"
         },
