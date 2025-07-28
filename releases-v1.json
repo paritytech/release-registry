@@ -377,13 +377,12 @@
           },
           {
             "name": "stable2412-8",
-            "cutoff": {
-              "estimated": "2025-07-21"
-            },
+            "cutoff": "2025-07-28",
             "publish": {
-              "estimated": "2025-07-24"
+              "when": "2025-07-28",
+              "tag": "polkadot-stable2412-8"
             },
-            "state": "planned"
+            "state": "released"
           },
           {
             "name": "stable2412-9",
