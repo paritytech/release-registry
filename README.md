@@ -20,6 +20,10 @@ Planned and historic release dates:
 
 | Version | Cutoff | Publish | End of Life | State |
 |---------|--------|-----------|-------------|-------|
+| **stable2509** | 2025-08-18 | 2025-10-02 | 2026-10-02 | Planned |
+| &nbsp;&nbsp;stable2509-1 | 2025-11-10 | 2025-11-13 |  | Planned |
+| &nbsp;&nbsp;stable2509-2 | 2025-12-08 | 2025-12-11 |  | Planned |
+| &nbsp;&nbsp;[11 more planned](CALENDAR.md) |  |  | | |
 | **stable2506** | 2025-05-15 | 2025-07-24 | 2026-06-30 | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2506) |
 | &nbsp;&nbsp;stable2506-1 | 2025-08-04 | 2025-08-07 |  | Planned |
 | &nbsp;&nbsp;stable2506-2 | 2025-09-01 | 2025-09-04 |  | Planned |

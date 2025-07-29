@@ -8,6 +8,20 @@ Full untruncated version index.
 
 | Version | Cutoff | Publish | End of Life | State |
 |---------|--------|-----------|-------------|-------|
+| **stable2509** | 2025-08-18 | 2025-10-02 | 2026-10-02 | Planned |
+| &nbsp;&nbsp;stable2509-1 | 2025-11-10 | 2025-11-13 |  | Planned |
+| &nbsp;&nbsp;stable2509-2 | 2025-12-08 | 2025-12-11 |  | Planned |
+| &nbsp;&nbsp;stable2509-3 | 2026-01-12 | 2026-01-15 |  | Planned |
+| &nbsp;&nbsp;stable2509-4 | 2026-02-09 | 2026-02-12 |  | Planned |
+| &nbsp;&nbsp;stable2509-5 | 2026-03-09 | 2026-03-12 |  | Planned |
+| &nbsp;&nbsp;stable2509-6 | 2026-04-13 | 2026-04-16 |  | Planned |
+| &nbsp;&nbsp;stable2509-7 | 2026-05-11 | 2026-05-14 |  | Planned |
+| &nbsp;&nbsp;stable2509-8 | 2026-06-08 | 2026-06-11 |  | Planned |
+| &nbsp;&nbsp;stable2509-9 | 2026-07-13 | 2026-07-16 |  | Planned |
+| &nbsp;&nbsp;stable2509-10 | 2026-08-10 | 2026-08-13 |  | Planned |
+| &nbsp;&nbsp;stable2509-11 | 2026-09-14 | 2026-09-17 |  | Planned |
+| &nbsp;&nbsp;stable2509-12 | 2026-10-12 | 2026-10-15 |  | Planned |
+| &nbsp;&nbsp;stable2509-13 | 2026-11-09 | 2026-11-12 |  | Planned |
 | **stable2506** | 2025-05-15 | 2025-07-24 | 2026-06-30 | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2506) |
 | &nbsp;&nbsp;stable2506-1 | 2025-08-04 | 2025-08-07 |  | Planned |
 | &nbsp;&nbsp;stable2506-2 | 2025-09-01 | 2025-09-04 |  | Planned |
