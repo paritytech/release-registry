@@ -599,13 +599,12 @@
         "patches": [
           {
             "name": "stable2506-1",
-            "cutoff": {
-              "estimated": "2025-08-04"
-            },
+            "cutoff": "2025-08-19",
             "publish": {
-              "estimated": "2025-08-07"
+              "when": "2025-08-19",
+              "tag": "polkadot-stable2506-1"
             },
-            "state": "planned"
+            "state": "released"
           },
           {
             "name": "stable2506-2",
