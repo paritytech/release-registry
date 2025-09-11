@@ -162,7 +162,12 @@
       },
       {
         "name": "stable2409",
-        "state": "released",
+        "state": {
+          "deprecated": {
+            "since": "2025-09-11",
+            "useInstead": "stable2506"
+          }
+        },
         "cutoff": {
           "when": "2024-09-02",
           "tag": "polkadot-stable2409-rc1"
@@ -182,7 +187,12 @@
               "when": "2024-10-21",
               "tag": "polkadot-stable2409-1"
             },
-            "state": "released"
+            "state": {
+              "deprecated": {
+                "since": "2025-09-11",
+                "useInstead": "stable2506"
+              }
+            }
           },
           {
             "name": "stable2409-2",
@@ -191,7 +201,12 @@
               "when": "2024-11-14",
               "tag": "polkadot-stable2409-2"
             },
-            "state": "released"
+            "state": {
+              "deprecated": {
+                "since": "2025-09-11",
+                "useInstead": "stable2506"
+              }
+            }
           },
           {
             "name": "stable2409-3",
@@ -200,7 +215,12 @@
               "when": "2024-12-23",
               "tag": "polkadot-stable2409-3"
             },
-            "state": "released"
+            "state": {
+              "deprecated": {
+                "since": "2025-09-11",
+                "useInstead": "stable2506"
+              }
+            }
           },
           {
             "name": "stable2409-4",
@@ -209,7 +229,12 @@
               "when": "2025-01-23",
               "tag": "polkadot-stable2409-4"
             },
-            "state": "released"
+            "state": {
+              "deprecated": {
+                "since": "2025-09-11",
+                "useInstead": "stable2506"
+              }
+            }
           },
           {
             "name": "stable2409-5",
@@ -218,7 +243,12 @@
               "when": "2025-02-13",
               "tag": "polkadot-stable2409-5"
             },
-            "state": "released"
+            "state": {
+              "deprecated": {
+                "since": "2025-09-11",
+                "useInstead": "stable2506"
+              }
+            }
           },
           {
             "name": "stable2409-6",
@@ -227,7 +257,12 @@
               "when": "2025-03-12",
               "tag": "polkadot-stable2409-6"
             },
-            "state": "released"
+            "state": {
+              "deprecated": {
+                "since": "2025-09-11",
+                "useInstead": "stable2506"
+              }
+            }
           },
           {
             "name": "stable2409-7",
@@ -236,7 +271,12 @@
               "when": "2025-04-29",
               "tag": "polkadot-stable2409-7"
             },
-            "state": "released"
+            "state": {
+              "deprecated": {
+                "since": "2025-09-11",
+                "useInstead": "stable2506"
+              }
+            }
           },
           {
             "name": "stable2409-8",
@@ -255,7 +295,12 @@
               "when": "2025-06-12",
               "tag": "polkadot-stable2409-9"
             },
-            "state": "released"
+            "state": {
+              "deprecated": {
+                "since": "2025-09-11",
+                "useInstead": "stable2506"
+              }
+            }
           },
           {
             "name": "stable2409-10",
@@ -264,7 +309,12 @@
               "when": "2025-07-17",
               "tag": "polkadot-stable2409-10"
             },
-            "state": "released"
+            "state": {
+              "deprecated": {
+                "since": "2025-09-11",
+                "useInstead": "stable2506"
+              }
+            }
           },
           {
             "name": "stable2409-11",
@@ -273,7 +323,12 @@
               "when": "2025-08-14",
               "tag": "polkadot-stable2409-11"
             },
-            "state": "released"
+            "state": {
+              "deprecated": {
+                "since": "2025-09-11",
+                "useInstead": "stable2506"
+              }
+            }
           },
           {
             "name": "stable2409-12",
@@ -282,7 +337,12 @@
               "when": "2025-09-11",
               "tag": "polkadot-stable2409-12"
             },
-            "state": "released"
+            "state": {
+              "deprecated": {
+                "since": "2025-09-11",
+                "useInstead": "stable2506"
+              }
+            }
           },
           {
             "name": "stable2409-13",
@@ -292,7 +352,7 @@
             "publish": {
               "estimated": "2025-10-16"
             },
-            "state": "planned"
+            "state": "skipped"
           }
         ]
       },

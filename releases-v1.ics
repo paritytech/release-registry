@@ -186,15 +186,17 @@ BEGIN:VEVENT
 SUMMARY:stable2409 Cutoff
 DTSTART;VALUE=DATE:20240902
 DTEND;VALUE=DATE:20240903
-DESCRIPTION:Cutoff for stable2409 (released)\n\nFull Calendar: https://git
- hub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Cutoff for stable2409 ({'deprecated': {'since': '2025-09-11'\,
+  'useInstead': 'stable2506'}})\n\nFull Calendar: https://github.com/parity
+ tech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409 Release
 DTSTART;VALUE=DATE:20250612
 DTEND;VALUE=DATE:20250613
-DESCRIPTION:Release of stable2409 (released)\n\nFull Calendar: https://git
- hub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Release of stable2409 ({'deprecated': {'since': '2025-09-11'\,
+  'useInstead': 'stable2506'}})\n\nFull Calendar: https://github.com/parity
+ tech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409 End of Life
@@ -207,99 +209,113 @@ BEGIN:VEVENT
 SUMMARY:stable2409-1 Cutoff
 DTSTART;VALUE=DATE:20241021
 DTEND;VALUE=DATE:20241022
-DESCRIPTION:Cutoff for stable2409-1 (released)\n\nFull Calendar: https://g
- ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Cutoff for stable2409-1 ({'deprecated': {'since': '2025-09-11'
+ \, 'useInstead': 'stable2506'}})\n\nFull Calendar: https://github.com/pari
+ tytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409-1 Release
 DTSTART;VALUE=DATE:20241021
 DTEND;VALUE=DATE:20241022
-DESCRIPTION:Release of stable2409-1 (released)\n\nFull Calendar: https://g
- ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Release of stable2409-1 ({'deprecated': {'since': '2025-09-11'
+ \, 'useInstead': 'stable2506'}})\n\nFull Calendar: https://github.com/pari
+ tytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409-2 Cutoff
 DTSTART;VALUE=DATE:20241114
 DTEND;VALUE=DATE:20241115
-DESCRIPTION:Cutoff for stable2409-2 (released)\n\nFull Calendar: https://g
- ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Cutoff for stable2409-2 ({'deprecated': {'since': '2025-09-11'
+ \, 'useInstead': 'stable2506'}})\n\nFull Calendar: https://github.com/pari
+ tytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409-2 Release
 DTSTART;VALUE=DATE:20241114
 DTEND;VALUE=DATE:20241115
-DESCRIPTION:Release of stable2409-2 (released)\n\nFull Calendar: https://g
- ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Release of stable2409-2 ({'deprecated': {'since': '2025-09-11'
+ \, 'useInstead': 'stable2506'}})\n\nFull Calendar: https://github.com/pari
+ tytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409-3 Cutoff
 DTSTART;VALUE=DATE:20241223
 DTEND;VALUE=DATE:20241224
-DESCRIPTION:Cutoff for stable2409-3 (released)\n\nFull Calendar: https://g
- ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Cutoff for stable2409-3 ({'deprecated': {'since': '2025-09-11'
+ \, 'useInstead': 'stable2506'}})\n\nFull Calendar: https://github.com/pari
+ tytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409-3 Release
 DTSTART;VALUE=DATE:20241223
 DTEND;VALUE=DATE:20241224
-DESCRIPTION:Release of stable2409-3 (released)\n\nFull Calendar: https://g
- ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Release of stable2409-3 ({'deprecated': {'since': '2025-09-11'
+ \, 'useInstead': 'stable2506'}})\n\nFull Calendar: https://github.com/pari
+ tytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409-4 Cutoff
 DTSTART;VALUE=DATE:20250123
 DTEND;VALUE=DATE:20250124
-DESCRIPTION:Cutoff for stable2409-4 (released)\n\nFull Calendar: https://g
- ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Cutoff for stable2409-4 ({'deprecated': {'since': '2025-09-11'
+ \, 'useInstead': 'stable2506'}})\n\nFull Calendar: https://github.com/pari
+ tytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409-4 Release
 DTSTART;VALUE=DATE:20250123
 DTEND;VALUE=DATE:20250124
-DESCRIPTION:Release of stable2409-4 (released)\n\nFull Calendar: https://g
- ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Release of stable2409-4 ({'deprecated': {'since': '2025-09-11'
+ \, 'useInstead': 'stable2506'}})\n\nFull Calendar: https://github.com/pari
+ tytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409-5 Cutoff
 DTSTART;VALUE=DATE:20250213
 DTEND;VALUE=DATE:20250214
-DESCRIPTION:Cutoff for stable2409-5 (released)\n\nFull Calendar: https://g
- ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Cutoff for stable2409-5 ({'deprecated': {'since': '2025-09-11'
+ \, 'useInstead': 'stable2506'}})\n\nFull Calendar: https://github.com/pari
+ tytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409-5 Release
 DTSTART;VALUE=DATE:20250213
 DTEND;VALUE=DATE:20250214
-DESCRIPTION:Release of stable2409-5 (released)\n\nFull Calendar: https://g
- ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Release of stable2409-5 ({'deprecated': {'since': '2025-09-11'
+ \, 'useInstead': 'stable2506'}})\n\nFull Calendar: https://github.com/pari
+ tytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409-6 Cutoff
 DTSTART;VALUE=DATE:20250312
 DTEND;VALUE=DATE:20250313
-DESCRIPTION:Cutoff for stable2409-6 (released)\n\nFull Calendar: https://g
- ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Cutoff for stable2409-6 ({'deprecated': {'since': '2025-09-11'
+ \, 'useInstead': 'stable2506'}})\n\nFull Calendar: https://github.com/pari
+ tytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409-6 Release
 DTSTART;VALUE=DATE:20250312
 DTEND;VALUE=DATE:20250313
-DESCRIPTION:Release of stable2409-6 (released)\n\nFull Calendar: https://g
- ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Release of stable2409-6 ({'deprecated': {'since': '2025-09-11'
+ \, 'useInstead': 'stable2506'}})\n\nFull Calendar: https://github.com/pari
+ tytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409-7 Cutoff
 DTSTART;VALUE=DATE:20250429
 DTEND;VALUE=DATE:20250430
-DESCRIPTION:Cutoff for stable2409-7 (released)\n\nFull Calendar: https://g
- ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Cutoff for stable2409-7 ({'deprecated': {'since': '2025-09-11'
+ \, 'useInstead': 'stable2506'}})\n\nFull Calendar: https://github.com/pari
+ tytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409-7 Release
 DTSTART;VALUE=DATE:20250429
 DTEND;VALUE=DATE:20250430
-DESCRIPTION:Release of stable2409-7 (released)\n\nFull Calendar: https://g
- ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Release of stable2409-7 ({'deprecated': {'since': '2025-09-11'
+ \, 'useInstead': 'stable2506'}})\n\nFull Calendar: https://github.com/pari
+ tytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409-8 Cutoff
@@ -319,70 +335,78 @@ BEGIN:VEVENT
 SUMMARY:stable2409-9 Cutoff
 DTSTART;VALUE=DATE:20250612
 DTEND;VALUE=DATE:20250613
-DESCRIPTION:Cutoff for stable2409-9 (released)\n\nFull Calendar: https://g
- ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Cutoff for stable2409-9 ({'deprecated': {'since': '2025-09-11'
+ \, 'useInstead': 'stable2506'}})\n\nFull Calendar: https://github.com/pari
+ tytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409-9 Release
 DTSTART;VALUE=DATE:20250612
 DTEND;VALUE=DATE:20250613
-DESCRIPTION:Release of stable2409-9 (released)\n\nFull Calendar: https://g
- ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Release of stable2409-9 ({'deprecated': {'since': '2025-09-11'
+ \, 'useInstead': 'stable2506'}})\n\nFull Calendar: https://github.com/pari
+ tytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409-10 Cutoff
 DTSTART;VALUE=DATE:20250717
 DTEND;VALUE=DATE:20250718
-DESCRIPTION:Cutoff for stable2409-10 (released)\n\nFull Calendar: https://
- github.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Cutoff for stable2409-10 ({'deprecated': {'since': '2025-09-11
+ '\, 'useInstead': 'stable2506'}})\n\nFull Calendar: https://github.com/par
+ itytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409-10 Release
 DTSTART;VALUE=DATE:20250717
 DTEND;VALUE=DATE:20250718
-DESCRIPTION:Release of stable2409-10 (released)\n\nFull Calendar: https://
- github.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Release of stable2409-10 ({'deprecated': {'since': '2025-09-11
+ '\, 'useInstead': 'stable2506'}})\n\nFull Calendar: https://github.com/par
+ itytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409-11 Cutoff
 DTSTART;VALUE=DATE:20250814
 DTEND;VALUE=DATE:20250815
-DESCRIPTION:Cutoff for stable2409-11 (released)\n\nFull Calendar: https://
- github.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Cutoff for stable2409-11 ({'deprecated': {'since': '2025-09-11
+ '\, 'useInstead': 'stable2506'}})\n\nFull Calendar: https://github.com/par
+ itytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409-11 Release
 DTSTART;VALUE=DATE:20250814
 DTEND;VALUE=DATE:20250815
-DESCRIPTION:Release of stable2409-11 (released)\n\nFull Calendar: https://
- github.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Release of stable2409-11 ({'deprecated': {'since': '2025-09-11
+ '\, 'useInstead': 'stable2506'}})\n\nFull Calendar: https://github.com/par
+ itytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409-12 Cutoff
 DTSTART;VALUE=DATE:20250911
 DTEND;VALUE=DATE:20250912
-DESCRIPTION:Cutoff for stable2409-12 (released)\n\nFull Calendar: https://
- github.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Cutoff for stable2409-12 ({'deprecated': {'since': '2025-09-11
+ '\, 'useInstead': 'stable2506'}})\n\nFull Calendar: https://github.com/par
+ itytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409-12 Release
 DTSTART;VALUE=DATE:20250911
 DTEND;VALUE=DATE:20250912
-DESCRIPTION:Release of stable2409-12 (released)\n\nFull Calendar: https://
- github.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Release of stable2409-12 ({'deprecated': {'since': '2025-09-11
+ '\, 'useInstead': 'stable2506'}})\n\nFull Calendar: https://github.com/par
+ itytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409-13 Cutoff
 DTSTART;VALUE=DATE:20251013
 DTEND;VALUE=DATE:20251014
-DESCRIPTION:Cutoff for stable2409-13 (planned)\n\nFull Calendar: https://g
+DESCRIPTION:Cutoff for stable2409-13 (skipped)\n\nFull Calendar: https://g
  ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2409-13 Release
 DTSTART;VALUE=DATE:20251016
 DTEND;VALUE=DATE:20251017
-DESCRIPTION:Release of stable2409-13 (planned)\n\nFull Calendar: https://g
+DESCRIPTION:Release of stable2409-13 (skipped)\n\nFull Calendar: https://g
  ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
