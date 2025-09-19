@@ -927,6 +927,141 @@
             "state": "planned"
           }
         ]
+      },
+      {
+        "name": "stable2512",
+        "cutoff": {
+          "estimated": "2025-11-17"
+        },
+        "publish": {
+          "estimated": "2025-12-18"
+        },
+        "state": "planned",
+        "endOfLife": {
+          "estimated": "2027-01-01"
+        },
+        "patches": [
+          {
+            "name": "stable2512-1",
+            "cutoff": {
+              "estimated": "2026-01-19"
+            },
+            "publish": {
+              "estimated": "2026-01-22"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2512-2",
+            "cutoff": {
+              "estimated": "2026-02-16"
+            },
+            "publish": {
+              "estimated": "2026-02-19"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2512-3",
+            "cutoff": {
+              "estimated": "2026-03-16"
+            },
+            "publish": {
+              "estimated": "2026-03-19"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2512-4",
+            "cutoff": {
+              "estimated": "2026-04-20"
+            },
+            "publish": {
+              "estimated": "2026-04-23"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2512-5",
+            "cutoff": {
+              "estimated": "2026-05-18"
+            },
+            "publish": {
+              "estimated": "2026-05-21"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2512-6",
+            "cutoff": {
+              "estimated": "2026-06-15"
+            },
+            "publish": {
+              "estimated": "2026-06-18"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2512-7",
+            "cutoff": {
+              "estimated": "2026-07-20"
+            },
+            "publish": {
+              "estimated": "2026-07-23"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2512-8",
+            "cutoff": {
+              "estimated": "2026-08-17"
+            },
+            "publish": {
+              "estimated": "2026-08-20"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2512-9",
+            "cutoff": {
+              "estimated": "2026-09-21"
+            },
+            "publish": {
+              "estimated": "2026-09-24"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2512-10",
+            "cutoff": {
+              "estimated": "2026-10-19"
+            },
+            "publish": {
+              "estimated": "2026-10-22"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2512-11",
+            "cutoff": {
+              "estimated": "2026-11-16"
+            },
+            "publish": {
+              "estimated": "2026-11-19"
+            },
+            "state": "planned"
+          },
+          {
+            "name": "stable2512-12",
+            "cutoff": {
+              "estimated": "2026-12-21"
+            },
+            "publish": {
+              "estimated": "2026-12-24"
+            },
+            "state": "planned"
+          }
+        ]
       }
     ],
     "changelog": "https://github.com/paritytech/polkadot-sdk/releases/tag/$TAG"
