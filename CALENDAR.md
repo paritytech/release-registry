@@ -8,6 +8,19 @@ Full untruncated version index.
 
 | Version | Cutoff | Publish | End of Life | State |
 |---------|--------|-----------|-------------|-------|
+| **stable2512** | 2025-11-17 | 2025-12-18 | 2027-01-01 | Planned |
+| &nbsp;&nbsp;stable2512-1 | 2026-01-19 | 2026-01-22 |  | Planned |
+| &nbsp;&nbsp;stable2512-2 | 2026-02-16 | 2026-02-19 |  | Planned |
+| &nbsp;&nbsp;stable2512-3 | 2026-03-16 | 2026-03-19 |  | Planned |
+| &nbsp;&nbsp;stable2512-4 | 2026-04-20 | 2026-04-23 |  | Planned |
+| &nbsp;&nbsp;stable2512-5 | 2026-05-18 | 2026-05-21 |  | Planned |
+| &nbsp;&nbsp;stable2512-6 | 2026-06-15 | 2026-06-18 |  | Planned |
+| &nbsp;&nbsp;stable2512-7 | 2026-07-20 | 2026-07-23 |  | Planned |
+| &nbsp;&nbsp;stable2512-8 | 2026-08-17 | 2026-08-20 |  | Planned |
+| &nbsp;&nbsp;stable2512-9 | 2026-09-21 | 2026-09-24 |  | Planned |
+| &nbsp;&nbsp;stable2512-10 | 2026-10-19 | 2026-10-22 |  | Planned |
+| &nbsp;&nbsp;stable2512-11 | 2026-11-16 | 2026-11-19 |  | Planned |
+| &nbsp;&nbsp;stable2512-12 | 2026-12-21 | 2026-12-24 |  | Planned |
 | **stable2509** | 2025-08-18 | 2025-10-02 | 2026-10-02 | Planned |
 | &nbsp;&nbsp;stable2509-1 | 2025-11-10 | 2025-11-13 |  | Planned |
 | &nbsp;&nbsp;stable2509-2 | 2025-12-08 | 2025-12-11 |  | Planned |
