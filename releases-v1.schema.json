@@ -64,6 +64,11 @@
 					"pattern": "^stable2[45][01][0-9]$",
 					"description": "The name of the release"
 				},
+				"semver": {
+					"type": "string",
+					"pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+					"description": "The SemVer version number corresponding to this release"
+				},
 				"kind": {
 					"type": "string",
 					"enum": [
@@ -105,6 +110,11 @@
 				"name": {
 					"type": "string",
 					"pattern": "^stable2[45][01][0-9]-([1-9][0-9]*)$"
+				},
+				"semver": {
+					"type": "string",
+					"pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+					"description": "The SemVer version number corresponding to this patch"
 				},
 				"cutoff": {
 					"$ref": "#/definitions/dateOrEstimated"
