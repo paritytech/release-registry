@@ -1036,15 +1036,15 @@ BEGIN:VEVENT
 SUMMARY:stable2509 Cutoff
 DTSTART;VALUE=DATE:20250818
 DTEND;VALUE=DATE:20250819
-DESCRIPTION:Cutoff for stable2509 (planned)\n\nFull Calendar: https://gith
- ub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Cutoff for stable2509 (released)\n\nFull Calendar: https://git
+ hub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2509 Release
-DTSTART;VALUE=DATE:20251002
-DTEND;VALUE=DATE:20251003
-DESCRIPTION:Release of stable2509 (planned)\n\nFull Calendar: https://gith
- ub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DTSTART;VALUE=DATE:20251008
+DTEND;VALUE=DATE:20251009
+DESCRIPTION:Release of stable2509 (released)\n\nFull Calendar: https://git
+ hub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2509 End of Life
