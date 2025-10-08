@@ -788,9 +788,10 @@
           "estimated": "2025-08-18"
         },
         "publish": {
-          "estimated": "2025-10-02"
+          "when": "2025-10-08",
+          "tag": "polkadot-stable2509"
         },
-        "state": "planned",
+        "state": "released",
         "endOfLife": {
           "estimated": "2026-10-02"
         },
