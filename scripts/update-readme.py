@@ -45,9 +45,11 @@ def generate_row(item: Dict[str, Any], is_patch: bool = False, is_recommended: b
     cutoff = format_date(item['cutoff'])
     publish = format_date(item['publish'])
     end_of_life = format_date(item.get('endOfLife', '-'))
+    semver = item.get('semver', '')
     bold = '' if is_patch else '**'
 
     return f"| {bold + name + bold} | " \
+           f"{semver} | " \
            f"{cutoff} | { publish } | " \
            f"{end_of_life if not is_patch else ''} | {state} |"
 
@@ -60,8 +62,8 @@ def generate_markdown_table(data: Dict[str, Any], max_patches=3) -> str:
     recommended = project_info['recommended']
     releases = project_info['releases']
 
-    table = "| Version | Cutoff | Publish | End of Life | State |\n" \
-            "|---------|--------|-----------|-------------|-------|\n"
+    table = "| Version | SemVer | Cutoff | Publish | End of Life | State |\n" \
+            "|---------|--------|--------|---------|-------------|-------|\n"
     
     # Sort releases by version number
     releases.sort(key=lambda x: stable_name_to_version(x['name']), reverse=True)

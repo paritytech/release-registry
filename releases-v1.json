@@ -6,6 +6,7 @@
     "releases": [
       {
         "name": "stable2407",
+        "semver": "1.15.0",
         "state": {
           "deprecated": {
             "since": "2025-05-08",
@@ -24,6 +25,7 @@
         "patches": [
           {
             "name": "stable2407-1",
+            "semver": "1.15.1",
             "cutoff": "2024-08-14",
             "publish": {
               "when": "2024-08-15",
@@ -48,7 +50,8 @@
                 "since": "2025-05-08",
                 "useInstead": "stable2503"
               }
-            }
+            },
+            "semver": "1.15.2"
           },
           {
             "name": "stable2407-3",
@@ -62,7 +65,8 @@
                 "since": "2025-05-08",
                 "useInstead": "stable2503"
               }
-            }
+            },
+            "semver": "1.15.3"
           },
           {
             "name": "stable2407-4",
@@ -76,7 +80,8 @@
                 "since": "2025-05-08",
                 "useInstead": "stable2503"
               }
-            }
+            },
+            "semver": "1.15.4"
           },
           {
             "name": "stable2407-5",
@@ -90,7 +95,8 @@
                 "since": "2025-05-08",
                 "useInstead": "stable2503"
               }
-            }
+            },
+            "semver": "1.15.5"
           },
           {
             "name": "stable2407-6",
@@ -104,7 +110,8 @@
                 "since": "2025-05-08",
                 "useInstead": "stable2503"
               }
-            }
+            },
+            "semver": "1.15.6"
           },
           {
             "name": "stable2407-7",
@@ -118,7 +125,8 @@
                 "since": "2025-05-08",
                 "useInstead": "stable2503"
               }
-            }
+            },
+            "semver": "1.15.7"
           },
           {
             "name": "stable2407-8",
@@ -132,7 +140,8 @@
                 "since": "2025-05-08",
                 "useInstead": "stable2503"
               }
-            }
+            },
+            "semver": "1.15.8"
           },
           {
             "name": "stable2407-9",
@@ -146,7 +155,8 @@
                 "since": "2025-05-08",
                 "useInstead": "stable2503"
               }
-            }
+            },
+            "semver": "1.15.9"
           },
           {
             "name": "stable2407-10",
@@ -192,7 +202,8 @@
                 "since": "2025-09-11",
                 "useInstead": "stable2506"
               }
-            }
+            },
+            "semver": "1.16.1"
           },
           {
             "name": "stable2409-2",
@@ -206,7 +217,8 @@
                 "since": "2025-09-11",
                 "useInstead": "stable2506"
               }
-            }
+            },
+            "semver": "1.16.2"
           },
           {
             "name": "stable2409-3",
@@ -220,7 +232,8 @@
                 "since": "2025-09-11",
                 "useInstead": "stable2506"
               }
-            }
+            },
+            "semver": "1.16.3"
           },
           {
             "name": "stable2409-4",
@@ -234,7 +247,8 @@
                 "since": "2025-09-11",
                 "useInstead": "stable2506"
               }
-            }
+            },
+            "semver": "1.16.4"
           },
           {
             "name": "stable2409-5",
@@ -248,7 +262,8 @@
                 "since": "2025-09-11",
                 "useInstead": "stable2506"
               }
-            }
+            },
+            "semver": "1.16.5"
           },
           {
             "name": "stable2409-6",
@@ -262,7 +277,8 @@
                 "since": "2025-09-11",
                 "useInstead": "stable2506"
               }
-            }
+            },
+            "semver": "1.16.6"
           },
           {
             "name": "stable2409-7",
@@ -276,7 +292,8 @@
                 "since": "2025-09-11",
                 "useInstead": "stable2506"
               }
-            }
+            },
+            "semver": "1.16.7"
           },
           {
             "name": "stable2409-8",
@@ -300,7 +317,8 @@
                 "since": "2025-09-11",
                 "useInstead": "stable2506"
               }
-            }
+            },
+            "semver": "1.16.9"
           },
           {
             "name": "stable2409-10",
@@ -314,7 +332,8 @@
                 "since": "2025-09-11",
                 "useInstead": "stable2506"
               }
-            }
+            },
+            "semver": "1.16.10"
           },
           {
             "name": "stable2409-11",
@@ -328,7 +347,8 @@
                 "since": "2025-09-11",
                 "useInstead": "stable2506"
               }
-            }
+            },
+            "semver": "1.16.11"
           },
           {
             "name": "stable2409-12",
@@ -342,7 +362,8 @@
                 "since": "2025-09-11",
                 "useInstead": "stable2506"
               }
-            }
+            },
+            "semver": "1.16.12"
           },
           {
             "name": "stable2409-13",
@@ -354,7 +375,8 @@
             },
             "state": "skipped"
           }
-        ]
+        ],
+        "semver": "1.16.0"
       },
       {
         "name": "stable2412",
@@ -377,7 +399,8 @@
               "when": "2025-01-31",
               "tag": "polkadot-stable2412-1"
             },
-            "state": "released"
+            "state": "released",
+            "semver": "1.17.1"
           },
           {
             "name": "stable2412-2",
@@ -386,7 +409,8 @@
               "when": "2025-02-24",
               "tag": "polkadot-stable2412-2"
             },
-            "state": "released"
+            "state": "released",
+            "semver": "1.17.2"
           },
           {
             "name": "stable2412-3",
@@ -395,7 +419,8 @@
               "when": "2025-03-11",
               "tag": "polkadot-stable2412-3"
             },
-            "state": "released"
+            "state": "released",
+            "semver": "1.17.3"
           },
           {
             "name": "stable2412-4",
@@ -404,7 +429,8 @@
               "when": "2025-03-31",
               "tag": "polkadot-stable2412-4"
             },
-            "state": "released"
+            "state": "released",
+            "semver": "1.17.4"
           },
           {
             "name": "stable2412-5",
@@ -413,7 +439,8 @@
               "when": "2025-04-30",
               "tag": "polkadot-stable2412-5"
             },
-            "state": "released"
+            "state": "released",
+            "semver": "1.17.5"
           },
           {
             "name": "stable2412-6",
@@ -422,7 +449,8 @@
               "when": "2025-05-22",
               "tag": "polkadot-stable2412-6"
             },
-            "state": "released"
+            "state": "released",
+            "semver": "1.17.6"
           },
           {
             "name": "stable2412-7",
@@ -431,7 +459,8 @@
               "when": "2025-06-23",
               "tag": "polkadot-stable2412-7"
             },
-            "state": "released"
+            "state": "released",
+            "semver": "1.17.7"
           },
           {
             "name": "stable2412-8",
@@ -440,7 +469,8 @@
               "when": "2025-07-28",
               "tag": "polkadot-stable2412-8"
             },
-            "state": "released"
+            "state": "released",
+            "semver": "1.17.8"
           },
           {
             "name": "stable2412-9",
@@ -449,7 +479,8 @@
               "when": "2025-08-27",
               "tag": "polkadot-stable2412-9"
             },
-            "state": "released"
+            "state": "released",
+            "semver": "1.17.9"
           },
           {
             "name": "stable2412-10",
@@ -458,7 +489,8 @@
               "when": "2025-09-18",
               "tag": "polkadot-stable2412-10"
             },
-            "state": "released"
+            "state": "released",
+            "semver": "1.17.10"
           },
           {
             "name": "stable2412-11",
@@ -490,7 +522,8 @@
             },
             "state": "planned"
           }
-        ]
+        ],
+        "semver": "1.17.0"
       },
       {
         "name": "stable2503",
@@ -513,7 +546,8 @@
               "when": "2025-05-05",
               "tag": "polkadot-stable2503-1"
             },
-            "state": "released"
+            "state": "released",
+            "semver": "1.18.1"
           },
           {
             "name": "stable2503-2",
@@ -522,7 +556,8 @@
               "when": "2025-05-07",
               "tag": "polkadot-stable2503-2"
             },
-            "state": "released"
+            "state": "released",
+            "semver": "1.18.2"
           },
           {
             "name": "stable2503-3",
@@ -531,7 +566,8 @@
               "when": "2025-05-10",
               "tag": "polkadot-stable2503-3"
             },
-            "state": "released"
+            "state": "released",
+            "semver": "1.18.3"
           },
           {
             "name": "stable2503-4",
@@ -540,7 +576,8 @@
               "when": "2025-05-14",
               "tag": "polkadot-stable2503-4"
             },
-            "state": "released"
+            "state": "released",
+            "semver": "1.18.4"
           },
           {
             "name": "stable2503-5",
@@ -549,7 +586,8 @@
               "when": "2025-05-28",
               "tag": "polkadot-stable2503-5"
             },
-            "state": "released"
+            "state": "released",
+            "semver": "1.18.5"
           },
           {
             "name": "stable2503-6",
@@ -558,7 +596,8 @@
               "when": "2025-06-06",
               "tag": "polkadot-stable2503-6"
             },
-            "state": "released"
+            "state": "released",
+            "semver": "1.18.6"
           },
           {
             "name": "stable2503-7",
@@ -567,7 +606,8 @@
               "when": "2025-07-10",
               "tag": "polkadot-stable2503-7"
             },
-            "state": "released"
+            "state": "released",
+            "semver": "1.18.7"
           },
           {
             "name": "stable2503-8",
@@ -576,7 +616,8 @@
               "when": "2025-07-31",
               "tag": "polkadot-stable2503-8"
             },
-            "state": "released"
+            "state": "released",
+            "semver": "1.18.8"
           },
           {
             "name": "stable2503-9",
@@ -585,7 +626,8 @@
               "when": "2025-08-28",
               "tag": "polkadot-stable2503-9"
             },
-            "state": "released"
+            "state": "released",
+            "semver": "1.18.9"
           },
           {
             "name": "stable2503-10",
@@ -594,7 +636,8 @@
               "when": "2025-09-25",
               "tag": "polkadot-stable2503-10"
             },
-            "state": "released"
+            "state": "released",
+            "semver": "1.18.10"
           },
           {
             "name": "stable2503-11",
@@ -636,7 +679,8 @@
             },
             "state": "planned"
           }
-        ]
+        ],
+        "semver": "1.18.0"
       },
       {
         "name": "stable2506",
@@ -659,7 +703,8 @@
               "when": "2025-08-19",
               "tag": "polkadot-stable2506-1"
             },
-            "state": "released"
+            "state": "released",
+            "semver": "1.19.1"
           },
           {
             "name": "stable2506-2",
@@ -668,7 +713,8 @@
               "when": "2025-09-08",
               "tag": "polkadot-stable2506-2"
             },
-            "state": "released"
+            "state": "released",
+            "semver": "1.19.2"
           },
           {
             "name": "stable2506-3",
@@ -780,7 +826,8 @@
             },
             "state": "planned"
           }
-        ]
+        ],
+        "semver": "1.19.0"
       },
       {
         "name": "stable2509",
@@ -926,10 +973,12 @@
             },
             "state": "planned"
           }
-        ]
+        ],
+        "semver": "1.20.0"
       },
       {
         "name": "stable2512",
+        "semver": "1.21.0",
         "cutoff": {
           "estimated": "2025-11-17"
         },
