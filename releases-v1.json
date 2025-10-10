@@ -723,7 +723,8 @@
               "when": "2025-10-09",
               "tag": "polkadot-stable2506-3"
             },
-            "state": "released"
+            "state": "released",
+            "semver": "1.19.3"
           },
           {
             "name": "stable2506-4",
