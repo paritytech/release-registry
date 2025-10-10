@@ -33,8 +33,8 @@ cutoff release date:
 deprecate release date use_instead:
 	python3 scripts/manage.py deprecate {{release}} {{date}} {{use_instead}}
 
-plan release date:
-	python3 scripts/manage.py release plan {{release}} {{date}}
+plan release date semver:
+	python3 scripts/manage.py release plan {{release}} {{date}} {{semver}}
 
 backfill release date:
 	python3 scripts/manage.py backfill-patches {{release}} --start-date {{date}}

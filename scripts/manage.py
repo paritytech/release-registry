@@ -13,8 +13,12 @@ def save_json(data, file_path):
         json.dump(data, f, indent=2)
 
 def validate_version(version):
-    if not re.match(r'^stable2[45][01][0-9](-[0-9]*)?$', version):
+    if not re.match(r'^stable2[0-9][01][0-9](-[0-9]*)?$', version):
         raise ValueError("Invalid version format. Expected 'stableYYMM' or 'stableYYMM-X' for patches.")
+
+def validate_semver(semver):
+    if not re.match(r'^\d+\.\d+\.\d+$', semver):
+        raise ValueError("Invalid semver format. Expected 'X.Y.Z' where X, Y, Z are integers.")
 
 def validate_date(date_str):
     try:
@@ -105,7 +109,7 @@ def create_planned_patches(release, start_date, num_patches=13):
     # Sort patches by their number to maintain order
     release['patches'].sort(key=lambda x: int(x['name'].split('-')[-1]))
 
-def update_release(data, version, date, field):
+def update_release(data, version, date, field, semver=None):
     project, release = find_release(data, version)
 
     if not release and field == 'plan':
@@ -118,6 +122,7 @@ def update_release(data, version, date, field):
             publish_date += timedelta(days=(7 - publish_date.weekday()))
         new_release = {
             'name': version,
+            'semver': semver,
             'cutoff': {'estimated': date},
             'publish': {'estimated': publish_date.strftime('%Y-%m-%d')},
             'state': 'planned',
@@ -220,7 +225,12 @@ def remove_planned_patches(data, version):
 def handle_release_command(args, data):
     validate_version(args.version)
     date = validate_date(args.date)
-    if update_release(data, args.version, date, args.field):
+    
+    # Validate semver if provided
+    if args.semver:
+        validate_semver(args.semver)
+    
+    if update_release(data, args.version, date, args.field, args.semver):
         save_json(data, args.file)
         print(f"Successfully updated {args.field} for {args.version}")
     else:
@@ -289,6 +299,7 @@ def main():
     release_parser.add_argument('field', choices=['cutoff', 'publish', 'plan'])
     release_parser.add_argument('version', help="Release version (e.g., stable2401 or stable2401-1 for patches)")
     release_parser.add_argument('date', help="Date in YYYY-MM-DD format")
+    release_parser.add_argument('semver', nargs='?', help="Semantic version (e.g., 1.17.0) - optional")
 
     # Release remove parser
     remove_parser = subparsers.add_parser('remove')
