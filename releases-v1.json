@@ -500,7 +500,8 @@
             "publish": {
               "estimated": "2025-10-23"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.17.11"
           },
           {
             "name": "stable2412-12",
@@ -510,7 +511,8 @@
             "publish": {
               "estimated": "2025-11-20"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.17.12"
           },
           {
             "name": "stable2412-13",
@@ -520,7 +522,8 @@
             "publish": {
               "estimated": "2025-12-18"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.17.13"
           }
         ],
         "semver": "1.17.0"
@@ -647,7 +650,8 @@
             "publish": {
               "estimated": "2025-10-30"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.18.11"
           },
           {
             "name": "stable2503-12",
@@ -657,7 +661,8 @@
             "publish": {
               "estimated": "2025-11-27"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.18.12"
           },
           {
             "name": "stable2503-13",
@@ -667,7 +672,8 @@
             "publish": {
               "estimated": "2025-12-25"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.18.13"
           },
           {
             "name": "stable2503-14",
@@ -677,7 +683,8 @@
             "publish": {
               "estimated": "2026-01-29"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.18.14"
           }
         ],
         "semver": "1.18.0"
@@ -734,7 +741,8 @@
             "publish": {
               "estimated": "2025-11-06"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.19.4"
           },
           {
             "name": "stable2506-5",
@@ -744,7 +752,8 @@
             "publish": {
               "estimated": "2025-12-04"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.19.5"
           },
           {
             "name": "stable2506-6",
@@ -754,7 +763,8 @@
             "publish": {
               "estimated": "2026-01-08"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.19.6"
           },
           {
             "name": "stable2506-7",
@@ -764,7 +774,8 @@
             "publish": {
               "estimated": "2026-02-05"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.19.7"
           },
           {
             "name": "stable2506-8",
@@ -774,7 +785,8 @@
             "publish": {
               "estimated": "2026-03-05"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.19.8"
           },
           {
             "name": "stable2506-9",
@@ -784,7 +796,8 @@
             "publish": {
               "estimated": "2026-04-09"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.19.9"
           },
           {
             "name": "stable2506-10",
@@ -794,7 +807,8 @@
             "publish": {
               "estimated": "2026-05-07"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.19.10"
           },
           {
             "name": "stable2506-11",
@@ -804,7 +818,8 @@
             "publish": {
               "estimated": "2026-06-04"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.19.11"
           },
           {
             "name": "stable2506-12",
@@ -814,7 +829,8 @@
             "publish": {
               "estimated": "2026-07-09"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.19.12"
           },
           {
             "name": "stable2506-13",
@@ -824,7 +840,8 @@
             "publish": {
               "estimated": "2026-08-06"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.19.13"
           }
         ],
         "semver": "1.19.0"
@@ -851,7 +868,8 @@
             "publish": {
               "estimated": "2025-11-13"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.20.1"
           },
           {
             "name": "stable2509-2",
@@ -861,7 +879,8 @@
             "publish": {
               "estimated": "2025-12-11"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.20.2"
           },
           {
             "name": "stable2509-3",
@@ -871,7 +890,8 @@
             "publish": {
               "estimated": "2026-01-15"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.20.3"
           },
           {
             "name": "stable2509-4",
@@ -881,7 +901,8 @@
             "publish": {
               "estimated": "2026-02-12"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.20.4"
           },
           {
             "name": "stable2509-5",
@@ -891,7 +912,8 @@
             "publish": {
               "estimated": "2026-03-12"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.20.5"
           },
           {
             "name": "stable2509-6",
@@ -901,7 +923,8 @@
             "publish": {
               "estimated": "2026-04-16"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.20.6"
           },
           {
             "name": "stable2509-7",
@@ -911,7 +934,8 @@
             "publish": {
               "estimated": "2026-05-14"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.20.7"
           },
           {
             "name": "stable2509-8",
@@ -921,7 +945,8 @@
             "publish": {
               "estimated": "2026-06-11"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.20.8"
           },
           {
             "name": "stable2509-9",
@@ -931,7 +956,8 @@
             "publish": {
               "estimated": "2026-07-16"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.20.9"
           },
           {
             "name": "stable2509-10",
@@ -941,7 +967,8 @@
             "publish": {
               "estimated": "2026-08-13"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.20.10"
           },
           {
             "name": "stable2509-11",
@@ -951,7 +978,8 @@
             "publish": {
               "estimated": "2026-09-17"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.20.11"
           },
           {
             "name": "stable2509-12",
@@ -961,7 +989,8 @@
             "publish": {
               "estimated": "2026-10-15"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.20.12"
           },
           {
             "name": "stable2509-13",
@@ -971,7 +1000,8 @@
             "publish": {
               "estimated": "2026-11-12"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.20.13"
           }
         ],
         "semver": "1.20.0"
@@ -998,7 +1028,8 @@
             "publish": {
               "estimated": "2026-01-22"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.21.1"
           },
           {
             "name": "stable2512-2",
@@ -1008,7 +1039,8 @@
             "publish": {
               "estimated": "2026-02-19"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.21.2"
           },
           {
             "name": "stable2512-3",
@@ -1018,7 +1050,8 @@
             "publish": {
               "estimated": "2026-03-19"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.21.3"
           },
           {
             "name": "stable2512-4",
@@ -1028,7 +1061,8 @@
             "publish": {
               "estimated": "2026-04-23"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.21.4"
           },
           {
             "name": "stable2512-5",
@@ -1038,7 +1072,8 @@
             "publish": {
               "estimated": "2026-05-21"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.21.5"
           },
           {
             "name": "stable2512-6",
@@ -1048,7 +1083,8 @@
             "publish": {
               "estimated": "2026-06-18"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.21.6"
           },
           {
             "name": "stable2512-7",
@@ -1058,7 +1094,8 @@
             "publish": {
               "estimated": "2026-07-23"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.21.7"
           },
           {
             "name": "stable2512-8",
@@ -1068,7 +1105,8 @@
             "publish": {
               "estimated": "2026-08-20"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.21.8"
           },
           {
             "name": "stable2512-9",
@@ -1078,7 +1116,8 @@
             "publish": {
               "estimated": "2026-09-24"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.21.9"
           },
           {
             "name": "stable2512-10",
@@ -1088,7 +1127,8 @@
             "publish": {
               "estimated": "2026-10-22"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.21.10"
           },
           {
             "name": "stable2512-11",
@@ -1098,7 +1138,8 @@
             "publish": {
               "estimated": "2026-11-19"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.21.11"
           },
           {
             "name": "stable2512-12",
@@ -1108,7 +1149,8 @@
             "publish": {
               "estimated": "2026-12-24"
             },
-            "state": "planned"
+            "state": "planned",
+            "semver": "1.21.12"
           }
         ]
       }

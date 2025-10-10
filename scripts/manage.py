@@ -71,10 +71,10 @@ def get_nth_monday(date):
 def next_nth_monday(date, n):
     next_month = date.replace(day=1) + timedelta(days=32)
     next_month = next_month.replace(day=1)
-    
+
     while next_month.weekday() != 0:
         next_month += timedelta(days=1)
-    
+
     next_month += timedelta(weeks=n-1)
     return next_month
 
@@ -83,12 +83,24 @@ def create_planned_patches(release, start_date, num_patches=13):
         release['patches'] = []
 
     existing_patch_numbers = set(int(patch['name'].split('-')[-1]) for patch in release['patches'] if '-' in patch['name'])
-    
+
     cutoff_date = datetime.strptime(start_date, '%Y-%m-%d')
     if cutoff_date.weekday() != 0:
         raise ValueError("Start date must be a Monday")
 
     nth_monday = get_nth_monday(cutoff_date)
+
+    # Get base semver from parent release for patch generation
+    base_semver = release.get('semver', '')
+    base_major, base_minor = 0, 0
+    if base_semver:
+        try:
+            parts = base_semver.split('.')
+            base_major = int(parts[0])
+            base_minor = int(parts[1])
+        except (ValueError, IndexError):
+            # If semver parsing fails, we'll skip semver generation for patches
+            base_semver = ''
 
     for i in range(1, num_patches + 1):
         if i not in existing_patch_numbers:
@@ -102,6 +114,12 @@ def create_planned_patches(release, start_date, num_patches=13):
                 'publish': {'estimated': publish_str},
                 'state': 'planned'
             }
+
+            # Add semver for patch if parent release has semver
+            if base_semver:
+                patch_semver = f'{base_major}.{base_minor}.{i}'
+                new_patch['semver'] = patch_semver
+
             release['patches'].append(new_patch)
 
         cutoff_date = next_nth_monday(cutoff_date, nth_monday)
@@ -193,17 +211,17 @@ def backfill_patches(data, version=None, start_date=None):
                         release_date = release['publish']['estimated']
                     else:
                         continue  # Skip if no valid publish date
-                    
+
                     # Find the next Monday after the release date
                     release_date = datetime.strptime(release_date, '%Y-%m-%d')
                     while release_date.weekday() != 0:
                         release_date += timedelta(days=1)
-                    
+
                     create_planned_patches(release, release_date.strftime('%Y-%m-%d'))
                     releases_updated = True
                 else:
                     continue  # Skip if no valid publish field
-                
+
                 if version:  # If a specific version was requested, we're done after processing it
                     return True
     return releases_updated
@@ -216,20 +234,20 @@ def remove_planned_patches(data, version):
     if 'patches' not in release:
         return False
 
-    release['patches'] = [patch for patch in release['patches'] 
-                          if not (patch['state'] == 'planned' and 
-                                  isinstance(patch['cutoff'], dict) and 
+    release['patches'] = [patch for patch in release['patches']
+                          if not (patch['state'] == 'planned' and
+                                  isinstance(patch['cutoff'], dict) and
                                   'estimated' in patch['cutoff'])]
     return True
 
 def handle_release_command(args, data):
     validate_version(args.version)
     date = validate_date(args.date)
-    
+
     # Validate semver if provided
     if args.semver:
         validate_semver(args.semver)
-    
+
     if update_release(data, args.version, date, args.field, args.semver):
         save_json(data, args.file)
         print(f"Successfully updated {args.field} for {args.version}")
@@ -249,7 +267,7 @@ def handle_deprecate_command(args, data):
 def handle_backfill_patches_command(args, data):
     if args.version:
         validate_version(args.version)
-    
+
     start_date = None
     if args.start_date:
         start_date = validate_date(args.start_date)
