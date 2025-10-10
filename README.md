@@ -20,7 +20,7 @@ Planned and historic release dates:
 
 | Version | SemVer | Cutoff | Publish | End of Life | State |
 |---------|--------|--------|---------|-------------|-------|
-| **stable2512** |  | 2025-11-17 | 2025-12-18 | 2027-01-01 | Planned |
+| **stable2512** | 1.21.0 | 2025-11-17 | 2025-12-18 | 2027-01-01 | Planned |
 | &nbsp;&nbsp;stable2512-1 |  | 2026-01-19 | 2026-01-22 |  | Planned |
 | &nbsp;&nbsp;stable2512-2 |  | 2026-02-16 | 2026-02-19 |  | Planned |
 | &nbsp;&nbsp;[10 more planned](CALENDAR.md) |  |  | | |
