@@ -13,8 +13,12 @@ def save_json(data, file_path):
         json.dump(data, f, indent=2)
 
 def validate_version(version):
-    if not re.match(r'^stable2[45][01][0-9](-[0-9]*)?$', version):
+    if not re.match(r'^stable2[0-9][01][0-9](-[0-9]*)?$', version):
         raise ValueError("Invalid version format. Expected 'stableYYMM' or 'stableYYMM-X' for patches.")
+
+def validate_semver(semver):
+    if not re.match(r'^\d+\.\d+\.\d+$', semver):
+        raise ValueError("Invalid semver format. Expected 'X.Y.Z' where X, Y, Z are integers.")
 
 def validate_date(date_str):
     try:
@@ -67,10 +71,10 @@ def get_nth_monday(date):
 def next_nth_monday(date, n):
     next_month = date.replace(day=1) + timedelta(days=32)
     next_month = next_month.replace(day=1)
-    
+
     while next_month.weekday() != 0:
         next_month += timedelta(days=1)
-    
+
     next_month += timedelta(weeks=n-1)
     return next_month
 
@@ -79,12 +83,24 @@ def create_planned_patches(release, start_date, num_patches=13):
         release['patches'] = []
 
     existing_patch_numbers = set(int(patch['name'].split('-')[-1]) for patch in release['patches'] if '-' in patch['name'])
-    
+
     cutoff_date = datetime.strptime(start_date, '%Y-%m-%d')
     if cutoff_date.weekday() != 0:
         raise ValueError("Start date must be a Monday")
 
     nth_monday = get_nth_monday(cutoff_date)
+
+    # Get base semver from parent release for patch generation
+    base_semver = release.get('semver', '')
+    base_major, base_minor = 0, 0
+    if base_semver:
+        try:
+            parts = base_semver.split('.')
+            base_major = int(parts[0])
+            base_minor = int(parts[1])
+        except (ValueError, IndexError):
+            # If semver parsing fails, we'll skip semver generation for patches
+            base_semver = ''
 
     for i in range(1, num_patches + 1):
         if i not in existing_patch_numbers:
@@ -98,6 +114,12 @@ def create_planned_patches(release, start_date, num_patches=13):
                 'publish': {'estimated': publish_str},
                 'state': 'planned'
             }
+
+            # Add semver for patch if parent release has semver
+            if base_semver:
+                patch_semver = f'{base_major}.{base_minor}.{i}'
+                new_patch['semver'] = patch_semver
+
             release['patches'].append(new_patch)
 
         cutoff_date = next_nth_monday(cutoff_date, nth_monday)
@@ -105,7 +127,7 @@ def create_planned_patches(release, start_date, num_patches=13):
     # Sort patches by their number to maintain order
     release['patches'].sort(key=lambda x: int(x['name'].split('-')[-1]))
 
-def update_release(data, version, date, field):
+def update_release(data, version, date, field, semver=None):
     project, release = find_release(data, version)
 
     if not release and field == 'plan':
@@ -118,6 +140,7 @@ def update_release(data, version, date, field):
             publish_date += timedelta(days=(7 - publish_date.weekday()))
         new_release = {
             'name': version,
+            'semver': semver,
             'cutoff': {'estimated': date},
             'publish': {'estimated': publish_date.strftime('%Y-%m-%d')},
             'state': 'planned',
@@ -188,17 +211,17 @@ def backfill_patches(data, version=None, start_date=None):
                         release_date = release['publish']['estimated']
                     else:
                         continue  # Skip if no valid publish date
-                    
+
                     # Find the next Monday after the release date
                     release_date = datetime.strptime(release_date, '%Y-%m-%d')
                     while release_date.weekday() != 0:
                         release_date += timedelta(days=1)
-                    
+
                     create_planned_patches(release, release_date.strftime('%Y-%m-%d'))
                     releases_updated = True
                 else:
                     continue  # Skip if no valid publish field
-                
+
                 if version:  # If a specific version was requested, we're done after processing it
                     return True
     return releases_updated
@@ -211,16 +234,21 @@ def remove_planned_patches(data, version):
     if 'patches' not in release:
         return False
 
-    release['patches'] = [patch for patch in release['patches'] 
-                          if not (patch['state'] == 'planned' and 
-                                  isinstance(patch['cutoff'], dict) and 
+    release['patches'] = [patch for patch in release['patches']
+                          if not (patch['state'] == 'planned' and
+                                  isinstance(patch['cutoff'], dict) and
                                   'estimated' in patch['cutoff'])]
     return True
 
 def handle_release_command(args, data):
     validate_version(args.version)
     date = validate_date(args.date)
-    if update_release(data, args.version, date, args.field):
+
+    # Validate semver if provided
+    if args.semver:
+        validate_semver(args.semver)
+
+    if update_release(data, args.version, date, args.field, args.semver):
         save_json(data, args.file)
         print(f"Successfully updated {args.field} for {args.version}")
     else:
@@ -239,7 +267,7 @@ def handle_deprecate_command(args, data):
 def handle_backfill_patches_command(args, data):
     if args.version:
         validate_version(args.version)
-    
+
     start_date = None
     if args.start_date:
         start_date = validate_date(args.start_date)
@@ -289,6 +317,7 @@ def main():
     release_parser.add_argument('field', choices=['cutoff', 'publish', 'plan'])
     release_parser.add_argument('version', help="Release version (e.g., stable2401 or stable2401-1 for patches)")
     release_parser.add_argument('date', help="Date in YYYY-MM-DD format")
+    release_parser.add_argument('semver', nargs='?', help="Semantic version (e.g., 1.17.0) - optional")
 
     # Release remove parser
     remove_parser = subparsers.add_parser('remove')
