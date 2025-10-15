@@ -21,30 +21,30 @@ Planned and historic release dates:
 | Version | SemVer | Cutoff | Publish | End of Life | State |
 |---------|--------|--------|---------|-------------|-------|
 | **stable2512** | 1.21.0 | 2025-11-17 | 2025-12-18 | 2027-01-01 | Planned |
-| &nbsp;&nbsp;stable2512-1 |  | 2026-01-19 | 2026-01-22 |  | Planned |
-| &nbsp;&nbsp;stable2512-2 |  | 2026-02-16 | 2026-02-19 |  | Planned |
+| &nbsp;&nbsp;stable2512-1 | 1.21.1 | 2026-01-19 | 2026-01-22 |  | Planned |
+| &nbsp;&nbsp;stable2512-2 | 1.21.2 | 2026-02-16 | 2026-02-19 |  | Planned |
 | &nbsp;&nbsp;[10 more planned](CALENDAR.md) |  |  | | |
 | **stable2509** | 1.20.0 | 2025-08-18 | 2025-10-08 | 2026-10-02 | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2509) |
-| &nbsp;&nbsp;stable2509-1 |  | 2025-11-10 | 2025-11-13 |  | Planned |
-| &nbsp;&nbsp;stable2509-2 |  | 2025-12-08 | 2025-12-11 |  | Planned |
+| &nbsp;&nbsp;stable2509-1 | 1.20.1 | 2025-11-10 | 2025-11-13 |  | Planned |
+| &nbsp;&nbsp;stable2509-2 | 1.20.2 | 2025-12-08 | 2025-12-11 |  | Planned |
 | &nbsp;&nbsp;[11 more planned](CALENDAR.md) |  |  | | |
 | **stable2506** | 1.19.0 | 2025-05-15 | 2025-07-24 | 2026-06-30 | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2506) |
 | &nbsp;&nbsp;stable2506-2 | 1.19.2 | 2025-09-08 | 2025-09-08 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2506-2) |
 | &nbsp;&nbsp;stable2506-3 | 1.19.3 | 2025-10-09 | 2025-10-09 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2506-3) |
-| &nbsp;&nbsp;stable2506-4 |  | 2025-11-03 | 2025-11-06 |  | Planned |
-| &nbsp;&nbsp;stable2506-5 |  | 2025-12-01 | 2025-12-04 |  | Planned |
+| &nbsp;&nbsp;stable2506-4 | 1.19.4 | 2025-11-03 | 2025-11-06 |  | Planned |
+| &nbsp;&nbsp;stable2506-5 | 1.19.5 | 2025-12-01 | 2025-12-04 |  | Planned |
 | &nbsp;&nbsp;[1 more past, 8 more planned](CALENDAR.md) |  |  | | |
 | **stable2503** | 1.18.0 | 2025-02-17 | 2025-04-08 | 2026-03-31 | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2503) |
 | &nbsp;&nbsp;stable2503-9 | 1.18.9 | 2025-08-28 | 2025-08-28 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2503-9) |
 | &nbsp;&nbsp;stable2503-10 | 1.18.10 | 2025-09-25 | 2025-09-25 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2503-10) |
-| &nbsp;&nbsp;stable2503-11 |  | 2025-10-27 | 2025-10-30 |  | Planned |
-| &nbsp;&nbsp;stable2503-12 |  | 2025-11-24 | 2025-11-27 |  | Planned |
+| &nbsp;&nbsp;stable2503-11 | 1.18.11 | 2025-10-27 | 2025-10-30 |  | Planned |
+| &nbsp;&nbsp;stable2503-12 | 1.18.12 | 2025-11-24 | 2025-11-27 |  | Planned |
 | &nbsp;&nbsp;[8 more past, 2 more planned](CALENDAR.md) |  |  | | |
 | **stable2412** | 1.17.0 | 2024-11-06 | 2024-12-17 | 2025-12-16 | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2412) |
 | &nbsp;&nbsp;stable2412-9 | 1.17.9 | 2025-08-27 | 2025-08-27 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2412-9) |
 | &nbsp;&nbsp;stable2412-10 | 1.17.10 | 2025-09-18 | 2025-09-18 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2412-10) |
-| &nbsp;&nbsp;stable2412-11 |  | 2025-10-20 | 2025-10-23 |  | Planned |
-| &nbsp;&nbsp;stable2412-12 |  | 2025-11-17 | 2025-11-20 |  | Planned |
+| &nbsp;&nbsp;stable2412-11 | 1.17.11 | 2025-10-20 | 2025-10-23 |  | Planned |
+| &nbsp;&nbsp;stable2412-12 | 1.17.12 | 2025-11-17 | 2025-11-20 |  | Planned |
 | &nbsp;&nbsp;[8 more past, 1 more planned](CALENDAR.md) |  |  | | |
 | **stable2409** | 1.16.0 | 2024-09-02 | 2025-06-12 | 2025-09-25 | ~~[Deprecated](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2409)~~ |
 | &nbsp;&nbsp;stable2409-12 | 1.16.12 | 2025-09-11 | 2025-09-11 |  | ~~[Deprecated](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2409-12)~~ |
