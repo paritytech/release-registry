@@ -1055,17 +1055,17 @@ DESCRIPTION:End of Life for stable2509\n\nFull Calendar: https://github.co
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2509-1 Cutoff
-DTSTART;VALUE=DATE:20251110
-DTEND;VALUE=DATE:20251111
-DESCRIPTION:Cutoff for stable2509-1 (planned)\n\nFull Calendar: https://gi
- thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DTSTART;VALUE=DATE:20251023
+DTEND;VALUE=DATE:20251024
+DESCRIPTION:Cutoff for stable2509-1 (released)\n\nFull Calendar: https://g
+ ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2509-1 Release
-DTSTART;VALUE=DATE:20251113
-DTEND;VALUE=DATE:20251114
-DESCRIPTION:Release of stable2509-1 (planned)\n\nFull Calendar: https://gi
- thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DTSTART;VALUE=DATE:20251023
+DTEND;VALUE=DATE:20251024
+DESCRIPTION:Release of stable2509-1 (released)\n\nFull Calendar: https://g
+ ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2509-2 Cutoff
