@@ -775,17 +775,17 @@ DESCRIPTION:Release of stable2503-10 (released)\n\nFull Calendar: https://
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2503-11 Cutoff
-DTSTART;VALUE=DATE:20251027
-DTEND;VALUE=DATE:20251028
-DESCRIPTION:Cutoff for stable2503-11 (planned)\n\nFull Calendar: https://g
- ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DTSTART;VALUE=DATE:20251030
+DTEND;VALUE=DATE:20251031
+DESCRIPTION:Cutoff for stable2503-11 (released)\n\nFull Calendar: https://
+ github.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2503-11 Release
 DTSTART;VALUE=DATE:20251030
 DTEND;VALUE=DATE:20251031
-DESCRIPTION:Release of stable2503-11 (planned)\n\nFull Calendar: https://g
- ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Release of stable2503-11 (released)\n\nFull Calendar: https://
+ github.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2503-12 Cutoff
