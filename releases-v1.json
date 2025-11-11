@@ -743,13 +743,12 @@
           },
           {
             "name": "stable2506-5",
-            "cutoff": {
-              "estimated": "2025-11-03"
-            },
+            "cutoff": "2025-11-11",
             "publish": {
-              "estimated": "2025-11-06"
+              "when": "2025-11-11",
+              "tag": "polkadot-stable2506-5"
             },
-            "state": "planned",
+            "state": "released",
             "semver": "1.19.5"
           },
           {
@@ -758,7 +757,7 @@
               "estimated": "2025-12-01"
             },
             "publish": {
-              "estimated": "2026-12-04"
+              "estimated": "2025-12-04"
             },
             "state": "planned",
             "semver": "1.19.6"
