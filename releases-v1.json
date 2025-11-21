@@ -387,7 +387,12 @@
           "when": "2024-12-17",
           "tag": "polkadot-stable2412"
         },
-        "state": "released",
+        "state": {
+          "deprecated": {
+            "since": "2025-11-20",
+            "useInstead": "stable2509"
+          }
+        },
         "endOfLife": {
           "estimated": "2025-12-16"
         },
@@ -399,7 +404,12 @@
               "when": "2025-01-31",
               "tag": "polkadot-stable2412-1"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2025-11-20",
+                "useInstead": "stable2509"
+              }
+            },
             "semver": "1.17.1"
           },
           {
@@ -409,7 +419,12 @@
               "when": "2025-02-24",
               "tag": "polkadot-stable2412-2"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2025-11-20",
+                "useInstead": "stable2509"
+              }
+            },
             "semver": "1.17.2"
           },
           {
@@ -419,7 +434,12 @@
               "when": "2025-03-11",
               "tag": "polkadot-stable2412-3"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2025-11-20",
+                "useInstead": "stable2509"
+              }
+            },
             "semver": "1.17.3"
           },
           {
@@ -429,7 +449,12 @@
               "when": "2025-03-31",
               "tag": "polkadot-stable2412-4"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2025-11-20",
+                "useInstead": "stable2509"
+              }
+            },
             "semver": "1.17.4"
           },
           {
@@ -439,7 +464,12 @@
               "when": "2025-04-30",
               "tag": "polkadot-stable2412-5"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2025-11-20",
+                "useInstead": "stable2509"
+              }
+            },
             "semver": "1.17.5"
           },
           {
@@ -449,7 +479,12 @@
               "when": "2025-05-22",
               "tag": "polkadot-stable2412-6"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2025-11-20",
+                "useInstead": "stable2509"
+              }
+            },
             "semver": "1.17.6"
           },
           {
@@ -459,7 +494,12 @@
               "when": "2025-06-23",
               "tag": "polkadot-stable2412-7"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2025-11-20",
+                "useInstead": "stable2509"
+              }
+            },
             "semver": "1.17.7"
           },
           {
@@ -469,7 +509,12 @@
               "when": "2025-07-28",
               "tag": "polkadot-stable2412-8"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2025-11-20",
+                "useInstead": "stable2509"
+              }
+            },
             "semver": "1.17.8"
           },
           {
@@ -479,7 +524,12 @@
               "when": "2025-08-27",
               "tag": "polkadot-stable2412-9"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2025-11-20",
+                "useInstead": "stable2509"
+              }
+            },
             "semver": "1.17.9"
           },
           {
@@ -489,7 +539,12 @@
               "when": "2025-09-18",
               "tag": "polkadot-stable2412-10"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2025-11-20",
+                "useInstead": "stable2509"
+              }
+            },
             "semver": "1.17.10"
           },
           {
@@ -499,7 +554,12 @@
               "when": "2025-10-23",
               "tag": "polkadot-stable2412-11"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2025-11-20",
+                "useInstead": "stable2509"
+              }
+            },
             "semver": "1.17.11"
           },
           {
@@ -510,7 +570,7 @@
             "publish": {
               "estimated": "2025-11-20"
             },
-            "state": "planned",
+            "state": "skipped",
             "semver": "1.17.12"
           },
           {
@@ -521,7 +581,7 @@
             "publish": {
               "estimated": "2025-12-18"
             },
-            "state": "planned",
+            "state": "skipped",
             "semver": "1.17.13"
           }
         ],
