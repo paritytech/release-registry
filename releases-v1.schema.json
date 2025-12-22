@@ -22,7 +22,7 @@
 					"properties": {
 						"release": {
 							"type": "string",
-							"pattern": "^stable2[45][01][0-9]$",
+							"pattern": "^stable2[456][01][0-9]$",
 							"description": "The recommended release to use"
 						},
 						"patch": {
@@ -61,7 +61,7 @@
 			"properties": {
 				"name": {
 					"type": "string",
-					"pattern": "^stable2[45][01][0-9]$",
+					"pattern": "^stable2[456][01][0-9]$",
 					"description": "The name of the release"
 				},
 				"semver": {
@@ -109,7 +109,7 @@
 			"properties": {
 				"name": {
 					"type": "string",
-					"pattern": "^stable2[45][01][0-9]-([1-9][0-9]*)$"
+					"pattern": "^stable2[456][01][0-9]-([1-9][0-9]*)$"
 				},
 				"semver": {
 					"type": "string",

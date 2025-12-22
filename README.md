@@ -20,6 +20,10 @@ Planned and historic release dates:
 
 | Version | SemVer | Cutoff | Publish | End of Life | State |
 |---------|--------|--------|---------|-------------|-------|
+| **stable2603** | 1.22.0 | 2026-02-07 | 2026-03-26 | 2027-03-26 | Planned |
+| &nbsp;&nbsp;stable2603-1 | 1.22.1 | 2026-04-27 | 2026-04-30 |  | Planned |
+| &nbsp;&nbsp;stable2603-2 | 1.22.2 | 2026-05-25 | 2026-05-28 |  | Planned |
+| &nbsp;&nbsp;[11 more planned](CALENDAR.md) |  |  | | |
 | **stable2512** | 1.21.0 | 2025-11-17 | 2025-12-22 | 2027-01-01 | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2512) |
 | &nbsp;&nbsp;stable2512-1 | 1.21.1 | 2026-01-19 | 2026-01-22 |  | Planned |
 | &nbsp;&nbsp;stable2512-2 | 1.21.2 | 2026-02-16 | 2026-02-19 |  | Planned |
