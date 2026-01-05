@@ -730,7 +730,7 @@
             "publish": {
               "estimated": "2025-12-25"
             },
-            "state": "planned",
+            "state": "skipped",
             "semver": "1.18.13"
           },
           {
