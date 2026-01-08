@@ -813,24 +813,22 @@
           },
           {
             "name": "stable2506-6",
-            "cutoff": {
-              "estimated": "2025-12-01"
-            },
+            "cutoff": "2025-12-05",
             "publish": {
-              "estimated": "2025-12-04"
+              "when": "2025-12-05",
+              "tag": "polkadot-stable2506-6"
             },
-            "state": "planned",
+            "state": "released",
             "semver": "1.19.6"
           },
           {
             "name": "stable2506-7",
-            "cutoff": {
-              "estimated": "2026-01-05"
-            },
+            "cutoff": "2026-01-08",
             "publish": {
-              "estimated": "2026-01-08"
+              "when": "2026-01-08",
+              "tag": "polkadot-stable2506-7"
             },
-            "state": "planned",
+            "state": "released",
             "semver": "1.19.7"
           },
           {
