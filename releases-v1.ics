@@ -1268,17 +1268,17 @@ DESCRIPTION:End of Life for stable2512\n\nFull Calendar: https://github.co
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2512-1 Cutoff
-DTSTART;VALUE=DATE:20260119
-DTEND;VALUE=DATE:20260120
-DESCRIPTION:Cutoff for stable2512-1 (planned)\n\nFull Calendar: https://gi
- thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DTSTART;VALUE=DATE:20260126
+DTEND;VALUE=DATE:20260127
+DESCRIPTION:Cutoff for stable2512-1 (released)\n\nFull Calendar: https://g
+ ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2512-1 Release
-DTSTART;VALUE=DATE:20260122
-DTEND;VALUE=DATE:20260123
-DESCRIPTION:Release of stable2512-1 (planned)\n\nFull Calendar: https://gi
- thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DTSTART;VALUE=DATE:20260126
+DTEND;VALUE=DATE:20260127
+DESCRIPTION:Release of stable2512-1 (released)\n\nFull Calendar: https://g
+ ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2512-2 Cutoff

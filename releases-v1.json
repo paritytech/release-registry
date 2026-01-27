@@ -1062,13 +1062,12 @@
         "patches": [
           {
             "name": "stable2512-1",
-            "cutoff": {
-              "estimated": "2026-01-19"
-            },
+            "cutoff": "2026-01-26",
             "publish": {
-              "estimated": "2026-01-22"
+              "when": "2026-01-26",
+              "tag": "polkadot-stable2512-1"
             },
-            "state": "planned",
+            "state": "released",
             "semver": "1.21.1"
           },
           {
