@@ -1436,8 +1436,8 @@ DESCRIPTION:Release of stable2512-12 (planned)\n\nFull Calendar: https://g
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2603 Cutoff
-DTSTART;VALUE=DATE:20260207
-DTEND;VALUE=DATE:20260208
+DTSTART;VALUE=DATE:20260209
+DTEND;VALUE=DATE:20260210
 DESCRIPTION:Cutoff for stable2603 (planned)\n\nFull Calendar: https://gith
  ub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
