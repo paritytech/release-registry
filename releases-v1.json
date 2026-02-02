@@ -1197,7 +1197,7 @@
         "name": "stable2603",
         "semver": "1.22.0",
         "cutoff": {
-          "estimated": "2026-02-07"
+          "estimated": "2026-02-09"
         },
         "publish": {
           "estimated": "2026-03-26"

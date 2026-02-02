@@ -8,7 +8,7 @@ Full untruncated version index.
 
 | Version | SemVer | Cutoff | Publish | End of Life | State |
 |---------|--------|--------|---------|-------------|-------|
-| **stable2603** | 1.22.0 | 2026-02-07 | 2026-03-26 | 2027-03-26 | Planned |
+| **stable2603** | 1.22.0 | 2026-02-09 | 2026-03-26 | 2027-03-26 | Planned |
 | &nbsp;&nbsp;stable2603-1 | 1.22.1 | 2026-04-27 | 2026-04-30 |  | Planned |
 | &nbsp;&nbsp;stable2603-2 | 1.22.2 | 2026-05-25 | 2026-05-28 |  | Planned |
 | &nbsp;&nbsp;stable2603-3 | 1.22.3 | 2026-06-22 | 2026-06-25 |  | Planned |
