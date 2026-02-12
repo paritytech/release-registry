@@ -976,14 +976,14 @@ BEGIN:VEVENT
 SUMMARY:stable2506-8 Cutoff
 DTSTART;VALUE=DATE:20260202
 DTEND;VALUE=DATE:20260203
-DESCRIPTION:Cutoff for stable2506-8 (planned)\n\nFull Calendar: https://gi
+DESCRIPTION:Cutoff for stable2506-8 (skipped)\n\nFull Calendar: https://gi
  thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2506-8 Release
 DTSTART;VALUE=DATE:20260205
 DTEND;VALUE=DATE:20260206
-DESCRIPTION:Release of stable2506-8 (planned)\n\nFull Calendar: https://gi
+DESCRIPTION:Release of stable2506-8 (skipped)\n\nFull Calendar: https://gi
  thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
