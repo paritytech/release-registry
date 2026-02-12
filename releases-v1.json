@@ -839,7 +839,7 @@
             "publish": {
               "estimated": "2026-02-05"
             },
-            "state": "planned",
+            "state": "skipped",
             "semver": "1.19.8"
           },
           {
