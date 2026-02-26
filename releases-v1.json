@@ -596,7 +596,12 @@
           "when": "2025-04-08",
           "tag": "polkadot-stable2503"
         },
-        "state": "released",
+        "state": {
+          "deprecated": {
+            "since": "2026-02-26",
+            "useInstead": "stable2512"
+          }
+        },
         "endOfLife": {
           "estimated": "2026-03-31"
         },
@@ -608,7 +613,12 @@
               "when": "2025-05-05",
               "tag": "polkadot-stable2503-1"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2026-02-26",
+                "useInstead": "stable2512"
+              }
+            },
             "semver": "1.18.1"
           },
           {
@@ -618,7 +628,12 @@
               "when": "2025-05-07",
               "tag": "polkadot-stable2503-2"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2026-02-26",
+                "useInstead": "stable2512"
+              }
+            },
             "semver": "1.18.2"
           },
           {
@@ -628,7 +643,12 @@
               "when": "2025-05-10",
               "tag": "polkadot-stable2503-3"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2026-02-26",
+                "useInstead": "stable2512"
+              }
+            },
             "semver": "1.18.3"
           },
           {
@@ -638,7 +658,12 @@
               "when": "2025-05-14",
               "tag": "polkadot-stable2503-4"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2026-02-26",
+                "useInstead": "stable2512"
+              }
+            },
             "semver": "1.18.4"
           },
           {
@@ -648,7 +673,12 @@
               "when": "2025-05-28",
               "tag": "polkadot-stable2503-5"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2026-02-26",
+                "useInstead": "stable2512"
+              }
+            },
             "semver": "1.18.5"
           },
           {
@@ -658,7 +688,12 @@
               "when": "2025-06-06",
               "tag": "polkadot-stable2503-6"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2026-02-26",
+                "useInstead": "stable2512"
+              }
+            },
             "semver": "1.18.6"
           },
           {
@@ -668,7 +703,12 @@
               "when": "2025-07-10",
               "tag": "polkadot-stable2503-7"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2026-02-26",
+                "useInstead": "stable2512"
+              }
+            },
             "semver": "1.18.7"
           },
           {
@@ -678,7 +718,12 @@
               "when": "2025-07-31",
               "tag": "polkadot-stable2503-8"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2026-02-26",
+                "useInstead": "stable2512"
+              }
+            },
             "semver": "1.18.8"
           },
           {
@@ -688,7 +733,12 @@
               "when": "2025-08-28",
               "tag": "polkadot-stable2503-9"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2026-02-26",
+                "useInstead": "stable2512"
+              }
+            },
             "semver": "1.18.9"
           },
           {
@@ -698,7 +748,12 @@
               "when": "2025-09-25",
               "tag": "polkadot-stable2503-10"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2026-02-26",
+                "useInstead": "stable2512"
+              }
+            },
             "semver": "1.18.10"
           },
           {
@@ -708,7 +763,12 @@
               "when": "2025-10-30",
               "tag": "polkadot-stable2503-11"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2026-02-26",
+                "useInstead": "stable2512"
+              }
+            },
             "semver": "1.18.11"
           },
           {
