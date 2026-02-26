@@ -20,6 +20,10 @@ Planned and historic release dates:
 
 | Version | SemVer | Cutoff | Publish | End of Life | State |
 |---------|--------|--------|---------|-------------|-------|
+| **stable2606** | 1.23.0 | 2026-05-18 | 2026-07-02 | 2027-07-02 | Planned |
+| &nbsp;&nbsp;stable2606-1 | 1.23.1 | 2026-08-03 | 2026-08-06 |  | Planned |
+| &nbsp;&nbsp;stable2606-2 | 1.23.2 | 2026-09-07 | 2026-09-10 |  | Planned |
+| &nbsp;&nbsp;[11 more planned](CALENDAR.md) |  |  | | |
 | **stable2603** | 1.22.0 | 2026-02-09 | 2026-03-26 | 2027-03-26 | Planned |
 | &nbsp;&nbsp;stable2603-1 | 1.22.1 | 2026-04-27 | 2026-04-30 |  | Planned |
 | &nbsp;&nbsp;stable2603-2 | 1.22.2 | 2026-05-25 | 2026-05-28 |  | Planned |
