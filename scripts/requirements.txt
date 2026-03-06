@@ -12,7 +12,7 @@ html5lib==1.1
 icalendar==5.0.13
 idna==3.8
 kiwisolver==1.4.7
-Markdown==3.7
+Markdown==3.8.1
 matplotlib==3.9.2
 narwhals==1.25.0
 numpy==2.1.1
