@@ -1,0 +1,23 @@
+name: PR Tracker
+on:
+  schedule:
+    - cron: '0 */4 * * *'
+  workflow_dispatch:
+jobs:
+  track:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: tracker
+      - run: cargo build --release --manifest-path tracker/Cargo.toml
+      - run: ./tracker/target/release/tracker
+        env:
+          GITHUB_TOKEN: ${{ secrets.TRACKER_PAT }}
+      - run: |
+          git config user.email "action@github.com"
+          git config user.name "GitHub Action"
+          git add state.json
+          git diff --cached --quiet || (git commit -m "Update tracker state" && git push)
