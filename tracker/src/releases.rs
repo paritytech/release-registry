@@ -1,14 +1,12 @@
 use anyhow::{Context, Result};
 use regex::Regex;
+use serde::Deserialize;
 use serde_json::Value;
-use std::collections::{HashMap, HashSet};
+use std::collections::{BTreeSet, HashMap, HashSet};
 use std::sync::LazyLock;
 
 use crate::github::GitHubClient;
 use crate::state::{CrateRelease, Release, State};
-
-/// Index mapping PR number -> full path in prdoc/ (built from master tree).
-type PrdocIndex = HashMap<u64, String>;
 
 /// GitHub owner for polkadot-sdk.
 pub const SDK_OWNER: &str = "paritytech";
@@ -159,62 +157,50 @@ fn extract_tag_info(entry: &Value, publish: &Value) -> Option<PublishedTag> {
 
 /// Find the previous tag for a given release/patch name.
 fn find_prev_tag(name: &str, all_tags: &[PublishedTag]) -> Result<String> {
-    // Parse name: "stable2506-9" -> base="stable2506", patch=9
     let (base, patch) = parse_release_name(name);
 
     if patch > 0 {
         // Find previous patch on same branch (skip gaps from skipped patches)
-        let candidates: Vec<_> = all_tags
+        if let Some(prev) = all_tags
             .iter()
-            .filter(|t| {
+            .rev()
+            .find(|t| {
                 let (b, p) = parse_release_name(&t.name);
                 b == base && p < patch
             })
-            .collect();
-
-        if let Some(prev) = candidates.last() {
+        {
             return Ok(prev.tag.clone());
         }
     }
 
     // First patch or main release: find latest tag from previous branch
-    let all_bases: Vec<_> = all_tags
+    let sorted_bases: BTreeSet<String> = all_tags
         .iter()
-        .map(|t| parse_release_name(&t.name).0)
-        .collect::<HashSet<_>>()
-        .into_iter()
-        .collect::<Vec<_>>();
+        .map(|t| parse_release_name(&t.name).0.to_string())
+        .collect();
 
-    let mut sorted_bases: Vec<_> = all_bases.iter().map(|s| s.as_str()).collect();
-    sorted_bases.sort();
-
-    let base_idx = sorted_bases.iter().position(|&b| b == base);
-    if let Some(idx) = base_idx {
-        if idx > 0 {
-            let prev_base = sorted_bases[idx - 1];
-            // Find latest tag from previous base
-            let prev = all_tags
-                .iter()
-                .rev()
-                .find(|t| parse_release_name(&t.name).0 == prev_base);
-            if let Some(p) = prev {
-                return Ok(p.tag.clone());
-            }
+    let base_owned = base.to_string();
+    if let Some(prev_base) = sorted_bases.range(..base_owned).next_back() {
+        if let Some(p) = all_tags
+            .iter()
+            .rev()
+            .find(|t| parse_release_name(&t.name).0 == prev_base.as_str())
+        {
+            return Ok(p.tag.clone());
         }
     }
 
-    // Fallback: use the main release tag if we're on the first release
     anyhow::bail!("cannot determine prev_tag for {name}")
 }
 
 /// Parse "stable2506-9" into ("stable2506", 9). Returns patch 0 if no suffix.
-fn parse_release_name(name: &str) -> (String, u32) {
+fn parse_release_name(name: &str) -> (&str, u32) {
     if let Some(pos) = name.rfind('-') {
         if let Ok(n) = name[pos + 1..].parse::<u32>() {
-            return (name[..pos].to_string(), n);
+            return (&name[..pos], n);
         }
     }
-    (name.to_string(), 0)
+    (name, 0)
 }
 
 /// Process a single tag: diff crates and resolve PRs.
@@ -223,7 +209,7 @@ async fn process_tag(
     tag: &str,
     prev_tag: &str,
     publish_date: &str,
-    prdoc_index: &PrdocIndex,
+    prdoc_index: &HashMap<u64, String>,
 ) -> Result<Release> {
     let compare = gh.compare_tags(SDK_OWNER, SDK_REPO, prev_tag, tag).await?;
 
@@ -286,17 +272,33 @@ async fn process_tag(
 
 /// Extract paths of changed Cargo.toml files from a compare response.
 fn find_changed_cargo_tomls(compare: &Value) -> Vec<String> {
-    let mut paths = Vec::new();
-    if let Some(files) = compare["files"].as_array() {
-        for file in files {
-            if let Some(filename) = file["filename"].as_str() {
-                if filename.ends_with("/Cargo.toml") && !filename.starts_with('.') {
-                    paths.push(filename.to_string());
-                }
-            }
-        }
-    }
-    paths
+    compare["files"]
+        .as_array()
+        .map(|files| {
+            files
+                .iter()
+                .filter_map(|f| f["filename"].as_str())
+                .filter(|f| f.ends_with("/Cargo.toml") && !f.starts_with('.'))
+                .map(String::from)
+                .collect()
+        })
+        .unwrap_or_default()
+}
+
+/// Minimal Cargo.toml for extracting package name and version.
+#[derive(Deserialize)]
+struct CargoToml {
+    /// Package metadata.
+    package: Option<CargoPackage>,
+}
+
+/// Package name and version from Cargo.toml.
+#[derive(Deserialize)]
+struct CargoPackage {
+    /// Crate name.
+    name: String,
+    /// Crate version.
+    version: String,
 }
 
 /// Fetch a Cargo.toml at a given ref and return `(name, version)`.
@@ -310,20 +312,8 @@ async fn get_crate_version(
         Err(_) => return Ok(None),
     };
 
-    let parsed: toml::Value = toml::from_str(&content)?;
-    let name = parsed
-        .get("package")
-        .and_then(|p| p.get("name"))
-        .and_then(|n| n.as_str());
-    let version = parsed
-        .get("package")
-        .and_then(|p| p.get("version"))
-        .and_then(|v| v.as_str());
-
-    match (name, version) {
-        (Some(n), Some(v)) => Ok(Some((n.to_string(), v.to_string()))),
-        _ => Ok(None),
-    }
+    let parsed: CargoToml = toml::from_str(&content)?;
+    Ok(parsed.package.map(|p| (p.name, p.version)))
 }
 
 /// Regex for backport commit messages like `[stable2506] Backport #1234`.
@@ -335,7 +325,6 @@ static MERGE_RE: LazyLock<Regex> =
 
 /// Extract PR numbers from commit messages in a compare response.
 fn extract_pr_numbers(compare: &Value) -> Vec<u64> {
-
     let mut prs = HashSet::new();
 
     if let Some(commits) = compare["commits"].as_array() {
@@ -363,7 +352,7 @@ fn extract_pr_numbers(compare: &Value) -> Vec<u64> {
 }
 
 /// Build an index of PR number -> prdoc path from the master tree.
-async fn build_prdoc_index(gh: &GitHubClient) -> Result<PrdocIndex> {
+async fn build_prdoc_index(gh: &GitHubClient) -> Result<HashMap<u64, String>> {
     let re = Regex::new(r"prdoc/.*/pr_(\d+)\.prdoc$|prdoc/pr_(\d+)\.prdoc$").unwrap();
     let url = format!(
         "https://api.github.com/repos/{SDK_OWNER}/{SDK_REPO}/git/trees/master?recursive=1"
@@ -391,7 +380,7 @@ async fn build_prdoc_index(gh: &GitHubClient) -> Result<PrdocIndex> {
 async fn fetch_prdoc_crates(
     gh: &GitHubClient,
     pr_number: u64,
-    prdoc_index: &PrdocIndex,
+    prdoc_index: &HashMap<u64, String>,
 ) -> Result<Vec<String>> {
     let path = match prdoc_index.get(&pr_number) {
         Some(p) => p.clone(),
@@ -404,20 +393,25 @@ async fn fetch_prdoc_crates(
     parse_prdoc_crates(&content)
 }
 
+/// Minimal prdoc structure for extracting crate names.
+#[derive(Deserialize)]
+struct Prdoc {
+    /// Affected crates.
+    #[serde(default)]
+    crates: Vec<PrdocCrate>,
+}
+
+/// A crate entry in a prdoc file.
+#[derive(Deserialize)]
+struct PrdocCrate {
+    /// Crate name.
+    name: String,
+}
+
 /// Parse crate names from a prdoc YAML file.
 fn parse_prdoc_crates(yaml_content: &str) -> Result<Vec<String>> {
-    let doc: Value = serde_yaml::from_str(yaml_content)?;
-    let mut crates = Vec::new();
-
-    if let Some(arr) = doc.get("crates").and_then(|c| c.as_array()) {
-        for entry in arr {
-            if let Some(name) = entry.get("name").and_then(|n| n.as_str()) {
-                crates.push(name.to_string());
-            }
-        }
-    }
-
-    Ok(crates)
+    let doc: Prdoc = serde_yaml::from_str(yaml_content)?;
+    Ok(doc.crates.into_iter().map(|c| c.name).collect())
 }
 
 #[cfg(test)]
@@ -427,20 +421,17 @@ mod tests {
 
     #[test]
     fn parse_release_name_with_patch() {
-        assert_eq!(parse_release_name("stable2506-9"), ("stable2506".into(), 9));
+        assert_eq!(parse_release_name("stable2506-9"), ("stable2506", 9));
     }
 
     #[test]
     fn parse_release_name_without_patch() {
-        assert_eq!(parse_release_name("stable2506"), ("stable2506".into(), 0));
+        assert_eq!(parse_release_name("stable2506"), ("stable2506", 0));
     }
 
     #[test]
     fn parse_release_name_non_numeric_suffix() {
-        assert_eq!(
-            parse_release_name("stable2506-rc1"),
-            ("stable2506-rc1".into(), 0)
-        );
+        assert_eq!(parse_release_name("stable2506-rc1"), ("stable2506-rc1", 0));
     }
 
     #[test]

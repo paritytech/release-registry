@@ -119,7 +119,6 @@ pub fn parse_runtime_deps(content: &str) -> HashSet<String> {
     for section in ["dependencies", "dev-dependencies", "build-dependencies"] {
         if let Some(table) = parsed.get(section).and_then(|v| v.as_table()) {
             for key in table.keys() {
-                // Cargo.toml dep keys use hyphens, crate names in Cargo.lock also use hyphens
                 deps.insert(key.clone());
             }
         }

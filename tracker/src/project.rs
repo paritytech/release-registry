@@ -1,5 +1,5 @@
 use anyhow::{Context, Result};
-use std::collections::{HashMap, HashSet};
+use std::collections::HashMap;
 
 use crate::github::GitHubClient;
 use crate::releases::{SDK_OWNER, SDK_REPO};
@@ -9,22 +9,14 @@ use crate::state::State;
 struct ProjectInfo {
     /// Global node ID of the project.
     project_id: String,
-    /// Field name -> field info.
-    fields: HashMap<String, FieldInfo>,
+    /// Field name -> field node ID.
+    fields: HashMap<String, String>,
 }
 
-/// A single Project V2 field.
-struct FieldInfo {
-    /// Global node ID of the field.
-    id: String,
-}
-
-/// Precomputed map: PR number -> (crate name -> earliest release version).
-type PrCrateMap = HashMap<u64, HashMap<String, String>>;
 
 /// Build a lookup from PR number to the crates it touches and their release versions.
-fn build_pr_crate_map(state: &State) -> PrCrateMap {
-    let mut map: PrCrateMap = HashMap::new();
+fn build_pr_crate_map(state: &State) -> HashMap<u64, HashMap<String, String>> {
+    let mut map: HashMap<u64, HashMap<String, String>> = HashMap::new();
     for release in &state.releases {
         for crate_rel in &release.crates {
             for &pr in &crate_rel.prs {
@@ -39,7 +31,7 @@ fn build_pr_crate_map(state: &State) -> PrCrateMap {
 }
 
 /// Format runtime status annotations for a PR as `" [AH Paseo=v2000006]"` or empty.
-fn format_status_summary(state: &State, pr_crates: &PrCrateMap, pr: u64) -> String {
+fn format_status_summary(state: &State, pr_crates: &HashMap<u64, HashMap<String, String>>, pr: u64) -> String {
     let mut parts = Vec::new();
     let crates = pr_crates.get(&pr);
     for runtime in &state.runtimes {
@@ -77,8 +69,7 @@ pub async fn annotate(state: &State, gh: &GitHubClient, dry_run: bool) -> Result
         tags.dedup();
     }
 
-    let unique_prs: HashSet<u64> = pr_tags.keys().copied().collect();
-    eprintln!("  {} unique PRs to annotate", unique_prs.len());
+    eprintln!("  {} unique PRs to annotate", pr_tags.len());
 
     let pr_crates = build_pr_crate_map(state);
 
@@ -92,7 +83,7 @@ pub async fn annotate(state: &State, gh: &GitHubClient, dry_run: bool) -> Result
 
     // Ensure "Release Tags" field exists
     let release_tags_field = match project.fields.get("Release Tags") {
-        Some(f) => f.id.clone(),
+        Some(f) => f.clone(),
         None => {
             eprintln!("  Creating 'Release Tags' field...");
             create_text_field(gh, &project.project_id, "Release Tags").await?
@@ -103,7 +94,7 @@ pub async fn annotate(state: &State, gh: &GitHubClient, dry_run: bool) -> Result
     let mut runtime_field_ids: HashMap<String, String> = HashMap::new();
     for runtime in &state.runtimes {
         let field_id = match project.fields.get(&runtime.field_name) {
-            Some(f) => f.id.clone(),
+            Some(f) => f.clone(),
             None => {
                 eprintln!("  Creating '{}' field...", runtime.field_name);
                 create_text_field(gh, &project.project_id, &runtime.field_name).await?
@@ -255,12 +246,7 @@ async fn fetch_project_info(gh: &GitHubClient, org: &str, number: u64) -> Result
     if let Some(nodes) = project["fields"]["nodes"].as_array() {
         for node in nodes {
             if let (Some(id), Some(name)) = (node["id"].as_str(), node["name"].as_str()) {
-                fields.insert(
-                    name.to_string(),
-                    FieldInfo {
-                        id: id.to_string(),
-                    },
-                );
+                fields.insert(name.to_string(), id.to_string());
             }
         }
     }
