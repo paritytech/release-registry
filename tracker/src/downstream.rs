@@ -73,38 +73,8 @@ pub async fn check_downstream(state: &mut State, gh: &GitHubClient, dry_run: boo
     Ok(())
 }
 
-/// Returns (adopted_count, total_relevant_count).
-#[allow(dead_code)]
-pub fn compute_pr_coverage(
-    pr_crate_names: &[String],
-    release_crates: &HashMap<String, String>, // name -> version from release
-    lock_versions: &HashMap<String, String>,  // name -> version from Cargo.lock
-    runtime_deps: &HashSet<String>,           // crate names the runtime depends on
-) -> (usize, usize) {
-    let relevant: Vec<_> = pr_crate_names
-        .iter()
-        .filter(|name| runtime_deps.contains(name.as_str()))
-        .collect();
-
-    let total = relevant.len();
-    let adopted = relevant
-        .iter()
-        .filter(|name| {
-            if let (Some(release_ver), Some(lock_ver)) =
-                (release_crates.get(name.as_str()), lock_versions.get(name.as_str()))
-            {
-                lock_ver == release_ver
-            } else {
-                false
-            }
-        })
-        .count();
-
-    (adopted, total)
-}
-
 /// Split an `owner/repo` string into `(owner, repo)`.
-fn parse_repo(full: &str) -> (&str, &str) {
+pub fn parse_repo(full: &str) -> (&str, &str) {
     let parts: Vec<&str> = full.splitn(2, '/').collect();
     (parts[0], parts[1])
 }

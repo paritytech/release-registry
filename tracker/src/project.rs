@@ -2,6 +2,7 @@ use anyhow::{Context, Result};
 use std::collections::{HashMap, HashSet};
 
 use crate::github::GitHubClient;
+use crate::releases::{SDK_OWNER, SDK_REPO};
 use crate::state::State;
 
 /// Fetched GitHub Project V2 metadata.
@@ -16,6 +17,42 @@ struct ProjectInfo {
 struct FieldInfo {
     /// Global node ID of the field.
     id: String,
+}
+
+/// Precomputed map: PR number -> (crate name -> earliest release version).
+type PrCrateMap = HashMap<u64, HashMap<String, String>>;
+
+/// Build a lookup from PR number to the crates it touches and their release versions.
+fn build_pr_crate_map(state: &State) -> PrCrateMap {
+    let mut map: PrCrateMap = HashMap::new();
+    for release in &state.releases {
+        for crate_rel in &release.crates {
+            for &pr in &crate_rel.prs {
+                map.entry(pr)
+                    .or_default()
+                    .entry(crate_rel.name.clone())
+                    .or_insert_with(|| crate_rel.version.clone());
+            }
+        }
+    }
+    map
+}
+
+/// Format runtime status annotations for a PR as `" [AH Paseo=v2000006]"` or empty.
+fn format_status_summary(state: &State, pr_crates: &PrCrateMap, pr: u64) -> String {
+    let mut parts = Vec::new();
+    let crates = pr_crates.get(&pr);
+    for runtime in &state.runtimes {
+        let status = compute_runtime_status(runtime, crates, pr);
+        if !status.is_empty() {
+            parts.push(format!("{}={}", runtime.field_name, status));
+        }
+    }
+    if parts.is_empty() {
+        String::new()
+    } else {
+        format!(" [{}]", parts.join(", "))
+    }
 }
 
 /// Annotate PRs in the GitHub Project V2.
@@ -43,20 +80,11 @@ pub async fn annotate(state: &State, gh: &GitHubClient, dry_run: bool) -> Result
     let unique_prs: HashSet<u64> = pr_tags.keys().copied().collect();
     eprintln!("  {} unique PRs to annotate", unique_prs.len());
 
+    let pr_crates = build_pr_crate_map(state);
+
     if dry_run {
         for (pr, tags) in &pr_tags {
-            let mut parts = Vec::new();
-            for runtime in &state.runtimes {
-                let status = compute_runtime_status(state, runtime, *pr);
-                if !status.is_empty() {
-                    parts.push(format!("{}={}", runtime.field_name, status));
-                }
-            }
-            let status_str = if parts.is_empty() {
-                String::new()
-            } else {
-                format!(" [{}]", parts.join(", "))
-            };
+            let status_str = format_status_summary(state, &pr_crates, *pr);
             eprintln!("    PR #{pr}: {}{status_str}", tags.join(", "));
         }
         return Ok(());
@@ -86,7 +114,7 @@ pub async fn annotate(state: &State, gh: &GitHubClient, dry_run: bool) -> Result
 
     // Process each PR
     for (&pr_number, tags) in &pr_tags {
-        let pr_node_id = match get_pr_node_id(gh, "paritytech", "polkadot-sdk", pr_number).await {
+        let pr_node_id = match get_pr_node_id(gh, SDK_OWNER, SDK_REPO, pr_number).await {
             Ok(id) => id,
             Err(e) => {
                 eprintln!("    PR #{pr_number}: could not fetch node ID: {e}");
@@ -102,22 +130,15 @@ pub async fn annotate(state: &State, gh: &GitHubClient, dry_run: bool) -> Result
         set_field_value(gh, &project.project_id, &item_id, &release_tags_field, &tags_value).await?;
 
         // Set per-runtime status fields (always set, even empty, to clear stale values)
-        let mut status_parts = Vec::new();
+        let crates = pr_crates.get(&pr_number);
         for runtime in &state.runtimes {
             if let Some(field_id) = runtime_field_ids.get(&runtime.field_name) {
-                let status = compute_runtime_status(state, runtime, pr_number);
+                let status = compute_runtime_status(runtime, crates, pr_number);
                 set_field_value(gh, &project.project_id, &item_id, field_id, &status).await?;
-                if !status.is_empty() {
-                    status_parts.push(format!("{}={}", runtime.field_name, status));
-                }
             }
         }
 
-        let status_str = if status_parts.is_empty() {
-            String::new()
-        } else {
-            format!(" [{}]", status_parts.join(", "))
-        };
+        let status_str = format_status_summary(state, &pr_crates, pr_number);
         eprintln!("    PR #{pr_number}: {tags_value}{status_str}");
     }
 
@@ -131,25 +152,14 @@ pub async fn annotate(state: &State, gh: &GitHubClient, dry_run: bool) -> Result
 ///   v{spec}                        - enacted on-chain
 /// Partial adoption appends ` (N/M crates)`.
 fn compute_runtime_status(
-    state: &State,
     runtime: &crate::state::Runtime,
-    pr_number: u64,
+    pr_release_crates: Option<&HashMap<String, String>>,
+    _pr_number: u64,
 ) -> String {
-    // Collect crate name -> release version for crates touched by this PR
-    let mut pr_release_crates: HashMap<String, String> = HashMap::new();
-    for release in &state.releases {
-        for crate_rel in &release.crates {
-            if crate_rel.prs.contains(&pr_number) {
-                pr_release_crates
-                    .entry(crate_rel.name.clone())
-                    .or_insert_with(|| crate_rel.version.clone());
-            }
-        }
-    }
-
-    if pr_release_crates.is_empty() {
-        return String::new();
-    }
+    let pr_release_crates = match pr_release_crates {
+        Some(c) if !c.is_empty() => c,
+        _ => return String::new(),
+    };
 
     // Filter to crates that are actual dependencies of this runtime
     let relevant: Vec<_> = pr_release_crates
@@ -193,13 +203,10 @@ fn compute_runtime_status(
     let code_spec = runtime.downstream.spec_version.unwrap_or(0);
 
     if code_spec > onchain_spec {
-        // Spec bumped in code but not yet enacted
         format!("pending v{code_spec}{partial_suffix}")
     } else if onchain_spec > 0 {
-        // Check if the adoption happened before or at the current on-chain spec
         format!("v{onchain_spec}{partial_suffix}")
     } else {
-        // Picked up but no spec bump yet
         format!("pending > v{code_spec}{partial_suffix}")
     }
 }

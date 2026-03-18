@@ -1,4 +1,5 @@
 use anyhow::{bail, Context, Result};
+use base64::Engine;
 use reqwest::header::{ACCEPT, AUTHORIZATION, USER_AGENT};
 use serde::de::DeserializeOwned;
 use serde_json::Value;
@@ -63,7 +64,7 @@ impl GitHubClient {
             .as_str()
             .context("no content field")?
             .replace('\n', "");
-        let bytes = base64_decode(&encoded)?;
+        let bytes = base64::engine::general_purpose::STANDARD.decode(&encoded)?;
         Ok(String::from_utf8(bytes)?)
     }
 
@@ -141,29 +142,3 @@ impl GitHubClient {
     }
 }
 
-/// Decode a base64-encoded string without external dependencies.
-fn base64_decode(input: &str) -> Result<Vec<u8>> {
-    // Simple base64 decoder (avoid adding a dependency for this)
-    let alphabet = b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-    let mut output = Vec::new();
-    let mut buf: u32 = 0;
-    let mut bits: u32 = 0;
-
-    for &byte in input.as_bytes() {
-        if byte == b'=' || byte == b'\n' || byte == b'\r' || byte == b' ' {
-            continue;
-        }
-        let val = alphabet
-            .iter()
-            .position(|&b| b == byte)
-            .context("invalid base64 character")? as u32;
-        buf = (buf << 6) | val;
-        bits += 6;
-        if bits >= 8 {
-            bits -= 8;
-            output.push((buf >> bits) as u8);
-            buf &= (1 << bits) - 1;
-        }
-    }
-    Ok(output)
-}

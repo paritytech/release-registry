@@ -10,9 +10,9 @@ use crate::state::{CrateRelease, Release, State};
 type PrdocIndex = HashMap<u64, String>;
 
 /// GitHub owner for polkadot-sdk.
-const SDK_OWNER: &str = "paritytech";
+pub const SDK_OWNER: &str = "paritytech";
 /// GitHub repo name.
-const SDK_REPO: &str = "polkadot-sdk";
+pub const SDK_REPO: &str = "polkadot-sdk";
 
 /// A published tag from releases-v1.json with its publish date.
 #[derive(Debug, Clone)]

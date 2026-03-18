@@ -98,7 +98,7 @@ pub fn parse_spec_version(content: &str) -> Option<u64> {
 /// Check on-chain spec versions and find new upgrades.
 pub async fn check_onchain(
     runtimes: &mut [Runtime],
-    gh: &GitHubClient,
+    _gh: &GitHubClient,
     dry_run: bool,
 ) -> Result<()> {
     for runtime in runtimes.iter_mut() {
@@ -127,22 +127,6 @@ pub async fn check_onchain(
         if current_spec as u64 <= last_known_spec {
             eprintln!("    No new upgrades (last known: {last_known_spec})");
             continue;
-        }
-
-        // Parse expected spec_version from downstream code
-        if let Some(commit) = &runtime.last_seen_commit {
-            let (owner, repo) = {
-                let parts: Vec<&str> = runtime.repo.splitn(2, '/').collect();
-                (parts[0], parts[1])
-            };
-            match gh.get_raw_content(owner, repo, &runtime.spec_version_path, commit).await {
-                Ok(content) => {
-                    if let Some(code_spec) = parse_spec_version(&content) {
-                        eprintln!("    Downstream code spec_version: {code_spec}");
-                    }
-                }
-                Err(e) => eprintln!("    Could not fetch spec_version_path: {e}"),
-            }
         }
 
         // Find the upgrade block via binary search
