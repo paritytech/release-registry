@@ -1,27 +1,10 @@
 use anyhow::Result;
-use serde::Deserialize;
 use std::collections::{HashMap, HashSet};
+use std::str::FromStr;
 
 use crate::github::GitHubClient;
 use crate::onchain::parse_spec_version;
 use crate::state::State;
-
-/// Minimal representation of a Cargo.lock file for deserialization.
-#[derive(Deserialize)]
-struct CargoLock {
-    /// Resolved packages.
-    #[serde(default)]
-    package: Vec<LockPackage>,
-}
-
-/// A single resolved package in Cargo.lock.
-#[derive(Deserialize)]
-struct LockPackage {
-    /// Crate name.
-    name: String,
-    /// Resolved version.
-    version: String,
-}
 
 /// Check downstream runtimes for crate consumption.
 pub async fn check_downstream(state: &mut State, gh: &GitHubClient, dry_run: bool) -> Result<()> {
@@ -98,41 +81,30 @@ pub fn parse_repo(full: &str) -> (&str, &str) {
 
 /// Parse Cargo.lock to extract package name -> version mapping.
 pub fn parse_cargo_lock_versions(content: &str) -> HashMap<String, String> {
-    let lock: CargoLock = match toml::from_str(content) {
+    let lock = match cargo_lock::Lockfile::from_str(content) {
         Ok(v) => v,
         Err(_) => return HashMap::new(),
     };
-    lock.package
+    lock.packages
         .into_iter()
-        .map(|p| (p.name, p.version))
+        .map(|p| (p.name.as_str().to_string(), p.version.to_string()))
         .collect()
 }
 
 /// Parse Cargo.toml to extract dependency names (all dependency sections).
 pub fn parse_runtime_deps(content: &str) -> HashSet<String> {
-    let mut deps = HashSet::new();
-    let parsed: toml::Value = match toml::from_str(content) {
+    let manifest = match cargo_toml::Manifest::from_str(content) {
         Ok(v) => v,
-        Err(_) => return deps,
+        Err(_) => return HashSet::new(),
     };
 
-    for section in ["dependencies", "dev-dependencies", "build-dependencies"] {
-        if let Some(table) = parsed.get(section).and_then(|v| v.as_table()) {
-            for key in table.keys() {
-                deps.insert(key.clone());
-            }
-        }
+    let mut deps: HashSet<String> = HashSet::new();
+    deps.extend(manifest.dependencies.into_keys());
+    deps.extend(manifest.dev_dependencies.into_keys());
+    deps.extend(manifest.build_dependencies.into_keys());
+    if let Some(workspace) = manifest.workspace {
+        deps.extend(workspace.dependencies.into_keys());
     }
-
-    // Also check workspace dependencies if present
-    if let Some(workspace) = parsed.get("workspace") {
-        if let Some(table) = workspace.get("dependencies").and_then(|v| v.as_table()) {
-            for key in table.keys() {
-                deps.insert(key.clone());
-            }
-        }
-    }
-
     deps
 }
 

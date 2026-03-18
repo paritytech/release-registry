@@ -285,22 +285,6 @@ fn find_changed_cargo_tomls(compare: &Value) -> Vec<String> {
         .unwrap_or_default()
 }
 
-/// Minimal Cargo.toml for extracting package name and version.
-#[derive(Deserialize)]
-struct CargoToml {
-    /// Package metadata.
-    package: Option<CargoPackage>,
-}
-
-/// Package name and version from Cargo.toml.
-#[derive(Deserialize)]
-struct CargoPackage {
-    /// Crate name.
-    name: String,
-    /// Crate version.
-    version: String,
-}
-
 /// Fetch a Cargo.toml at a given ref and return `(name, version)`.
 async fn get_crate_version(
     gh: &GitHubClient,
@@ -312,8 +296,8 @@ async fn get_crate_version(
         Err(_) => return Ok(None),
     };
 
-    let parsed: CargoToml = toml::from_str(&content)?;
-    Ok(parsed.package.map(|p| (p.name, p.version)))
+    let manifest = cargo_toml::Manifest::from_str(&content)?;
+    Ok(manifest.package.map(|p| (p.name, p.version.get().map(|v| v.to_string()).unwrap_or_default())))
 }
 
 /// Regex for backport commit messages like `[stable2506] Backport #1234`.
