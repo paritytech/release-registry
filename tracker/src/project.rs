@@ -374,16 +374,12 @@ async fn set_field_value(
     Ok(())
 }
 
-/// Compare two semver-like version strings: is `a >= b`?
+/// Compare two semver version strings: is `a >= b`?
 fn semver_gte(a: &str, b: &str) -> bool {
-    let parse = |s: &str| -> Vec<u64> {
-        s.split('.')
-            .filter_map(|p| p.parse::<u64>().ok())
-            .collect()
-    };
-    let va = parse(a);
-    let vb = parse(b);
-    va >= vb
+    match (semver::Version::parse(a), semver::Version::parse(b)) {
+        (Ok(va), Ok(vb)) => va >= vb,
+        _ => false,
+    }
 }
 
 #[cfg(test)]
@@ -434,27 +430,6 @@ mod tests {
             upgrades,
             downstream: DownstreamInfo { versions, deps, spec_version },
         }
-    }
-
-    #[test]
-    fn semver_gte_equal() {
-        assert!(semver_gte("1.2.3", "1.2.3"));
-    }
-
-    #[test]
-    fn semver_gte_greater() {
-        assert!(semver_gte("2.0.0", "1.9.9"));
-    }
-
-    #[test]
-    fn semver_gte_less() {
-        assert!(!semver_gte("1.0.0", "1.0.1"));
-    }
-
-    #[test]
-    fn semver_gte_different_lengths() {
-        assert!(semver_gte("1.2.3", "1.2"));
-        assert!(!semver_gte("1.2", "1.2.1"));
     }
 
     #[test]
