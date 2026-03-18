@@ -19,5 +19,5 @@ jobs:
       - run: |
           git config user.email "action@github.com"
           git config user.name "GitHub Action"
-          git add state.json
+          git add tracker/state.json
           git diff --cached --quiet || (git commit -m "Update tracker state" && git push)

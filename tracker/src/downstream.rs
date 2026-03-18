@@ -2,6 +2,7 @@ use anyhow::Result;
 use std::collections::{HashMap, HashSet};
 
 use crate::github::GitHubClient;
+use crate::onchain::parse_spec_version;
 use crate::state::State;
 
 /// Check downstream runtimes for crate consumption.
@@ -11,7 +12,8 @@ pub async fn check_downstream(state: &mut State, gh: &GitHubClient, dry_run: boo
 
         let latest_commit = gh.get_latest_commit(owner, repo, &runtime.branch).await?;
 
-        if runtime.last_seen_commit.as_deref() == Some(&latest_commit) {
+        let has_downstream = !runtime.downstream.deps.is_empty();
+        if runtime.last_seen_commit.as_deref() == Some(&latest_commit) && has_downstream {
             eprintln!("  {} ({}): no new commits", runtime.runtime, runtime.network);
             continue;
         }
@@ -35,17 +37,33 @@ pub async fn check_downstream(state: &mut State, gh: &GitHubClient, dry_run: boo
             .await?;
         let runtime_deps = parse_runtime_deps(&cargo_toml);
 
+        // Fetch spec_version from downstream code
+        let spec_version = match gh
+            .get_raw_content(owner, repo, &runtime.spec_version_path, &latest_commit)
+            .await
+        {
+            Ok(content) => parse_spec_version(&content),
+            Err(e) => {
+                eprintln!("    Could not fetch spec_version_path: {e}");
+                None
+            }
+        };
+
         eprintln!(
-            "    {} resolved crates, {} direct dependencies",
+            "    {} resolved crates, {} direct dependencies, code spec: {:?}",
             current_versions.len(),
-            runtime_deps.len()
+            runtime_deps.len(),
+            spec_version
         );
 
-        // Store downstream info on the runtime for project.rs to use
-        runtime
-            .upgrades
-            .iter_mut()
-            .for_each(|_| {}); // ensure upgrades vec exists
+        runtime.downstream = crate::state::DownstreamInfo {
+            versions: current_versions
+                .into_iter()
+                .filter(|(k, _)| runtime_deps.contains(k))
+                .collect(),
+            deps: runtime_deps,
+            spec_version,
+        };
 
         if !dry_run {
             runtime.last_seen_commit = Some(latest_commit);
@@ -85,6 +103,7 @@ pub fn compute_pr_coverage(
     (adopted, total)
 }
 
+/// Split an `owner/repo` string into `(owner, repo)`.
 fn parse_repo(full: &str) -> (&str, &str) {
     let parts: Vec<&str> = full.splitn(2, '/').collect();
     (parts[0], parts[1])

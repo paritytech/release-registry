@@ -1,0 +1,2265 @@
+{
+  "project": {
+    "org": "paritytech",
+    "number": 274
+  },
+  "runtimes": [
+    {
+      "runtime": "Asset Hub",
+      "short": "AH",
+      "repo": "paseo-network/runtimes",
+      "branch": "main",
+      "cargo_lock_path": "Cargo.lock",
+      "cargo_toml_path": "system-parachains/asset-hub-paseo/Cargo.toml",
+      "spec_version_path": "system-parachains/asset-hub-paseo/src/lib.rs",
+      "network": "Paseo",
+      "rpc": "https://paseo-asset-hub-rpc.polkadot.io",
+      "ws": "wss://sys.ibp.network/asset-hub-paseo",
+      "field_name": "AH Paseo",
+      "block_explorer_url": "https://assethub-paseo.subscan.io",
+      "last_seen_commit": "fb8fcad5f3b2c74d7a9657d497ebf2196290b25f",
+      "upgrades": [
+        {
+          "spec_version": 2000006,
+          "block_number": 5168932,
+          "block_hash": "0xb55b5e9f7838d7e2c04e578e1b1580ced88551d4c0ea2a6c5426f8c9d1ede7bd",
+          "date": "2026-02-11T11:30:36+00:00",
+          "block_url": "https://assethub-paseo.subscan.io/block/5168932"
+        }
+      ]
+    }
+  ],
+  "last_processed_tags_date": "2026-03-10",
+  "releases": [
+    {
+      "tag": "polkadot-stable2509-5",
+      "prev_tag": "polkadot-stable2509-4",
+      "crates": [
+        {
+          "name": "sp-trie",
+          "version": "41.1.1",
+          "published": "2026-02-12",
+          "prs": [
+            11028
+          ]
+        },
+        {
+          "name": "asset-hub-westend-runtime",
+          "version": "0.36.3",
+          "published": "2026-02-12",
+          "prs": [
+            10802
+          ]
+        },
+        {
+          "name": "frame-benchmarking",
+          "version": "43.0.1",
+          "published": "2026-02-12",
+          "prs": [
+            10802
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "polkadot-stable2512-2",
+      "prev_tag": "polkadot-stable2512-1",
+      "crates": [
+        {
+          "name": "westend-runtime",
+          "version": "30.2.0",
+          "published": "2026-02-23",
+          "prs": [
+            10666
+          ]
+        },
+        {
+          "name": "pallet-staking-async",
+          "version": "0.10.1",
+          "published": "2026-02-23",
+          "prs": [
+            10666,
+            10880,
+            10957,
+            10986,
+            11050
+          ]
+        },
+        {
+          "name": "snowbridge-pallet-inbound-queue-v2-fixtures",
+          "version": "0.7.1",
+          "published": "2026-02-23",
+          "prs": [
+            10955
+          ]
+        },
+        {
+          "name": "snowbridge-pallet-inbound-queue-fixtures",
+          "version": "0.26.1",
+          "published": "2026-02-23",
+          "prs": [
+            10955
+          ]
+        },
+        {
+          "name": "emulated-integration-tests-common",
+          "version": "28.0.0",
+          "published": "2026-02-23",
+          "prs": [
+            11031
+          ]
+        },
+        {
+          "name": "pallet-staking-async-ah-client",
+          "version": "0.7.2",
+          "published": "2026-02-23",
+          "prs": [
+            10666,
+            11055
+          ]
+        },
+        {
+          "name": "snowbridge-beacon-primitives",
+          "version": "0.18.1",
+          "published": "2026-02-23",
+          "prs": [
+            10793
+          ]
+        },
+        {
+          "name": "snowbridge-pallet-ethereum-client-fixtures",
+          "version": "0.26.1",
+          "published": "2026-02-23",
+          "prs": [
+            10955
+          ]
+        },
+        {
+          "name": "frame-omni-bencher",
+          "version": "0.17.3",
+          "published": "2026-02-23",
+          "prs": [
+            11069,
+            11114
+          ]
+        },
+        {
+          "name": "polkadot",
+          "version": "30.0.2",
+          "published": "2026-02-23",
+          "prs": [
+            10709,
+            11114
+          ]
+        },
+        {
+          "name": "polkadot-sdk",
+          "version": "2512.3.3",
+          "published": "2026-02-23",
+          "prs": []
+        },
+        {
+          "name": "pallet-staking-async-rc-client",
+          "version": "0.7.1",
+          "published": "2026-02-23",
+          "prs": [
+            10666
+          ]
+        },
+        {
+          "name": "polkadot-node-core-pvf-prepare-worker",
+          "version": "24.0.1",
+          "published": "2026-02-23",
+          "prs": []
+        },
+        {
+          "name": "pallet-bags-list",
+          "version": "44.0.1",
+          "published": "2026-02-23",
+          "prs": [
+            10880
+          ]
+        },
+        {
+          "name": "pallet-nomination-pools",
+          "version": "43.0.2",
+          "published": "2026-02-23",
+          "prs": [
+            10986
+          ]
+        },
+        {
+          "name": "snowbridge-verification-primitives",
+          "version": "0.7.1",
+          "published": "2026-02-23",
+          "prs": [
+            10955
+          ]
+        },
+        {
+          "name": "staging-xcm-executor",
+          "version": "24.0.1",
+          "published": "2026-02-23",
+          "prs": []
+        },
+        {
+          "name": "polkadot-node-core-pvf-execute-worker",
+          "version": "24.0.1",
+          "published": "2026-02-23",
+          "prs": []
+        },
+        {
+          "name": "sp-trie",
+          "version": "42.0.1",
+          "published": "2026-02-23",
+          "prs": [
+            11028
+          ]
+        },
+        {
+          "name": "snowbridge-pallet-ethereum-client",
+          "version": "0.18.2",
+          "published": "2026-02-23",
+          "prs": [
+            10793,
+            10955
+          ]
+        },
+        {
+          "name": "asset-hub-westend-runtime",
+          "version": "0.42.0",
+          "published": "2026-02-23",
+          "prs": [
+            10666,
+            10947,
+            10957,
+            10980
+          ]
+        },
+        {
+          "name": "snowbridge-core",
+          "version": "0.18.1",
+          "published": "2026-02-23",
+          "prs": [
+            10771
+          ]
+        },
+        {
+          "name": "pallet-session",
+          "version": "45.1.0",
+          "published": "2026-02-23",
+          "prs": [
+            10666
+          ]
+        },
+        {
+          "name": "frame-benchmarking",
+          "version": "45.0.3",
+          "published": "2026-02-23",
+          "prs": [
+            10947,
+            11069
+          ]
+        },
+        {
+          "name": "polkadot-omni-node",
+          "version": "0.13.2",
+          "published": "2026-02-23",
+          "prs": [
+            11114
+          ]
+        },
+        {
+          "name": "pallet-dap",
+          "version": "0.2.0",
+          "published": "2026-02-23",
+          "prs": [
+            10957
+          ]
+        },
+        {
+          "name": "snowbridge-outbound-queue-primitives",
+          "version": "0.7.1",
+          "published": "2026-02-23",
+          "prs": [
+            10771
+          ]
+        },
+        {
+          "name": "xcm-emulator",
+          "version": "0.26.0",
+          "published": "2026-02-23",
+          "prs": [
+            11031
+          ]
+        },
+        {
+          "name": "snowbridge-pallet-outbound-queue-v2",
+          "version": "0.7.1",
+          "published": "2026-02-23",
+          "prs": [
+            10955
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "polkadot-stable2506-9",
+      "prev_tag": "polkadot-stable2506-7",
+      "crates": [
+        {
+          "name": "staging-xcm-executor",
+          "version": "20.0.2",
+          "published": "2026-03-10",
+          "prs": []
+        },
+        {
+          "name": "sc-network",
+          "version": "0.51.2",
+          "published": "2026-03-10",
+          "prs": [
+            11078
+          ]
+        },
+        {
+          "name": "sp-trie",
+          "version": "40.0.1",
+          "published": "2026-03-10",
+          "prs": [
+            11028
+          ]
+        },
+        {
+          "name": "polkadot-collator-protocol",
+          "version": "24.0.1",
+          "published": "2026-03-10",
+          "prs": [
+            10464
+          ]
+        },
+        {
+          "name": "sc-authority-discovery",
+          "version": "0.51.1",
+          "published": "2026-03-10",
+          "prs": [
+            10954
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "polkadot-stable2509",
+      "prev_tag": "polkadot-stable2506-9",
+      "crates": [
+        {
+          "name": "snowbridge-pallet-system-frontend",
+          "version": "0.5.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "bp-relayers",
+          "version": "0.23.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "cumulus-pallet-parachain-system",
+          "version": "0.23.0",
+          "published": "2025-10-08",
+          "prs": [
+            7997,
+            8172,
+            8860,
+            9002,
+            9127,
+            9326,
+            9602
+          ]
+        },
+        {
+          "name": "snowbridge-pallet-system-v2",
+          "version": "0.5.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "pallet-bridge-messages",
+          "version": "0.23.0",
+          "published": "2025-10-08",
+          "prs": [
+            9127,
+            9308
+          ]
+        },
+        {
+          "name": "snowbridge-system-v2-runtime-api",
+          "version": "0.5.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "cumulus-client-network",
+          "version": "0.26.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "cumulus-relay-chain-interface",
+          "version": "0.26.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "cumulus-pallet-dmp-queue",
+          "version": "0.23.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "snowbridge-ethereum",
+          "version": "0.15.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "cumulus-pallet-solo-to-para",
+          "version": "0.23.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "pallet-xcm-bridge-hub-router",
+          "version": "0.21.0",
+          "published": "2025-10-08",
+          "prs": [
+            8732
+          ]
+        },
+        {
+          "name": "snowbridge-outbound-queue-v2-runtime-api",
+          "version": "0.5.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "snowbridge-inbound-queue-primitives",
+          "version": "0.5.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "snowbridge-test-utils",
+          "version": "0.6.0",
+          "published": "2025-10-08",
+          "prs": [
+            9235,
+            9746
+          ]
+        },
+        {
+          "name": "pallet-bridge-relayers",
+          "version": "0.23.0",
+          "published": "2025-10-08",
+          "prs": [
+            9381
+          ]
+        },
+        {
+          "name": "pallet-bridge-parachains",
+          "version": "0.23.0",
+          "published": "2025-10-08",
+          "prs": [
+            9318
+          ]
+        },
+        {
+          "name": "snowbridge-pallet-outbound-queue-v2",
+          "version": "0.5.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "bp-xcm-bridge-hub",
+          "version": "0.9.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "snowbridge-merkle-tree",
+          "version": "0.5.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "cumulus-client-consensus-proposer",
+          "version": "0.22.0",
+          "published": "2025-10-08",
+          "prs": [
+            8172
+          ]
+        },
+        {
+          "name": "snowbridge-runtime-test-common",
+          "version": "0.19.0",
+          "published": "2025-10-08",
+          "prs": [
+            9463,
+            9504
+          ]
+        },
+        {
+          "name": "cumulus-client-consensus-common",
+          "version": "0.26.0",
+          "published": "2025-10-08",
+          "prs": [
+            9432
+          ]
+        },
+        {
+          "name": "snowbridge-outbound-queue-runtime-api",
+          "version": "0.16.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "bp-bridge-hub-cumulus",
+          "version": "0.25.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "snowbridge-pallet-ethereum-client",
+          "version": "0.16.1",
+          "published": "2025-10-08",
+          "prs": [
+            8848,
+            9938
+          ]
+        },
+        {
+          "name": "bp-polkadot-bulletin",
+          "version": "0.20.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "bp-parachains",
+          "version": "0.23.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "snowbridge-core",
+          "version": "0.16.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "bridge-runtime-common",
+          "version": "0.24.0",
+          "published": "2025-10-08",
+          "prs": [
+            9127,
+            9288
+          ]
+        },
+        {
+          "name": "snowbridge-pallet-inbound-queue",
+          "version": "0.16.1",
+          "published": "2025-10-08",
+          "prs": [
+            9938
+          ]
+        },
+        {
+          "name": "bp-runtime",
+          "version": "0.23.0",
+          "published": "2025-10-08",
+          "prs": [
+            9401
+          ]
+        },
+        {
+          "name": "snowbridge-runtime-common",
+          "version": "0.17.0",
+          "published": "2025-10-08",
+          "prs": [
+            9235
+          ]
+        },
+        {
+          "name": "snowbridge-outbound-queue-primitives",
+          "version": "0.5.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "pallet-collator-selection",
+          "version": "24.0.0",
+          "published": "2025-10-08",
+          "prs": [
+            9504
+          ]
+        },
+        {
+          "name": "snowbridge-beacon-primitives",
+          "version": "0.16.1",
+          "published": "2025-10-08",
+          "prs": [
+            9938
+          ]
+        },
+        {
+          "name": "snowbridge-pallet-inbound-queue-v2-fixtures",
+          "version": "0.5.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "cumulus-pallet-xcm",
+          "version": "0.22.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "snowbridge-pallet-outbound-queue",
+          "version": "0.16.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "cumulus-pov-validator",
+          "version": "0.8.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "cumulus-relay-chain-inprocess-interface",
+          "version": "0.28.0",
+          "published": "2025-10-08",
+          "prs": [
+            7997,
+            9458
+          ]
+        },
+        {
+          "name": "cumulus-relay-chain-streams",
+          "version": "0.4.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "snowbridge-system-runtime-api",
+          "version": "0.16.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "bp-test-utils",
+          "version": "0.23.0",
+          "published": "2025-10-08",
+          "prs": [
+            9127
+          ]
+        },
+        {
+          "name": "cumulus-client-bootnodes",
+          "version": "0.5.0",
+          "published": "2025-10-08",
+          "prs": [
+            7997,
+            9235
+          ]
+        },
+        {
+          "name": "snowbridge-pallet-inbound-queue-v2",
+          "version": "0.5.0",
+          "published": "2025-10-08",
+          "prs": [
+            9746
+          ]
+        },
+        {
+          "name": "cumulus-pallet-session-benchmarking",
+          "version": "24.0.0",
+          "published": "2025-10-08",
+          "prs": [
+            9504
+          ]
+        },
+        {
+          "name": "snowbridge-pallet-ethereum-client-fixtures",
+          "version": "0.24.0",
+          "published": "2025-10-08",
+          "prs": [
+            8848
+          ]
+        },
+        {
+          "name": "snowbridge-pallet-system",
+          "version": "0.16.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "cumulus-relay-chain-minimal-node",
+          "version": "0.28.0",
+          "published": "2025-10-08",
+          "prs": [
+            8839,
+            9055,
+            9446
+          ]
+        },
+        {
+          "name": "cumulus-pallet-xcmp-queue",
+          "version": "0.23.0",
+          "published": "2025-10-08",
+          "prs": [
+            8732,
+            9002,
+            9004,
+            9539,
+            9641,
+            9781
+          ]
+        },
+        {
+          "name": "cumulus-pallet-weight-reclaim",
+          "version": "0.5.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "pallet-bridge-grandpa",
+          "version": "0.23.0",
+          "published": "2025-10-08",
+          "prs": [
+            9294
+          ]
+        },
+        {
+          "name": "bp-xcm-bridge-hub-router",
+          "version": "0.20.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "cumulus-client-service",
+          "version": "0.28.0",
+          "published": "2025-10-08",
+          "prs": [
+            8076,
+            9446
+          ]
+        },
+        {
+          "name": "cumulus-pallet-aura-ext",
+          "version": "0.23.0",
+          "published": "2025-10-08",
+          "prs": [
+            9002
+          ]
+        },
+        {
+          "name": "bp-header-chain",
+          "version": "0.23.0",
+          "published": "2025-10-08",
+          "prs": [
+            9015
+          ]
+        },
+        {
+          "name": "pallet-xcm-bridge-hub",
+          "version": "0.19.0",
+          "published": "2025-10-08",
+          "prs": [
+            8732
+          ]
+        },
+        {
+          "name": "emulated-integration-tests-common",
+          "version": "25.0.0",
+          "published": "2025-10-08",
+          "prs": [
+            7997,
+            9235,
+            9316
+          ]
+        },
+        {
+          "name": "cumulus-client-consensus-relay-chain",
+          "version": "0.26.0",
+          "published": "2025-10-08",
+          "prs": [
+            9175
+          ]
+        },
+        {
+          "name": "snowbridge-verification-primitives",
+          "version": "0.5.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "parachains-common",
+          "version": "25.0.0",
+          "published": "2025-10-08",
+          "prs": [
+            7997,
+            8732
+          ]
+        },
+        {
+          "name": "snowbridge-pallet-inbound-queue-fixtures",
+          "version": "0.24.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "cumulus-relay-chain-rpc-interface",
+          "version": "0.26.0",
+          "published": "2025-10-08",
+          "prs": [
+            9055,
+            9446
+          ]
+        },
+        {
+          "name": "cumulus-client-cli",
+          "version": "0.26.0",
+          "published": "2025-10-08",
+          "prs": [
+            9446
+          ]
+        },
+        {
+          "name": "cumulus-client-pov-recovery",
+          "version": "0.26.0",
+          "published": "2025-10-08",
+          "prs": [
+            9424
+          ]
+        },
+        {
+          "name": "bp-polkadot-core",
+          "version": "0.23.0",
+          "published": "2025-10-08",
+          "prs": []
+        },
+        {
+          "name": "cumulus-client-parachain-inherent",
+          "version": "0.20.0",
+          "published": "2025-10-08",
+          "prs": [
+            8860,
+            9262
+          ]
+        },
+        {
+          "name": "cumulus-client-collator",
+          "version": "0.26.0",
+          "published": "2025-10-08",
+          "prs": [
+            9059
+          ]
+        },
+        {
+          "name": "cumulus-client-consensus-aura",
+          "version": "0.26.0",
+          "published": "2025-10-08",
+          "prs": [
+            9002,
+            9175,
+            9262,
+            9272,
+            9432,
+            9703,
+            9753,
+            9906
+          ]
+        },
+        {
+          "name": "bp-messages",
+          "version": "0.23.0",
+          "published": "2025-10-08",
+          "prs": []
+        }
+      ]
+    },
+    {
+      "tag": "polkadot-stable2506-3",
+      "prev_tag": "polkadot-stable2506-2",
+      "crates": [
+        {
+          "name": "sp-statement-store",
+          "version": "21.1.0",
+          "published": "2025-10-09",
+          "prs": [
+            9836
+          ]
+        },
+        {
+          "name": "cumulus-pallet-xcmp-queue",
+          "version": "0.21.1",
+          "published": "2025-10-09",
+          "prs": [
+            9641,
+            9781
+          ]
+        },
+        {
+          "name": "pallet-ranked-collective",
+          "version": "41.0.1",
+          "published": "2025-10-09",
+          "prs": [
+            9731
+          ]
+        },
+        {
+          "name": "sc-statement-store",
+          "version": "22.1.0",
+          "published": "2025-10-09",
+          "prs": [
+            9836,
+            9868
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "polkadot-stable2412-11",
+      "prev_tag": "polkadot-stable2412-10",
+      "crates": [
+        {
+          "name": "polkadot-approval-distribution",
+          "version": "21.0.1",
+          "published": "2025-10-23",
+          "prs": [
+            10082
+          ]
+        },
+        {
+          "name": "polkadot-node-primitives",
+          "version": "17.1.0",
+          "published": "2025-10-23",
+          "prs": [
+            10082
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "polkadot-stable2506-4",
+      "prev_tag": "polkadot-stable2506-3",
+      "crates": [
+        {
+          "name": "polkadot-approval-distribution",
+          "version": "24.0.1",
+          "published": "2025-10-23",
+          "prs": [
+            10082
+          ]
+        },
+        {
+          "name": "sc-network-statement",
+          "version": "0.33.1",
+          "published": "2025-10-23",
+          "prs": [
+            9894
+          ]
+        },
+        {
+          "name": "sc-statement-store",
+          "version": "22.2.0",
+          "published": "2025-10-23",
+          "prs": [
+            9894
+          ]
+        },
+        {
+          "name": "polkadot-node-primitives",
+          "version": "20.1.0",
+          "published": "2025-10-23",
+          "prs": [
+            10082
+          ]
+        },
+        {
+          "name": "pallet-ranked-collective",
+          "version": "41.0.2",
+          "published": "2025-10-23",
+          "prs": [
+            9731
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "polkadot-stable2509-1",
+      "prev_tag": "polkadot-stable2509",
+      "crates": [
+        {
+          "name": "sp-statement-store",
+          "version": "23.1.0",
+          "published": "2025-10-23",
+          "prs": [
+            9912
+          ]
+        },
+        {
+          "name": "pallet-assets",
+          "version": "46.1.0",
+          "published": "2025-10-23",
+          "prs": [
+            7456
+          ]
+        },
+        {
+          "name": "sc-network-statement",
+          "version": "0.35.1",
+          "published": "2025-10-23",
+          "prs": [
+            9894,
+            9912
+          ]
+        },
+        {
+          "name": "polkadot-node-primitives",
+          "version": "22.1.0",
+          "published": "2025-10-23",
+          "prs": [
+            10082
+          ]
+        },
+        {
+          "name": "cumulus-client-consensus-aura",
+          "version": "0.26.1",
+          "published": "2025-10-23",
+          "prs": [
+            10072
+          ]
+        },
+        {
+          "name": "polkadot-approval-distribution",
+          "version": "26.0.1",
+          "published": "2025-10-23",
+          "prs": [
+            10082
+          ]
+        },
+        {
+          "name": "sc-consensus-aura",
+          "version": "0.53.1",
+          "published": "2025-10-23",
+          "prs": [
+            10072
+          ]
+        },
+        {
+          "name": "sc-statement-store",
+          "version": "24.1.0",
+          "published": "2025-10-23",
+          "prs": [
+            9894,
+            9912
+          ]
+        },
+        {
+          "name": "pallet-ranked-collective",
+          "version": "43.0.1",
+          "published": "2025-10-23",
+          "prs": [
+            9731
+          ]
+        },
+        {
+          "name": "pallet-staking-async",
+          "version": "0.5.1",
+          "published": "2025-10-23",
+          "prs": [
+            9926,
+            10051
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "polkadot-stable2503-11",
+      "prev_tag": "polkadot-stable2503-10",
+      "crates": [
+        {
+          "name": "polkadot-node-primitives",
+          "version": "19.1.0",
+          "published": "2025-10-30",
+          "prs": [
+            10082
+          ]
+        },
+        {
+          "name": "polkadot-approval-distribution",
+          "version": "23.0.1",
+          "published": "2025-10-30",
+          "prs": [
+            10082
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "polkadot-stable2506-5",
+      "prev_tag": "polkadot-stable2506-4",
+      "crates": [
+        {
+          "name": "sp-statement-store",
+          "version": "21.2.0",
+          "published": "2025-11-11",
+          "prs": [
+            9912
+          ]
+        },
+        {
+          "name": "sc-tracing",
+          "version": "40.0.1",
+          "published": "2025-11-11",
+          "prs": [
+            9871
+          ]
+        },
+        {
+          "name": "frame-executive",
+          "version": "41.0.2",
+          "published": "2025-11-11",
+          "prs": [
+            10235
+          ]
+        },
+        {
+          "name": "pallet-revive",
+          "version": "0.7.1",
+          "published": "2025-11-11",
+          "prs": []
+        },
+        {
+          "name": "cumulus-pallet-parachain-system",
+          "version": "0.21.1",
+          "published": "2025-11-11",
+          "prs": [
+            10149
+          ]
+        },
+        {
+          "name": "frame-system",
+          "version": "41.0.2",
+          "published": "2025-11-11",
+          "prs": [
+            10180,
+            10235
+          ]
+        },
+        {
+          "name": "sc-network-statement",
+          "version": "0.33.2",
+          "published": "2025-11-11",
+          "prs": [
+            9912,
+            9965
+          ]
+        },
+        {
+          "name": "sc-statement-store",
+          "version": "22.3.0",
+          "published": "2025-11-11",
+          "prs": [
+            9912,
+            9965
+          ]
+        },
+        {
+          "name": "polkadot-runtime-parachains",
+          "version": "20.0.3",
+          "published": "2025-11-11",
+          "prs": []
+        }
+      ]
+    },
+    {
+      "tag": "polkadot-stable2509-2",
+      "prev_tag": "polkadot-stable2509-1",
+      "crates": [
+        {
+          "name": "sc-tracing",
+          "version": "42.0.1",
+          "published": "2025-11-17",
+          "prs": [
+            9871
+          ]
+        },
+        {
+          "name": "pallet-election-provider-multi-block",
+          "version": "0.4.1",
+          "published": "2025-11-17",
+          "prs": [
+            10248
+          ]
+        },
+        {
+          "name": "sc-statement-store",
+          "version": "24.2.0",
+          "published": "2025-11-17",
+          "prs": [
+            9965
+          ]
+        },
+        {
+          "name": "frame-executive",
+          "version": "43.0.1",
+          "published": "2025-11-17",
+          "prs": [
+            10235
+          ]
+        },
+        {
+          "name": "cumulus-pallet-parachain-system",
+          "version": "0.23.1",
+          "published": "2025-11-17",
+          "prs": [
+            10149,
+            10280
+          ]
+        },
+        {
+          "name": "polkadot-collator-protocol",
+          "version": "26.0.1",
+          "published": "2025-11-17",
+          "prs": [
+            10163
+          ]
+        },
+        {
+          "name": "pallet-proxy",
+          "version": "43.1.0",
+          "published": "2025-11-17",
+          "prs": [
+            10073
+          ]
+        },
+        {
+          "name": "pallet-revive",
+          "version": "0.10.1",
+          "published": "2025-11-17",
+          "prs": []
+        },
+        {
+          "name": "polkadot-runtime-parachains",
+          "version": "22.0.1",
+          "published": "2025-11-17",
+          "prs": []
+        },
+        {
+          "name": "sc-network-statement",
+          "version": "0.35.2",
+          "published": "2025-11-17",
+          "prs": [
+            9965
+          ]
+        },
+        {
+          "name": "cumulus-client-service",
+          "version": "0.28.1",
+          "published": "2025-11-17",
+          "prs": [
+            9581,
+            9871
+          ]
+        },
+        {
+          "name": "pallet-bags-list",
+          "version": "42.1.0",
+          "published": "2025-11-17",
+          "prs": [
+            9725
+          ]
+        },
+        {
+          "name": "frame-system",
+          "version": "43.0.1",
+          "published": "2025-11-17",
+          "prs": [
+            10180,
+            10235
+          ]
+        },
+        {
+          "name": "asset-hub-westend-runtime",
+          "version": "0.36.1",
+          "published": "2025-11-17",
+          "prs": [
+            9725,
+            10248
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "polkadot-stable2506-6",
+      "prev_tag": "polkadot-stable2506-5",
+      "crates": [
+        {
+          "name": "cumulus-pallet-parachain-system",
+          "version": "0.21.2",
+          "published": "2025-12-05",
+          "prs": [
+            10280
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "polkadot-stable2509-3",
+      "prev_tag": "polkadot-stable2509-2",
+      "crates": [
+        {
+          "name": "cumulus-client-parachain-inherent",
+          "version": "0.20.1",
+          "published": "2025-12-17",
+          "prs": [
+            10541
+          ]
+        },
+        {
+          "name": "cumulus-pallet-parachain-system",
+          "version": "0.23.2",
+          "published": "2025-12-17",
+          "prs": [
+            10541
+          ]
+        },
+        {
+          "name": "sc-rpc-spec-v2",
+          "version": "0.53.1",
+          "published": "2025-12-17",
+          "prs": [
+            10525
+          ]
+        },
+        {
+          "name": "pallet-staking-async",
+          "version": "0.5.2",
+          "published": "2025-12-17",
+          "prs": [
+            10311
+          ]
+        },
+        {
+          "name": "parachains-runtimes-test-utils",
+          "version": "26.0.1",
+          "published": "2025-12-17",
+          "prs": [
+            10541
+          ]
+        },
+        {
+          "name": "pallet-staking-async-rc-client",
+          "version": "0.4.1",
+          "published": "2025-12-17",
+          "prs": [
+            10311
+          ]
+        },
+        {
+          "name": "cumulus-client-consensus-aura",
+          "version": "0.26.2",
+          "published": "2025-12-17",
+          "prs": [
+            10154
+          ]
+        },
+        {
+          "name": "cumulus-test-relay-sproof-builder",
+          "version": "0.22.1",
+          "published": "2025-12-17",
+          "prs": [
+            10541
+          ]
+        },
+        {
+          "name": "asset-hub-westend-runtime",
+          "version": "0.36.2",
+          "published": "2025-12-17",
+          "prs": [
+            10311,
+            10541
+          ]
+        },
+        {
+          "name": "xcm-emulator",
+          "version": "0.23.1",
+          "published": "2025-12-17",
+          "prs": [
+            10541
+          ]
+        },
+        {
+          "name": "sc-network",
+          "version": "0.53.1",
+          "published": "2025-12-17",
+          "prs": [
+            10362
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "polkadot-stable2512",
+      "prev_tag": "polkadot-stable2509-5",
+      "crates": [
+        {
+          "name": "snowbridge-pallet-outbound-queue-v2",
+          "version": "0.7.0",
+          "published": "2025-12-22",
+          "prs": [
+            8106
+          ]
+        },
+        {
+          "name": "snowbridge-core",
+          "version": "0.18.0",
+          "published": "2025-12-22",
+          "prs": [
+            8106,
+            9279
+          ]
+        },
+        {
+          "name": "cumulus-pallet-weight-reclaim",
+          "version": "0.7.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "bp-polkadot-core",
+          "version": "0.25.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "cumulus-client-cli",
+          "version": "0.28.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "cumulus-client-bootnodes",
+          "version": "0.7.0",
+          "published": "2025-12-22",
+          "prs": [
+            10048
+          ]
+        },
+        {
+          "name": "cumulus-relay-chain-streams",
+          "version": "0.6.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "snowbridge-pallet-system",
+          "version": "0.18.0",
+          "published": "2025-12-22",
+          "prs": [
+            9279
+          ]
+        },
+        {
+          "name": "snowbridge-pallet-system-frontend",
+          "version": "0.7.0",
+          "published": "2025-12-22",
+          "prs": [
+            9279
+          ]
+        },
+        {
+          "name": "cumulus-pov-validator",
+          "version": "0.10.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "snowbridge-pallet-inbound-queue-fixtures",
+          "version": "0.26.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "cumulus-client-pov-recovery",
+          "version": "0.28.0",
+          "published": "2025-12-22",
+          "prs": [
+            9904
+          ]
+        },
+        {
+          "name": "pallet-bridge-parachains",
+          "version": "0.25.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "pallet-bridge-relayers",
+          "version": "0.25.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "bp-relayers",
+          "version": "0.25.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "snowbridge-pallet-inbound-queue",
+          "version": "0.18.0",
+          "published": "2025-12-22",
+          "prs": [
+            9279,
+            9938,
+            9948
+          ]
+        },
+        {
+          "name": "snowbridge-outbound-queue-v2-runtime-api",
+          "version": "0.7.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "snowbridge-ethereum",
+          "version": "0.16.0",
+          "published": "2025-12-22",
+          "prs": [
+            9204,
+            10090
+          ]
+        },
+        {
+          "name": "cumulus-client-parachain-inherent",
+          "version": "0.22.0",
+          "published": "2025-12-22",
+          "prs": [
+            9990,
+            10145,
+            10541
+          ]
+        },
+        {
+          "name": "cumulus-relay-chain-rpc-interface",
+          "version": "0.28.0",
+          "published": "2025-12-22",
+          "prs": [
+            9798
+          ]
+        },
+        {
+          "name": "cumulus-client-service",
+          "version": "0.31.0",
+          "published": "2025-12-22",
+          "prs": [
+            9480,
+            9869,
+            9871,
+            9929,
+            10286,
+            10333
+          ]
+        },
+        {
+          "name": "cumulus-client-collator",
+          "version": "0.28.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "snowbridge-pallet-ethereum-client-fixtures",
+          "version": "0.26.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "pallet-bridge-grandpa",
+          "version": "0.25.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "bp-test-utils",
+          "version": "0.25.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "snowbridge-pallet-ethereum-client",
+          "version": "0.18.0",
+          "published": "2025-12-22",
+          "prs": [
+            9279,
+            9938,
+            9952
+          ]
+        },
+        {
+          "name": "snowbridge-test-utils",
+          "version": "0.8.0",
+          "published": "2025-12-22",
+          "prs": [
+            9279
+          ]
+        },
+        {
+          "name": "cumulus-client-consensus-aura",
+          "version": "0.28.0",
+          "published": "2025-12-22",
+          "prs": [
+            9480,
+            9869,
+            9906,
+            9929,
+            9990,
+            10072,
+            10145,
+            10154,
+            10263,
+            10305
+          ]
+        },
+        {
+          "name": "cumulus-client-consensus-common",
+          "version": "0.28.0",
+          "published": "2025-12-22",
+          "prs": [
+            9869,
+            10333
+          ]
+        },
+        {
+          "name": "cumulus-relay-chain-inprocess-interface",
+          "version": "0.31.0",
+          "published": "2025-12-22",
+          "prs": [
+            10286
+          ]
+        },
+        {
+          "name": "bp-header-chain",
+          "version": "0.25.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "snowbridge-beacon-primitives",
+          "version": "0.18.0",
+          "published": "2025-12-22",
+          "prs": [
+            9204,
+            9938
+          ]
+        },
+        {
+          "name": "cumulus-pallet-xcm",
+          "version": "0.24.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "bp-bridge-hub-cumulus",
+          "version": "0.27.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "bp-polkadot-bulletin",
+          "version": "0.22.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "snowbridge-pallet-outbound-queue",
+          "version": "0.18.0",
+          "published": "2025-12-22",
+          "prs": [
+            8106
+          ]
+        },
+        {
+          "name": "cumulus-pallet-dmp-queue",
+          "version": "0.25.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "snowbridge-outbound-queue-primitives",
+          "version": "0.7.0",
+          "published": "2025-12-22",
+          "prs": [
+            9279
+          ]
+        },
+        {
+          "name": "snowbridge-runtime-test-common",
+          "version": "0.21.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "cumulus-pallet-parachain-system-proc-macro",
+          "version": "0.7.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "snowbridge-pallet-inbound-queue-v2-fixtures",
+          "version": "0.7.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "cumulus-pallet-session-benchmarking",
+          "version": "26.0.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "snowbridge-pallet-system-v2",
+          "version": "0.7.0",
+          "published": "2025-12-22",
+          "prs": [
+            9279
+          ]
+        },
+        {
+          "name": "cumulus-pallet-parachain-system",
+          "version": "0.25.0",
+          "published": "2025-12-22",
+          "prs": [
+            9480,
+            9967,
+            10145,
+            10149,
+            10280,
+            10541
+          ]
+        },
+        {
+          "name": "snowbridge-inbound-queue-primitives",
+          "version": "0.7.0",
+          "published": "2025-12-22",
+          "prs": [
+            9279,
+            9510,
+            9948
+          ]
+        },
+        {
+          "name": "cumulus-relay-chain-interface",
+          "version": "0.28.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "snowbridge-system-runtime-api",
+          "version": "0.18.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "bridge-runtime-common",
+          "version": "0.26.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "cumulus-client-consensus-relay-chain",
+          "version": "0.28.0",
+          "published": "2025-12-22",
+          "prs": [
+            9869
+          ]
+        },
+        {
+          "name": "snowbridge-runtime-common",
+          "version": "0.19.0",
+          "published": "2025-12-22",
+          "prs": [
+            9279
+          ]
+        },
+        {
+          "name": "cumulus-client-consensus-proposer",
+          "version": "0.24.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "pallet-xcm-bridge-hub-router",
+          "version": "0.23.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "cumulus-client-network",
+          "version": "0.28.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "cumulus-relay-chain-minimal-node",
+          "version": "0.31.0",
+          "published": "2025-12-22",
+          "prs": [
+            9798,
+            10286
+          ]
+        },
+        {
+          "name": "bp-xcm-bridge-hub-router",
+          "version": "0.22.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "bp-xcm-bridge-hub",
+          "version": "0.11.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "cumulus-pallet-aura-ext",
+          "version": "0.25.0",
+          "published": "2025-12-22",
+          "prs": [
+            9480,
+            9712
+          ]
+        },
+        {
+          "name": "bp-messages",
+          "version": "0.25.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "pallet-xcm-bridge-hub",
+          "version": "0.21.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "snowbridge-merkle-tree",
+          "version": "0.6.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "snowbridge-system-v2-runtime-api",
+          "version": "0.7.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "bp-parachains",
+          "version": "0.25.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "snowbridge-pallet-inbound-queue-v2",
+          "version": "0.7.0",
+          "published": "2025-12-22",
+          "prs": [
+            9279,
+            9510,
+            9948
+          ]
+        },
+        {
+          "name": "pallet-bridge-messages",
+          "version": "0.25.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "pallet-collator-selection",
+          "version": "26.0.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "cumulus-pallet-solo-to-para",
+          "version": "0.25.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "pallet-ah-ops",
+          "version": "0.5.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "snowbridge-verification-primitives",
+          "version": "0.7.0",
+          "published": "2025-12-22",
+          "prs": [
+            9204
+          ]
+        },
+        {
+          "name": "cumulus-pallet-xcmp-queue",
+          "version": "0.25.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "bp-runtime",
+          "version": "0.25.0",
+          "published": "2025-12-22",
+          "prs": []
+        },
+        {
+          "name": "snowbridge-outbound-queue-runtime-api",
+          "version": "0.18.0",
+          "published": "2025-12-22",
+          "prs": []
+        }
+      ]
+    },
+    {
+      "tag": "polkadot-stable2506-7",
+      "prev_tag": "polkadot-stable2506-6",
+      "crates": [
+        {
+          "name": "frame-support",
+          "version": "41.0.1",
+          "published": "2026-01-08",
+          "prs": []
+        },
+        {
+          "name": "pallet-example-view-functions",
+          "version": "0.3.1",
+          "published": "2026-01-08",
+          "prs": []
+        },
+        {
+          "name": "sp-metadata-ir",
+          "version": "0.11.1",
+          "published": "2026-01-08",
+          "prs": [
+            10592
+          ]
+        },
+        {
+          "name": "sc-tracing",
+          "version": "40.0.2",
+          "published": "2026-01-08",
+          "prs": []
+        },
+        {
+          "name": "substrate-wasm-builder",
+          "version": "27.0.1",
+          "published": "2026-01-08",
+          "prs": []
+        }
+      ]
+    },
+    {
+      "tag": "polkadot-stable2509-4",
+      "prev_tag": "polkadot-stable2509-3",
+      "crates": [
+        {
+          "name": "sp-metadata-ir",
+          "version": "0.12.2",
+          "published": "2026-01-15",
+          "prs": [
+            10592
+          ]
+        },
+        {
+          "name": "pallet-example-view-functions",
+          "version": "0.5.1",
+          "published": "2026-01-15",
+          "prs": []
+        },
+        {
+          "name": "frame-support",
+          "version": "43.0.1",
+          "published": "2026-01-15",
+          "prs": []
+        },
+        {
+          "name": "substrate-wasm-builder",
+          "version": "29.0.1",
+          "published": "2026-01-15",
+          "prs": []
+        }
+      ]
+    },
+    {
+      "tag": "polkadot-stable2512-1",
+      "prev_tag": "polkadot-stable2512",
+      "crates": [
+        {
+          "name": "pallet-contracts",
+          "version": "45.0.1",
+          "published": "2026-01-26",
+          "prs": [
+            10708
+          ]
+        },
+        {
+          "name": "emulated-integration-tests-common",
+          "version": "27.0.1",
+          "published": "2026-01-26",
+          "prs": [
+            10711
+          ]
+        },
+        {
+          "name": "pallet-asset-conversion-tx-payment",
+          "version": "27.0.1",
+          "published": "2026-01-26",
+          "prs": [
+            10646
+          ]
+        },
+        {
+          "name": "parachains-common",
+          "version": "27.1.0",
+          "published": "2026-01-26",
+          "prs": [
+            10064,
+            10657
+          ]
+        },
+        {
+          "name": "pallet-revive-proc-macro",
+          "version": "0.7.1",
+          "published": "2026-01-26",
+          "prs": [
+            10708
+          ]
+        },
+        {
+          "name": "frame-benchmarking",
+          "version": "45.0.1",
+          "published": "2026-01-26",
+          "prs": [
+            10802
+          ]
+        },
+        {
+          "name": "assets-common",
+          "version": "0.27.1",
+          "published": "2026-01-26",
+          "prs": [
+            10708,
+            10711
+          ]
+        },
+        {
+          "name": "pallet-revive",
+          "version": "0.12.2",
+          "published": "2026-01-26",
+          "prs": [
+            10476,
+            10708,
+            10740,
+            10861
+          ]
+        },
+        {
+          "name": "substrate-wasm-builder",
+          "version": "31.1.0",
+          "published": "2026-01-26",
+          "prs": [
+            10708
+          ]
+        },
+        {
+          "name": "pallet-staking-async",
+          "version": "0.9.0",
+          "published": "2026-01-26",
+          "prs": [
+            10502,
+            10576
+          ]
+        },
+        {
+          "name": "asset-test-utils",
+          "version": "29.0.1",
+          "published": "2026-01-26",
+          "prs": [
+            10711
+          ]
+        },
+        {
+          "name": "asset-hub-westend-runtime",
+          "version": "0.40.0",
+          "published": "2026-01-26",
+          "prs": [
+            10064,
+            10502,
+            10576,
+            10708,
+            10711,
+            10802
+          ]
+        },
+        {
+          "name": "westend-runtime",
+          "version": "30.1.0",
+          "published": "2026-01-26",
+          "prs": [
+            10576
+          ]
+        },
+        {
+          "name": "sp-staking",
+          "version": "42.1.0",
+          "published": "2026-01-26",
+          "prs": [
+            10502
+          ]
+        },
+        {
+          "name": "pallet-revive-fixtures",
+          "version": "0.9.1",
+          "published": "2026-01-26",
+          "prs": [
+            10708
+          ]
+        },
+        {
+          "name": "pallet-multi-asset-bounties",
+          "version": "0.2.1",
+          "published": "2026-01-26",
+          "prs": [
+            10064
+          ]
+        },
+        {
+          "name": "pallet-revive-uapi",
+          "version": "0.10.1",
+          "published": "2026-01-26",
+          "prs": [
+            10708
+          ]
+        },
+        {
+          "name": "penpal-runtime",
+          "version": "0.35.1",
+          "published": "2026-01-26",
+          "prs": [
+            10708
+          ]
+        },
+        {
+          "name": "polkadot-sdk",
+          "version": "2512.1.0",
+          "published": "2026-01-26",
+          "prs": [
+            10576
+          ]
+        },
+        {
+          "name": "asset-hub-rococo-runtime",
+          "version": "0.31.1",
+          "published": "2026-01-26",
+          "prs": [
+            10711
+          ]
+        },
+        {
+          "name": "sc-transaction-pool",
+          "version": "44.1.0",
+          "published": "2026-01-26",
+          "prs": [
+            10312
+          ]
+        },
+        {
+          "name": "pallet-broker",
+          "version": "0.24.1",
+          "published": "2026-01-26",
+          "prs": [
+            10792
+          ]
+        },
+        {
+          "name": "pallet-xcm-precompiles",
+          "version": "0.3.1",
+          "published": "2026-01-26",
+          "prs": [
+            10708
+          ]
+        },
+        {
+          "name": "sc-network-types",
+          "version": "0.20.1",
+          "published": "2026-01-26",
+          "prs": [
+            10859
+          ]
+        },
+        {
+          "name": "pallet-nomination-pools",
+          "version": "43.0.1",
+          "published": "2026-01-26",
+          "prs": [
+            10502
+          ]
+        },
+        {
+          "name": "sc-network",
+          "version": "0.55.1",
+          "published": "2026-01-26",
+          "prs": [
+            10859
+          ]
+        },
+        {
+          "name": "pallet-assets",
+          "version": "48.1.0",
+          "published": "2026-01-26",
+          "prs": [
+            10711
+          ]
+        },
+        {
+          "name": "frame-support",
+          "version": "45.1.0",
+          "published": "2026-01-26",
+          "prs": [
+            10064
+          ]
+        },
+        {
+          "name": "pallet-assets-precompiles",
+          "version": "0.4.1",
+          "published": "2026-01-26",
+          "prs": [
+            10708
+          ]
+        },
+        {
+          "name": "frame-executive",
+          "version": "45.0.1",
+          "published": "2026-01-26",
+          "prs": [
+            10365
+          ]
+        }
+      ]
+    }
+  ]
+}

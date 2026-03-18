@@ -1,14 +1,28 @@
+#![deny(clippy::missing_docs_in_private_items)]
+
+//! PR Deployment Tracker for polkadot-sdk releases.
+//!
+//! Tracks when PRs merged in polkadot-sdk reach downstream runtimes and go live on-chain,
+//! annotating a GitHub Project V2 with release tags and per-runtime deployment status.
+
+/// Downstream runtime consumption checks.
 mod downstream;
+/// GitHub REST and GraphQL API client.
 mod github;
+/// On-chain spec version tracking via Substrate RPC.
 mod onchain;
+/// GitHub Project V2 annotation logic.
 mod project;
+/// Release discovery and PR resolution.
 mod releases;
+/// Persistent tracker state.
 mod state;
 
 use anyhow::{Context, Result};
 use clap::Parser;
 use std::path::PathBuf;
 
+/// CLI arguments.
 #[derive(Parser)]
 #[clap(name = "tracker", about = "PR Deployment Tracker for polkadot-sdk")]
 struct Cli {
@@ -25,6 +39,7 @@ struct Cli {
     state_path: Option<PathBuf>,
 }
 
+/// Entry point: parse CLI args, load state, run pipeline steps, save state.
 #[tokio::main]
 async fn main() -> Result<()> {
     let cli = Cli::parse();
@@ -33,11 +48,10 @@ async fn main() -> Result<()> {
     let gh = github::GitHubClient::new(token);
 
     let state_path = cli.state_path.unwrap_or_else(|| {
-        // Default: state.json in repo root (one level up from tracker/)
         let mut p = std::env::current_dir().unwrap();
-        // If we're inside tracker/, go up
-        if p.ends_with("tracker") {
-            p.pop();
+        // If we're in the repo root, look inside tracker/
+        if !p.ends_with("tracker") {
+            p.push("tracker");
         }
         p.join("state.json")
     });
@@ -45,8 +59,10 @@ async fn main() -> Result<()> {
     eprintln!("Loading state from {}", state_path.display());
     let mut state = state::State::load(&state_path)?;
 
+    // releases-v1.json lives in the repo root (one level up from tracker/)
     let releases_path = state_path
         .parent()
+        .and_then(|p| p.parent())
         .unwrap_or(state_path.as_path())
         .join("releases-v1.json");
     let releases_json: serde_json::Value =
@@ -71,6 +87,11 @@ async fn main() -> Result<()> {
     }
 
     if run_all || step == Some("annotate") {
+        // Downstream data is transient, always fetch before annotating
+        if step == Some("annotate") {
+            eprintln!("\n=== Fetching downstream state ===");
+            downstream::check_downstream(&mut state, &gh, true).await?;
+        }
         eprintln!("\n=== Step 6: Annotate GitHub Project ===");
         project::annotate(&state, &gh, cli.dry_run).await?;
     }

@@ -9,14 +9,19 @@ use crate::state::{CrateRelease, Release, State};
 /// Index mapping PR number -> full path in prdoc/ (built from master tree).
 type PrdocIndex = HashMap<u64, String>;
 
+/// GitHub owner for polkadot-sdk.
 const SDK_OWNER: &str = "paritytech";
+/// GitHub repo name.
 const SDK_REPO: &str = "polkadot-sdk";
 
 /// A published tag from releases-v1.json with its publish date.
 #[derive(Debug, Clone)]
 struct PublishedTag {
+    /// Git tag (e.g. "polkadot-stable2506-9").
     tag: String,
+    /// Release name (e.g. "stable2506-9").
     name: String,
+    /// Publish date (ISO 8601).
     date: String,
 }
 
@@ -129,6 +134,7 @@ fn collect_published_tags(releases_json: &Value) -> Result<Vec<PublishedTag>> {
     Ok(tags)
 }
 
+/// Check if a release entry has state "released" or "deprecated".
 fn is_released(entry: &Value) -> bool {
     match &entry["state"] {
         Value::String(s) => s == "released",
@@ -138,6 +144,7 @@ fn is_released(entry: &Value) -> bool {
     }
 }
 
+/// Extract tag, name, and date from a release JSON entry.
 fn extract_tag_info(entry: &Value, publish: &Value) -> Option<PublishedTag> {
     let tag = publish.get("tag")?.as_str()?;
     let date = publish.get("when")?.as_str()?;
@@ -187,8 +194,8 @@ fn find_prev_tag(name: &str, all_tags: &[PublishedTag]) -> Result<String> {
             // Find latest tag from previous base
             let prev = all_tags
                 .iter()
-                .filter(|t| parse_release_name(&t.name).0 == prev_base)
-                .last();
+                .rev()
+                .find(|t| parse_release_name(&t.name).0 == prev_base);
             if let Some(p) = prev {
                 return Ok(p.tag.clone());
             }
@@ -199,6 +206,7 @@ fn find_prev_tag(name: &str, all_tags: &[PublishedTag]) -> Result<String> {
     anyhow::bail!("cannot determine prev_tag for {name}")
 }
 
+/// Parse "stable2506-9" into ("stable2506", 9). Returns patch 0 if no suffix.
 fn parse_release_name(name: &str) -> (String, u32) {
     if let Some(pos) = name.rfind('-') {
         if let Ok(n) = name[pos + 1..].parse::<u32>() {
@@ -275,6 +283,7 @@ async fn process_tag(
     })
 }
 
+/// Extract paths of changed Cargo.toml files from a compare response.
 fn find_changed_cargo_tomls(compare: &Value) -> Vec<String> {
     let mut paths = Vec::new();
     if let Some(files) = compare["files"].as_array() {
@@ -289,6 +298,7 @@ fn find_changed_cargo_tomls(compare: &Value) -> Vec<String> {
     paths
 }
 
+/// Fetch a Cargo.toml at a given ref and return `(name, version)`.
 async fn get_crate_version(
     gh: &GitHubClient,
     toml_path: &str,
@@ -315,6 +325,7 @@ async fn get_crate_version(
     }
 }
 
+/// Extract PR numbers from commit messages in a compare response.
 fn extract_pr_numbers(compare: &Value) -> Vec<u64> {
     let backport_re = Regex::new(r"\[stable\d{4}\] Backport #(\d+)").unwrap();
     let merge_re = Regex::new(r"\(#(\d+)\)\s*$").unwrap();
@@ -370,6 +381,7 @@ async fn build_prdoc_index(gh: &GitHubClient) -> Result<PrdocIndex> {
     Ok(index)
 }
 
+/// Fetch and parse the prdoc file for a PR, returning affected crate names.
 async fn fetch_prdoc_crates(
     gh: &GitHubClient,
     pr_number: u64,
@@ -386,6 +398,7 @@ async fn fetch_prdoc_crates(
     parse_prdoc_crates(&content)
 }
 
+/// Parse crate names from a prdoc YAML file.
 fn parse_prdoc_crates(yaml_content: &str) -> Result<Vec<String>> {
     let doc: Value = serde_yaml::from_str(yaml_content)?;
     let mut crates = Vec::new();

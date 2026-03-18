@@ -4,12 +4,17 @@ use std::collections::{HashMap, HashSet};
 use crate::github::GitHubClient;
 use crate::state::State;
 
+/// Fetched GitHub Project V2 metadata.
 struct ProjectInfo {
+    /// Global node ID of the project.
     project_id: String,
+    /// Field name -> field info.
     fields: HashMap<String, FieldInfo>,
 }
 
+/// A single Project V2 field.
 struct FieldInfo {
+    /// Global node ID of the field.
     id: String,
 }
 
@@ -40,7 +45,19 @@ pub async fn annotate(state: &State, gh: &GitHubClient, dry_run: bool) -> Result
 
     if dry_run {
         for (pr, tags) in &pr_tags {
-            eprintln!("    PR #{pr}: {}", tags.join(", "));
+            let mut parts = Vec::new();
+            for runtime in &state.runtimes {
+                let status = compute_runtime_status(state, runtime, *pr);
+                if !status.is_empty() {
+                    parts.push(format!("{}={}", runtime.field_name, status));
+                }
+            }
+            let status_str = if parts.is_empty() {
+                String::new()
+            } else {
+                format!(" [{}]", parts.join(", "))
+            };
+            eprintln!("    PR #{pr}: {}{status_str}", tags.join(", "));
         }
         return Ok(());
     }
@@ -84,58 +101,110 @@ pub async fn annotate(state: &State, gh: &GitHubClient, dry_run: bool) -> Result
         let tags_value = tags.join(", ");
         set_field_value(gh, &project.project_id, &item_id, &release_tags_field, &tags_value).await?;
 
-        // Set per-runtime status fields
+        // Set per-runtime status fields (always set, even empty, to clear stale values)
+        let mut status_parts = Vec::new();
         for runtime in &state.runtimes {
             if let Some(field_id) = runtime_field_ids.get(&runtime.field_name) {
                 let status = compute_runtime_status(state, runtime, pr_number);
+                set_field_value(gh, &project.project_id, &item_id, field_id, &status).await?;
                 if !status.is_empty() {
-                    set_field_value(gh, &project.project_id, &item_id, field_id, &status).await?;
+                    status_parts.push(format!("{}={}", runtime.field_name, status));
                 }
             }
         }
 
-        eprintln!("    PR #{pr_number}: {tags_value}");
+        let status_str = if status_parts.is_empty() {
+            String::new()
+        } else {
+            format!(" [{}]", status_parts.join(", "))
+        };
+        eprintln!("    PR #{pr_number}: {tags_value}{status_str}");
     }
 
     Ok(())
 }
 
+/// Compute the per-runtime status for a PR following the state machine:
+///   (empty)                        - crates not picked up by downstream
+///   pending > v{onchain_spec}      - picked up, spec not bumped
+///   pending v{new_spec}            - picked up, spec bumped, not enacted on-chain
+///   v{spec}                        - enacted on-chain
+/// Partial adoption appends ` (N/M crates)`.
 fn compute_runtime_status(
     state: &State,
     runtime: &crate::state::Runtime,
     pr_number: u64,
 ) -> String {
-    // Find which crates from this PR are relevant to this runtime
-    let mut pr_crates: Vec<String> = Vec::new();
+    // Collect crate name -> release version for crates touched by this PR
+    let mut pr_release_crates: HashMap<String, String> = HashMap::new();
     for release in &state.releases {
         for crate_rel in &release.crates {
             if crate_rel.prs.contains(&pr_number) {
-                if !pr_crates.contains(&crate_rel.name) {
-                    pr_crates.push(crate_rel.name.clone());
-                }
+                pr_release_crates
+                    .entry(crate_rel.name.clone())
+                    .or_insert_with(|| crate_rel.version.clone());
             }
         }
     }
 
-    if pr_crates.is_empty() {
+    if pr_release_crates.is_empty() {
         return String::new();
     }
 
-    let latest_spec = runtime
+    // Filter to crates that are actual dependencies of this runtime
+    let relevant: Vec<_> = pr_release_crates
+        .keys()
+        .filter(|name| runtime.downstream.deps.contains(name.as_str()))
+        .cloned()
+        .collect();
+
+    if relevant.is_empty() {
+        return String::new();
+    }
+
+    // Count how many relevant crates have downstream version >= release version,
+    // meaning the PR's changes have been incorporated (possibly via a newer publish).
+    let adopted = relevant
+        .iter()
+        .filter(|name| {
+            let release_ver = pr_release_crates.get(name.as_str());
+            let lock_ver = runtime.downstream.versions.get(name.as_str());
+            matches!((release_ver, lock_ver), (Some(r), Some(l)) if semver_gte(l, r))
+        })
+        .count();
+    let total = relevant.len();
+
+    if adopted == 0 {
+        return String::new();
+    }
+
+    let partial_suffix = if adopted < total {
+        format!(" ({adopted}/{total} crates)")
+    } else {
+        String::new()
+    };
+
+    let onchain_spec = runtime
         .upgrades
         .iter()
         .map(|u| u.spec_version)
         .max()
         .unwrap_or(0);
+    let code_spec = runtime.downstream.spec_version.unwrap_or(0);
 
-    // For now, just report the latest on-chain spec if any upgrades exist
-    if latest_spec > 0 {
-        format!("v{latest_spec}")
+    if code_spec > onchain_spec {
+        // Spec bumped in code but not yet enacted
+        format!("pending v{code_spec}{partial_suffix}")
+    } else if onchain_spec > 0 {
+        // Check if the adoption happened before or at the current on-chain spec
+        format!("v{onchain_spec}{partial_suffix}")
     } else {
-        String::new()
+        // Picked up but no spec bump yet
+        format!("pending > v{code_spec}{partial_suffix}")
     }
 }
 
+/// Fetch project ID and field definitions via GraphQL.
 async fn fetch_project_info(gh: &GitHubClient, org: &str, number: u64) -> Result<ProjectInfo> {
     let query = r#"
         query($org: String!, $number: Int!) {
@@ -193,6 +262,7 @@ async fn fetch_project_info(gh: &GitHubClient, org: &str, number: u64) -> Result
     Ok(ProjectInfo { project_id, fields })
 }
 
+/// Create a TEXT field on a Project V2, returning its node ID.
 async fn create_text_field(gh: &GitHubClient, project_id: &str, name: &str) -> Result<String> {
     let query = r#"
         mutation($projectId: ID!, $name: String!) {
@@ -222,6 +292,7 @@ async fn create_text_field(gh: &GitHubClient, project_id: &str, name: &str) -> R
         .context("no field ID in response")
 }
 
+/// Fetch the GraphQL node ID of a pull request.
 async fn get_pr_node_id(gh: &GitHubClient, owner: &str, repo: &str, number: u64) -> Result<String> {
     let query = r#"
         query($owner: String!, $repo: String!, $number: Int!) {
@@ -246,6 +317,7 @@ async fn get_pr_node_id(gh: &GitHubClient, owner: &str, repo: &str, number: u64)
         .context("no PR node ID")
 }
 
+/// Add a content node (PR/issue) to a Project V2, returning the item ID.
 async fn add_item_to_project(
     gh: &GitHubClient,
     project_id: &str,
@@ -276,6 +348,7 @@ async fn add_item_to_project(
         .context("no item ID in response")
 }
 
+/// Set a text field value on a project item.
 async fn set_field_value(
     gh: &GitHubClient,
     project_id: &str,
@@ -307,4 +380,16 @@ async fn set_field_value(
 
     gh.graphql_query(query, vars).await?;
     Ok(())
+}
+
+/// Compare two semver-like version strings: is `a >= b`?
+fn semver_gte(a: &str, b: &str) -> bool {
+    let parse = |s: &str| -> Vec<u64> {
+        s.split('.')
+            .filter_map(|p| p.parse::<u64>().ok())
+            .collect()
+    };
+    let va = parse(a);
+    let vb = parse(b);
+    va >= vb
 }

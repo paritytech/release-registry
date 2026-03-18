@@ -10,17 +10,23 @@ use subxt::{config::PolkadotConfig, OnlineClient};
 use crate::github::GitHubClient;
 use crate::state::{Runtime, Upgrade};
 
+/// Generated runtime types from metadata.
 #[subxt::subxt(runtime_metadata_path = "./metadata.scale")]
 mod substrate {}
 
+/// Shorthand for legacy RPC methods on Polkadot-compatible chains.
 type Rpc = LegacyRpcMethods<RpcConfigFor<PolkadotConfig>>;
 
+/// Substrate chain RPC client.
 struct ChainClient {
+    /// Legacy RPC methods (block hash, runtime version, etc.).
     rpc: Rpc,
+    /// High-level online client for storage queries.
     client: OnlineClient<PolkadotConfig>,
 }
 
 impl ChainClient {
+    /// Connect to a chain via WebSocket URL.
     async fn connect(url: &str) -> Result<Self> {
         let rpc_client = RpcClient::from_url(url).await?;
         let rpc = Rpc::new(rpc_client.clone());
@@ -28,11 +34,13 @@ impl ChainClient {
         Ok(Self { rpc, client })
     }
 
+    /// Get the current chain head block number.
     async fn get_head_number(&self) -> Result<u32> {
         let block = self.client.at_current_block().await?;
         Ok(block.block_number() as u32)
     }
 
+    /// Get block hash by number.
     async fn get_block_hash(&self, number: u32) -> Result<H256> {
         self.rpc
             .chain_get_block_hash(Some(number.into()))
@@ -40,11 +48,13 @@ impl ChainClient {
             .ok_or_else(|| anyhow::anyhow!("no hash for block {number}"))
     }
 
+    /// Get runtime spec version at a given block hash.
     async fn get_spec_version(&self, hash: H256) -> Result<u32> {
         let version = self.rpc.state_get_runtime_version(Some(hash)).await?;
         Ok(version.spec_version)
     }
 
+    /// Read the `Timestamp::now` storage value at a given block.
     async fn get_timestamp(&self, block_hash: H256) -> Result<DateTime<Utc>> {
         let addr = substrate::storage().timestamp().now();
         let ms: u64 = self

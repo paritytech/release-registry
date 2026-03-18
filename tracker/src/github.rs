@@ -3,12 +3,16 @@ use reqwest::header::{ACCEPT, AUTHORIZATION, USER_AGENT};
 use serde::de::DeserializeOwned;
 use serde_json::Value;
 
+/// HTTP client for GitHub REST and GraphQL APIs.
 pub struct GitHubClient {
+    /// Underlying HTTP client.
     client: reqwest::Client,
+    /// Personal access token.
     token: String,
 }
 
 impl GitHubClient {
+    /// Create a new client with the given token.
     pub fn new(token: String) -> Self {
         Self {
             client: reqwest::Client::new(),
@@ -16,6 +20,7 @@ impl GitHubClient {
         }
     }
 
+    /// GET a URL and deserialize the JSON response.
     pub async fn get_json<T: DeserializeOwned>(&self, url: &str) -> Result<T> {
         let resp = self
             .client
@@ -136,6 +141,7 @@ impl GitHubClient {
     }
 }
 
+/// Decode a base64-encoded string without external dependencies.
 fn base64_decode(input: &str) -> Result<Vec<u8>> {
     // Simple base64 decoder (avoid adding a dependency for this)
     let alphabet = b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
