@@ -6,8 +6,12 @@ on:
 jobs:
   track:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: dtolnay/rust-toolchain@stable
       - uses: Swatinem/rust-cache@v2
         with:
@@ -16,8 +20,14 @@ jobs:
       - run: ./tracker/target/release/tracker
         env:
           GITHUB_TOKEN: ${{ secrets.TRACKER_PAT }}
-      - run: |
-          git config user.email "action@github.com"
-          git config user.name "GitHub Action"
+      - name: Commit and push state
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add tracker/state.json
-          git diff --cached --quiet || (git commit -m "Update tracker state" && git push)
+          if git diff-index --quiet HEAD --; then
+            echo "No changes detected. Skipping commit."
+          else
+            git commit -m "chore: update tracker state"
+            git push origin main
+          fi

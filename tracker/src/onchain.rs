@@ -1,13 +1,13 @@
 use anyhow::Result;
 use chrono::prelude::*;
 use regex::Regex;
+use std::sync::LazyLock;
 use subxt::config::substrate::H256;
 use subxt::config::RpcConfigFor;
 use subxt::rpcs::client::RpcClient;
 use subxt::rpcs::LegacyRpcMethods;
 use subxt::{config::PolkadotConfig, OnlineClient};
 
-use crate::github::GitHubClient;
 use crate::state::{Runtime, Upgrade};
 
 /// Generated runtime types from metadata.
@@ -87,10 +87,13 @@ impl ChainClient {
     }
 }
 
+/// Regex for extracting `spec_version: N` from Rust source.
+static SPEC_VERSION_RE: LazyLock<Regex> =
+    LazyLock::new(|| Regex::new(r"spec_version:\s*(\d[\d_]*)").unwrap());
+
 /// Parse spec_version from a runtime lib.rs file fetched via GitHub.
 pub fn parse_spec_version(content: &str) -> Option<u64> {
-    let re = Regex::new(r"spec_version:\s*(\d[\d_]*)").ok()?;
-    let caps = re.captures(content)?;
+    let caps = SPEC_VERSION_RE.captures(content)?;
     let raw = caps[1].replace('_', "");
     raw.parse().ok()
 }
@@ -98,7 +101,6 @@ pub fn parse_spec_version(content: &str) -> Option<u64> {
 /// Check on-chain spec versions and find new upgrades.
 pub async fn check_onchain(
     runtimes: &mut [Runtime],
-    _gh: &GitHubClient,
     dry_run: bool,
 ) -> Result<()> {
     for runtime in runtimes.iter_mut() {
@@ -166,4 +168,29 @@ pub async fn check_onchain(
     }
 
     Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn parse_spec_version_standard() {
+        assert_eq!(parse_spec_version("spec_version: 1002003"), Some(1002003));
+    }
+
+    #[test]
+    fn parse_spec_version_underscored() {
+        assert_eq!(parse_spec_version("spec_version: 2_000_006"), Some(2000006));
+    }
+
+    #[test]
+    fn parse_spec_version_extra_whitespace() {
+        assert_eq!(parse_spec_version("spec_version:   42"), Some(42));
+    }
+
+    #[test]
+    fn parse_spec_version_missing() {
+        assert_eq!(parse_spec_version("impl_version: 0"), None);
+    }
 }

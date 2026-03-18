@@ -1,0 +1,15 @@
+[package]
+name = "asset-hub-paseo-runtime"
+version = "0.1.0"
+
+[dependencies]
+pallet-balances = { version = "39" }
+frame-system = { version = "38" }
+pallet-revive = { version = "0.3" }
+
+[dev-dependencies]
+sp-io = { version = "38" }
+
+[workspace]
+[workspace.dependencies]
+sp-core = { version = "34" }

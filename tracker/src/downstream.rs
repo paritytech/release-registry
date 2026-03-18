@@ -1,9 +1,27 @@
 use anyhow::Result;
+use serde::Deserialize;
 use std::collections::{HashMap, HashSet};
 
 use crate::github::GitHubClient;
 use crate::onchain::parse_spec_version;
 use crate::state::State;
+
+/// Minimal representation of a Cargo.lock file for deserialization.
+#[derive(Deserialize)]
+struct CargoLock {
+    /// Resolved packages.
+    #[serde(default)]
+    package: Vec<LockPackage>,
+}
+
+/// A single resolved package in Cargo.lock.
+#[derive(Deserialize)]
+struct LockPackage {
+    /// Crate name.
+    name: String,
+    /// Resolved version.
+    version: String,
+}
 
 /// Check downstream runtimes for crate consumption.
 pub async fn check_downstream(state: &mut State, gh: &GitHubClient, dry_run: bool) -> Result<()> {
@@ -75,38 +93,19 @@ pub async fn check_downstream(state: &mut State, gh: &GitHubClient, dry_run: boo
 
 /// Split an `owner/repo` string into `(owner, repo)`.
 pub fn parse_repo(full: &str) -> (&str, &str) {
-    let parts: Vec<&str> = full.splitn(2, '/').collect();
-    (parts[0], parts[1])
+    full.split_once('/').expect("repo must contain '/'")
 }
 
 /// Parse Cargo.lock to extract package name -> version mapping.
 pub fn parse_cargo_lock_versions(content: &str) -> HashMap<String, String> {
-    let mut versions = HashMap::new();
-    let mut current_name: Option<String> = None;
-
-    for line in content.lines() {
-        if line.starts_with("name = ") {
-            current_name = line
-                .strip_prefix("name = ")
-                .and_then(|s| s.strip_prefix('"'))
-                .and_then(|s| s.strip_suffix('"'))
-                .map(String::from);
-        } else if line.starts_with("version = ") {
-            if let Some(name) = current_name.take() {
-                if let Some(ver) = line
-                    .strip_prefix("version = ")
-                    .and_then(|s| s.strip_prefix('"'))
-                    .and_then(|s| s.strip_suffix('"'))
-                {
-                    versions.insert(name, ver.to_string());
-                }
-            }
-        } else if line.trim().is_empty() {
-            current_name = None;
-        }
-    }
-
-    versions
+    let lock: CargoLock = match toml::from_str(content) {
+        Ok(v) => v,
+        Err(_) => return HashMap::new(),
+    };
+    lock.package
+        .into_iter()
+        .map(|p| (p.name, p.version))
+        .collect()
 }
 
 /// Parse Cargo.toml to extract dependency names (all dependency sections).
@@ -136,4 +135,83 @@ pub fn parse_runtime_deps(content: &str) -> HashSet<String> {
     }
 
     deps
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn parse_repo_standard() {
+        assert_eq!(parse_repo("paritytech/polkadot-sdk"), ("paritytech", "polkadot-sdk"));
+    }
+
+    #[test]
+    fn parse_repo_with_hyphens() {
+        assert_eq!(parse_repo("paseo-network/runtimes"), ("paseo-network", "runtimes"));
+    }
+
+    #[test]
+    fn parse_cargo_lock_versions_basic() {
+        let input = r#"
+[[package]]
+name = "pallet-balances"
+version = "39.0.1"
+
+[[package]]
+name = "frame-system"
+version = "38.1.0"
+"#;
+        assert_eq!(
+            parse_cargo_lock_versions(input),
+            HashMap::from([
+                ("pallet-balances".into(), "39.0.1".into()),
+                ("frame-system".into(), "38.1.0".into()),
+            ])
+        );
+    }
+
+    #[test]
+    fn parse_cargo_lock_versions_empty() {
+        assert!(parse_cargo_lock_versions("").is_empty());
+    }
+
+    #[test]
+    fn parse_runtime_deps_all_sections() {
+        let toml = r#"
+[dependencies]
+pallet-balances = "39"
+
+[dev-dependencies]
+sp-io = "38"
+
+[build-dependencies]
+substrate-wasm-builder = "24"
+"#;
+        assert_eq!(
+            parse_runtime_deps(toml),
+            HashSet::from([
+                "pallet-balances".into(),
+                "sp-io".into(),
+                "substrate-wasm-builder".into(),
+            ])
+        );
+    }
+
+    #[test]
+    fn parse_runtime_deps_workspace() {
+        let toml = r#"
+[workspace.dependencies]
+sp-core = "34"
+"#;
+        assert_eq!(
+            parse_runtime_deps(toml),
+            HashSet::from(["sp-core".into()])
+        );
+    }
+
+    #[test]
+    fn parse_runtime_deps_invalid_toml() {
+        assert!(parse_runtime_deps("not valid toml {{{").is_empty());
+    }
 }

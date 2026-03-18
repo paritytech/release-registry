@@ -1,5 +1,3 @@
-#![deny(clippy::missing_docs_in_private_items)]
-
 //! PR Deployment Tracker for polkadot-sdk releases.
 //!
 //! Tracks when PRs merged in polkadot-sdk reach downstream runtimes and go live on-chain,
@@ -83,7 +81,7 @@ async fn main() -> Result<()> {
 
     if run_all || step == Some("onchain") {
         eprintln!("\n=== Step 4+5: On-chain queries ===");
-        onchain::check_onchain(&mut state.runtimes, &gh, cli.dry_run).await?;
+        onchain::check_onchain(&mut state.runtimes, cli.dry_run).await?;
     }
 
     if run_all || step == Some("annotate") {

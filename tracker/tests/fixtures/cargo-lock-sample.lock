@@ -1,0 +1,19 @@
+[[package]]
+name = "pallet-balances"
+version = "39.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "pallet-revive"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "frame-system"
+version = "38.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "sp-core"
+version = "34.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"

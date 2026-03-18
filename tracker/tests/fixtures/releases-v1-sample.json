@@ -1,0 +1,71 @@
+{
+  "Polkadot SDK": {
+    "recommended": {
+      "release": "stable2509"
+    },
+    "releases": [
+      {
+        "name": "stable2407",
+        "state": {
+          "deprecated": {
+            "since": "2025-05-08",
+            "useInstead": "stable2503"
+          }
+        },
+        "publish": {
+          "when": "2024-04-29",
+          "tag": "polkadot-stable2407"
+        },
+        "patches": [
+          {
+            "name": "stable2407-1",
+            "publish": {
+              "when": "2024-08-15",
+              "tag": "polkadot-stable2407-1"
+            },
+            "state": {
+              "deprecated": {
+                "since": "2025-05-08",
+                "useInstead": "stable2503"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "stable2506",
+        "state": "released",
+        "publish": {
+          "when": "2025-06-01",
+          "tag": "polkadot-stable2506"
+        },
+        "patches": [
+          {
+            "name": "stable2506-1",
+            "state": "released",
+            "publish": {
+              "when": "2025-06-15",
+              "tag": "polkadot-stable2506-1"
+            }
+          },
+          {
+            "name": "stable2506-2",
+            "state": "released",
+            "publish": {
+              "when": "2025-07-01",
+              "tag": "polkadot-stable2506-2"
+            }
+          },
+          {
+            "name": "stable2506-3",
+            "state": "planned",
+            "publish": {
+              "when": "2025-07-15",
+              "tag": "polkadot-stable2506-3"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

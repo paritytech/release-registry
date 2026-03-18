@@ -3,7 +3,7 @@ use std::collections::{HashMap, HashSet};
 use std::path::Path;
 
 /// Transient downstream data, not persisted in state.json.
-#[derive(Debug, Clone, Default)]
+#[derive(Debug, Clone, Default, PartialEq)]
 pub struct DownstreamInfo {
     /// Crate name -> resolved version from Cargo.lock.
     pub versions: HashMap<String, String>,
@@ -14,7 +14,7 @@ pub struct DownstreamInfo {
 }
 
 /// Top-level persistent tracker state.
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct State {
     /// GitHub Project V2 reference.
     pub project: Project,
@@ -28,7 +28,7 @@ pub struct State {
 }
 
 /// GitHub Project V2 coordinates.
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct Project {
     /// GitHub organization login.
     pub org: String,
@@ -37,7 +37,7 @@ pub struct Project {
 }
 
 /// A downstream runtime to track.
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct Runtime {
     /// Runtime name (e.g. "asset-hub-polkadot").
     pub runtime: String,
@@ -74,7 +74,7 @@ pub struct Runtime {
 }
 
 /// An on-chain runtime upgrade event.
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct Upgrade {
     /// Runtime spec version after the upgrade.
     pub spec_version: u64,
@@ -89,7 +89,7 @@ pub struct Upgrade {
 }
 
 /// A polkadot-sdk release with its crate version bumps.
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct Release {
     /// Git tag for this release.
     pub tag: String,
@@ -101,7 +101,7 @@ pub struct Release {
 }
 
 /// A single crate's version bump within a release.
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct CrateRelease {
     /// Crate name.
     pub name: String,
@@ -126,5 +126,36 @@ impl State {
         let data = serde_json::to_string_pretty(self)?;
         std::fs::write(path, data + "\n")?;
         Ok(())
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn state_roundtrip() {
+        let state = State {
+            project: Project { org: "test-org".into(), number: 42 },
+            runtimes: vec![],
+            last_processed_tags_date: Some("2025-06-15".into()),
+            releases: vec![Release {
+                tag: "v1".into(),
+                prev_tag: "v0".into(),
+                crates: vec![CrateRelease {
+                    name: "my-crate".into(),
+                    version: "1.0.0".into(),
+                    published: "2025-01-01".into(),
+                    prs: vec![1, 2, 3],
+                }],
+            }],
+        };
+
+        let dir = tempfile::tempdir().unwrap();
+        let path = dir.path().join("state.json");
+        state.save(&path).unwrap();
+        let loaded = State::load(&path).unwrap();
+
+        assert_eq!(loaded, state);
     }
 }

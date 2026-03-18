@@ -1,0 +1,39 @@
+{
+  "project": {
+    "org": "paritytech",
+    "number": 274
+  },
+  "runtimes": [
+    {
+      "runtime": "Asset Hub",
+      "short": "AH",
+      "repo": "paseo-network/runtimes",
+      "branch": "main",
+      "cargo_lock_path": "Cargo.lock",
+      "cargo_toml_path": "system-parachains/asset-hub-paseo/Cargo.toml",
+      "spec_version_path": "system-parachains/asset-hub-paseo/src/lib.rs",
+      "network": "Paseo",
+      "rpc": "https://paseo-asset-hub-rpc.polkadot.io",
+      "ws": "wss://sys.ibp.network/asset-hub-paseo",
+      "field_name": "AH Paseo",
+      "block_explorer_url": "https://assethub-paseo.subscan.io",
+      "last_seen_commit": null,
+      "upgrades": []
+    }
+  ],
+  "last_processed_tags_date": null,
+  "releases": [
+    {
+      "tag": "polkadot-stable2506-1",
+      "prev_tag": "polkadot-stable2506",
+      "crates": [
+        {
+          "name": "pallet-balances",
+          "version": "39.0.1",
+          "published": "2025-06-15",
+          "prs": [1234, 5678]
+        }
+      ]
+    }
+  ]
+}

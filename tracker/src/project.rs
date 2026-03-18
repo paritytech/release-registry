@@ -43,7 +43,7 @@ fn format_status_summary(state: &State, pr_crates: &PrCrateMap, pr: u64) -> Stri
     let mut parts = Vec::new();
     let crates = pr_crates.get(&pr);
     for runtime in &state.runtimes {
-        let status = compute_runtime_status(runtime, crates, pr);
+        let status = compute_runtime_status(runtime, crates);
         if !status.is_empty() {
             parts.push(format!("{}={}", runtime.field_name, status));
         }
@@ -133,7 +133,7 @@ pub async fn annotate(state: &State, gh: &GitHubClient, dry_run: bool) -> Result
         let crates = pr_crates.get(&pr_number);
         for runtime in &state.runtimes {
             if let Some(field_id) = runtime_field_ids.get(&runtime.field_name) {
-                let status = compute_runtime_status(runtime, crates, pr_number);
+                let status = compute_runtime_status(runtime, crates);
                 set_field_value(gh, &project.project_id, &item_id, field_id, &status).await?;
             }
         }
@@ -154,7 +154,6 @@ pub async fn annotate(state: &State, gh: &GitHubClient, dry_run: bool) -> Result
 fn compute_runtime_status(
     runtime: &crate::state::Runtime,
     pr_release_crates: Option<&HashMap<String, String>>,
-    _pr_number: u64,
 ) -> String {
     let pr_release_crates = match pr_release_crates {
         Some(c) if !c.is_empty() => c,
@@ -399,4 +398,172 @@ fn semver_gte(a: &str, b: &str) -> bool {
     let va = parse(a);
     let vb = parse(b);
     va >= vb
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::state::*;
+    use std::collections::{HashMap, HashSet};
+
+    fn make_state(releases: Vec<Release>, runtimes: Vec<Runtime>) -> State {
+        State {
+            project: Project { org: "test".into(), number: 1 },
+            runtimes,
+            last_processed_tags_date: None,
+            releases,
+        }
+    }
+
+    fn make_upgrade(spec_version: u64) -> Upgrade {
+        Upgrade {
+            spec_version,
+            block_number: 100,
+            block_hash: "0x00".into(),
+            date: "2025-01-01".into(),
+            block_url: "https://explorer/100".into(),
+        }
+    }
+
+    fn make_runtime(
+        versions: HashMap<String, String>,
+        deps: HashSet<String>,
+        spec_version: Option<u64>,
+        upgrades: Vec<Upgrade>,
+    ) -> Runtime {
+        Runtime {
+            runtime: "test-runtime".into(),
+            short: "TR".into(),
+            repo: "org/repo".into(),
+            branch: "main".into(),
+            cargo_lock_path: "Cargo.lock".into(),
+            cargo_toml_path: "Cargo.toml".into(),
+            spec_version_path: "lib.rs".into(),
+            network: "testnet".into(),
+            rpc: "https://rpc".into(),
+            ws: "wss://ws".into(),
+            field_name: "TR Test".into(),
+            block_explorer_url: "https://explorer".into(),
+            last_seen_commit: None,
+            upgrades,
+            downstream: DownstreamInfo { versions, deps, spec_version },
+        }
+    }
+
+    #[test]
+    fn semver_gte_equal() {
+        assert!(semver_gte("1.2.3", "1.2.3"));
+    }
+
+    #[test]
+    fn semver_gte_greater() {
+        assert!(semver_gte("2.0.0", "1.9.9"));
+    }
+
+    #[test]
+    fn semver_gte_less() {
+        assert!(!semver_gte("1.0.0", "1.0.1"));
+    }
+
+    #[test]
+    fn semver_gte_different_lengths() {
+        assert!(semver_gte("1.2.3", "1.2"));
+        assert!(!semver_gte("1.2", "1.2.1"));
+    }
+
+    #[test]
+    fn build_pr_crate_map_basic() {
+        let state = make_state(vec![
+            Release {
+                tag: "v1".into(),
+                prev_tag: "v0".into(),
+                crates: vec![
+                    CrateRelease { name: "crate-a".into(), version: "1.0.0".into(), published: "2025-01-01".into(), prs: vec![10, 20] },
+                ],
+            },
+        ], vec![]);
+
+        let map = build_pr_crate_map(&state);
+        assert_eq!(map[&10]["crate-a"], "1.0.0");
+        assert_eq!(map[&20]["crate-a"], "1.0.0");
+    }
+
+    #[test]
+    fn build_pr_crate_map_earliest_version_kept() {
+        let state = make_state(vec![
+            Release {
+                tag: "v1".into(),
+                prev_tag: "v0".into(),
+                crates: vec![
+                    CrateRelease { name: "crate-a".into(), version: "1.0.0".into(), published: "2025-01-01".into(), prs: vec![10] },
+                ],
+            },
+            Release {
+                tag: "v2".into(),
+                prev_tag: "v1".into(),
+                crates: vec![
+                    CrateRelease { name: "crate-a".into(), version: "2.0.0".into(), published: "2025-02-01".into(), prs: vec![10] },
+                ],
+            },
+        ], vec![]);
+
+        let map = build_pr_crate_map(&state);
+        // or_insert_with keeps the first (earliest) version
+        assert_eq!(map[&10]["crate-a"], "1.0.0");
+    }
+
+    #[test]
+    fn compute_runtime_status_no_crates() {
+        let rt = make_runtime(HashMap::new(), HashSet::new(), None, vec![]);
+        assert_eq!(compute_runtime_status(&rt, None), "");
+    }
+
+    #[test]
+    fn compute_runtime_status_not_in_deps() {
+        let rt = make_runtime(HashMap::new(), HashSet::new(), None, vec![]);
+        let crates = HashMap::from([("crate-a".into(), "1.0.0".into())]);
+        assert_eq!(compute_runtime_status(&rt, Some(&crates)), "");
+    }
+
+    #[test]
+    fn compute_runtime_status_adopted_enacted() {
+        let rt = make_runtime(
+            HashMap::from([("crate-a".into(), "1.0.0".into())]),
+            HashSet::from(["crate-a".into()]),
+            Some(2000006),
+            vec![make_upgrade(2000006)],
+        );
+        let crates = HashMap::from([("crate-a".into(), "1.0.0".into())]);
+        assert_eq!(compute_runtime_status(&rt, Some(&crates)), "v2000006");
+    }
+
+    #[test]
+    fn compute_runtime_status_adopted_pending() {
+        let rt = make_runtime(
+            HashMap::from([("crate-a".into(), "1.0.0".into())]),
+            HashSet::from(["crate-a".into()]),
+            Some(3000000),
+            vec![make_upgrade(2000006)],
+        );
+        let crates = HashMap::from([("crate-a".into(), "1.0.0".into())]);
+        assert_eq!(compute_runtime_status(&rt, Some(&crates)), "pending v3000000");
+    }
+
+    #[test]
+    fn compute_runtime_status_partial_adoption() {
+        let rt = make_runtime(
+            HashMap::from([("crate-a".into(), "2.0.0".into())]),
+            HashSet::from(["crate-a".into(), "crate-b".into()]),
+            Some(2000006),
+            vec![make_upgrade(2000006)],
+        );
+        let crates = HashMap::from([
+            ("crate-a".into(), "1.0.0".into()),
+            ("crate-b".into(), "1.0.0".into()),
+        ]);
+        assert_eq!(
+            compute_runtime_status(&rt, Some(&crates)),
+            "v2000006 (1/2 crates)"
+        );
+    }
 }

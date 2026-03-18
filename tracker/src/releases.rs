@@ -2,6 +2,7 @@ use anyhow::{Context, Result};
 use regex::Regex;
 use serde_json::Value;
 use std::collections::{HashMap, HashSet};
+use std::sync::LazyLock;
 
 use crate::github::GitHubClient;
 use crate::state::{CrateRelease, Release, State};
@@ -325,10 +326,15 @@ async fn get_crate_version(
     }
 }
 
+/// Regex for backport commit messages like `[stable2506] Backport #1234`.
+static BACKPORT_RE: LazyLock<Regex> =
+    LazyLock::new(|| Regex::new(r"\[stable\d{4}\] Backport #(\d+)").unwrap());
+/// Regex for merge commit messages like `Fix thing (#1234)`.
+static MERGE_RE: LazyLock<Regex> =
+    LazyLock::new(|| Regex::new(r"\(#(\d+)\)\s*$").unwrap());
+
 /// Extract PR numbers from commit messages in a compare response.
 fn extract_pr_numbers(compare: &Value) -> Vec<u64> {
-    let backport_re = Regex::new(r"\[stable\d{4}\] Backport #(\d+)").unwrap();
-    let merge_re = Regex::new(r"\(#(\d+)\)\s*$").unwrap();
 
     let mut prs = HashSet::new();
 
@@ -339,11 +345,11 @@ fn extract_pr_numbers(compare: &Value) -> Vec<u64> {
                 .unwrap_or_default();
             let first_line = msg.lines().next().unwrap_or_default();
 
-            if let Some(caps) = backport_re.captures(first_line) {
+            if let Some(caps) = BACKPORT_RE.captures(first_line) {
                 if let Ok(n) = caps[1].parse::<u64>() {
                     prs.insert(n);
                 }
-            } else if let Some(caps) = merge_re.captures(first_line) {
+            } else if let Some(caps) = MERGE_RE.captures(first_line) {
                 if let Ok(n) = caps[1].parse::<u64>() {
                     prs.insert(n);
                 }
@@ -412,4 +418,183 @@ fn parse_prdoc_crates(yaml_content: &str) -> Result<Vec<String>> {
     }
 
     Ok(crates)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use serde_json::json;
+
+    #[test]
+    fn parse_release_name_with_patch() {
+        assert_eq!(parse_release_name("stable2506-9"), ("stable2506".into(), 9));
+    }
+
+    #[test]
+    fn parse_release_name_without_patch() {
+        assert_eq!(parse_release_name("stable2506"), ("stable2506".into(), 0));
+    }
+
+    #[test]
+    fn parse_release_name_non_numeric_suffix() {
+        assert_eq!(
+            parse_release_name("stable2506-rc1"),
+            ("stable2506-rc1".into(), 0)
+        );
+    }
+
+    #[test]
+    fn is_released_string() {
+        assert!(is_released(&json!({"state": "released"})));
+    }
+
+    #[test]
+    fn is_released_deprecated() {
+        assert!(is_released(&json!({"state": {"deprecated": {"since": "2025-01-01"}}})));
+    }
+
+    #[test]
+    fn is_released_planned() {
+        assert!(!is_released(&json!({"state": "planned"})));
+    }
+
+    #[test]
+    fn is_released_missing_state() {
+        assert!(!is_released(&json!({})));
+    }
+
+    #[test]
+    fn extract_tag_info_valid() {
+        let entry = json!({"name": "stable2506-1"});
+        let publish = json!({"tag": "polkadot-stable2506-1", "when": "2025-06-15"});
+        let info = extract_tag_info(&entry, &publish).unwrap();
+        assert_eq!(info.tag, "polkadot-stable2506-1");
+        assert_eq!(info.name, "stable2506-1");
+        assert_eq!(info.date, "2025-06-15");
+    }
+
+    #[test]
+    fn extract_tag_info_missing_fields() {
+        assert!(extract_tag_info(&json!({}), &json!({"tag": "t", "when": "d"})).is_none());
+        assert!(extract_tag_info(&json!({"name": "n"}), &json!({})).is_none());
+    }
+
+    #[test]
+    fn extract_pr_numbers_merge_commit() {
+        let compare = json!({
+            "commits": [{"commit": {"message": "Fix thing (#42)"}}]
+        });
+        assert_eq!(extract_pr_numbers(&compare), vec![42]);
+    }
+
+    #[test]
+    fn extract_pr_numbers_backport() {
+        let compare = json!({
+            "commits": [{"commit": {"message": "[stable2506] Backport #99"}}]
+        });
+        assert_eq!(extract_pr_numbers(&compare), vec![99]);
+    }
+
+    #[test]
+    fn extract_pr_numbers_no_match() {
+        let compare = json!({
+            "commits": [{"commit": {"message": "No PR ref here"}}]
+        });
+        assert!(extract_pr_numbers(&compare).is_empty());
+    }
+
+    #[test]
+    fn extract_pr_numbers_dedup() {
+        let compare = json!({
+            "commits": [
+                {"commit": {"message": "A (#10)"}},
+                {"commit": {"message": "B (#10)"}}
+            ]
+        });
+        assert_eq!(extract_pr_numbers(&compare), vec![10]);
+    }
+
+    #[test]
+    fn find_changed_cargo_tomls_filters() {
+        let compare = json!({
+            "files": [
+                {"filename": "substrate/frame/balances/Cargo.toml"},
+                {"filename": ".hidden/Cargo.toml"},
+                {"filename": "polkadot/runtime/src/lib.rs"},
+                {"filename": "cumulus/pallets/collator/Cargo.toml"}
+            ]
+        });
+        let result = find_changed_cargo_tomls(&compare);
+        assert_eq!(result, vec![
+            "substrate/frame/balances/Cargo.toml",
+            "cumulus/pallets/collator/Cargo.toml",
+        ]);
+    }
+
+    #[test]
+    fn parse_prdoc_crates_valid() {
+        let yaml = r#"
+title: test
+crates:
+  - name: pallet-balances
+    bump: patch
+  - name: frame-system
+    bump: minor
+"#;
+        assert_eq!(
+            parse_prdoc_crates(yaml).unwrap(),
+            vec!["pallet-balances", "frame-system"]
+        );
+    }
+
+    #[test]
+    fn parse_prdoc_crates_no_key() {
+        assert!(parse_prdoc_crates("title: test\ndoc: []\n").unwrap().is_empty());
+    }
+
+    #[test]
+    fn collect_published_tags_from_fixture() {
+        let fixture = include_str!("../tests/fixtures/releases-v1-sample.json");
+        let json: Value = serde_json::from_str(fixture).unwrap();
+        let tags = collect_published_tags(&json).unwrap();
+
+        let names: Vec<&str> = tags.iter().map(|t| t.name.as_str()).collect();
+        // stable2407 + stable2407-1 (deprecated = released) + stable2506 + stable2506-1 + stable2506-2
+        // stable2506-3 is "planned", excluded. Sorted by date.
+        assert_eq!(names, vec![
+            "stable2407",
+            "stable2407-1",
+            "stable2506",
+            "stable2506-1",
+            "stable2506-2",
+        ]);
+    }
+
+    #[test]
+    fn find_prev_tag_same_branch() {
+        let tags = vec![
+            PublishedTag { tag: "polkadot-stable2506".into(), name: "stable2506".into(), date: "2025-06-01".into() },
+            PublishedTag { tag: "polkadot-stable2506-1".into(), name: "stable2506-1".into(), date: "2025-06-15".into() },
+            PublishedTag { tag: "polkadot-stable2506-2".into(), name: "stable2506-2".into(), date: "2025-07-01".into() },
+        ];
+        assert_eq!(find_prev_tag("stable2506-2", &tags).unwrap(), "polkadot-stable2506-1");
+    }
+
+    #[test]
+    fn find_prev_tag_cross_branch() {
+        let tags = vec![
+            PublishedTag { tag: "polkadot-stable2407".into(), name: "stable2407".into(), date: "2024-04-29".into() },
+            PublishedTag { tag: "polkadot-stable2407-1".into(), name: "stable2407-1".into(), date: "2024-08-15".into() },
+            PublishedTag { tag: "polkadot-stable2506".into(), name: "stable2506".into(), date: "2025-06-01".into() },
+        ];
+        assert_eq!(find_prev_tag("stable2506", &tags).unwrap(), "polkadot-stable2407-1");
+    }
+
+    #[test]
+    fn find_prev_tag_no_previous() {
+        let tags = vec![
+            PublishedTag { tag: "polkadot-stable2407".into(), name: "stable2407".into(), date: "2024-04-29".into() },
+        ];
+        assert!(find_prev_tag("stable2407", &tags).is_err());
+    }
 }
