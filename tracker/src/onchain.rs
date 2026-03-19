@@ -99,10 +99,8 @@ pub fn parse_spec_version(content: &str) -> Option<u64> {
 }
 
 /// Check on-chain spec versions and find new upgrades.
-pub async fn check_onchain(
-    runtimes: &mut [Runtime],
-    dry_run: bool,
-) -> Result<()> {
+pub async fn check_onchain(runtimes: &mut [Runtime]) -> Result<()> {
+    eprintln!("\n=== On-chain queries ===");
     for runtime in runtimes.iter_mut() {
         eprintln!("  {} ({}): connecting to {}", runtime.runtime, runtime.network, runtime.ws);
 
@@ -155,16 +153,14 @@ pub async fn check_onchain(
             set_code_block, upgrade_spec, upgrade_block, timestamp
         );
 
-        if !dry_run {
-            let block_url = format!("{}/block/{}", runtime.block_explorer_url, upgrade_block);
-            runtime.upgrades.push(Upgrade {
-                spec_version: upgrade_spec as u64,
-                block_number: upgrade_block as u64,
-                block_hash: format!("{:?}", upgrade_hash),
-                date: timestamp.to_rfc3339(),
-                block_url,
-            });
-        }
+        let block_url = format!("{}/block/{}", runtime.block_explorer_url, upgrade_block);
+        runtime.upgrades.push(Upgrade {
+            spec_version: upgrade_spec as u64,
+            block_number: upgrade_block as u64,
+            block_hash: format!("{:?}", upgrade_hash),
+            date: timestamp.to_rfc3339(),
+            block_url,
+        });
     }
 
     Ok(())

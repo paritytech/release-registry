@@ -1,4 +1,4 @@
-use anyhow::{Context, Result};
+use anyhow::Result;
 use regex::Regex;
 use serde::Deserialize;
 use serde_json::Value;
@@ -7,6 +7,57 @@ use std::sync::LazyLock;
 
 use crate::github::GitHubClient;
 use crate::state::{CrateRelease, Release, State};
+
+/// Top-level releases-v1.json structure.
+#[derive(Deserialize)]
+pub struct ReleasesJson {
+    #[serde(rename = "Polkadot SDK")]
+    pub polkadot_sdk: ProjectInfo,
+}
+
+#[derive(Deserialize)]
+pub struct ProjectInfo {
+    pub releases: Vec<ReleaseInfo>,
+}
+
+#[derive(Deserialize)]
+pub struct ReleaseInfo {
+    pub name: String,
+    pub publish: DateAndTag,
+    pub state: MaintainedState,
+    #[serde(default)]
+    pub patches: Vec<PatchInfo>,
+}
+
+#[derive(Deserialize)]
+pub struct PatchInfo {
+    pub name: String,
+    pub publish: DateAndTag,
+    pub state: MaintainedState,
+}
+
+#[derive(Deserialize)]
+#[serde(untagged)]
+pub enum DateAndTag {
+    Published { when: String, tag: String },
+    Estimated {},
+}
+
+#[derive(Deserialize)]
+#[serde(untagged)]
+pub enum MaintainedState {
+    Simple(SimpleState),
+    Deprecated { #[serde(rename = "deprecated")] _deprecated: serde_json::Value },
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "lowercase")]
+pub enum SimpleState {
+    Planned,
+    Staging,
+    Released,
+    Skipped,
+}
 
 /// GitHub owner for polkadot-sdk.
 pub const SDK_OWNER: &str = "paritytech";
@@ -28,9 +79,9 @@ struct PublishedTag {
 pub async fn discover_and_resolve(
     state: &mut State,
     gh: &GitHubClient,
-    releases_json: &Value,
-    dry_run: bool,
+    releases_json: &ReleasesJson,
 ) -> Result<()> {
+    eprintln!("\n=== Discover releases & resolve PRs ===");
     let tags = collect_published_tags(releases_json)?;
 
     let cutoff = state.last_processed_tags_date.as_deref();
@@ -81,50 +132,35 @@ pub async fn discover_and_resolve(
             release.crates.iter().flat_map(|c| &c.prs).collect::<HashSet<_>>().len()
         );
 
-        if !dry_run {
-            state.releases.push(release);
-        }
+        state.releases.push(release);
     }
 
-    if !dry_run {
-        if let Some(latest) = new_tags.iter().map(|t| t.date.as_str()).max() {
-            state.last_processed_tags_date = Some(latest.to_string());
-        }
+    if let Some(latest) = new_tags.iter().map(|t| t.date.as_str()).max() {
+        state.last_processed_tags_date = Some(latest.to_string());
     }
 
     Ok(())
 }
 
 /// Collect all published (released) tags from releases-v1.json, sorted by date.
-fn collect_published_tags(releases_json: &Value) -> Result<Vec<PublishedTag>> {
-    let sdk = releases_json
-        .get("Polkadot SDK")
-        .context("no 'Polkadot SDK' in releases-v1.json")?;
-    let releases = sdk["releases"]
-        .as_array()
-        .context("no releases array")?;
-
+fn collect_published_tags(releases_json: &ReleasesJson) -> Result<Vec<PublishedTag>> {
     let mut tags = Vec::new();
 
-    for release in releases {
-        if !is_released(release) {
+    for release in &releases_json.polkadot_sdk.releases {
+        if !release.state.is_released() {
             continue;
         }
 
-        // Main release tag
-        if let Some(tag_info) = extract_tag_info(release, &release["publish"]) {
+        if let Some(tag_info) = PublishedTag::from_entry(&release.name, &release.publish) {
             tags.push(tag_info);
         }
 
-        // Patch tags
-        if let Some(patches) = release["patches"].as_array() {
-            for patch in patches {
-                if !is_released(patch) {
-                    continue;
-                }
-                if let Some(tag_info) = extract_tag_info(patch, &patch["publish"]) {
-                    tags.push(tag_info);
-                }
+        for patch in &release.patches {
+            if !patch.state.is_released() {
+                continue;
+            }
+            if let Some(tag_info) = PublishedTag::from_entry(&patch.name, &patch.publish) {
+                tags.push(tag_info);
             }
         }
     }
@@ -133,26 +169,24 @@ fn collect_published_tags(releases_json: &Value) -> Result<Vec<PublishedTag>> {
     Ok(tags)
 }
 
-/// Check if a release entry has state "released" or "deprecated".
-fn is_released(entry: &Value) -> bool {
-    match &entry["state"] {
-        Value::String(s) => s == "released",
-        // Deprecated releases were previously released and have valid tags
-        Value::Object(m) => m.contains_key("deprecated"),
-        _ => false,
+impl MaintainedState {
+    /// Returns true if the state is "released" or deprecated (which implies previously released).
+    fn is_released(&self) -> bool {
+        matches!(self, Self::Simple(SimpleState::Released) | Self::Deprecated { .. })
     }
 }
 
-/// Extract tag, name, and date from a release JSON entry.
-fn extract_tag_info(entry: &Value, publish: &Value) -> Option<PublishedTag> {
-    let tag = publish.get("tag")?.as_str()?;
-    let date = publish.get("when")?.as_str()?;
-    let name = entry.get("name")?.as_str()?;
-    Some(PublishedTag {
-        tag: tag.to_string(),
-        name: name.to_string(),
-        date: date.to_string(),
-    })
+impl PublishedTag {
+    fn from_entry(name: &str, publish: &DateAndTag) -> Option<Self> {
+        match publish {
+            DateAndTag::Published { when, tag } => Some(PublishedTag {
+                tag: tag.clone(),
+                name: name.to_string(),
+                date: when.clone(),
+            }),
+            DateAndTag::Estimated { .. } => None,
+        }
+    }
 }
 
 /// Find the previous tag for a given release/patch name.
@@ -419,39 +453,41 @@ mod tests {
     }
 
     #[test]
-    fn is_released_string() {
-        assert!(is_released(&json!({"state": "released"})));
+    fn maintained_state_released() {
+        let s: MaintainedState = serde_json::from_value(json!("released")).unwrap();
+        assert!(s.is_released());
     }
 
     #[test]
-    fn is_released_deprecated() {
-        assert!(is_released(&json!({"state": {"deprecated": {"since": "2025-01-01"}}})));
+    fn maintained_state_deprecated() {
+        let s: MaintainedState = serde_json::from_value(
+            json!({"deprecated": {"since": "2025-01-01", "useInstead": "stable2503"}}),
+        ).unwrap();
+        assert!(s.is_released());
     }
 
     #[test]
-    fn is_released_planned() {
-        assert!(!is_released(&json!({"state": "planned"})));
+    fn maintained_state_planned() {
+        let s: MaintainedState = serde_json::from_value(json!("planned")).unwrap();
+        assert!(!s.is_released());
     }
 
     #[test]
-    fn is_released_missing_state() {
-        assert!(!is_released(&json!({})));
-    }
-
-    #[test]
-    fn extract_tag_info_valid() {
-        let entry = json!({"name": "stable2506-1"});
-        let publish = json!({"tag": "polkadot-stable2506-1", "when": "2025-06-15"});
-        let info = extract_tag_info(&entry, &publish).unwrap();
+    fn published_tag_from_published() {
+        let publish = DateAndTag::Published {
+            when: "2025-06-15".into(),
+            tag: "polkadot-stable2506-1".into(),
+        };
+        let info = PublishedTag::from_entry("stable2506-1", &publish).unwrap();
         assert_eq!(info.tag, "polkadot-stable2506-1");
         assert_eq!(info.name, "stable2506-1");
         assert_eq!(info.date, "2025-06-15");
     }
 
     #[test]
-    fn extract_tag_info_missing_fields() {
-        assert!(extract_tag_info(&json!({}), &json!({"tag": "t", "when": "d"})).is_none());
-        assert!(extract_tag_info(&json!({"name": "n"}), &json!({})).is_none());
+    fn published_tag_from_estimated() {
+        let publish = DateAndTag::Estimated {};
+        assert!(PublishedTag::from_entry("stable2506-3", &publish).is_none());
     }
 
     #[test]
@@ -530,7 +566,7 @@ crates:
     #[test]
     fn collect_published_tags_from_fixture() {
         let fixture = include_str!("../tests/fixtures/releases-v1-sample.json");
-        let json: Value = serde_json::from_str(fixture).unwrap();
+        let json: ReleasesJson = serde_json::from_str(fixture).unwrap();
         let tags = collect_published_tags(&json).unwrap();
 
         let names: Vec<&str> = tags.iter().map(|t| t.name.as_str()).collect();

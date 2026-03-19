@@ -14,16 +14,23 @@ struct ProjectInfo {
 }
 
 
-/// Build a lookup from PR number to the crates it touches and their release versions.
-fn build_pr_crate_map(state: &State) -> HashMap<u64, HashMap<String, String>> {
-    let mut map: HashMap<u64, HashMap<String, String>> = HashMap::new();
+/// Build a lookup from PR number to the crates it touches and all known release
+/// versions containing that PR. We collect all versions rather than just the
+/// earliest because polkadot-sdk publishes crate versions from independent
+/// release branches, and a higher version number does not guarantee it contains
+/// all changes from a lower one.
+fn build_pr_crate_map(state: &State) -> HashMap<u64, HashMap<String, Vec<String>>> {
+    let mut map: HashMap<u64, HashMap<String, Vec<String>>> = HashMap::new();
     for release in &state.releases {
         for crate_rel in &release.crates {
             for &pr in &crate_rel.prs {
-                map.entry(pr)
+                let versions = map.entry(pr)
                     .or_default()
                     .entry(crate_rel.name.clone())
-                    .or_insert_with(|| crate_rel.version.clone());
+                    .or_default();
+                if !versions.contains(&crate_rel.version) {
+                    versions.push(crate_rel.version.clone());
+                }
             }
         }
     }
@@ -31,7 +38,7 @@ fn build_pr_crate_map(state: &State) -> HashMap<u64, HashMap<String, String>> {
 }
 
 /// Format runtime status annotations for a PR as `" [AH Paseo=v2000006]"` or empty.
-fn format_status_summary(state: &State, pr_crates: &HashMap<u64, HashMap<String, String>>, pr: u64) -> String {
+fn format_status_summary(state: &State, pr_crates: &HashMap<u64, HashMap<String, Vec<String>>>, pr: u64) -> String {
     let mut parts = Vec::new();
     let crates = pr_crates.get(&pr);
     for runtime in &state.runtimes {
@@ -49,6 +56,7 @@ fn format_status_summary(state: &State, pr_crates: &HashMap<u64, HashMap<String,
 
 /// Annotate PRs in the GitHub Project V2.
 pub async fn annotate(state: &State, gh: &GitHubClient, dry_run: bool) -> Result<()> {
+    eprintln!("\n=== Annotate GitHub Project ===");
     let project = fetch_project_info(gh, &state.project.org, state.project.number).await?;
     eprintln!("  Project ID: {}", project.project_id);
     eprintln!("  Fields: {:?}", project.fields.keys().collect::<Vec<_>>());
@@ -144,7 +152,7 @@ pub async fn annotate(state: &State, gh: &GitHubClient, dry_run: bool) -> Result
 /// Partial adoption appends ` (N/M crates)`.
 fn compute_runtime_status(
     runtime: &crate::state::Runtime,
-    pr_release_crates: Option<&HashMap<String, String>>,
+    pr_release_crates: Option<&HashMap<String, Vec<String>>>,
 ) -> String {
     let pr_release_crates = match pr_release_crates {
         Some(c) if !c.is_empty() => c,
@@ -162,14 +170,16 @@ fn compute_runtime_status(
         return String::new();
     }
 
-    // Count how many relevant crates have downstream version >= release version,
-    // meaning the PR's changes have been incorporated (possibly via a newer publish).
+    // Count how many relevant crates have a downstream version that matches one
+    // of the known release versions containing this PR. We use exact matching
+    // rather than >= because polkadot-sdk publishes from independent release
+    // branches, and a higher version does not imply it contains the same backports.
     let adopted = relevant
         .iter()
         .filter(|name| {
-            let release_ver = pr_release_crates.get(name.as_str());
+            let release_versions = pr_release_crates.get(name.as_str());
             let lock_ver = runtime.downstream.versions.get(name.as_str());
-            matches!((release_ver, lock_ver), (Some(r), Some(l)) if semver_gte(l, r))
+            matches!((release_versions, lock_ver), (Some(versions), Some(l)) if versions.iter().any(|v| v == l))
         })
         .count();
     let total = relevant.len();
@@ -374,14 +384,6 @@ async fn set_field_value(
     Ok(())
 }
 
-/// Compare two semver version strings: is `a >= b`?
-fn semver_gte(a: &str, b: &str) -> bool {
-    match (semver::Version::parse(a), semver::Version::parse(b)) {
-        (Ok(va), Ok(vb)) => va >= vb,
-        _ => false,
-    }
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -445,12 +447,12 @@ mod tests {
         ], vec![]);
 
         let map = build_pr_crate_map(&state);
-        assert_eq!(map[&10]["crate-a"], "1.0.0");
-        assert_eq!(map[&20]["crate-a"], "1.0.0");
+        assert_eq!(map[&10]["crate-a"], vec!["1.0.0"]);
+        assert_eq!(map[&20]["crate-a"], vec!["1.0.0"]);
     }
 
     #[test]
-    fn build_pr_crate_map_earliest_version_kept() {
+    fn build_pr_crate_map_collects_all_versions() {
         let state = make_state(vec![
             Release {
                 tag: "v1".into(),
@@ -469,8 +471,7 @@ mod tests {
         ], vec![]);
 
         let map = build_pr_crate_map(&state);
-        // or_insert_with keeps the first (earliest) version
-        assert_eq!(map[&10]["crate-a"], "1.0.0");
+        assert_eq!(map[&10]["crate-a"], vec!["1.0.0", "2.0.0"]);
     }
 
     #[test]
@@ -482,7 +483,7 @@ mod tests {
     #[test]
     fn compute_runtime_status_not_in_deps() {
         let rt = make_runtime(HashMap::new(), HashSet::new(), None, vec![]);
-        let crates = HashMap::from([("crate-a".into(), "1.0.0".into())]);
+        let crates = HashMap::from([("crate-a".into(), vec!["1.0.0".into()])]);
         assert_eq!(compute_runtime_status(&rt, Some(&crates)), "");
     }
 
@@ -494,7 +495,7 @@ mod tests {
             Some(2000006),
             vec![make_upgrade(2000006)],
         );
-        let crates = HashMap::from([("crate-a".into(), "1.0.0".into())]);
+        let crates = HashMap::from([("crate-a".into(), vec!["1.0.0".into()])]);
         assert_eq!(compute_runtime_status(&rt, Some(&crates)), "v2000006");
     }
 
@@ -506,7 +507,7 @@ mod tests {
             Some(3000000),
             vec![make_upgrade(2000006)],
         );
-        let crates = HashMap::from([("crate-a".into(), "1.0.0".into())]);
+        let crates = HashMap::from([("crate-a".into(), vec!["1.0.0".into()])]);
         assert_eq!(compute_runtime_status(&rt, Some(&crates)), "pending v3000000");
     }
 
@@ -519,12 +520,29 @@ mod tests {
             vec![make_upgrade(2000006)],
         );
         let crates = HashMap::from([
-            ("crate-a".into(), "1.0.0".into()),
-            ("crate-b".into(), "1.0.0".into()),
+            ("crate-a".into(), vec!["1.0.0".into(), "2.0.0".into()]),
+            ("crate-b".into(), vec!["1.0.0".into()]),
         ]);
         assert_eq!(
             compute_runtime_status(&rt, Some(&crates)),
             "v2000006 (1/2 crates)"
         );
+    }
+
+    #[test]
+    fn compute_runtime_status_version_from_different_branch_not_adopted() {
+        let rt = make_runtime(
+            // Downstream has version 0.24.1 (from a branch without the backport)
+            HashMap::from([("crate-a".into(), "0.24.1".into())]),
+            HashSet::from(["crate-a".into()]),
+            Some(2000006),
+            vec![make_upgrade(2000006)],
+        );
+        // PR was backported to branches producing 0.21.1, 0.23.1, and 0.25.0
+        let crates = HashMap::from([("crate-a".into(), vec![
+            "0.21.1".into(), "0.23.1".into(), "0.25.0".into(),
+        ])]);
+        // 0.24.1 is not in the known versions, so not adopted
+        assert_eq!(compute_runtime_status(&rt, Some(&crates)), "");
     }
 }
