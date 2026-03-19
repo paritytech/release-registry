@@ -72,6 +72,36 @@ cat > "$STATE_PATH" <<'EOF'
       "block_explorer_url": "https://assethub-westend.subscan.io",
       "in_repo": true,
       "upgrades": []
+    },
+    {
+      "runtime": "Asset Hub",
+      "short": "AH",
+      "repo": "polkadot-fellows/runtimes",
+      "branch": "main",
+      "cargo_lock_path": "Cargo.lock",
+      "cargo_toml_path": "system-parachains/asset-hubs/asset-hub-kusama/Cargo.toml",
+      "spec_version_path": "system-parachains/asset-hubs/asset-hub-kusama/src/lib.rs",
+      "network": "Kusama",
+      "rpc": "https://kusama-asset-hub-rpc.polkadot.io",
+      "ws": "wss://kusama-asset-hub-rpc.polkadot.io",
+      "field_name": "AH Kusama",
+      "block_explorer_url": "https://assethub-kusama.subscan.io",
+      "upgrades": []
+    },
+    {
+      "runtime": "Asset Hub",
+      "short": "AH",
+      "repo": "polkadot-fellows/runtimes",
+      "branch": "main",
+      "cargo_lock_path": "Cargo.lock",
+      "cargo_toml_path": "system-parachains/asset-hubs/asset-hub-polkadot/Cargo.toml",
+      "spec_version_path": "system-parachains/asset-hubs/asset-hub-polkadot/src/lib.rs",
+      "network": "Polkadot",
+      "rpc": "https://polkadot-asset-hub-rpc.polkadot.io",
+      "ws": "wss://polkadot-asset-hub-rpc.polkadot.io",
+      "field_name": "AH Polkadot",
+      "block_explorer_url": "https://assethub-polkadot.subscan.io",
+      "upgrades": []
     }
   ],
   "releases": []
