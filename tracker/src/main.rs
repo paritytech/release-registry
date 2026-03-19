@@ -68,11 +68,10 @@ impl Runner {
         }
 
         if !self.dry_run {
-            eprintln!("\nSaving state to {}", self.state_path.display());
+            log::info!("Saving state to {}", self.state_path.display());
             self.state.save(&self.state_path)?;
         }
 
-        eprintln!("Done.");
         Ok(())
     }
 
@@ -112,12 +111,14 @@ fn resolve_releases_path(state_path: &Path) -> PathBuf {
 /// Entry point: parse CLI args, load state, run pipeline steps, save state.
 #[tokio::main]
 async fn main() -> Result<()> {
+    env_logger::Builder::from_env(env_logger::Env::default().default_filter_or("info")).init();
+
     let cli = Cli::parse();
 
     let token = std::env::var("GITHUB_TOKEN").context("GITHUB_TOKEN env var required")?;
     let state_path = resolve_state_path(cli.state_path);
 
-    eprintln!("Loading state from {}", state_path.display());
+    log::info!("Loading state from {}", state_path.display());
     let state = state::State::load(&state_path)?;
     let releases_json = serde_json::from_str(&std::fs::read_to_string(
         resolve_releases_path(&state_path),

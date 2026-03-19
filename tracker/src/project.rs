@@ -56,10 +56,10 @@ fn format_status_summary(state: &State, pr_crates: &HashMap<u64, HashMap<String,
 
 /// Annotate PRs in the GitHub Project V2.
 pub async fn annotate(state: &State, gh: &GitHubClient, dry_run: bool) -> Result<()> {
-    eprintln!("\n=== Annotate GitHub Project ===");
+    log::info!("Annotate GitHub Project");
     let project = fetch_project_info(gh, &state.project.org, state.project.number).await?;
-    eprintln!("  Project ID: {}", project.project_id);
-    eprintln!("  Fields: {:?}", project.fields.keys().collect::<Vec<_>>());
+    log::debug!("Project ID: {}", project.project_id);
+    log::debug!("Fields: {:?}", project.fields.keys().collect::<Vec<_>>());
 
     // Build PR -> release tags mapping
     let mut pr_tags: HashMap<u64, Vec<String>> = HashMap::new();
@@ -77,14 +77,14 @@ pub async fn annotate(state: &State, gh: &GitHubClient, dry_run: bool) -> Result
         tags.dedup();
     }
 
-    eprintln!("  {} unique PRs to annotate", pr_tags.len());
+    log::info!("{} unique PRs to annotate", pr_tags.len());
 
     let pr_crates = build_pr_crate_map(state);
 
     if dry_run {
         for (pr, tags) in &pr_tags {
             let status_str = format_status_summary(state, &pr_crates, *pr);
-            eprintln!("    PR #{pr}: {}{status_str}", tags.join(", "));
+            log::info!("PR #{pr}: {}{status_str}", tags.join(", "));
         }
         return Ok(());
     }
@@ -93,7 +93,7 @@ pub async fn annotate(state: &State, gh: &GitHubClient, dry_run: bool) -> Result
     let release_tags_field = match project.fields.get("Release Tags") {
         Some(f) => f.clone(),
         None => {
-            eprintln!("  Creating 'Release Tags' field...");
+            log::info!("Creating 'Release Tags' field...");
             create_text_field(gh, &project.project_id, "Release Tags").await?
         }
     };
@@ -104,7 +104,7 @@ pub async fn annotate(state: &State, gh: &GitHubClient, dry_run: bool) -> Result
         let field_id = match project.fields.get(&runtime.field_name) {
             Some(f) => f.clone(),
             None => {
-                eprintln!("  Creating '{}' field...", runtime.field_name);
+                log::info!("Creating '{}' field...", runtime.field_name);
                 create_text_field(gh, &project.project_id, &runtime.field_name).await?
             }
         };
@@ -116,7 +116,7 @@ pub async fn annotate(state: &State, gh: &GitHubClient, dry_run: bool) -> Result
         let pr_node_id = match get_pr_node_id(gh, SDK_OWNER, SDK_REPO, pr_number).await {
             Ok(id) => id,
             Err(e) => {
-                eprintln!("    PR #{pr_number}: could not fetch node ID: {e}");
+                log::warn!("PR #{pr_number}: could not fetch node ID: {e}");
                 continue;
             }
         };
@@ -138,7 +138,7 @@ pub async fn annotate(state: &State, gh: &GitHubClient, dry_run: bool) -> Result
         }
 
         let status_str = format_status_summary(state, &pr_crates, pr_number);
-        eprintln!("    PR #{pr_number}: {tags_value}{status_str}");
+        log::debug!("PR #{pr_number}: {tags_value}{status_str}");
     }
 
     Ok(())

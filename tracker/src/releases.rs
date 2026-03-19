@@ -81,7 +81,7 @@ pub async fn discover_and_resolve(
     gh: &GitHubClient,
     releases_json: &ReleasesJson,
 ) -> Result<()> {
-    eprintln!("\n=== Discover releases & resolve PRs ===");
+    log::info!("Discover releases & resolve PRs");
     let tags = collect_published_tags(releases_json)?;
 
     let cutoff = state.last_processed_tags_date.as_deref();
@@ -94,40 +94,36 @@ pub async fn discover_and_resolve(
         .collect();
 
     if new_tags.is_empty() {
-        eprintln!("No new tags to process");
+        log::info!("No new tags to process");
         return Ok(());
     }
 
-    eprintln!("Found {} new tag(s) to process", new_tags.len());
+    log::info!("Found {} new tag(s) to process", new_tags.len());
 
-    // Build prdoc index from master tree (once for all tags)
-    eprintln!("  Building prdoc index from master...");
+    log::debug!("Building prdoc index from master...");
     let prdoc_index = build_prdoc_index(gh).await?;
-    eprintln!("  Indexed {} prdoc files", prdoc_index.len());
+    log::debug!("Indexed {} prdoc files", prdoc_index.len());
 
     let known_tags: HashSet<String> = state.releases.iter().map(|r| r.tag.clone()).collect();
 
     for published in &new_tags {
         if known_tags.contains(&published.tag) {
-            eprintln!("  Skipping {} (already processed)", published.tag);
+            log::debug!("Skipping {} (already processed)", published.tag);
             continue;
         }
 
         let prev_tag = match find_prev_tag(&published.name, &tags) {
             Ok(t) => t,
             Err(e) => {
-                eprintln!("  Skipping {} ({})", published.tag, e);
+                log::debug!("Skipping {} ({})", published.tag, e);
                 continue;
             }
         };
-        eprintln!(
-            "  Processing {} (prev: {})",
-            published.tag, prev_tag
-        );
+        log::info!("Processing {} (prev: {})", published.tag, prev_tag);
 
         let release = process_tag(gh, &published.tag, &prev_tag, &published.date, &prdoc_index).await?;
-        eprintln!(
-            "    Found {} crate(s) with version bumps, {} total PR(s)",
+        log::info!(
+            "  Found {} crate(s) with version bumps, {} total PR(s)",
             release.crates.len(),
             release.crates.iter().flat_map(|c| &c.prs).collect::<HashSet<_>>().len()
         );
@@ -268,7 +264,7 @@ async fn process_tag(
 
     // Extract PR numbers from commits
     let pr_numbers = extract_pr_numbers(&compare);
-    eprintln!("    {} PRs from commits, {} changed Cargo.toml files", pr_numbers.len(), changed_tomls.len());
+    log::debug!("{} PRs from commits, {} changed Cargo.toml files", pr_numbers.len(), changed_tomls.len());
 
     // Resolve PRs to crates via prdocs
     let mut crate_prs: HashMap<String, Vec<u64>> = HashMap::new();

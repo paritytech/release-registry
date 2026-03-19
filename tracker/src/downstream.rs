@@ -8,7 +8,7 @@ use crate::state::State;
 
 /// Check downstream runtimes for crate consumption.
 pub async fn check_downstream(state: &mut State, gh: &GitHubClient) -> Result<()> {
-    eprintln!("\n=== Check downstream consumption ===");
+    log::info!("Check downstream consumption");
     for runtime in &mut state.runtimes {
         let (owner, repo) = parse_repo(&runtime.repo);
 
@@ -16,12 +16,12 @@ pub async fn check_downstream(state: &mut State, gh: &GitHubClient) -> Result<()
 
         let has_downstream = !runtime.downstream.deps.is_empty();
         if runtime.last_seen_commit.as_deref() == Some(&latest_commit) && has_downstream {
-            eprintln!("  {} ({}): no new commits", runtime.runtime, runtime.network);
+            log::debug!("{} ({}): no new commits", runtime.runtime, runtime.network);
             continue;
         }
 
-        eprintln!(
-            "  {} ({}): checking commit {}",
+        log::info!(
+            "{} ({}): checking commit {}",
             runtime.runtime,
             runtime.network,
             &latest_commit[..8]
@@ -46,13 +46,13 @@ pub async fn check_downstream(state: &mut State, gh: &GitHubClient) -> Result<()
         {
             Ok(content) => parse_spec_version(&content),
             Err(e) => {
-                eprintln!("    Could not fetch spec_version_path: {e}");
+                log::warn!("Could not fetch spec_version_path: {e}");
                 None
             }
         };
 
-        eprintln!(
-            "    {} resolved crates, {} direct dependencies, code spec: {:?}",
+        log::debug!(
+            "{} resolved crates, {} direct dependencies, code spec: {:?}",
             current_versions.len(),
             runtime_deps.len(),
             spec_version

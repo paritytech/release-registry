@@ -76,7 +76,7 @@ impl ChainClient {
             let mid = lower + (upper - lower) / 2;
             let hash = self.get_block_hash(mid).await?;
             let mid_spec = self.get_spec_version(hash).await?;
-            eprintln!("    bisect: block {mid} spec {mid_spec} (range {lower}..{upper})");
+            log::debug!("bisect: block {mid} spec {mid_spec} (range {lower}..{upper})");
             if mid_spec >= target_spec {
                 upper = mid;
             } else {
@@ -100,14 +100,14 @@ pub fn parse_spec_version(content: &str) -> Option<u64> {
 
 /// Check on-chain spec versions and find new upgrades.
 pub async fn check_onchain(runtimes: &mut [Runtime]) -> Result<()> {
-    eprintln!("\n=== On-chain queries ===");
+    log::info!("On-chain queries");
     for runtime in runtimes.iter_mut() {
-        eprintln!("  {} ({}): connecting to {}", runtime.runtime, runtime.network, runtime.ws);
+        log::info!("{} ({}): connecting to {}", runtime.runtime, runtime.network, runtime.ws);
 
         let chain = match ChainClient::connect(&runtime.ws).await {
             Ok(c) => c,
             Err(e) => {
-                eprintln!("    Failed to connect: {e}");
+                log::warn!("Failed to connect: {e}");
                 continue;
             }
         };
@@ -115,7 +115,7 @@ pub async fn check_onchain(runtimes: &mut [Runtime]) -> Result<()> {
         let head = chain.get_head_number().await?;
         let head_hash = chain.get_block_hash(head).await?;
         let current_spec = chain.get_spec_version(head_hash).await?;
-        eprintln!("    Head: block {head}, spec {current_spec}");
+        log::info!("Head: block {head}, spec {current_spec}");
 
         let last_known_spec = runtime
             .upgrades
@@ -125,7 +125,7 @@ pub async fn check_onchain(runtimes: &mut [Runtime]) -> Result<()> {
             .unwrap_or(0);
 
         if current_spec as u64 <= last_known_spec {
-            eprintln!("    No new upgrades (last known: {last_known_spec})");
+            log::debug!("No new upgrades (last known: {last_known_spec})");
             continue;
         }
 
@@ -148,9 +148,8 @@ pub async fn check_onchain(runtimes: &mut [Runtime]) -> Result<()> {
         let upgrade_spec = chain.get_spec_version(upgrade_hash).await?;
         let timestamp = chain.get_timestamp(upgrade_hash).await?;
 
-        eprintln!(
-            "    set_code in block {}, first block with spec {} is {} ({})",
-            set_code_block, upgrade_spec, upgrade_block, timestamp
+        log::info!(
+            "set_code in block {set_code_block}, first block with spec {upgrade_spec} is {upgrade_block} ({timestamp})"
         );
 
         let block_url = format!("{}/block/{}", runtime.block_explorer_url, upgrade_block);
