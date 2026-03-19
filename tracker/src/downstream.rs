@@ -27,45 +27,68 @@ pub async fn check_downstream(state: &mut State, gh: &GitHubClient) -> Result<()
             &latest_commit[..8]
         );
 
-        // Fetch current Cargo.lock
-        let cargo_lock = gh
-            .get_raw_content(owner, repo, &runtime.cargo_lock_path, &latest_commit)
-            .await?;
-        let current_versions = parse_cargo_lock_versions(&cargo_lock);
+        // In-repo runtimes don't need Cargo.lock/Cargo.toml version matching,
+        // but still need spec_version for the status state machine.
+        if runtime.in_repo {
+            let spec_version = match gh
+                .get_raw_content(owner, repo, &runtime.spec_version_path, &latest_commit)
+                .await
+            {
+                Ok(content) => parse_spec_version(&content),
+                Err(e) => {
+                    log::warn!("Could not fetch spec_version_path: {e}");
+                    None
+                }
+            };
 
-        // Fetch runtime's Cargo.toml to know which crates are dependencies
-        let cargo_toml = gh
-            .get_raw_content(owner, repo, &runtime.cargo_toml_path, &latest_commit)
-            .await?;
-        let runtime_deps = parse_runtime_deps(&cargo_toml);
+            log::debug!("in-repo runtime, code spec: {:?}", spec_version);
 
-        // Fetch spec_version from downstream code
-        let spec_version = match gh
-            .get_raw_content(owner, repo, &runtime.spec_version_path, &latest_commit)
-            .await
-        {
-            Ok(content) => parse_spec_version(&content),
-            Err(e) => {
-                log::warn!("Could not fetch spec_version_path: {e}");
-                None
-            }
-        };
+            runtime.downstream = crate::state::DownstreamInfo {
+                versions: HashMap::new(),
+                deps: HashSet::new(),
+                spec_version,
+            };
+        } else {
+            // Fetch current Cargo.lock
+            let cargo_lock = gh
+                .get_raw_content(owner, repo, &runtime.cargo_lock_path, &latest_commit)
+                .await?;
+            let current_versions = parse_cargo_lock_versions(&cargo_lock);
 
-        log::debug!(
-            "{} resolved crates, {} direct dependencies, code spec: {:?}",
-            current_versions.len(),
-            runtime_deps.len(),
-            spec_version
-        );
+            // Fetch runtime's Cargo.toml to know which crates are dependencies
+            let cargo_toml = gh
+                .get_raw_content(owner, repo, &runtime.cargo_toml_path, &latest_commit)
+                .await?;
+            let runtime_deps = parse_runtime_deps(&cargo_toml);
 
-        runtime.downstream = crate::state::DownstreamInfo {
-            versions: current_versions
-                .into_iter()
-                .filter(|(k, _)| runtime_deps.contains(k))
-                .collect(),
-            deps: runtime_deps,
-            spec_version,
-        };
+            // Fetch spec_version from downstream code
+            let spec_version = match gh
+                .get_raw_content(owner, repo, &runtime.spec_version_path, &latest_commit)
+                .await
+            {
+                Ok(content) => parse_spec_version(&content),
+                Err(e) => {
+                    log::warn!("Could not fetch spec_version_path: {e}");
+                    None
+                }
+            };
+
+            log::debug!(
+                "{} resolved crates, {} direct dependencies, code spec: {:?}",
+                current_versions.len(),
+                runtime_deps.len(),
+                spec_version
+            );
+
+            runtime.downstream = crate::state::DownstreamInfo {
+                versions: current_versions
+                    .into_iter()
+                    .filter(|(k, _)| runtime_deps.contains(k))
+                    .collect(),
+                deps: runtime_deps,
+                spec_version,
+            };
+        }
 
         runtime.last_seen_commit = Some(latest_commit);
     }

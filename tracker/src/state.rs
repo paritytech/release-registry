@@ -63,6 +63,10 @@ pub struct Runtime {
     pub field_name: String,
     /// Block explorer base URL.
     pub block_explorer_url: String,
+    /// In-repo runtime (e.g. Westend in polkadot-sdk): skip version matching,
+    /// treat all PRs as adopted since every PR lands on master directly.
+    #[serde(default)]
+    pub in_repo: bool,
     /// Last processed commit SHA.
     pub last_seen_commit: Option<String>,
     /// On-chain runtime upgrades discovered so far.

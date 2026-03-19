@@ -41,8 +41,16 @@
       "ws": "wss://westend-asset-hub-rpc.polkadot.io",
       "field_name": "AH Westend",
       "block_explorer_url": "https://assethub-westend.subscan.io",
+      "in_repo": true,
       "last_seen_commit": "fa14a5ade0771ffbafc8be66c765d5937a6cd915",
       "upgrades": [
+        {
+          "spec_version": 1022000,
+          "block_number": 13635404,
+          "block_hash": "0xf828d19731ba457c4b70c71e2725d761e4c136cb77cf928a19bfba5da2343193",
+          "date": "2026-02-23T13:57:42+00:00",
+          "block_url": "https://assethub-westend.subscan.io/block/13635404"
+        },
         {
           "spec_version": 1022001,
           "block_number": 13994902,

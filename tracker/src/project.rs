@@ -159,30 +159,38 @@ fn compute_runtime_status(
         _ => return String::new(),
     };
 
-    // Filter to crates that are actual dependencies of this runtime
-    let relevant: Vec<_> = pr_release_crates
-        .keys()
-        .filter(|name| runtime.downstream.deps.contains(name.as_str()))
-        .cloned()
-        .collect();
+    // For in-repo runtimes, every PR on master is already adopted.
+    // Skip deps filtering and version matching entirely.
+    let (adopted, total) = if runtime.in_repo {
+        let total = pr_release_crates.len();
+        (total, total)
+    } else {
+        // Filter to crates that are actual dependencies of this runtime
+        let relevant: Vec<_> = pr_release_crates
+            .keys()
+            .filter(|name| runtime.downstream.deps.contains(name.as_str()))
+            .cloned()
+            .collect();
 
-    if relevant.is_empty() {
-        return String::new();
-    }
+        if relevant.is_empty() {
+            return String::new();
+        }
 
-    // Count how many relevant crates have a downstream version that matches one
-    // of the known release versions containing this PR. We use exact matching
-    // rather than >= because polkadot-sdk publishes from independent release
-    // branches, and a higher version does not imply it contains the same backports.
-    let adopted = relevant
-        .iter()
-        .filter(|name| {
-            let release_versions = pr_release_crates.get(name.as_str());
-            let lock_ver = runtime.downstream.versions.get(name.as_str());
-            matches!((release_versions, lock_ver), (Some(versions), Some(l)) if versions.iter().any(|v| v == l))
-        })
-        .count();
-    let total = relevant.len();
+        // Count how many relevant crates have a downstream version that matches one
+        // of the known release versions containing this PR. We use exact matching
+        // rather than >= because polkadot-sdk publishes from independent release
+        // branches, and a higher version does not imply it contains the same backports.
+        let adopted = relevant
+            .iter()
+            .filter(|name| {
+                let release_versions = pr_release_crates.get(name.as_str());
+                let lock_ver = runtime.downstream.versions.get(name.as_str());
+                matches!((release_versions, lock_ver), (Some(versions), Some(l)) if versions.iter().any(|v| v == l))
+            })
+            .count();
+
+        (adopted, relevant.len())
+    };
 
     if adopted == 0 {
         return String::new();
@@ -428,6 +436,7 @@ mod tests {
             ws: "wss://ws".into(),
             field_name: "TR Test".into(),
             block_explorer_url: "https://explorer".into(),
+            in_repo: false,
             last_seen_commit: None,
             upgrades,
             downstream: DownstreamInfo { versions, deps, spec_version },
@@ -544,5 +553,43 @@ mod tests {
         ])]);
         // 0.24.1 is not in the known versions, so not adopted
         assert_eq!(compute_runtime_status(&rt, Some(&crates)), "");
+    }
+
+    #[test]
+    fn compute_runtime_status_in_repo_enacted() {
+        let mut rt = make_runtime(
+            HashMap::new(),
+            HashSet::new(),
+            Some(1022001),
+            vec![make_upgrade(1022001)],
+        );
+        rt.in_repo = true;
+        let crates = HashMap::from([("crate-a".into(), vec!["1.0.0".into()])]);
+        assert_eq!(compute_runtime_status(&rt, Some(&crates)), "v1022001");
+    }
+
+    #[test]
+    fn compute_runtime_status_in_repo_pending() {
+        let mut rt = make_runtime(
+            HashMap::new(),
+            HashSet::new(),
+            Some(1023000),
+            vec![make_upgrade(1022001)],
+        );
+        rt.in_repo = true;
+        let crates = HashMap::from([("crate-a".into(), vec!["1.0.0".into()])]);
+        assert_eq!(compute_runtime_status(&rt, Some(&crates)), "pending v1023000");
+    }
+
+    #[test]
+    fn compute_runtime_status_in_repo_no_crates() {
+        let mut rt = make_runtime(
+            HashMap::new(),
+            HashSet::new(),
+            Some(1022001),
+            vec![make_upgrade(1022001)],
+        );
+        rt.in_repo = true;
+        assert_eq!(compute_runtime_status(&rt, None), "");
     }
 }
