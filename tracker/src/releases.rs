@@ -1,11 +1,10 @@
-use anyhow::Result;
+use anyhow::{Context, Result};
 use regex::Regex;
 use serde::Deserialize;
-use serde_json::Value;
 use std::collections::{BTreeSet, HashMap, HashSet};
+use std::path::Path;
 use std::sync::LazyLock;
 
-use crate::github::GitHubClient;
 use crate::state::{CrateRelease, Release, State};
 
 /// Top-level releases-v1.json structure.
@@ -75,11 +74,11 @@ struct PublishedTag {
     date: String,
 }
 
-/// Discover new releases from releases-v1.json and resolve PRs.
-pub async fn discover_and_resolve(
+/// Discover new releases from releases-v1.json and resolve PRs via local git.
+pub fn discover_and_resolve(
     state: &mut State,
-    gh: &GitHubClient,
     releases_json: &ReleasesJson,
+    sdk_repo: &Path,
 ) -> Result<()> {
     log::info!("Discover releases & resolve PRs");
     let tags = collect_published_tags(releases_json)?;
@@ -100,9 +99,9 @@ pub async fn discover_and_resolve(
 
     log::info!("Found {} new tag(s) to process", new_tags.len());
 
-    log::debug!("Building prdoc index from master...");
-    let prdoc_index = build_prdoc_index(gh).await?;
-    log::debug!("Indexed {} prdoc files", prdoc_index.len());
+    log::debug!("Building prdoc index from local repo...");
+    let prdoc_crates = build_local_prdoc_index(sdk_repo)?;
+    log::debug!("Indexed {} prdoc files", prdoc_crates.len());
 
     let known_tags: HashSet<String> = state.releases.iter().map(|r| r.tag.clone()).collect();
 
@@ -121,7 +120,7 @@ pub async fn discover_and_resolve(
         };
         log::info!("Processing {} (prev: {})", published.tag, prev_tag);
 
-        let release = process_tag(gh, &published.tag, &prev_tag, &published.date, &prdoc_index).await?;
+        let release = process_tag(sdk_repo, &published.tag, &prev_tag, &published.date, &prdoc_crates)?;
         log::info!(
             "  Found {} crate(s) with version bumps, {} total PR(s)",
             release.crates.len(),
@@ -173,6 +172,7 @@ impl MaintainedState {
 }
 
 impl PublishedTag {
+    /// Build from a releases-v1.json entry. Returns None for estimated (unpublished) dates.
     fn from_entry(name: &str, publish: &DateAndTag) -> Option<Self> {
         match publish {
             DateAndTag::Published { when, tag } => Some(PublishedTag {
@@ -233,25 +233,41 @@ fn parse_release_name(name: &str) -> (&str, u32) {
     (name, 0)
 }
 
-/// Process a single tag: diff crates and resolve PRs.
-async fn process_tag(
-    gh: &GitHubClient,
+// ---------------------------------------------------------------------------
+// Local git operations
+// ---------------------------------------------------------------------------
+
+/// Run a git command in the SDK repo, returning stdout.
+fn git(sdk_repo: &Path, args: &[&str]) -> Result<String> {
+    let output = std::process::Command::new("git")
+        .arg("-C")
+        .arg(sdk_repo)
+        .args(args)
+        .output()
+        .context("failed to run git")?;
+    if !output.status.success() {
+        let stderr = String::from_utf8_lossy(&output.stderr);
+        anyhow::bail!("git {} failed: {}", args.join(" "), stderr.trim());
+    }
+    Ok(String::from_utf8(output.stdout)?)
+}
+
+/// Process a single tag: diff crates and resolve PRs using local git.
+fn process_tag(
+    sdk_repo: &Path,
     tag: &str,
     prev_tag: &str,
     publish_date: &str,
-    prdoc_index: &HashMap<u64, String>,
+    prdoc_crates: &HashMap<u64, Vec<String>>,
 ) -> Result<Release> {
-    let compare = gh.compare_tags(SDK_OWNER, SDK_REPO, prev_tag, tag).await?;
-
-    // Find changed Cargo.toml files from the diff
-    let changed_tomls = find_changed_cargo_tomls(&compare);
+    let changed_tomls = git_changed_cargo_tomls(sdk_repo, prev_tag, tag)?;
 
     // Collect crate version bumps
-    let mut crate_versions: HashMap<String, (String, String)> = HashMap::new(); // name -> (old, new)
+    let mut crate_versions: HashMap<String, (String, String)> = HashMap::new();
 
     for toml_path in &changed_tomls {
-        let old_version = get_crate_version(gh, toml_path, prev_tag).await;
-        let new_version = get_crate_version(gh, toml_path, tag).await;
+        let old_version = git_crate_version(sdk_repo, prev_tag, toml_path);
+        let new_version = git_crate_version(sdk_repo, tag, toml_path);
 
         if let (Ok(Some((name_old, ver_old))), Ok(Some((name_new, ver_new)))) =
             (old_version, new_version)
@@ -262,18 +278,17 @@ async fn process_tag(
         }
     }
 
-    // Extract PR numbers from commits
-    let pr_numbers = extract_pr_numbers(&compare);
+    // Extract PR numbers from commit messages
+    let pr_numbers = git_extract_pr_numbers(sdk_repo, prev_tag, tag)?;
     log::debug!("{} PRs from commits, {} changed Cargo.toml files", pr_numbers.len(), changed_tomls.len());
 
     // Resolve PRs to crates via prdocs
     let mut crate_prs: HashMap<String, Vec<u64>> = HashMap::new();
     for &pr_num in &pr_numbers {
-        let prdoc_crates = fetch_prdoc_crates(gh, pr_num, prdoc_index).await;
-        if let Ok(crates) = prdoc_crates {
+        if let Some(crates) = prdoc_crates.get(&pr_num) {
             for crate_name in crates {
-                if crate_versions.contains_key(&crate_name) {
-                    crate_prs.entry(crate_name).or_default().push(pr_num);
+                if crate_versions.contains_key(crate_name) {
+                    crate_prs.entry(crate_name.clone()).or_default().push(pr_num);
                 }
             }
         }
@@ -300,28 +315,25 @@ async fn process_tag(
     })
 }
 
-/// Extract paths of changed Cargo.toml files from a compare response.
-fn find_changed_cargo_tomls(compare: &Value) -> Vec<String> {
-    compare["files"]
-        .as_array()
-        .map(|files| {
-            files
-                .iter()
-                .filter_map(|f| f["filename"].as_str())
-                .filter(|f| f.ends_with("/Cargo.toml") && !f.starts_with('.'))
-                .map(String::from)
-                .collect()
-        })
-        .unwrap_or_default()
+/// List changed Cargo.toml files between two tags.
+fn git_changed_cargo_tomls(sdk_repo: &Path, prev_tag: &str, tag: &str) -> Result<Vec<String>> {
+    let range = format!("{prev_tag}..{tag}");
+    let output = git(sdk_repo, &["diff", "--name-only", &range, "--", "*/Cargo.toml"])?;
+    Ok(output
+        .lines()
+        .filter(|f| !f.starts_with('.'))
+        .map(String::from)
+        .collect())
 }
 
-/// Fetch a Cargo.toml at a given ref and return `(name, version)`.
-async fn get_crate_version(
-    gh: &GitHubClient,
-    toml_path: &str,
+/// Read a Cargo.toml at a given ref and return `(name, version)`.
+fn git_crate_version(
+    sdk_repo: &Path,
     git_ref: &str,
+    toml_path: &str,
 ) -> Result<Option<(String, String)>> {
-    let content = match gh.get_file_content(SDK_OWNER, SDK_REPO, toml_path, git_ref).await {
+    let spec = format!("{git_ref}:{toml_path}");
+    let content = match git(sdk_repo, &["show", &spec]) {
         Ok(c) => c,
         Err(_) => return Ok(None),
     };
@@ -337,74 +349,63 @@ static BACKPORT_RE: LazyLock<Regex> =
 static MERGE_RE: LazyLock<Regex> =
     LazyLock::new(|| Regex::new(r"\(#(\d+)\)\s*$").unwrap());
 
-/// Extract PR numbers from commit messages in a compare response.
-fn extract_pr_numbers(compare: &Value) -> Vec<u64> {
+/// Extract PR numbers from commit messages between two tags.
+fn git_extract_pr_numbers(sdk_repo: &Path, prev_tag: &str, tag: &str) -> Result<Vec<u64>> {
+    let range = format!("{prev_tag}..{tag}");
+    let output = git(sdk_repo, &["log", &range, "--format=%s"])?;
+
     let mut prs = HashSet::new();
-
-    if let Some(commits) = compare["commits"].as_array() {
-        for commit in commits {
-            let msg = commit["commit"]["message"]
-                .as_str()
-                .unwrap_or_default();
-            let first_line = msg.lines().next().unwrap_or_default();
-
-            if let Some(caps) = BACKPORT_RE.captures(first_line) {
-                if let Ok(n) = caps[1].parse::<u64>() {
-                    prs.insert(n);
-                }
-            } else if let Some(caps) = MERGE_RE.captures(first_line) {
-                if let Ok(n) = caps[1].parse::<u64>() {
-                    prs.insert(n);
-                }
+    for line in output.lines() {
+        if let Some(caps) = BACKPORT_RE.captures(line) {
+            if let Ok(n) = caps[1].parse::<u64>() {
+                prs.insert(n);
+            }
+        } else if let Some(caps) = MERGE_RE.captures(line) {
+            if let Ok(n) = caps[1].parse::<u64>() {
+                prs.insert(n);
             }
         }
     }
 
     let mut sorted: Vec<_> = prs.into_iter().collect();
     sorted.sort();
-    sorted
+    Ok(sorted)
 }
 
-/// Build an index of PR number -> prdoc path from the master tree.
-async fn build_prdoc_index(gh: &GitHubClient) -> Result<HashMap<u64, String>> {
-    let re = Regex::new(r"prdoc/.*/pr_(\d+)\.prdoc$|prdoc/pr_(\d+)\.prdoc$").unwrap();
-    let url = format!(
-        "https://api.github.com/repos/{SDK_OWNER}/{SDK_REPO}/git/trees/master?recursive=1"
-    );
-    let tree: Value = gh.get_json(&url).await?;
+/// Regex matching prdoc filenames like `prdoc/stable2512/pr_10861.prdoc`.
+static PRDOC_RE: LazyLock<Regex> =
+    LazyLock::new(|| Regex::new(r"prdoc/.*/pr_(\d+)\.prdoc$|prdoc/pr_(\d+)\.prdoc$").unwrap());
+
+/// Build PR number -> affected crate names index from local prdoc files on master.
+fn build_local_prdoc_index(sdk_repo: &Path) -> Result<HashMap<u64, Vec<String>>> {
+    let output = git(sdk_repo, &["ls-tree", "-r", "--name-only", "master", "prdoc/"])?;
 
     let mut index = HashMap::new();
-    if let Some(entries) = tree["tree"].as_array() {
-        for entry in entries {
-            if let Some(path) = entry["path"].as_str() {
-                if let Some(caps) = re.captures(path) {
-                    let num_str = caps.get(1).or(caps.get(2)).unwrap().as_str();
-                    if let Ok(n) = num_str.parse::<u64>() {
-                        index.insert(n, path.to_string());
-                    }
+    for path in output.lines() {
+        let pr_num = match PRDOC_RE.captures(path) {
+            Some(caps) => {
+                let num_str = caps.get(1).or(caps.get(2)).unwrap().as_str();
+                match num_str.parse::<u64>() {
+                    Ok(n) => n,
+                    Err(_) => continue,
                 }
+            }
+            None => continue,
+        };
+
+        let content = match git(sdk_repo, &["show", &format!("master:{path}")]) {
+            Ok(c) => c,
+            Err(_) => continue,
+        };
+
+        if let Ok(crates) = parse_prdoc_crates(&content) {
+            if !crates.is_empty() {
+                index.insert(pr_num, crates);
             }
         }
     }
 
     Ok(index)
-}
-
-/// Fetch and parse the prdoc file for a PR, returning affected crate names.
-async fn fetch_prdoc_crates(
-    gh: &GitHubClient,
-    pr_number: u64,
-    prdoc_index: &HashMap<u64, String>,
-) -> Result<Vec<String>> {
-    let path = match prdoc_index.get(&pr_number) {
-        Some(p) => p.clone(),
-        None => anyhow::bail!("no prdoc found for PR #{pr_number}"),
-    };
-
-    let content = gh
-        .get_file_content(SDK_OWNER, SDK_REPO, &path, "master")
-        .await?;
-    parse_prdoc_crates(&content)
 }
 
 /// Minimal prdoc structure for extracting crate names.
@@ -484,58 +485,6 @@ mod tests {
     fn published_tag_from_estimated() {
         let publish = DateAndTag::Estimated {};
         assert!(PublishedTag::from_entry("stable2506-3", &publish).is_none());
-    }
-
-    #[test]
-    fn extract_pr_numbers_merge_commit() {
-        let compare = json!({
-            "commits": [{"commit": {"message": "Fix thing (#42)"}}]
-        });
-        assert_eq!(extract_pr_numbers(&compare), vec![42]);
-    }
-
-    #[test]
-    fn extract_pr_numbers_backport() {
-        let compare = json!({
-            "commits": [{"commit": {"message": "[stable2506] Backport #99"}}]
-        });
-        assert_eq!(extract_pr_numbers(&compare), vec![99]);
-    }
-
-    #[test]
-    fn extract_pr_numbers_no_match() {
-        let compare = json!({
-            "commits": [{"commit": {"message": "No PR ref here"}}]
-        });
-        assert!(extract_pr_numbers(&compare).is_empty());
-    }
-
-    #[test]
-    fn extract_pr_numbers_dedup() {
-        let compare = json!({
-            "commits": [
-                {"commit": {"message": "A (#10)"}},
-                {"commit": {"message": "B (#10)"}}
-            ]
-        });
-        assert_eq!(extract_pr_numbers(&compare), vec![10]);
-    }
-
-    #[test]
-    fn find_changed_cargo_tomls_filters() {
-        let compare = json!({
-            "files": [
-                {"filename": "substrate/frame/balances/Cargo.toml"},
-                {"filename": ".hidden/Cargo.toml"},
-                {"filename": "polkadot/runtime/src/lib.rs"},
-                {"filename": "cumulus/pallets/collator/Cargo.toml"}
-            ]
-        });
-        let result = find_changed_cargo_tomls(&compare);
-        assert_eq!(result, vec![
-            "substrate/frame/balances/Cargo.toml",
-            "cumulus/pallets/collator/Cargo.toml",
-        ]);
     }
 
     #[test]

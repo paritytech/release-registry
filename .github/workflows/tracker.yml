@@ -12,12 +12,17 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
+      - uses: actions/checkout@v4
+        with:
+          repository: paritytech/polkadot-sdk
+          path: polkadot-sdk
+          fetch-depth: 0
       - uses: dtolnay/rust-toolchain@stable
       - uses: Swatinem/rust-cache@v2
         with:
           workspaces: tracker
       - run: cargo build --release --manifest-path tracker/Cargo.toml
-      - run: ./tracker/target/release/tracker
+      - run: ./tracker/target/release/tracker --sdk-repo polkadot-sdk
         env:
           GITHUB_TOKEN: ${{ secrets.TRACKER_PAT }}
       - name: Commit and push state

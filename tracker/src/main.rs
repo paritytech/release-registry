@@ -51,6 +51,10 @@ struct Cli {
     /// Path to state.json (default: ../state.json relative to binary)
     #[clap(long)]
     state_path: Option<PathBuf>,
+
+    /// Path to a local polkadot-sdk git checkout
+    #[clap(long, env = "POLKADOT_SDK_DIR")]
+    sdk_repo: PathBuf,
 }
 
 struct Runner {
@@ -59,6 +63,7 @@ struct Runner {
     state_path: PathBuf,
     releases_json: releases::ReleasesJson,
     dry_run: bool,
+    sdk_repo: PathBuf,
 }
 
 impl Runner {
@@ -78,8 +83,7 @@ impl Runner {
     async fn run_step(&mut self, step: Step) -> Result<()> {
         match step {
             Step::Discover => {
-                releases::discover_and_resolve(&mut self.state, &self.gh, &self.releases_json)
-                    .await
+                releases::discover_and_resolve(&mut self.state, &self.releases_json, &self.sdk_repo)
             }
             Step::Downstream => {
                 downstream::check_downstream(&mut self.state, &self.gh).await
@@ -131,6 +135,6 @@ async fn main() -> Result<()> {
         None => Step::ALL,
     };
 
-    let runner = Runner { gh: github::GitHubClient::new(token), state, state_path, releases_json, dry_run: cli.dry_run };
+    let runner = Runner { gh: github::GitHubClient::new(token), state, state_path, releases_json, dry_run: cli.dry_run, sdk_repo: cli.sdk_repo };
     runner.run(steps).await
 }
