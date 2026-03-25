@@ -39,7 +39,7 @@ Full untruncated version index.
 | **stable2512** | 1.21.0 | 2025-11-17 | 2025-12-22 | 2027-01-01 | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2512) |
 | &nbsp;&nbsp;stable2512-1 | 1.21.1 | 2026-01-26 | 2026-01-26 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2512-1) |
 | &nbsp;&nbsp;stable2512-2 | 1.21.2 | 2026-02-23 | 2026-02-23 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2512-2) |
-| &nbsp;&nbsp;stable2512-3 | 1.21.3 | 2026-03-16 | 2026-03-19 |  | Planned |
+| &nbsp;&nbsp;stable2512-3 | 1.21.3 | 2026-03-23 | 2026-03-23 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2512-3) |
 | &nbsp;&nbsp;stable2512-4 | 1.21.4 | 2026-04-20 | 2026-04-23 |  | Planned |
 | &nbsp;&nbsp;stable2512-5 | 1.21.5 | 2026-05-18 | 2026-05-21 |  | Planned |
 | &nbsp;&nbsp;stable2512-6 | 1.21.6 | 2026-06-15 | 2026-06-18 |  | Planned |

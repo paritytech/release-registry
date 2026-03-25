@@ -1140,13 +1140,12 @@
           },
           {
             "name": "stable2512-3",
-            "cutoff": {
-              "estimated": "2026-03-16"
-            },
+            "cutoff": "2026-03-23",
             "publish": {
-              "estimated": "2026-03-19"
+              "when": "2026-03-23",
+              "tag": "polkadot-stable2512-3"
             },
-            "state": "planned",
+            "state": "released",
             "semver": "1.21.3"
           },
           {
