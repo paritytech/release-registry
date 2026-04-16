@@ -1175,15 +1175,15 @@ BEGIN:VEVENT
 SUMMARY:stable2509-7 Cutoff
 DTSTART;VALUE=DATE:20260413
 DTEND;VALUE=DATE:20260414
-DESCRIPTION:Cutoff for stable2509-7 (planned)\n\nFull Calendar: https://gi
- thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Cutoff for stable2509-7 (released)\n\nFull Calendar: https://g
+ ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2509-7 Release
 DTSTART;VALUE=DATE:20260416
 DTEND;VALUE=DATE:20260417
-DESCRIPTION:Release of stable2509-7 (planned)\n\nFull Calendar: https://gi
- thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Release of stable2509-7 (released)\n\nFull Calendar: https://g
+ ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2509-8 Cutoff
