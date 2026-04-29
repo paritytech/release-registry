@@ -1,7 +1,7 @@
 {
   "Polkadot SDK": {
     "recommended": {
-      "release": "stable2512"
+      "release": "stable2603"
     },
     "releases": [
       {
@@ -596,7 +596,12 @@
           "when": "2025-04-08",
           "tag": "polkadot-stable2503"
         },
-        "state": "released",
+        "state": {
+          "deprecated": {
+            "since": "2026-02-26",
+            "useInstead": "stable2512"
+          }
+        },
         "endOfLife": {
           "estimated": "2026-03-31"
         },
@@ -608,7 +613,12 @@
               "when": "2025-05-05",
               "tag": "polkadot-stable2503-1"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2026-02-26",
+                "useInstead": "stable2512"
+              }
+            },
             "semver": "1.18.1"
           },
           {
@@ -618,7 +628,12 @@
               "when": "2025-05-07",
               "tag": "polkadot-stable2503-2"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2026-02-26",
+                "useInstead": "stable2512"
+              }
+            },
             "semver": "1.18.2"
           },
           {
@@ -628,7 +643,12 @@
               "when": "2025-05-10",
               "tag": "polkadot-stable2503-3"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2026-02-26",
+                "useInstead": "stable2512"
+              }
+            },
             "semver": "1.18.3"
           },
           {
@@ -638,7 +658,12 @@
               "when": "2025-05-14",
               "tag": "polkadot-stable2503-4"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2026-02-26",
+                "useInstead": "stable2512"
+              }
+            },
             "semver": "1.18.4"
           },
           {
@@ -648,7 +673,12 @@
               "when": "2025-05-28",
               "tag": "polkadot-stable2503-5"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2026-02-26",
+                "useInstead": "stable2512"
+              }
+            },
             "semver": "1.18.5"
           },
           {
@@ -658,7 +688,12 @@
               "when": "2025-06-06",
               "tag": "polkadot-stable2503-6"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2026-02-26",
+                "useInstead": "stable2512"
+              }
+            },
             "semver": "1.18.6"
           },
           {
@@ -668,7 +703,12 @@
               "when": "2025-07-10",
               "tag": "polkadot-stable2503-7"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2026-02-26",
+                "useInstead": "stable2512"
+              }
+            },
             "semver": "1.18.7"
           },
           {
@@ -678,7 +718,12 @@
               "when": "2025-07-31",
               "tag": "polkadot-stable2503-8"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2026-02-26",
+                "useInstead": "stable2512"
+              }
+            },
             "semver": "1.18.8"
           },
           {
@@ -688,7 +733,12 @@
               "when": "2025-08-28",
               "tag": "polkadot-stable2503-9"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2026-02-26",
+                "useInstead": "stable2512"
+              }
+            },
             "semver": "1.18.9"
           },
           {
@@ -698,7 +748,12 @@
               "when": "2025-09-25",
               "tag": "polkadot-stable2503-10"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2026-02-26",
+                "useInstead": "stable2512"
+              }
+            },
             "semver": "1.18.10"
           },
           {
@@ -708,7 +763,12 @@
               "when": "2025-10-30",
               "tag": "polkadot-stable2503-11"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2026-02-26",
+                "useInstead": "stable2512"
+              }
+            },
             "semver": "1.18.11"
           },
           {
@@ -741,7 +801,7 @@
             "publish": {
               "estimated": "2026-01-29"
             },
-            "state": "planned",
+            "state": "skipped",
             "semver": "1.18.14"
           }
         ],
@@ -839,29 +899,27 @@
             "publish": {
               "estimated": "2026-02-05"
             },
-            "state": "planned",
+            "state": "skipped",
             "semver": "1.19.8"
           },
           {
             "name": "stable2506-9",
-            "cutoff": {
-              "estimated": "2026-03-02"
-            },
+            "cutoff": "2026-03-10",
             "publish": {
-              "estimated": "2026-03-05"
+              "when": "2026-03-10",
+              "tag": "polkadot-stable2506-9"
             },
-            "state": "planned",
+            "state": "released",
             "semver": "1.19.9"
           },
           {
             "name": "stable2506-10",
-            "cutoff": {
-              "estimated": "2026-04-06"
-            },
+            "cutoff": "2026-04-10",
             "publish": {
-              "estimated": "2026-04-09"
+              "when": "2026-04-10",
+              "tag": "polkadot-stable2506-10"
             },
-            "state": "planned",
+            "state": "released",
             "semver": "1.19.10"
           },
           {
@@ -945,13 +1003,12 @@
           },
           {
             "name": "stable2509-5",
-            "cutoff": {
-              "estimated": "2026-02-09"
-            },
+            "cutoff": "2026-02-12",
             "publish": {
-              "estimated": "2026-02-12"
+              "when": "2026-02-12",
+              "tag": "polkadot-stable2509-5"
             },
-            "state": "planned",
+            "state": "released",
             "semver": "1.20.5"
           },
           {
@@ -967,13 +1024,12 @@
           },
           {
             "name": "stable2509-7",
-            "cutoff": {
-              "estimated": "2026-04-13"
-            },
+            "cutoff": "2026-04-13",
             "publish": {
-              "estimated": "2026-04-16"
+              "when": "2026-04-16",
+              "tag": "polkadot-stable2509-7"
             },
-            "state": "planned",
+            "state": "released",
             "semver": "1.20.7"
           },
           {
@@ -1072,24 +1128,22 @@
           },
           {
             "name": "stable2512-2",
-            "cutoff": {
-              "estimated": "2026-02-16"
-            },
+            "cutoff": "2026-02-23",
             "publish": {
-              "estimated": "2026-02-19"
+              "when": "2026-02-23",
+              "tag": "polkadot-stable2512-2"
             },
-            "state": "planned",
+            "state": "released",
             "semver": "1.21.2"
           },
           {
             "name": "stable2512-3",
-            "cutoff": {
-              "estimated": "2026-03-16"
-            },
+            "cutoff": "2026-03-23",
             "publish": {
-              "estimated": "2026-03-19"
+              "when": "2026-03-23",
+              "tag": "polkadot-stable2512-3"
             },
-            "state": "planned",
+            "state": "released",
             "semver": "1.21.3"
           },
           {
@@ -1197,12 +1251,13 @@
         "name": "stable2603",
         "semver": "1.22.0",
         "cutoff": {
-          "estimated": "2026-02-07"
+          "estimated": "2026-02-09"
         },
         "publish": {
-          "estimated": "2026-03-26"
+          "when": "2026-03-31",
+          "tag": "polkadot-stable2603"
         },
-        "state": "planned",
+        "state": "released",
         "endOfLife": {
           "estimated": "2027-03-26"
         },
@@ -1349,6 +1404,165 @@
             },
             "state": "planned",
             "semver": "1.22.13"
+          }
+        ]
+      },
+      {
+        "name": "stable2606",
+        "semver": "1.23.0",
+        "cutoff": {
+          "estimated": "2026-05-18"
+        },
+        "publish": {
+          "estimated": "2026-07-02"
+        },
+        "state": "planned",
+        "endOfLife": {
+          "estimated": "2027-07-02"
+        },
+        "patches": [
+          {
+            "name": "stable2606-1",
+            "cutoff": {
+              "estimated": "2026-08-03"
+            },
+            "publish": {
+              "estimated": "2026-08-06"
+            },
+            "state": "planned",
+            "semver": "1.23.1"
+          },
+          {
+            "name": "stable2606-2",
+            "cutoff": {
+              "estimated": "2026-09-07"
+            },
+            "publish": {
+              "estimated": "2026-09-10"
+            },
+            "state": "planned",
+            "semver": "1.23.2"
+          },
+          {
+            "name": "stable2606-3",
+            "cutoff": {
+              "estimated": "2026-10-05"
+            },
+            "publish": {
+              "estimated": "2026-10-08"
+            },
+            "state": "planned",
+            "semver": "1.23.3"
+          },
+          {
+            "name": "stable2606-4",
+            "cutoff": {
+              "estimated": "2026-11-02"
+            },
+            "publish": {
+              "estimated": "2026-11-05"
+            },
+            "state": "planned",
+            "semver": "1.23.4"
+          },
+          {
+            "name": "stable2606-5",
+            "cutoff": {
+              "estimated": "2026-12-07"
+            },
+            "publish": {
+              "estimated": "2026-12-10"
+            },
+            "state": "planned",
+            "semver": "1.23.5"
+          },
+          {
+            "name": "stable2606-6",
+            "cutoff": {
+              "estimated": "2027-01-04"
+            },
+            "publish": {
+              "estimated": "2027-01-07"
+            },
+            "state": "planned",
+            "semver": "1.23.6"
+          },
+          {
+            "name": "stable2606-7",
+            "cutoff": {
+              "estimated": "2027-02-01"
+            },
+            "publish": {
+              "estimated": "2027-02-04"
+            },
+            "state": "planned",
+            "semver": "1.23.7"
+          },
+          {
+            "name": "stable2606-8",
+            "cutoff": {
+              "estimated": "2027-03-01"
+            },
+            "publish": {
+              "estimated": "2027-03-04"
+            },
+            "state": "planned",
+            "semver": "1.23.8"
+          },
+          {
+            "name": "stable2606-9",
+            "cutoff": {
+              "estimated": "2027-04-05"
+            },
+            "publish": {
+              "estimated": "2027-04-08"
+            },
+            "state": "planned",
+            "semver": "1.23.9"
+          },
+          {
+            "name": "stable2606-10",
+            "cutoff": {
+              "estimated": "2027-05-03"
+            },
+            "publish": {
+              "estimated": "2027-05-06"
+            },
+            "state": "planned",
+            "semver": "1.23.10"
+          },
+          {
+            "name": "stable2606-11",
+            "cutoff": {
+              "estimated": "2027-06-07"
+            },
+            "publish": {
+              "estimated": "2027-06-10"
+            },
+            "state": "planned",
+            "semver": "1.23.11"
+          },
+          {
+            "name": "stable2606-12",
+            "cutoff": {
+              "estimated": "2027-07-05"
+            },
+            "publish": {
+              "estimated": "2027-07-08"
+            },
+            "state": "planned",
+            "semver": "1.23.12"
+          },
+          {
+            "name": "stable2606-13",
+            "cutoff": {
+              "estimated": "2027-08-02"
+            },
+            "publish": {
+              "estimated": "2027-08-05"
+            },
+            "state": "planned",
+            "semver": "1.23.13"
           }
         ]
       }
