@@ -1264,13 +1264,12 @@
         "patches": [
           {
             "name": "stable2603-1",
-            "cutoff": {
-              "estimated": "2026-04-27"
-            },
+            "cutoff": "2026-04-30",
             "publish": {
-              "estimated": "2026-04-30"
+              "when": "2026-04-30",
+              "tag": "polkadot-stable2603-1"
             },
-            "state": "planned",
+            "state": "released",
             "semver": "1.22.1"
           },
           {
