@@ -1273,13 +1273,12 @@
           },
           {
             "name": "stable2603-2",
-            "cutoff": {
-              "estimated": "2026-05-25"
-            },
+            "cutoff": "2026-05-08",
             "publish": {
-              "estimated": "2026-05-28"
+              "when": "2026-05-08",
+              "tag": "polkadot-stable2603-2"
             },
-            "state": "planned",
+            "state": "released",
             "semver": "1.22.2"
           },
           {
