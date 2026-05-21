@@ -1152,18 +1152,17 @@
             "publish": {
               "estimated": "2026-04-23"
             },
-            "state": "planned",
+            "state": "skipped",
             "semver": "1.21.4"
           },
           {
             "name": "stable2512-5",
-            "cutoff": {
-              "estimated": "2026-05-18"
-            },
+            "cutoff": "2026-05-21",
             "publish": {
-              "estimated": "2026-05-21"
+              "when": "2026-05-21",
+              "tag": "polkadot-stable2512-5"
             },
-            "state": "planned",
+            "state": "released",
             "semver": "1.21.5"
           },
           {
