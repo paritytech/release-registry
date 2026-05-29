@@ -1292,10 +1292,10 @@
           {
             "name": "stable2603-4",
             "cutoff": {
-              "estimated": "2026-07-27"
+              "estimated": "2026-06-22"
             },
             "publish": {
-              "estimated": "2026-07-30"
+              "estimated": "2026-06-25"
             },
             "state": "planned",
             "semver": "1.22.4"
@@ -1303,10 +1303,10 @@
           {
             "name": "stable2603-5",
             "cutoff": {
-              "estimated": "2026-08-24"
+              "estimated": "2026-07-27"
             },
             "publish": {
-              "estimated": "2026-08-27"
+              "estimated": "2026-07-30"
             },
             "state": "planned",
             "semver": "1.22.5"
@@ -1314,10 +1314,10 @@
           {
             "name": "stable2603-6",
             "cutoff": {
-              "estimated": "2026-09-28"
+              "estimated": "2026-08-24"
             },
             "publish": {
-              "estimated": "2026-10-01"
+              "estimated": "2026-08-27"
             },
             "state": "planned",
             "semver": "1.22.6"
@@ -1325,10 +1325,10 @@
           {
             "name": "stable2603-7",
             "cutoff": {
-              "estimated": "2026-10-26"
+              "estimated": "2026-09-28"
             },
             "publish": {
-              "estimated": "2026-10-29"
+              "estimated": "2026-10-01"
             },
             "state": "planned",
             "semver": "1.22.7"
@@ -1336,10 +1336,10 @@
           {
             "name": "stable2603-8",
             "cutoff": {
-              "estimated": "2026-11-23"
+              "estimated": "2026-10-26"
             },
             "publish": {
-              "estimated": "2026-11-26"
+              "estimated": "2026-10-29"
             },
             "state": "planned",
             "semver": "1.22.8"
@@ -1347,10 +1347,10 @@
           {
             "name": "stable2603-9",
             "cutoff": {
-              "estimated": "2026-12-28"
+              "estimated": "2026-11-23"
             },
             "publish": {
-              "estimated": "2026-12-31"
+              "estimated": "2026-11-26"
             },
             "state": "planned",
             "semver": "1.22.9"
@@ -1358,10 +1358,10 @@
           {
             "name": "stable2603-10",
             "cutoff": {
-              "estimated": "2027-01-25"
+              "estimated": "2026-12-28"
             },
             "publish": {
-              "estimated": "2027-01-28"
+              "estimated": "2026-12-31"
             },
             "state": "planned",
             "semver": "1.22.10"
@@ -1369,10 +1369,10 @@
           {
             "name": "stable2603-11",
             "cutoff": {
-              "estimated": "2027-02-22"
+              "estimated": "2027-01-25"
             },
             "publish": {
-              "estimated": "2027-02-25"
+              "estimated": "2027-01-28"
             },
             "state": "planned",
             "semver": "1.22.11"
@@ -1380,24 +1380,13 @@
           {
             "name": "stable2603-12",
             "cutoff": {
-              "estimated": "2027-03-22"
+              "estimated": "2027-02-22"
             },
             "publish": {
-              "estimated": "2027-03-25"
+              "estimated": "2027-02-25"
             },
             "state": "planned",
             "semver": "1.22.12"
-          },
-          {
-            "name": "stable2603-13",
-            "cutoff": {
-              "estimated": "2027-04-26"
-            },
-            "publish": {
-              "estimated": "2027-04-29"
-            },
-            "state": "planned",
-            "semver": "1.22.13"
           }
         ]
       },
