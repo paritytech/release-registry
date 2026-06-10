@@ -1054,17 +1054,17 @@ DESCRIPTION:Release of stable2506-11 (released)\n\nFull Calendar: https://
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2506-12 Cutoff
-DTSTART;VALUE=DATE:20260601
-DTEND;VALUE=DATE:20260602
-DESCRIPTION:Cutoff for stable2506-12 (planned)\n\nFull Calendar: https://g
- ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DTSTART;VALUE=DATE:20260610
+DTEND;VALUE=DATE:20260611
+DESCRIPTION:Cutoff for stable2506-12 (released)\n\nFull Calendar: https://
+ github.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2506-12 Release
-DTSTART;VALUE=DATE:20260604
-DTEND;VALUE=DATE:20260605
-DESCRIPTION:Release of stable2506-12 (planned)\n\nFull Calendar: https://g
- ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DTSTART;VALUE=DATE:20260610
+DTEND;VALUE=DATE:20260611
+DESCRIPTION:Release of stable2506-12 (released)\n\nFull Calendar: https://
+ github.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2509 Cutoff
