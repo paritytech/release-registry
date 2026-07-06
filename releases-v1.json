@@ -1,7 +1,7 @@
 {
   "Polkadot SDK": {
     "recommended": {
-      "release": "stable2603"
+      "release": "stable2606"
     },
     "releases": [
       {
@@ -1453,9 +1453,10 @@
           "estimated": "2026-05-18"
         },
         "publish": {
-          "estimated": "2026-07-02"
+          "when": "2026-07-06",
+          "tag": "polkadot-stable2606"
         },
-        "state": "planned",
+        "state": "released",
         "endOfLife": {
           "estimated": "2027-07-02"
         },
