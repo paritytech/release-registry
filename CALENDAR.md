@@ -8,6 +8,18 @@ Full untruncated version index.
 
 | Version | SemVer | Cutoff | Publish | End of Life | State |
 |---------|--------|--------|---------|-------------|-------|
+| **stable2609** | 1.25.0 | 2026-08-17 | 2026-10-01 | 2027-10-01 | Planned |
+| &nbsp;&nbsp;stable2609-1 | 1.25.1 | 2026-11-09 | 2026-11-12 |  | Planned |
+| &nbsp;&nbsp;stable2609-2 | 1.25.2 | 2026-12-14 | 2026-12-17 |  | Planned |
+| &nbsp;&nbsp;stable2609-3 | 1.25.3 | 2027-01-11 | 2027-01-14 |  | Planned |
+| &nbsp;&nbsp;stable2609-4 | 1.25.4 | 2027-02-08 | 2027-02-11 |  | Planned |
+| &nbsp;&nbsp;stable2609-5 | 1.25.5 | 2027-03-08 | 2027-03-11 |  | Planned |
+| &nbsp;&nbsp;stable2609-6 | 1.25.6 | 2027-04-12 | 2027-04-15 |  | Planned |
+| &nbsp;&nbsp;stable2609-7 | 1.25.7 | 2027-05-10 | 2027-05-13 |  | Planned |
+| &nbsp;&nbsp;stable2609-8 | 1.25.8 | 2027-06-14 | 2027-06-17 |  | Planned |
+| &nbsp;&nbsp;stable2609-9 | 1.25.9 | 2027-07-12 | 2027-07-15 |  | Planned |
+| &nbsp;&nbsp;stable2609-10 | 1.25.10 | 2027-08-09 | 2027-08-12 |  | Planned |
+| &nbsp;&nbsp;stable2609-11 | 1.25.11 | 2027-09-13 | 2027-09-16 |  | Planned |
 | **stable2606** | 1.24.0 | 2026-05-18 | 2026-07-06 | 2027-07-02 | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2606) |
 | &nbsp;&nbsp;stable2606-1 | 1.24.1 | 2026-08-03 | 2026-08-06 |  | Planned |
 | &nbsp;&nbsp;stable2606-2 | 1.24.2 | 2026-09-07 | 2026-09-10 |  | Planned |
