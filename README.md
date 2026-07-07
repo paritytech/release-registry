@@ -124,6 +124,8 @@ python3 scripts/manage.py backfill-patches stable2407 --start-date 2024-07-29
 
 Then update the README to see the changes by running `just`.
 
+Alternatively, this can be done entirely on GitHub: trigger the **Plan release** workflow (`.github/workflows/plan-release.yml`) from the Actions tab. It takes the release name, node version, cutoff date and first patch date as inputs, runs the `plan` and `backfill` commands, regenerates all derived files, and opens a PR against `main`.
+
 ### Release Cutoff / Publish
 
 Run this command to cut off a release:
@@ -133,6 +135,8 @@ python3 scripts/manage.py release cutoff stable2407-2 2024-09-02
 ```
 
 With `publish` likewise.
+
+Publishing can also be done on GitHub: trigger the **New release** workflow (`.github/workflows/new-release.yml`) from the Actions tab. It takes the release name and date as inputs, runs the `publish` command, regenerates all derived files, and opens a PR against `main`.
 
 ## Automation
 
