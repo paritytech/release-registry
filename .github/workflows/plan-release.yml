@@ -1,0 +1,94 @@
+# Manually triggered workflow that plans a new stable release:
+# - creates a branch from main
+# - runs `just plan <next_stable_version> <cutoff-date> <node_version>`
+# - runs `just backfill <next_stable_version> <first_patch_date>`
+# - regenerates all derived files with `just`
+# - pushes the branch and opens a PR against main
+
+name: Plan release
+
+on:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: 'Release name (e.g. stable2606)'
+        required: true
+        type: string
+      node_version:
+        description: 'Node version (e.g. 1.25.0)'
+        required: true
+        type: string
+      cutoff-date:
+        description: 'Release cutoff date (YYYY-MM-DD) should be 1.5 months earlier than release date'
+        required: true
+        type: string
+      first-patch-date:
+        description: 'First patch release date (YYYY-MM-DD, must be a Monday) should be approx. 1 month after release date in a week where no releases are planned'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  plan-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          token: ${{ secrets.RB_TOKEN }}
+
+      - name: Install system dependencies for Pillow
+        run: sudo apt-get update && sudo apt-get install -y libjpeg-dev zlib1g-dev
+
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: '3.13'
+
+      - uses: extractions/setup-just@53165ef7e734c5c07cb06b3c8e7b647c5aa16db3 # v4.0.0
+        with:
+          just-version: 1.35.0
+
+      - name: Create release branch
+        env:
+          RELEASE: ${{ inputs.release }}
+        run: |
+          git config user.email "action@github.com"
+          git config user.name "GitHub Action"
+          git checkout -b "plan-${RELEASE}"
+
+      - name: Plan release, backfill patches and regenerate files
+        env:
+          RELEASE: ${{ inputs.release }}
+          NODE_VERSION: ${{ inputs.node_version}}
+          CUTOFF_DATE: ${{ inputs.cutoff-date }}
+          FIRST_PATCH_DATE: ${{ inputs.first-patch-date }}
+        run: |
+          just plan "${RELEASE}" "${CUTOFF_DATE}" "${NODE_VERSION}"
+          just backfill "${RELEASE}" "${FIRST_PATCH_DATE}"
+          just
+
+      - name: Commit and push
+        env:
+          RELEASE: ${{ inputs.release }}
+        run: |
+          git add .
+          git commit -m "Plan ${RELEASE}"
+          git push --set-upstream origin "plan-${RELEASE}"
+
+      - name: Open pull request
+        env:
+          GH_TOKEN: ${{ secrets.RB_TOKEN }}
+          RELEASE: ${{ inputs.release }}
+          NODE_VERSION: ${{ inputs.node_version}}
+          CUTOFF_DATE: ${{ inputs.cutoff-date }}
+          FIRST_PATCH_DATE: ${{ inputs.first-patch-date }}
+        run: |
+          gh pr create \
+            --base main \
+            --head "plan-${RELEASE}" \
+            --title "Plan ${RELEASE}" \
+            --body "Plan and backfill for ${RELEASE} with node version ${NODE_VERSION} and cutoff date ${CUTOFF_DATE} and first patch date ${FIRST_PATCH_DATE}"
