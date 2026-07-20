@@ -1241,14 +1241,14 @@ BEGIN:VEVENT
 SUMMARY:stable2509-10 Cutoff
 DTSTART;VALUE=DATE:20260713
 DTEND;VALUE=DATE:20260714
-DESCRIPTION:Cutoff for stable2509-10 (planned)\n\nFull Calendar: https://g
+DESCRIPTION:Cutoff for stable2509-10 (skipped)\n\nFull Calendar: https://g
  ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2509-10 Release
 DTSTART;VALUE=DATE:20260716
 DTEND;VALUE=DATE:20260717
-DESCRIPTION:Release of stable2509-10 (planned)\n\nFull Calendar: https://g
+DESCRIPTION:Release of stable2509-10 (skipped)\n\nFull Calendar: https://g
  ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
