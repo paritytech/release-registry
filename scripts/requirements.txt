@@ -29,7 +29,7 @@ python-dateutil==2.9.0.post0
 pytz==2024.1
 requests==2.33.0
 six==1.16.0
-soupsieve==2.6
+soupsieve==2.8.4
 tinycss2==1.5.1
 tzdata==2025.1
 urllib3==2.7.0
