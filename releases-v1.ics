@@ -1402,14 +1402,14 @@ BEGIN:VEVENT
 SUMMARY:stable2512-7 Cutoff
 DTSTART;VALUE=DATE:20260720
 DTEND;VALUE=DATE:20260721
-DESCRIPTION:Cutoff for stable2512-7 (planned)\n\nFull Calendar: https://gi
+DESCRIPTION:Cutoff for stable2512-7 (skipped)\n\nFull Calendar: https://gi
  thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2512-7 Release
 DTSTART;VALUE=DATE:20260723
 DTEND;VALUE=DATE:20260724
-DESCRIPTION:Release of stable2512-7 (planned)\n\nFull Calendar: https://gi
+DESCRIPTION:Release of stable2512-7 (skipped)\n\nFull Calendar: https://gi
  thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
