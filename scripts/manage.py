@@ -196,6 +196,21 @@ def deprecate_release(data, version, date, use_instead):
 
     return True
 
+def skip_release(data, version):
+    project, release = find_release(data, version)
+    if not release:
+        return False
+
+    if '-' in version:  # It's a patch
+        for patch in release.get('patches', []):
+            if patch['name'] == version:
+                patch['state'] = 'skipped'
+                return True
+        return False
+    else:  # It's a release
+        release['state'] = 'skipped'
+        return True
+
 def backfill_patches(data, version=None, start_date=None):
     releases_updated = False
     for project in data.values():
@@ -264,6 +279,14 @@ def handle_deprecate_command(args, data):
     else:
         print(f"Release {args.version} not found")
 
+def handle_skip_command(args, data):
+    validate_version(args.version)
+    if skip_release(data, args.version):
+        save_json(data, args.file)
+        print(f"Successfully skipped {args.version}")
+    else:
+        print(f"Release or patch {args.version} not found")
+
 def handle_backfill_patches_command(args, data):
     if args.version:
         validate_version(args.version)
@@ -329,6 +352,10 @@ def main():
     deprecate_parser.add_argument('date', help="Deprecation date in YYYY-MM-DD format")
     deprecate_parser.add_argument('use_instead', help="Version to use instead")
 
+    # Skip parser
+    skip_parser = subparsers.add_parser('skip')
+    skip_parser.add_argument('version', help="Release or patch version to skip (e.g., stable2401 or stable2401-1 for patches)")
+
     # Backfill patches parser
     backfill_parser = subparsers.add_parser('backfill-patches')
     backfill_parser.add_argument('version', nargs='?', help="Specific stable version to backfill (e.g., stable2401)")
@@ -349,6 +376,8 @@ def main():
             handle_release_command(args, data)
         elif args.action == 'deprecate':
             handle_deprecate_command(args, data)
+        elif args.action == 'skip':
+            handle_skip_command(args, data)
         elif args.action == 'backfill-patches':
             handle_backfill_patches_command(args, data)
         elif args.action == 'remove':

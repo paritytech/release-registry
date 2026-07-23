@@ -1,0 +1,75 @@
+# Manually triggered workflow that skips a planned release or patch:
+# - creates a branch from main
+# - runs `just skip <release>` to mark it as skipped in releases-v1.json
+# - regenerates all derived files with `just`
+# - pushes the branch and opens a PR against main
+
+name: Skip release
+
+on:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: 'Release or patch name to skip (e.g. stable2509 or stable2509-7)'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  skip-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          token: ${{ secrets.RB_TOKEN }}
+
+      - name: Install system dependencies for Pillow
+        run: sudo apt-get update && sudo apt-get install -y libjpeg-dev zlib1g-dev
+
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: '3.13'
+
+      - uses: extractions/setup-just@53165ef7e734c5c07cb06b3c8e7b647c5aa16db3 # v4.0.0
+        with:
+          just-version: 1.35.0
+
+      - name: Create skip branch
+        env:
+          RELEASE: ${{ inputs.release }}
+        run: |
+          git config user.email "action@github.com"
+          git config user.name "GitHub Action"
+          git checkout -b "skip-${RELEASE}"
+
+      - name: Skip release and regenerate files
+        env:
+          RELEASE: ${{ inputs.release }}
+        run: |
+          just venv
+          just skip "${RELEASE}"
+          just
+
+      - name: Commit and push
+        env:
+          RELEASE: ${{ inputs.release }}
+        run: |
+          git add .
+          git commit -m "Skip ${RELEASE}"
+          git push --set-upstream origin "skip-${RELEASE}"
+
+      - name: Open pull request
+        env:
+          GH_TOKEN: ${{ secrets.RB_TOKEN }}
+          RELEASE: ${{ inputs.release }}
+        run: |
+          gh pr create \
+            --base main \
+            --head "skip-${RELEASE}" \
+            --title "Skip ${RELEASE}" \
+            --body ""

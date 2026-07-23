@@ -33,6 +33,9 @@ cutoff release date:
 deprecate release date use_instead:
 	python3 scripts/manage.py deprecate {{release}} {{date}} {{use_instead}}
 
+skip release:
+	python3 scripts/manage.py skip {{release}}
+
 plan release date semver:
 	python3 scripts/manage.py release plan {{release}} {{date}} {{semver}}
 
