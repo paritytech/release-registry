@@ -1414,17 +1414,17 @@ DESCRIPTION:Release of stable2512-7 (skipped)\n\nFull Calendar: https://gi
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2512-8 Cutoff
-DTSTART;VALUE=DATE:20260817
-DTEND;VALUE=DATE:20260818
-DESCRIPTION:Cutoff for stable2512-8 (planned)\n\nFull Calendar: https://gi
- thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DTSTART;VALUE=DATE:20260820
+DTEND;VALUE=DATE:20260821
+DESCRIPTION:Cutoff for stable2512-8 (released)\n\nFull Calendar: https://g
+ ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2512-8 Release
 DTSTART;VALUE=DATE:20260820
 DTEND;VALUE=DATE:20260821
-DESCRIPTION:Release of stable2512-8 (planned)\n\nFull Calendar: https://gi
- thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Release of stable2512-8 (released)\n\nFull Calendar: https://g
+ ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2512-9 Cutoff
