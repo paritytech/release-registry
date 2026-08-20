@@ -1245,13 +1245,12 @@
           },
           {
             "name": "stable2512-8",
-            "cutoff": {
-              "estimated": "2026-08-17"
-            },
+            "cutoff": "2026-08-20",
             "publish": {
-              "estimated": "2026-08-20"
+              "when": "2026-08-20",
+              "tag": "polkadot-stable2512-8"
             },
-            "state": "planned",
+            "state": "released",
             "semver": "1.21.8"
           },
           {
