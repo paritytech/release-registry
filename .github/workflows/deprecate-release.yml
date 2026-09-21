@@ -1,0 +1,89 @@
+# Manually triggered workflow that deprecates a release:
+# - creates a branch from main
+# - runs `just deprecate <release> <date> <use_instead>` to mark it as deprecated in
+#   releases-v1.json (already released patches are deprecated, planned ones are skipped)
+# - regenerates all derived files with `just`
+# - pushes the branch and opens a PR against main
+
+name: Deprecate release
+
+on:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: 'Release name to deprecate (e.g. stable2509)'
+        required: true
+        type: string
+      date:
+        description: 'Deprecation date (YYYY-MM-DD)'
+        required: true
+        type: string
+      use_instead:
+        description: 'Release to use instead (e.g. stable2606)'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  deprecate-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          token: ${{ secrets.RB_TOKEN }}
+
+      - name: Install system dependencies for Pillow
+        run: sudo apt-get update && sudo apt-get install -y libjpeg-dev zlib1g-dev
+
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: '3.13'
+
+      - name: Set up Just
+        uses: extractions/setup-just@53165ef7e734c5c07cb06b3c8e7b647c5aa16db3 # v4.0.0
+        with:
+          just-version: 1.35.0
+
+      - name: Create deprecate branch
+        env:
+          RELEASE: ${{ inputs.release }}
+        run: |
+          git config user.email "action@github.com"
+          git config user.name "GitHub Action"
+          git checkout -b "deprecate-${RELEASE}"
+
+      - name: Deprecate release and regenerate files
+        env:
+          RELEASE: ${{ inputs.release }}
+          DEPRECATION_DATE: ${{ inputs.date }}
+          USE_INSTEAD: ${{ inputs.use_instead }}
+        run: |
+          just venv
+          just deprecate "${RELEASE}" "${DEPRECATION_DATE}" "${USE_INSTEAD}"
+          just
+
+      - name: Commit and push
+        env:
+          RELEASE: ${{ inputs.release }}
+        run: |
+          git add .
+          git commit -m "Deprecate ${RELEASE}"
+          git push --set-upstream origin "deprecate-${RELEASE}"
+
+      - name: Open pull request
+        env:
+          GH_TOKEN: ${{ secrets.RB_TOKEN }}
+          RELEASE: ${{ inputs.release }}
+          DEPRECATION_DATE: ${{ inputs.date }}
+          USE_INSTEAD: ${{ inputs.use_instead }}
+        run: |
+          gh pr create \
+            --base main \
+            --head "deprecate-${RELEASE}" \
+            --title "Deprecate ${RELEASE}" \
+            --body "Deprecate ${RELEASE} since ${DEPRECATION_DATE}, use ${USE_INSTEAD} instead."
