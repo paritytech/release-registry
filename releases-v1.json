@@ -1311,7 +1311,7 @@
             "publish": {
               "estimated": "2026-09-24"
             },
-            "state": "planned",
+            "state": "skipped",
             "semver": "1.21.9"
           },
           {
