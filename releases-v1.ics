@@ -2078,15 +2078,15 @@ DESCRIPTION:Cutoff for stable2612 (planned)\n\nFull Calendar: https://gith
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2612 Release
-DTSTART;VALUE=DATE:20261224
-DTEND;VALUE=DATE:20261225
+DTSTART;VALUE=DATE:20261217
+DTEND;VALUE=DATE:20261218
 DESCRIPTION:Release of stable2612 (planned)\n\nFull Calendar: https://gith
  ub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2612 End of Life
-DTSTART;VALUE=DATE:20271224
-DTEND;VALUE=DATE:20271225
+DTSTART;VALUE=DATE:20271217
+DTEND;VALUE=DATE:20271218
 DESCRIPTION:End of Life for stable2612\n\nFull Calendar: https://github.co
  m/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
