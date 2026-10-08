@@ -1742,17 +1742,17 @@ DESCRIPTION:Release of stable2606-2 (released)\n\nFull Calendar: https://g
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2606-3 Cutoff
-DTSTART;VALUE=DATE:20261005
-DTEND;VALUE=DATE:20261006
-DESCRIPTION:Cutoff for stable2606-3 (planned)\n\nFull Calendar: https://gi
- thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DTSTART;VALUE=DATE:20261008
+DTEND;VALUE=DATE:20261009
+DESCRIPTION:Cutoff for stable2606-3 (released)\n\nFull Calendar: https://g
+ ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2606-3 Release
 DTSTART;VALUE=DATE:20261008
 DTEND;VALUE=DATE:20261009
-DESCRIPTION:Release of stable2606-3 (planned)\n\nFull Calendar: https://gi
- thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+DESCRIPTION:Release of stable2606-3 (released)\n\nFull Calendar: https://g
+ ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2606-4 Cutoff
