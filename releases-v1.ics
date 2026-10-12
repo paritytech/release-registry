@@ -1300,20 +1300,6 @@ DESCRIPTION:Release of stable2509-12 (skipped)\n\nFull Calendar: https://g
  ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:stable2509-13 Cutoff
-DTSTART;VALUE=DATE:20261012
-DTEND;VALUE=DATE:20261013
-DESCRIPTION:Cutoff for stable2509-13 (skipped)\n\nFull Calendar: https://g
- ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:stable2509-13 Release
-DTSTART;VALUE=DATE:20261015
-DTEND;VALUE=DATE:20261016
-DESCRIPTION:Release of stable2509-13 (skipped)\n\nFull Calendar: https://g
- ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:stable2512 Cutoff
 DTSTART;VALUE=DATE:20251117
 DTEND;VALUE=DATE:20251118

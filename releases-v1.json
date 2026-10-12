@@ -1191,17 +1191,6 @@
             },
             "state": "skipped",
             "semver": "1.20.12"
-          },
-          {
-            "name": "stable2509-13",
-            "cutoff": {
-              "estimated": "2026-10-12"
-            },
-            "publish": {
-              "estimated": "2026-10-15"
-            },
-            "state": "skipped",
-            "semver": "1.20.13"
           }
         ],
         "semver": "1.20.0"
