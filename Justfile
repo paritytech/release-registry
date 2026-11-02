@@ -25,19 +25,19 @@ venv:
 	fi
 
 publish release date:
-	python3 scripts/manage.py release publish {{release}} {{date}}
+	python3 scripts/manage.py release publish {{quote(release)}} {{quote(date)}}
 
 cutoff release date:
-	python3 scripts/manage.py release cutoff {{release}} {{date}}
+	python3 scripts/manage.py release cutoff {{quote(release)}} {{quote(date)}}
 
 deprecate release date use_instead:
-	python3 scripts/manage.py deprecate {{release}} {{date}} {{use_instead}}
+	python3 scripts/manage.py deprecate {{quote(release)}} {{quote(date)}} {{quote(use_instead)}}
 
 skip release:
-	python3 scripts/manage.py skip {{release}}
+	python3 scripts/manage.py skip {{quote(release)}}
 
 plan release date semver:
-	python3 scripts/manage.py release plan {{release}} {{date}} {{semver}}
+	python3 scripts/manage.py release plan {{quote(release)}} {{quote(date)}} {{quote(semver)}}
 
 backfill release date:
-	python3 scripts/manage.py backfill-patches {{release}} --start-date {{date}}
+	python3 scripts/manage.py backfill-patches {{quote(release)}} --start-date {{quote(date)}}
