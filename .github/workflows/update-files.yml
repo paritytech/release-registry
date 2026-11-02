@@ -1,8 +1,5 @@
-# CI action that can either run:
-# - via a manual trigger on a PR
-# - every time a PR is updated
-# The CI then then either updates the readme with a python script,
-# or checks that it does not need update.
+# CI check that runs every time a PR is updated: it regenerates all derived
+# files with `just` and fails if the result differs from what is committed.
 
 name: Update Files
 
@@ -11,46 +8,30 @@ on:
     branches:
       - main
     types: [opened, synchronize, reopened]
-  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
+  # The job id is the status-check context required by the ruleset on main; do not rename it.
   update-files:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
 
-      - name: Install system dependencies for Pillow
-        run: sudo apt-get update && sudo apt-get install -y libjpeg-dev zlib1g-dev
-
-      - name: Set up Python
-        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
-        with:
-          python-version: '3.13'
-
-      - uses: extractions/setup-just@53165ef7e734c5c07cb06b3c8e7b647c5aa16db3 # v4.0.0
-        with:
-          just-version: 1.35.0
+      - name: Set up toolchain
+        uses: ./.github/actions/setup-toolchain
 
       - name: All files
         run: just
 
-      - name: Check for changes
-        id: git-check
+      - name: Check that the derived files are up to date
         run: |
-          git diff --exit-code --name-only ':!.assets/timeline-gantt.png' . || echo "changes=true" >> $GITHUB_OUTPUT
-
-      - name: Commit and push changes if manually triggered
-        if: github.event_name == 'workflow_dispatch' && steps.git-check.outputs.changes == 'true'
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add .
-          git commit -m "Update files"
-          git push origin ${{ github.head_ref }}
-
-      - name: Error if changes needed on PR
-        if: github.event_name == 'pull_request' && steps.git-check.outputs.changes == 'true'
-        run: |
-          echo "Error: files need to be updated. Please run this workflow manually to update it."
-          exit 1
+          # `git status` rather than `git diff`, so new, untracked outputs fail the check too.
+          CHANGES="$(git status --porcelain -- . ':!.assets/timeline-gantt.png')"
+          if [ -n "$CHANGES" ]; then
+            echo "$CHANGES"
+            echo "::error::Derived files are out of date. Run 'just' locally, then commit the result (commits must be signed) and push."
+            exit 1
+          fi

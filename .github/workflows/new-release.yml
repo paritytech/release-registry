@@ -1,3 +1,6 @@
+# Manually triggered workflow that marks a release or patch as released:
+# runs `just publish <release> <date>` and opens a PR with the regenerated files.
+
 name: New release
 
 on:
@@ -13,62 +16,13 @@ on:
         type: string
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 jobs:
   new-release:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
-        with:
-          token: ${{ secrets.RB_TOKEN }}
-
-      - name: Install system dependencies for Pillow
-        run: sudo apt-get update && sudo apt-get install -y libjpeg-dev zlib1g-dev
-
-      - name: Set up Python
-        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
-        with:
-          python-version: '3.13'
-
-      - uses: extractions/setup-just@53165ef7e734c5c07cb06b3c8e7b647c5aa16db3 # v4.0.0
-        with:
-          just-version: 1.35.0
-
-      - name: Create release branch
-        env:
-          RELEASE: ${{ inputs.release }}
-        run: |
-          git config user.email "action@github.com"
-          git config user.name "GitHub Action"
-          git checkout -b "release-${RELEASE}"
-
-      - name: Publish release and regenerate files
-        env:
-          RELEASE: ${{ inputs.release }}
-          RELEASE_DATE: ${{ inputs.date }}
-        run: |
-          just venv
-          just publish "${RELEASE}" "${RELEASE_DATE}"
-          just
-
-      - name: Commit and push
-        env:
-          RELEASE: ${{ inputs.release }}
-        run: |
-          git add .
-          git commit -m "Release ${RELEASE}"
-          git push --set-upstream origin "release-${RELEASE}"
-
-      - name: Open pull request
-        env:
-          GH_TOKEN: ${{ secrets.RB_TOKEN }}
-          RELEASE: ${{ inputs.release }}
-        run: |
-          gh pr create \
-            --base main \
-            --head "release-${RELEASE}" \
-            --title "Release ${RELEASE}" \
-            --body ""
+    uses: ./.github/workflows/reusable-release-pr.yml
+    with:
+      branch: release-${{ inputs.release }}
+      title: Release ${{ inputs.release }}
+      recipes: publish ${{ inputs.release }} ${{ inputs.date }}
+    secrets: inherit

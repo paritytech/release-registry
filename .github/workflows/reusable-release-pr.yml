@@ -1,0 +1,122 @@
+# Reusable workflow behind the manually triggered "New release", "Plan release",
+# "Skip release" and "Deprecate release" workflows. It:
+# - creates a branch from the ref the caller was dispatched on (main)
+# - runs the given `just` recipes to change releases-v1.json
+# - regenerates every derived file with `just`
+# - commits the result, signed as ParityReleases with the release team's KMS-held
+#   GPG key via pgpkms (the paritytech org ruleset rejects unsigned commits on
+#   main and auto-merge cannot bypass it), pushes the branch and opens a PR.
+#
+# Callers must pass `secrets: inherit`; GITHUB_TOKEN needs no write permission
+# because every step authenticates with RB_TOKEN (the ParityReleases PAT), which
+# also makes the PR trigger the `update-files` check. The KMS secrets live in
+# the `release` environment, whose
+# branch policy only admits runs dispatched from `main`; the branch this job
+# creates is a push target, not the ref the job runs on, so it needs no access.
+
+name: Release PR
+
+on:
+  workflow_call:
+    inputs:
+      branch:
+        description: Name of the branch to create and open the PR from
+        required: true
+        type: string
+      title:
+        description: Commit message and PR title
+        required: true
+        type: string
+      body:
+        description: PR body
+        required: false
+        type: string
+        default: ''
+      recipes:
+        description: >-
+          `just` invocations to apply, one per line: the recipe name followed by
+          its arguments, separated by spaces (e.g. `publish stable2609-1 2026-11-05`).
+        required: true
+        type: string
+
+jobs:
+  release-pr:
+    runs-on: ubuntu-latest
+    environment: release
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          token: ${{ secrets.RB_TOKEN }}
+
+      - name: Set up toolchain
+        uses: ./.github/actions/setup-toolchain
+
+      - name: Install pgpkms
+        run: python3 -m pip install --quiet "git+https://github.com/paritytech/pgpkms.git@dc30e487d47f53d069831a4306377a3ec32638ae"
+
+      - name: Configure git to sign commits with the KMS key
+        run: |
+          PGPKMS_GIT="$(command -v pgpkms-git)" || { echo "::error::pgpkms-git is not on PATH after installation"; exit 1; }
+          git config --global commit.gpgsign true
+          git config --global gpg.program "$PGPKMS_GIT"
+          git config --global user.name "ParityReleases"
+          git config --global user.email "release-team@parity.io"
+          # Informational only: pgpkms-git ignores the key git asks for and derives
+          # the real fingerprint from the KMS key, so a rotated key keeps working.
+          git config --global user.signingKey "D8018FBB3F534D866A45998293C5FB5F6A367B51"
+
+      - name: Create branch
+        env:
+          BRANCH: ${{ inputs.branch }}
+        run: git checkout -b "$BRANCH"
+
+      - name: Apply the change and regenerate files
+        env:
+          RECIPES: ${{ inputs.recipes }}
+        run: |
+          # Each line is split on whitespace and passed to `just` as separate
+          # arguments. The Justfile quotes its parameters, so the values reach
+          # manage.py as literal arguments even if they contain shell syntax.
+          while read -r -a words || [ "${#words[@]}" -gt 0 ]; do
+            [ "${#words[@]}" -gt 0 ] || continue
+            just "${words[@]}"
+          done <<< "$RECIPES"
+          just
+
+      - name: Commit and push
+        env:
+          PGP_KMS_KEY: ${{ secrets.PGP_KMS_SIGN_COMMITS_KEY }}
+          PGP_KMS_HASH: ${{ secrets.PGP_KMS_HASH }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+          BRANCH: ${{ inputs.branch }}
+          TITLE: ${{ inputs.title }}
+        run: |
+          : "${PGP_KMS_KEY:?not set: is the job running in the release environment?}"
+          : "${AWS_ACCESS_KEY_ID:?not set}" "${AWS_SECRET_ACCESS_KEY:?not set}" "${AWS_DEFAULT_REGION:?not set}"
+          git add .
+          git commit -m "$TITLE"
+          git push --set-upstream origin "$BRANCH"
+
+      - name: Check that GitHub verified the signature
+        env:
+          GH_TOKEN: ${{ secrets.RB_TOKEN }}
+          BRANCH: ${{ inputs.branch }}
+        run: |
+          VERIFICATION="$(gh api "repos/${GITHUB_REPOSITORY}/commits/$(git rev-parse HEAD)" --jq '.commit.verification')"
+          echo "Signature verification: ${VERIFICATION}"
+          if [ "$(jq -r .verified <<< "$VERIFICATION")" != "true" ]; then
+            echo "::error::the pushed commit is not verified, so its PR could not be merged; deleting the branch so the run can be retried once signing is fixed"
+            git push origin --delete "$BRANCH"
+            exit 1
+          fi
+
+      - name: Open pull request
+        env:
+          GH_TOKEN: ${{ secrets.RB_TOKEN }}
+          BRANCH: ${{ inputs.branch }}
+          TITLE: ${{ inputs.title }}
+          BODY: ${{ inputs.body }}
+        run: gh pr create --base main --head "$BRANCH" --title "$TITLE" --body "$BODY"
