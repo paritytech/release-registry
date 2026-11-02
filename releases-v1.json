@@ -1348,7 +1348,7 @@
           "when": "2026-03-31",
           "tag": "polkadot-stable2603"
         },
-        "state": "released",
+        "state": "skipped",
         "endOfLife": {
           "estimated": "2027-03-26"
         },
