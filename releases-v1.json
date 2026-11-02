@@ -1016,8 +1016,8 @@
         },
         "state": {
           "deprecated": {
-            "since": "2026-09-21",
-            "useInstead": "stable2606"
+            "since": "2026-09-01",
+            "useInstead": "stable2609"
           }
         },
         "endOfLife": {
