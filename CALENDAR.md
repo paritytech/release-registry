@@ -8,6 +8,20 @@ Full untruncated version index.
 
 | Version | SemVer | Cutoff | Publish | End of Life | State |
 |---------|--------|--------|---------|-------------|-------|
+| **stable2703** | 1.26.0 | 2027-02-15 | 2027-04-01 | 2028-03-31 | Planned |
+| &nbsp;&nbsp;stable2703-1 | 1.26.1 | 2027-04-26 | 2027-04-29 |  | Planned |
+| &nbsp;&nbsp;stable2703-2 | 1.26.2 | 2027-05-24 | 2027-05-27 |  | Planned |
+| &nbsp;&nbsp;stable2703-3 | 1.26.3 | 2027-06-28 | 2027-07-01 |  | Planned |
+| &nbsp;&nbsp;stable2703-4 | 1.26.4 | 2027-07-26 | 2027-07-29 |  | Planned |
+| &nbsp;&nbsp;stable2703-5 | 1.26.5 | 2027-08-23 | 2027-08-26 |  | Planned |
+| &nbsp;&nbsp;stable2703-6 | 1.26.6 | 2027-09-27 | 2027-09-30 |  | Planned |
+| &nbsp;&nbsp;stable2703-7 | 1.26.7 | 2027-10-25 | 2027-10-28 |  | Planned |
+| &nbsp;&nbsp;stable2703-8 | 1.26.8 | 2027-11-22 | 2027-11-25 |  | Planned |
+| &nbsp;&nbsp;stable2703-9 | 1.26.9 | 2027-12-27 | 2027-12-30 |  | Planned |
+| &nbsp;&nbsp;stable2703-10 | 1.26.10 | 2028-01-24 | 2028-01-27 |  | Planned |
+| &nbsp;&nbsp;stable2703-11 | 1.26.11 | 2028-02-28 | 2028-03-02 |  | Planned |
+| &nbsp;&nbsp;stable2703-12 | 1.26.12 | 2028-03-27 | 2028-03-30 |  | Planned |
+| &nbsp;&nbsp;stable2703-13 | 1.26.13 | 2028-04-24 | 2028-04-27 |  | Planned |
 | **stable2612** | 1.26.0 | 2026-11-09 | 2026-12-17 | 2027-12-17 | Planned |
 | &nbsp;&nbsp;stable2612-1 | 1.26.1 | 2027-01-18 | 2027-01-21 |  | Planned |
 | &nbsp;&nbsp;stable2612-2 | 1.26.2 | 2027-02-15 | 2027-02-18 |  | Planned |

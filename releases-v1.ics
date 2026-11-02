@@ -2258,4 +2258,207 @@ DTEND;VALUE=DATE:20280121
 DESCRIPTION:Release of stable2612-13 (planned)\n\nFull Calendar: https://g
  ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
+BEGIN:VEVENT
+SUMMARY:stable2703 Cutoff
+DTSTART;VALUE=DATE:20270215
+DTEND;VALUE=DATE:20270216
+DESCRIPTION:Cutoff for stable2703 (planned)\n\nFull Calendar: https://gith
+ ub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:stable2703 Release
+DTSTART;VALUE=DATE:20270401
+DTEND;VALUE=DATE:20270402
+DESCRIPTION:Release of stable2703 (planned)\n\nFull Calendar: https://gith
+ ub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:stable2703 End of Life
+DTSTART;VALUE=DATE:20280331
+DTEND;VALUE=DATE:20280401
+DESCRIPTION:End of Life for stable2703\n\nFull Calendar: https://github.co
+ m/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:stable2703-1 Cutoff
+DTSTART;VALUE=DATE:20270426
+DTEND;VALUE=DATE:20270427
+DESCRIPTION:Cutoff for stable2703-1 (planned)\n\nFull Calendar: https://gi
+ thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:stable2703-1 Release
+DTSTART;VALUE=DATE:20270429
+DTEND;VALUE=DATE:20270430
+DESCRIPTION:Release of stable2703-1 (planned)\n\nFull Calendar: https://gi
+ thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:stable2703-2 Cutoff
+DTSTART;VALUE=DATE:20270524
+DTEND;VALUE=DATE:20270525
+DESCRIPTION:Cutoff for stable2703-2 (planned)\n\nFull Calendar: https://gi
+ thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:stable2703-2 Release
+DTSTART;VALUE=DATE:20270527
+DTEND;VALUE=DATE:20270528
+DESCRIPTION:Release of stable2703-2 (planned)\n\nFull Calendar: https://gi
+ thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:stable2703-3 Cutoff
+DTSTART;VALUE=DATE:20270628
+DTEND;VALUE=DATE:20270629
+DESCRIPTION:Cutoff for stable2703-3 (planned)\n\nFull Calendar: https://gi
+ thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:stable2703-3 Release
+DTSTART;VALUE=DATE:20270701
+DTEND;VALUE=DATE:20270702
+DESCRIPTION:Release of stable2703-3 (planned)\n\nFull Calendar: https://gi
+ thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:stable2703-4 Cutoff
+DTSTART;VALUE=DATE:20270726
+DTEND;VALUE=DATE:20270727
+DESCRIPTION:Cutoff for stable2703-4 (planned)\n\nFull Calendar: https://gi
+ thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:stable2703-4 Release
+DTSTART;VALUE=DATE:20270729
+DTEND;VALUE=DATE:20270730
+DESCRIPTION:Release of stable2703-4 (planned)\n\nFull Calendar: https://gi
+ thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:stable2703-5 Cutoff
+DTSTART;VALUE=DATE:20270823
+DTEND;VALUE=DATE:20270824
+DESCRIPTION:Cutoff for stable2703-5 (planned)\n\nFull Calendar: https://gi
+ thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:stable2703-5 Release
+DTSTART;VALUE=DATE:20270826
+DTEND;VALUE=DATE:20270827
+DESCRIPTION:Release of stable2703-5 (planned)\n\nFull Calendar: https://gi
+ thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:stable2703-6 Cutoff
+DTSTART;VALUE=DATE:20270927
+DTEND;VALUE=DATE:20270928
+DESCRIPTION:Cutoff for stable2703-6 (planned)\n\nFull Calendar: https://gi
+ thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:stable2703-6 Release
+DTSTART;VALUE=DATE:20270930
+DTEND;VALUE=DATE:20271001
+DESCRIPTION:Release of stable2703-6 (planned)\n\nFull Calendar: https://gi
+ thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:stable2703-7 Cutoff
+DTSTART;VALUE=DATE:20271025
+DTEND;VALUE=DATE:20271026
+DESCRIPTION:Cutoff for stable2703-7 (planned)\n\nFull Calendar: https://gi
+ thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:stable2703-7 Release
+DTSTART;VALUE=DATE:20271028
+DTEND;VALUE=DATE:20271029
+DESCRIPTION:Release of stable2703-7 (planned)\n\nFull Calendar: https://gi
+ thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:stable2703-8 Cutoff
+DTSTART;VALUE=DATE:20271122
+DTEND;VALUE=DATE:20271123
+DESCRIPTION:Cutoff for stable2703-8 (planned)\n\nFull Calendar: https://gi
+ thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:stable2703-8 Release
+DTSTART;VALUE=DATE:20271125
+DTEND;VALUE=DATE:20271126
+DESCRIPTION:Release of stable2703-8 (planned)\n\nFull Calendar: https://gi
+ thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:stable2703-9 Cutoff
+DTSTART;VALUE=DATE:20271227
+DTEND;VALUE=DATE:20271228
+DESCRIPTION:Cutoff for stable2703-9 (planned)\n\nFull Calendar: https://gi
+ thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:stable2703-9 Release
+DTSTART;VALUE=DATE:20271230
+DTEND;VALUE=DATE:20271231
+DESCRIPTION:Release of stable2703-9 (planned)\n\nFull Calendar: https://gi
+ thub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:stable2703-10 Cutoff
+DTSTART;VALUE=DATE:20280124
+DTEND;VALUE=DATE:20280125
+DESCRIPTION:Cutoff for stable2703-10 (planned)\n\nFull Calendar: https://g
+ ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:stable2703-10 Release
+DTSTART;VALUE=DATE:20280127
+DTEND;VALUE=DATE:20280128
+DESCRIPTION:Release of stable2703-10 (planned)\n\nFull Calendar: https://g
+ ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:stable2703-11 Cutoff
+DTSTART;VALUE=DATE:20280228
+DTEND;VALUE=DATE:20280229
+DESCRIPTION:Cutoff for stable2703-11 (planned)\n\nFull Calendar: https://g
+ ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:stable2703-11 Release
+DTSTART;VALUE=DATE:20280302
+DTEND;VALUE=DATE:20280303
+DESCRIPTION:Release of stable2703-11 (planned)\n\nFull Calendar: https://g
+ ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:stable2703-12 Cutoff
+DTSTART;VALUE=DATE:20280327
+DTEND;VALUE=DATE:20280328
+DESCRIPTION:Cutoff for stable2703-12 (planned)\n\nFull Calendar: https://g
+ ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:stable2703-12 Release
+DTSTART;VALUE=DATE:20280330
+DTEND;VALUE=DATE:20280331
+DESCRIPTION:Release of stable2703-12 (planned)\n\nFull Calendar: https://g
+ ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:stable2703-13 Cutoff
+DTSTART;VALUE=DATE:20280424
+DTEND;VALUE=DATE:20280425
+DESCRIPTION:Cutoff for stable2703-13 (planned)\n\nFull Calendar: https://g
+ ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:stable2703-13 Release
+DTSTART;VALUE=DATE:20280427
+DTEND;VALUE=DATE:20280428
+DESCRIPTION:Release of stable2703-13 (planned)\n\nFull Calendar: https://g
+ ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
+END:VEVENT
 END:VCALENDAR
