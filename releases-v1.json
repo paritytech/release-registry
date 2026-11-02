@@ -1489,7 +1489,12 @@
           "when": "2026-07-06",
           "tag": "polkadot-stable2606"
         },
-        "state": "released",
+        "state": {
+          "deprecated": {
+            "since": "2026-11-02",
+            "useInstead": "stable2609"
+          }
+        },
         "endOfLife": {
           "estimated": "2027-07-02"
         },
@@ -1501,7 +1506,12 @@
               "when": "2026-08-10",
               "tag": "polkadot-stable2606-1"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2026-11-02",
+                "useInstead": "stable2609"
+              }
+            },
             "semver": "1.24.1"
           },
           {
@@ -1511,7 +1521,12 @@
               "when": "2026-09-15",
               "tag": "polkadot-stable2606-2"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2026-11-02",
+                "useInstead": "stable2609"
+              }
+            },
             "semver": "1.24.2"
           },
           {
@@ -1521,7 +1536,12 @@
               "when": "2026-10-08",
               "tag": "polkadot-stable2606-3"
             },
-            "state": "released",
+            "state": {
+              "deprecated": {
+                "since": "2026-11-02",
+                "useInstead": "stable2609"
+              }
+            },
             "semver": "1.24.3"
           },
           {
@@ -1532,7 +1552,7 @@
             "publish": {
               "estimated": "2026-11-05"
             },
-            "state": "planned",
+            "state": "skipped",
             "semver": "1.24.4"
           },
           {
@@ -1543,7 +1563,7 @@
             "publish": {
               "estimated": "2026-12-10"
             },
-            "state": "planned",
+            "state": "skipped",
             "semver": "1.24.5"
           },
           {
@@ -1554,7 +1574,7 @@
             "publish": {
               "estimated": "2027-01-07"
             },
-            "state": "planned",
+            "state": "skipped",
             "semver": "1.24.6"
           },
           {
@@ -1565,7 +1585,7 @@
             "publish": {
               "estimated": "2027-02-04"
             },
-            "state": "planned",
+            "state": "skipped",
             "semver": "1.24.7"
           },
           {
@@ -1576,7 +1596,7 @@
             "publish": {
               "estimated": "2027-03-04"
             },
-            "state": "planned",
+            "state": "skipped",
             "semver": "1.24.8"
           },
           {
@@ -1587,7 +1607,7 @@
             "publish": {
               "estimated": "2027-04-08"
             },
-            "state": "planned",
+            "state": "skipped",
             "semver": "1.24.9"
           },
           {
@@ -1598,7 +1618,7 @@
             "publish": {
               "estimated": "2027-05-06"
             },
-            "state": "planned",
+            "state": "skipped",
             "semver": "1.24.10"
           },
           {
@@ -1609,7 +1629,7 @@
             "publish": {
               "estimated": "2027-06-10"
             },
-            "state": "planned",
+            "state": "skipped",
             "semver": "1.24.11"
           },
           {
@@ -1620,7 +1640,7 @@
             "publish": {
               "estimated": "2027-07-08"
             },
-            "state": "planned",
+            "state": "skipped",
             "semver": "1.24.12"
           },
           {
@@ -1631,7 +1651,7 @@
             "publish": {
               "estimated": "2027-08-05"
             },
-            "state": "planned",
+            "state": "skipped",
             "semver": "1.24.13"
           }
         ]
