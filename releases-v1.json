@@ -1526,13 +1526,12 @@
           },
           {
             "name": "stable2606-4",
-            "cutoff": {
-              "estimated": "2026-11-02"
-            },
+            "cutoff": "2026-11-04",
             "publish": {
-              "estimated": "2026-11-05"
+              "when": "2026-11-04",
+              "tag": "polkadot-stable2606-4"
             },
-            "state": "planned",
+            "state": "released",
             "semver": "1.24.4"
           },
           {
