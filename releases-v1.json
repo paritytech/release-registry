@@ -1650,13 +1650,12 @@
           },
           {
             "name": "stable2609-2",
-            "cutoff": {
-              "estimated": "2026-12-14"
-            },
+            "cutoff": "2026-11-12",
             "publish": {
-              "estimated": "2026-12-17"
+              "when": "2026-11-12",
+              "tag": "polkadot-stable2609-2"
             },
-            "state": "planned",
+            "state": "released",
             "semver": "1.25.2"
           },
           {
