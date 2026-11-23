@@ -1322,7 +1322,7 @@
             "publish": {
               "estimated": "2026-11-19"
             },
-            "state": "planned",
+            "state": "skipped",
             "semver": "1.21.11"
           },
           {

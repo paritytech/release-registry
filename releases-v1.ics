@@ -1464,14 +1464,14 @@ BEGIN:VEVENT
 SUMMARY:stable2512-11 Cutoff
 DTSTART;VALUE=DATE:20261116
 DTEND;VALUE=DATE:20261117
-DESCRIPTION:Cutoff for stable2512-11 (planned)\n\nFull Calendar: https://g
+DESCRIPTION:Cutoff for stable2512-11 (skipped)\n\nFull Calendar: https://g
  ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:stable2512-11 Release
 DTSTART;VALUE=DATE:20261119
 DTEND;VALUE=DATE:20261120
-DESCRIPTION:Release of stable2512-11 (planned)\n\nFull Calendar: https://g
+DESCRIPTION:Release of stable2512-11 (skipped)\n\nFull Calendar: https://g
  ithub.com/paritytech/release-registry/blob/main/CALENDAR.md#calendar
 END:VEVENT
 BEGIN:VEVENT
