@@ -1,4 +1,5 @@
-# CI check that runs every time a PR is updated: it regenerates all derived
+# CI check that runs every time a PR is updated: it runs the unit tests of the
+# scripts, checks releases-v1.json against its schema, regenerates all derived
 # files with `just` and fails if the result differs from what is committed.
 
 name: Update Files
@@ -23,6 +24,10 @@ jobs:
       - name: Set up toolchain
         uses: ./.github/actions/setup-toolchain
 
+      - name: Unit tests
+        run: just test
+
+      # Also checks releases-v1.json against its schema.
       - name: All files
         run: just
 

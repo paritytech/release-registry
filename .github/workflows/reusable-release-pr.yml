@@ -2,7 +2,8 @@
 # "Skip release" and "Deprecate release" workflows. It:
 # - creates a branch from the ref the caller was dispatched on (main)
 # - runs the given `just` recipes to change releases-v1.json
-# - regenerates every derived file with `just`
+# - checks releases-v1.json against its schema and regenerates every derived
+#   file with `just`
 # - commits the result, signed as ParityReleases with the release team's KMS-held
 #   GPG key via pgpkms (the paritytech org ruleset rejects unsigned commits on
 #   main and auto-merge cannot bypass it), pushes the branch and opens a PR.

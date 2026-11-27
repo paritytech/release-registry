@@ -22,7 +22,7 @@
 					"properties": {
 						"release": {
 							"type": "string",
-							"pattern": "^stable2[456][01][0-9]$",
+							"pattern": "^stable2[4-9][01][0-9]$",
 							"description": "The recommended release to use"
 						},
 						"patch": {
@@ -61,7 +61,7 @@
 			"properties": {
 				"name": {
 					"type": "string",
-					"pattern": "^stable2[456][01][0-9]$",
+					"pattern": "^stable2[4-9][01][0-9]$",
 					"description": "The name of the release"
 				},
 				"semver": {
@@ -75,6 +75,18 @@
 						"stable"
 					],
 					"description": "The kind of release"
+				},
+				"cadence": {
+					"type": "string",
+					"enum": [
+						"quarterly",
+						"monthly"
+					],
+					"description": "The release cadence. A release without this field is quarterly."
+				},
+				"lts": {
+					"type": "boolean",
+					"description": "Reserved for long-term support releases. Not used yet."
 				},
 				"cutoff": {
 					"$ref": "#/definitions/dateAndTag"
@@ -109,7 +121,7 @@
 			"properties": {
 				"name": {
 					"type": "string",
-					"pattern": "^stable2[456][01][0-9]-([1-9][0-9]*)$"
+					"pattern": "^stable2[4-9][01][0-9]-([1-9][0-9]*)$"
 				},
 				"semver": {
 					"type": "string",

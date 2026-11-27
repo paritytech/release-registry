@@ -1,5 +1,8 @@
 # Manually triggered workflow that skips a planned release or patch:
 # runs `just skip <release>` and opens a PR with the regenerated files.
+#
+# A skipped monthly release does not use up a version number: the planned
+# monthly releases after it move down by one minor version.
 
 name: Skip release
 
