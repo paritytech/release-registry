@@ -2,6 +2,9 @@
 # runs `just deprecate <release> <date> <use_instead>` (already released patches
 # are deprecated, planned ones are skipped) and opens a PR with the regenerated
 # files.
+#
+# This is for the quarterly releases. A monthly release is deprecated by the
+# "New release" workflow when the next monthly release is published.
 
 name: Deprecate release
 

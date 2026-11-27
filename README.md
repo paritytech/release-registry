@@ -6,7 +6,7 @@ Single source of truth regarding past and future releases of the Polkadot SDK.
 
 This repo contains a [releases-v1.json](./releases-v1.json) file that tracks all SDK releases and a [JSON schema](./releases-v1.schema.json) to ensure that it is in canonical format.
 
-This Gantt chart shows the released (pink) and planned (grey) releases. The longer bars are the stable releases and the small ones are the patches on top of it.
+This chart shows the released (pink) and planned (grey) releases. The row at the top shows the monthly releases: each one is supported from the day it is published until the next one replaces it. Below are the quarterly releases that are still supported. Their long bars are the releases and the small ones are the patches on top of them.
 
 ![](.assets/timeline-gantt.png)
 
@@ -20,10 +20,12 @@ Planned and historic release dates:
 
 | Version | SemVer | Cutoff | Publish | End of Life | State |
 |---------|--------|--------|---------|-------------|-------|
-| **stable2612** | 1.26.0 | 2026-11-09 | 2026-12-17 | 2027-12-17 | Planned |
-| &nbsp;&nbsp;stable2612-1 | 1.26.1 | 2027-01-18 | 2027-01-21 |  | Planned |
-| &nbsp;&nbsp;stable2612-2 | 1.26.2 | 2027-02-15 | 2027-02-18 |  | Planned |
-| &nbsp;&nbsp;[11 more planned](CALENDAR.md) |  |  | | |
+| **stable2704** | 1.31.0 | 2027-04-26 | 2027-04-29 | 2027-05-27 | Planned |
+| **stable2703** | 1.30.0 | 2027-03-22 | 2027-03-25 | 2027-04-29 | Planned |
+| **stable2702** | 1.29.0 | 2027-02-22 | 2027-02-25 | 2027-03-25 | Planned |
+| **stable2701** | 1.28.0 | 2027-01-25 | 2027-01-28 | 2027-02-25 | Planned |
+| **stable2612** | 1.27.0 | 2026-12-14 | 2026-12-17 | 2027-01-28 | Planned |
+| **stable2611** | 1.26.0 | 2026-11-23 | 2026-11-26 | 2026-12-17 | Planned |
 | **stable2609** | 1.25.0 | 2026-08-17 | 2026-10-12 | 2027-10-01 | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2609) |
 | &nbsp;&nbsp;stable2609-1 | 1.25.1 | 2026-11-02 | 2026-11-02 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2609-1) |
 | &nbsp;&nbsp;stable2609-2 | 1.25.2 | 2026-11-12 | 2026-11-12 |  | [Released](https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2609-2) |
@@ -109,13 +111,86 @@ The two main goals of this repo are to improve:
 
 ## Maintenance
 
-### Release Planning
-(how to add a new release to the json)
+All changes to the JSON go through [manage.py](./scripts/manage.py): either with the `just` commands below, or with the workflows in the Actions tab, which run the same commands and open a PR against `main`. After a local change, run `just`. It checks the JSON against the schema and updates the README, the calendar, the badges and the chart.
 
-First, check the calendar when about 3 months passed from the publish date of the last release. Then subtract about 1.5 months from that and call the plan command with that date:
+A command that does not fit fails with an error and leaves the JSON as it is. This is the case for a release or patch that does not exist, for a release that is already out and would be planned, cut off or skipped again, and for a patch that would be published before its release.
+
+### Maintaining monthly releases
+
+Releases from `stable2611` on are monthly and have `"cadence": "monthly"` in the JSON. Most of their data follows from rules, so it does not have to be typed in:
+
+- **Dates**: the cutoff is the last Monday of the month whose Friday is still in the same month. The release is published on the Thursday of that week.
+- **SemVer**: every release has the minor version of the release before it plus one, for example `1.26.0` for `stable2611` and `1.27.0` for `stable2612`.
+- **End of life**: a release is supported until the next one is published.
+- **Planning**: the next six releases are always planned.
+
+#### Publishing a release
+
+In a normal month this is the only step. On the day the release is published on GitHub, run:
 
 ```bash
-python3 scripts/manage.py release plan stable2412 2024-11-06
+just publish stable2611 2026-11-26
+```
+
+Or trigger the **New release** workflow (`.github/workflows/new-release.yml`) with the release name and the date. This marks the release as released, deprecates the monthly release before it and plans one more release, so that six stay planned.
+
+A release can only be published once the monthly releases before it are published or skipped.
+
+#### Moving a release to another week
+
+Pass the new cutoff date. It has to be a Monday, and the publish date becomes the Thursday of that week:
+
+```bash
+just plan stable2612 2026-12-14
+```
+
+The **Plan release** workflow (`.github/workflows/plan-release.yml`) does the same. It takes the release name, the cutoff date and optionally a node version. The node version is only needed for a first monthly release, which has no previous one to derive it from.
+
+#### Skipping a release
+
+```bash
+just skip stable2701
+```
+
+Or trigger the **Skip release** workflow (`.github/workflows/skip-release.yml`). A skipped release does not use up a version number: the planned releases after it move down by one minor version. To bring a skipped release back, plan it again with `just plan`. That is no longer possible once a later release is cut off or released.
+
+#### Publishing with a different SemVer
+
+If a release gets another version than the planned one, for example a new major version, pass it when publishing. The planned releases after it follow from that version:
+
+```bash
+just publish stable2701 2027-01-28 2.0.0
+```
+
+#### Patches
+
+Monthly releases have no patch schedule. If one needs a patch, announce it with `plan` and record it with `publish` once it is out. `publish` alone is enough if the patch was not announced:
+
+```bash
+just plan stable2611-1 2026-12-03
+just publish stable2611-1 2026-12-03
+```
+
+#### Other commands
+
+```bash
+just plan-ahead               # plan releases until six are planned, e.g. after a skip
+just recommend stable2609 2   # set the recommended release, the patch number is optional
+```
+
+The recommended release is what the "Latest Release" badge shows. It is set by hand. It only moves by itself if it points to a monthly release that is replaced by the next one.
+
+### Maintaining quarterly releases (legacy)
+
+`stable2512`, `stable2603`, `stable2606` and `stable2609` are the last quarterly releases. They keep their monthly patching schedule until their end of life, and no new quarterly release is planned. The commands below remain for them.
+
+#### Release Planning
+(how to add a new quarterly release to the json)
+
+First, check the calendar when about 3 months passed from the publish date of the last release. Then subtract about 1.5 months from that and call the plan command with that date. Releases are planned as monthly ones unless `--cadence quarterly` is given:
+
+```bash
+python3 scripts/manage.py release plan stable2412 2024-11-06 1.17.0 --cadence quarterly
 ```
 
 Then figure out when the first patch date should be; you have to select a Monday for the patching schedule to be calculated (errors if not a Monday). You should select either a week that is empty and has no schedule, or the one where the oldest release is currently being patched.  
@@ -129,11 +204,9 @@ python3 scripts/manage.py backfill-patches stable2407 --start-date 2024-07-29
 
 Then update the README to see the changes by running `just`.
 
-Alternatively, this can be done entirely on GitHub: trigger the **Plan release** workflow (`.github/workflows/plan-release.yml`) from the Actions tab. It takes the release name, node version, cutoff date and first patch date as inputs, runs the `plan` and `backfill` commands, regenerates all derived files, and opens a PR against `main`.
+#### Release Cutoff / Publish
 
-### Release Cutoff / Publish
-
-Run this command to cut off a release:
+Run this command to cut off a release or patch:
 
 ```bash
 python3 scripts/manage.py release cutoff stable2407-2 2024-09-02
@@ -143,7 +216,7 @@ With `publish` likewise.
 
 Publishing can also be done on GitHub: trigger the **New release** workflow (`.github/workflows/new-release.yml`) from the Actions tab. It takes the release name and date as inputs, runs the `publish` command, regenerates all derived files, and opens a PR against `main`.
 
-### Release Deprecation
+#### Release Deprecation
 
 Once a release reaches its end of life, deprecate it and point users at its successor. Already released patches get marked as deprecated too, while the remaining planned ones are skipped:
 

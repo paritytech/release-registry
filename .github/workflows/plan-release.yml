@@ -1,7 +1,13 @@
-# Manually triggered workflow that plans a new stable release:
-# runs `just plan <release> <cutoff-date> <node_version>` and
-# `just backfill <release> <first-patch-date>` and opens a PR with the
-# regenerated files.
+# Manually triggered workflow that plans a monthly release, or moves a planned
+# one to another week: runs `just plan <release> <cutoff-date> [<node_version>]`
+# and opens a PR with the regenerated files.
+#
+# Monthly releases are planned automatically, six ahead, whenever one is
+# published (see the "New release" workflow), with the dates of the week rule
+# and the next minor version. This workflow is for the exceptions: a release
+# that has to move to another week, and a first monthly release, which has no
+# previous one to take its node version from. Given a patch name
+# (e.g. stable2611-1) it plans a single patch for that date.
 
 name: Plan release
 
@@ -9,21 +15,18 @@ on:
   workflow_dispatch:
     inputs:
       release:
-        description: 'Release name (e.g. stable2606)'
-        required: true
-        type: string
-      node_version:
-        description: 'Node version (e.g. 1.25.0)'
+        description: 'Release name (e.g. stable2612)'
         required: true
         type: string
       cutoff-date:
-        description: 'Release cutoff date (YYYY-MM-DD) should be 1.5 months earlier than release date'
+        description: 'Cutoff date (YYYY-MM-DD). For a release it must be a Monday, and the release date is the Thursday of that week'
         required: true
         type: string
-      first-patch-date:
-        description: 'First patch release date (YYYY-MM-DD, must be a Monday) should be approx. 1 month after release date in a week where no releases are planned'
-        required: true
+      node_version:
+        description: 'Node version (e.g. 1.27.0). Leave empty: it follows from the previous monthly release'
+        required: false
         type: string
+        default: ''
 
 permissions:
   contents: read
@@ -34,8 +37,6 @@ jobs:
     with:
       branch: plan-${{ inputs.release }}
       title: Plan ${{ inputs.release }}
-      body: Plan and backfill for ${{ inputs.release }} with node version ${{ inputs.node_version }} and cutoff date ${{ inputs.cutoff-date }} and first patch date ${{ inputs.first-patch-date }}
-      recipes: |
-        plan ${{ inputs.release }} ${{ inputs.cutoff-date }} ${{ inputs.node_version }}
-        backfill ${{ inputs.release }} ${{ inputs.first-patch-date }}
+      body: Plan ${{ inputs.release }} with cutoff date ${{ inputs.cutoff-date }}${{ inputs.node_version != '' && format(' and node version {0}', inputs.node_version) || '' }}
+      recipes: plan ${{ inputs.release }} ${{ inputs.cutoff-date }} ${{ inputs.node_version }}
     secrets: inherit

@@ -1,3 +1,4 @@
+attrs==26.1.0
 beautifulsoup4==4.12.3
 Brotli==1.2.1
 bs4==0.0.2
@@ -11,6 +12,8 @@ fonttools==4.61.0
 html5lib==1.1
 icalendar==5.0.13
 idna==3.15
+jsonschema==4.26.0
+jsonschema-specifications==2025.9.1
 kiwisolver==1.4.7
 Markdown==3.8.1
 matplotlib==3.9.2
@@ -27,7 +30,9 @@ pyparsing==3.1.4
 pyphen==0.16.0
 python-dateutil==2.9.0.post0
 pytz==2024.1
+referencing==0.37.0
 requests==2.33.0
+rpds-py==2026.9.1
 six==1.16.0
 soupsieve==4.0
 tinycss2==1.5.1

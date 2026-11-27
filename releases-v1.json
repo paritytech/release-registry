@@ -1760,163 +1760,94 @@
         ]
       },
       {
-        "name": "stable2612",
+        "name": "stable2611",
         "semver": "1.26.0",
+        "cadence": "monthly",
         "cutoff": {
-          "estimated": "2026-11-09"
+          "estimated": "2026-11-23"
+        },
+        "publish": {
+          "estimated": "2026-11-26"
+        },
+        "state": "planned",
+        "endOfLife": {
+          "estimated": "2026-12-17"
+        }
+      },
+      {
+        "name": "stable2612",
+        "semver": "1.27.0",
+        "cadence": "monthly",
+        "cutoff": {
+          "estimated": "2026-12-14"
         },
         "publish": {
           "estimated": "2026-12-17"
         },
         "state": "planned",
         "endOfLife": {
-          "estimated": "2027-12-17"
+          "estimated": "2027-01-28"
+        }
+      },
+      {
+        "name": "stable2701",
+        "semver": "1.28.0",
+        "cadence": "monthly",
+        "cutoff": {
+          "estimated": "2027-01-25"
         },
-        "patches": [
-          {
-            "name": "stable2612-1",
-            "cutoff": {
-              "estimated": "2027-01-18"
-            },
-            "publish": {
-              "estimated": "2027-01-21"
-            },
-            "state": "planned",
-            "semver": "1.26.1"
-          },
-          {
-            "name": "stable2612-2",
-            "cutoff": {
-              "estimated": "2027-02-15"
-            },
-            "publish": {
-              "estimated": "2027-02-18"
-            },
-            "state": "planned",
-            "semver": "1.26.2"
-          },
-          {
-            "name": "stable2612-3",
-            "cutoff": {
-              "estimated": "2027-03-15"
-            },
-            "publish": {
-              "estimated": "2027-03-18"
-            },
-            "state": "planned",
-            "semver": "1.26.3"
-          },
-          {
-            "name": "stable2612-4",
-            "cutoff": {
-              "estimated": "2027-04-19"
-            },
-            "publish": {
-              "estimated": "2027-04-22"
-            },
-            "state": "planned",
-            "semver": "1.26.4"
-          },
-          {
-            "name": "stable2612-5",
-            "cutoff": {
-              "estimated": "2027-05-17"
-            },
-            "publish": {
-              "estimated": "2027-05-20"
-            },
-            "state": "planned",
-            "semver": "1.26.5"
-          },
-          {
-            "name": "stable2612-6",
-            "cutoff": {
-              "estimated": "2027-06-21"
-            },
-            "publish": {
-              "estimated": "2027-06-24"
-            },
-            "state": "planned",
-            "semver": "1.26.6"
-          },
-          {
-            "name": "stable2612-7",
-            "cutoff": {
-              "estimated": "2027-07-19"
-            },
-            "publish": {
-              "estimated": "2027-07-22"
-            },
-            "state": "planned",
-            "semver": "1.26.7"
-          },
-          {
-            "name": "stable2612-8",
-            "cutoff": {
-              "estimated": "2027-08-16"
-            },
-            "publish": {
-              "estimated": "2027-08-19"
-            },
-            "state": "planned",
-            "semver": "1.26.8"
-          },
-          {
-            "name": "stable2612-9",
-            "cutoff": {
-              "estimated": "2027-09-20"
-            },
-            "publish": {
-              "estimated": "2027-09-23"
-            },
-            "state": "planned",
-            "semver": "1.26.9"
-          },
-          {
-            "name": "stable2612-10",
-            "cutoff": {
-              "estimated": "2027-10-18"
-            },
-            "publish": {
-              "estimated": "2027-10-21"
-            },
-            "state": "planned",
-            "semver": "1.26.10"
-          },
-          {
-            "name": "stable2612-11",
-            "cutoff": {
-              "estimated": "2027-11-15"
-            },
-            "publish": {
-              "estimated": "2027-11-18"
-            },
-            "state": "planned",
-            "semver": "1.26.11"
-          },
-          {
-            "name": "stable2612-12",
-            "cutoff": {
-              "estimated": "2027-12-20"
-            },
-            "publish": {
-              "estimated": "2027-12-23"
-            },
-            "state": "planned",
-            "semver": "1.26.12"
-          },
-          {
-            "name": "stable2612-13",
-            "cutoff": {
-              "estimated": "2028-01-17"
-            },
-            "publish": {
-              "estimated": "2028-01-20"
-            },
-            "state": "planned",
-            "semver": "1.26.13"
-          }
-        ]
+        "publish": {
+          "estimated": "2027-01-28"
+        },
+        "state": "planned",
+        "endOfLife": {
+          "estimated": "2027-02-25"
+        }
+      },
+      {
+        "name": "stable2702",
+        "semver": "1.29.0",
+        "cadence": "monthly",
+        "cutoff": {
+          "estimated": "2027-02-22"
+        },
+        "publish": {
+          "estimated": "2027-02-25"
+        },
+        "state": "planned",
+        "endOfLife": {
+          "estimated": "2027-03-25"
+        }
+      },
+      {
+        "name": "stable2703",
+        "semver": "1.30.0",
+        "cadence": "monthly",
+        "cutoff": {
+          "estimated": "2027-03-22"
+        },
+        "publish": {
+          "estimated": "2027-03-25"
+        },
+        "state": "planned",
+        "endOfLife": {
+          "estimated": "2027-04-29"
+        }
+      },
+      {
+        "name": "stable2704",
+        "semver": "1.31.0",
+        "cadence": "monthly",
+        "cutoff": {
+          "estimated": "2027-04-26"
+        },
+        "publish": {
+          "estimated": "2027-04-29"
+        },
+        "state": "planned",
+        "endOfLife": {
+          "estimated": "2027-05-27"
+        }
       }
     ],
     "changelog": "https://github.com/paritytech/polkadot-sdk/releases/tag/$TAG"

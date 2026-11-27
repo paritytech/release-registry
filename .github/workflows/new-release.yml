@@ -1,5 +1,9 @@
 # Manually triggered workflow that marks a release or patch as released:
 # runs `just publish <release> <date>` and opens a PR with the regenerated files.
+#
+# For a monthly release this one run is the whole monthly routine: it also
+# deprecates the monthly release before it and plans new monthly releases, so
+# that six stay planned.
 
 name: New release
 
@@ -7,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       release:
-        description: 'Release name (e.g. stable2509-7)'
+        description: 'Release or patch name (e.g. stable2612 or stable2609-3)'
         required: true
         type: string
       date:

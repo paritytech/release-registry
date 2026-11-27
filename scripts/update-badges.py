@@ -13,6 +13,8 @@ import requests
 import re
 from datetime import datetime
 
+import registry
+
 releases = json.load(open("releases-v1.json"))
 
 def download(url, filename):
@@ -38,10 +40,9 @@ def update_latest():
     download(latest_url, latest_name)
 
 def find_next_unreleased_release(releases):
-    for release in releases:
-        if release['state'] in ['planned', 'staging']:
-            return release
-    return None
+    # The upcoming release that is published first. The order in the file does not matter.
+    upcoming = [release for release in releases if release['state'] in ['planned', 'staging']]
+    return min(upcoming, key=lambda release: registry.date_of(release['publish']), default=None)
 
 def format_date(date_info):
     if isinstance(date_info, dict):
